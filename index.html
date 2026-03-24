@@ -6,188 +6,158 @@
     <title>Suits Agency | Bigo Live</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Estilos Base - Negro Mate y Minimalismo */
         :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --accent-color: #8a2be2; /* Morado */
+            --bg-color: #050505; /* Negro más profundo */
+            --card-bg: rgba(20, 25, 35, 0.7); /* Azul muy oscuro traslúcido */
+            --accent-blue: #00d4ff; /* El cian del brillo de tu logo */
+            --silver: #c0c0c0; /* El plateado de las letras AS */
             --text-main: #ffffff;
-            --text-dim: #a0a0a0;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            line-height: 1.6;
-            
-            /* --- NUEVO: Imagen de fondo (Logo) --- */
-            background-image: url('logo.png'); /* Ruta a tu imagen */
-            background-repeat: no-repeat;
-            background-position: center; /* Centrada */
-            background-attachment: fixed; /* Fija al hacer scroll */
-            background-size: 40%; /* Tamaño grande pero no gigante */
-            /* Efecto marca de agua: Usamos un pseudo-elemento para la opacidad */
+            overflow-x: hidden;
         }
 
-        /* --- NUEVO: Ajuste para la opacidad del fondo --- */
+        /* Marca de agua con tu logo */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('logo.png');
+            background-image: url('logo.png'); /* Asegúrate que se llame así en el repo */
             background-repeat: no-repeat;
             background-position: center;
-            background-size: 50%; /* Ajusta el tamaño aquí (50% del ancho) */
-            opacity: 0.05; /* MUY transparente (0.05 de 1). Súbelo si está muy invisible */
-            z-index: -1; /* Detrás de todo el contenido */
-        }
-        
-        /* Eliminamos el gradiente del body original para que no tape el logo */
-        body {
-            background-image: none;
+            background-size: 60%; 
+            opacity: 0.15; /* Subí un poco la opacidad para que se note el azul */
+            z-index: -1;
+            filter: brightness(1.2); /* Resalta los brillos azules */
         }
 
         header {
-            height: 80vh;
+            height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
-            /* Gradient suave sobre el fondo negro para el hero */
-            background: radial-gradient(circle at center, rgba(26,26,26,0.8) 0%, rgba(18,18,18,1) 100%);
+            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
+            font-size: 4rem;
+            margin-bottom: 0;
+            background: linear-gradient(to bottom, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3));
         }
 
         .hero-subtitle {
-            color: var(--text-dim);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 30px;
+            color: var(--silver);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         .cta-main {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 15px 40px;
+            margin-top: 40px;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 12px 35px;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 5px;
             font-weight: bold;
-            transition: transform 0.3s ease;
-            position: relative; /* Para asegurar que esté sobre el fondo */
-            z-index: 1;
+            transition: all 0.3s ease;
+            background: transparent;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
         }
 
         .cta-main:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            background: var(--accent-blue);
+            color: black;
+            box-shadow: 0 0 30px var(--accent-blue);
         }
 
-        /* Grid de Secciones */
+        /* Estilo de las tarjetas con el azul del logo */
         .nav-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 50px 10% 100px;
-            position: relative; /* Sobre el fondo */
-            z-index: 1;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 0 10% 100px;
         }
 
         .nav-card {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             padding: 40px;
-            border-radius: 15px;
+            border-radius: 5px;
             text-decoration: none;
             color: white;
-            border: 1px solid #333;
-            transition: border 0.3s ease, vertical-align 0.3s ease, background-color 0.3s ease;
-            text-align: center;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .nav-card:hover {
-            border-color: var(--accent-color);
-            margin-top: -5px;
-            background-color: rgba(30, 30, 30, 0.9); /* Ligeramente más opaco al hover */
+            border-left: 3px solid var(--accent-blue);
+            background: rgba(30, 40, 60, 0.9);
+            transform: translateX(10px);
         }
 
         .nav-card i {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 20px;
+            font-size: 2rem;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
         }
 
-        .nav-card h3 {
-            margin: 10px 0;
-            font-size: 1.5rem;
-        }
-
-        .nav-card p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
+        .nav-card h3 { margin: 0; font-size: 1.3rem; color: var(--silver); }
+        .nav-card p { color: #888; font-size: 0.9rem; }
 
         footer {
             text-align: center;
-            padding: 40px;
-            border-top: 1px solid #333;
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            body::before { background-size: 70%; } /* Logo más grande en móvil */
+            padding: 30px;
+            border-top: 1px solid #222;
+            color: #444;
+            font-size: 0.7rem;
         }
     </style>
 </head>
 <body>
 
     <header>
+        <img src="logo.png" alt="Suits Agency Logo" style="width: 150px; margin-bottom: 20px;">
         <h1>SUITS AGENCY</h1>
-        <p class="hero-subtitle">Convierte tu carisma en una carrera profesional. Soporte estratégico para emisores de Bigo Live.</p>
-        <a href="#unirse" class="cta-main">INICIAR REGISTRO</a>
+        <p class="hero-subtitle">Maximiza tus ingresos en Bigo Live</p>
+        <a href="registro.html" class="cta-main">ÚNETE AHORA</a>
     </header>
 
     <section class="nav-grid">
-        <a href="registro.html" class="nav-card">
-            <i class="fas fa-user-plus"></i>
-            <h3>Sé Emisor</h3>
-            <p>Únete a nuestra agencia y comienza a monetizar tu talento hoy mismo.</p>
-        </a>
-
         <a href="pagos.html" class="nav-card">
-            <i class="fas fa-wallet"></i>
-            <h3>Pagos y Bonos</h3>
-            <p>Consulta las tablas de metas, bonos de reclutamiento y métodos de retiro.</p>
+            <i class="fas fa-chart-line"></i>
+            <h3>TABLA DE METAS</h3>
+            <p>Estructura de pagos y bonos mensuales.</p>
         </a>
 
         <a href="academia.html" class="nav-card">
-            <i class="fas fa-graduation-cap"></i>
-            <h3>Academia</h3>
-            <p>Tutoriales, reglas de la plataforma y tips para maximizar tus semillas.</p>
+            <i class="fas fa-lightbulb"></i>
+            <h3>CONSEJOS TOP</h3>
+            <p>Guía para subir de nivel rápidamente.</p>
         </a>
 
         <a href="https://wa.me/TU_NUMERO" class="nav-card">
             <i class="fab fa-whatsapp"></i>
-            <h3>Soporte Directo</h3>
-            <p>¿Dudas? Habla directamente con un manager de la agencia.</p>
+            <h3>SOPORTE 24/7</h3>
+            <p>Contacto directo con el equipo técnico.</p>
         </a>
     </section>
 
     <footer>
-        <p>&copy; 2026 Suits Agency. Todos los derechos reservados.</p>
-        <p>El día operativo en Bigo inicia a las 00:00 (Hora Colombia/LATAM).</p>
+        &copy; 2026 Suits Agency | Los resultados dependen de tu talento y constancia.
     </footer>
 
 </body>
