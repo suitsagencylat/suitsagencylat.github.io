@@ -14,6 +14,7 @@
             --bg: #0a0a0a;
             --accent: #222222;
             --text-gray: #b3b3b3;
+            --bigo-cyan: #00ffe6;
         }
 
         body {
@@ -32,7 +33,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1598550874175-4d0fe427c706?auto=format&fit=crop&q=80'); 
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1598550874175-4d0fe427c706?auto=format&fit=crop&q=80'); 
             background-size: cover;
             padding: 20px;
         }
@@ -56,18 +57,38 @@
         }
 
         .btn-cta:hover {
-            background-color: #cccccc;
+            background-color: var(--bigo-cyan);
             transform: scale(1.05);
         }
 
-        /* Sección Beneficios */
-        .features {
+        /* Bigo Partner Section */
+        .partner-bar {
+            background: #111;
+            padding: 25px 0;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .partner-bar p {
+            font-size: 0.7rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        /* Sección Beneficios y Metas */
+        .content-section {
             padding: 80px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            max-width: 1200px;
-            margin: auto;
+            margin-bottom: 60px;
         }
 
         .card {
@@ -78,12 +99,31 @@
             border: 1px solid #333;
         }
 
-        .card h3 { margin-top: 0; color: var(--primary); }
-        .card p { color: var(--text-gray); font-size: 0.9rem; }
+        /* Tabla de Metas */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 40px;
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        th { color: var(--bigo-cyan); text-transform: uppercase; font-size: 0.8rem; }
 
         /* Sección Tips Rápidos */
         .tips-section {
-            background-color: #111;
+            background-color: #0d0d0d;
             padding: 60px 20px;
             text-align: center;
         }
@@ -112,6 +152,7 @@
             text-align: center;
             font-size: 0.8rem;
             color: #555;
+            background: #050505;
         }
     </style>
 </head>
@@ -119,34 +160,74 @@
 
     <section class="hero">
         <img src="logo.png" alt="Suits Agency Logo" style="width: 250px; height: auto; margin-bottom: 20px;">
-        
         <p>Impulsamos tu carrera como emisor profesional. Únete a la comunidad líder de streamers en Latinoamérica.</p>
         <a href="https://wa.me/595982678695?text=Hola%20Suits%20Agency,%20me%20gustaría%20postularme%20como%20emisor" class="btn-cta">Postular Ahora</a>
     </section>
 
-    <section class="features">
-        <div class="card">
-            <h3>Asesoría 24/7</h3>
-            <p>Soporte técnico y estratégico personalizado para que nunca dejes de transmitir.</p>
+    <div class="partner-bar">
+        <p>Plataforma Oficial</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Bigo_Live_logo.png" alt="Bigo Live" style="width: 120px; filter: grayscale(100%) brightness(200%); opacity: 0.6;">
+    </div>
+
+    <div class="content-section">
+        <div class="features">
+            <div class="card">
+                <h3>Asesoría 24/7</h3>
+                <p>Soporte técnico y estratégico personalizado para que nunca dejes de transmitir.</p>
+            </div>
+            <div class="card">
+                <h3>Metas Claras</h3>
+                <p>Sistemas de bonos transparentes basados en tus objetivos mensuales.</p>
+            </div>
+            <div class="card">
+                <h3>Pagos Seguros</h3>
+                <p>Múltiples métodos de retiro internacionales para tu comodidad en Paraguay y Latam.</p>
+            </div>
         </div>
-        <div class="card">
-            <h3>Metas Claras</h3>
-            <p>Sistemas de bonos transparentes basados en tus horas y semillas mensuales.</p>
+
+        <h2 style="text-align: center;">Metas Sugeridas</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Meta Semillas</th>
+                        <th>Horas Mínimas</th>
+                        <th>Días Válidos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10,000</td>
+                        <td>40 Horas</td>
+                        <td>15 Días</td>
+                    </tr>
+                    <tr>
+                        <td>30,000</td>
+                        <td>50 Horas</td>
+                        <td>20 Días</td>
+                    </tr>
+                    <tr>
+                        <td>100,000+</td>
+                        <td>60 Horas</td>
+                        <td>22 Días</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="card">
-            <h3>Pagos Seguros</h3>
-            <p>Gestión eficiente de tus ganancias con múltiples métodos de retiro internacionales.</p>
-        </div>
-    </section>
+    </div>
 
     <section class="tips-section">
         <h2>Claves para el Éxito</h2>
         <ul class="tips-list">
             <li>✓ Transmisión en sala individual</li>
             <li>✓ Mínimo 2 horas diarias</li>
-            <li>✓ Interacción con la audiencia</li>
-            <li>✓ Fondo y luz profesional</li>
+            <li>✓ Interacción activa</li>
+            <li>✓ Buena iluminación</li>
         </ul>
+        
+        <div style="margin-top: 40px; color: #666; font-size: 0.9rem;">
+            <p><strong>Reseteo Diario:</strong> Colombia/México: 00:00 AM | Paraguay: 01:00 AM</p>
+        </div>
     </section>
 
     <footer>
