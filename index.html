@@ -11,7 +11,7 @@
     <style>
         :root {
             --primary: #ffffff;
-            --bg: #000000; /* Negro puro para evitar rastros de gris */
+            --bg: #000000;
             --accent: #111111;
             --text-gray: #b3b3b3;
             --purple-neon: #8a2be2;
@@ -32,28 +32,27 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Alinea al inicio para poder subir el logo */
+            justify-content: flex-start;
             align-items: center;
             text-align: center;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1598550874175-4d0fe427c706?auto=format&fit=crop&q=80'); 
             background-size: cover;
-            padding-top: 5vh; /* Espacio mínimo arriba */
+            padding-top: 2vh; /* Subido al máximo */
         }
 
-        /* Logo de la agencia: MUCHO MÁS GRANDE Y ARRIBA */
         .agency-logo {
             width: 550px; 
             max-width: 95%; 
             height: auto;
-            margin-top: -20px; /* Sube el logo agresivamente */
-            margin-bottom: 10px;
+            margin-top: -10px; 
+            margin-bottom: 5px;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-gray);
             max-width: 750px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-shadow: 2px 2px 8px rgba(0,0,0,1);
         }
 
@@ -66,41 +65,48 @@
             border-radius: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
-        /* Sección Bigo: TOTALMENTE LIMPIA */
+        /* Sección Bigo: Más arriba y texto visible */
         .bigo-clean-section {
-            padding: 50px 0;
+            padding: 30px 0; /* Reducido para subirlo */
             text-align: center;
-            background: transparent; /* Sin fondo */
-            border: none; /* Sin líneas grises */
+            background: transparent;
         }
 
         .bigo-clean-section p {
-            font-size: 0.7rem;
-            color: #333;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8); /* Texto más claro y visible */
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
         }
 
-        /* Carrusel de Beneficios */
+        /* Carrusel: Deslizable con el dedo */
         .slider {
             background: var(--bg);
-            padding: 60px 0;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
+            padding: 40px 0;
+            overflow-x: auto; /* Permite deslizar con el dedo */
+            display: flex;
+            scrollbar-width: none; /* Oculta scroll en Firefox */
+        }
+
+        .slider::-webkit-scrollbar {
+            display: none; /* Oculta scroll en Chrome/Safari */
         }
 
         .slider-track {
             display: flex;
-            width: calc(300px * 6); 
-            animation: scroll 25s linear infinite;
+            padding-left: 20px;
+            animation: scroll 30s linear infinite;
         }
 
-        .paused { animation-play-state: paused !important; }
+        /* Pausa al tocar/hacer hover */
+        .slider:active .slider-track,
+        .slider-track.paused {
+            animation-play-state: paused;
+        }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
@@ -109,9 +115,9 @@
 
         .card {
             width: 260px;
-            margin: 0 20px;
+            margin-right: 20px;
             background: var(--accent);
-            padding: 40px 30px;
+            padding: 35px 25px;
             border-radius: 15px;
             text-align: center;
             border: 2px solid var(--purple-neon);
@@ -120,13 +126,13 @@
             user-select: none;
         }
 
-        /* FAQ */
-        .faq-section { padding: 80px 20px; max-width: 800px; margin: auto; }
-        details { background: #080808; margin-bottom: 15px; padding: 18px 25px; border-radius: 8px; border: 1px solid var(--purple-neon); cursor: pointer; }
-        summary { font-weight: 600; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
-        summary::after { content: '+'; font-size: 1.4rem; color: var(--purple-neon); }
+        /* FAQ y Footer */
+        .faq-section { padding: 60px 20px; max-width: 800px; margin: auto; }
+        details { background: #080808; margin-bottom: 12px; padding: 15px; border-radius: 8px; border: 1px solid var(--purple-neon); cursor: pointer; }
+        summary { font-weight: 600; display: flex; justify-content: space-between; align-items: center; list-style: none; }
+        summary::after { content: '+'; color: var(--purple-neon); }
+        footer { padding: 30px; text-align: center; font-size: 0.7rem; color: #333; }
 
-        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #222; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
@@ -138,8 +144,8 @@
     </section>
 
     <div class="bigo-clean-section">
-        <p>Agencia Oficial en</p>
-        <img src="bigo.png" alt="Bigo Live" style="width: 130px; height: auto;">
+        <p>Agencia Oficial en Bigo Live</p>
+        <img src="bigo.png" alt="Bigo Live" style="width: 120px; height: auto;">
     </div>
 
     <div class="slider" id="sliderContainer">
@@ -172,7 +178,7 @@
     </div>
 
     <section class="faq-section">
-        <h2>Preguntas Frecuentes</h2>
+        <h2 style="text-align: center; margin-bottom: 30px;">Preguntas Frecuentes</h2>
         <details>
             <summary>¿Cómo recibo mis ganancias?</summary>
             <p>En <strong>Colombia</strong>, retiras directo a tu banco con Dlocal. En otros países, usamos <strong>Payoneer o PayPal</strong>.</p>
@@ -192,14 +198,12 @@
     <script>
         const sliderTrack = document.getElementById('sliderTrack');
         const sliderContainer = document.getElementById('sliderContainer');
-        const pauseSlider = () => sliderTrack.classList.add('paused');
-        const playSlider = () => sliderTrack.classList.remove('paused');
 
-        sliderContainer.addEventListener('mousedown', pauseSlider);
-        sliderContainer.addEventListener('mouseup', playSlider);
-        sliderContainer.addEventListener('mouseleave', playSlider);
-        sliderContainer.addEventListener('touchstart', pauseSlider);
-        sliderContainer.addEventListener('touchend', playSlider);
+        // Pausa la animación al tocar (Móvil) o hacer clic (PC)
+        sliderContainer.addEventListener('touchstart', () => sliderTrack.classList.add('paused'));
+        sliderContainer.addEventListener('touchend', () => sliderTrack.classList.remove('paused'));
+        sliderContainer.addEventListener('mousedown', () => sliderTrack.classList.add('paused'));
+        sliderContainer.addEventListener('mouseup', () => sliderTrack.classList.remove('paused'));
     </script>
 
 </body>
