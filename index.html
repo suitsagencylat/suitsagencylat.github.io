@@ -2,208 +2,166 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Suits Agency | Elite Streaming</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --accent: #8a2be2;
-            --accent-glow: rgba(138, 43, 226, 0.6);
             --bg: #000000;
             --card-bg: #0a0a0a;
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
         }
 
-        * { margin: 0; padding: 0; box-box: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body {
             background-color: var(--bg);
             color: var(--text-main);
             font-family: 'Montserrat', sans-serif;
+            line-height: 1.5;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* --- NAVEGACIÓN ELITE --- */
+        /* --- NAVEGACIÓN RESPONSIVA --- */
         .nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
+            top: 0; width: 100%; height: 70px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%; background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px); z-index: 1000;
             border-bottom: 1px solid #1a1a1a;
-            transition: 0.4s;
         }
 
-        .nav.shrink { height: 60px; background: #000; }
-
-        .nav-brand { font-weight: 900; font-size: 1.2rem; letter-spacing: 2px; }
+        .nav-brand { font-weight: 900; font-size: 1.1rem; letter-spacing: 1px; }
         .nav-brand span { color: var(--accent); }
 
         .nav-cta {
-            background: var(--accent);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 2px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.8rem;
+            background: var(--accent); color: white;
+            padding: 8px 15px; border-radius: 4px;
+            text-decoration: none; font-weight: 700; font-size: 0.75rem;
             text-transform: uppercase;
-            transition: 0.3s;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (AJUSTADA A MÓVIL) --- */
         .hero {
             position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 80px 20px 40px;
         }
 
-        /* Fondo de logo con movimiento sutil */
         .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), #000), url('logo.png');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            z-index: -1;
-            transform: scale(1.1);
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), #000), url('logo.png');
+            background-size: cover; background-position: center;
+            opacity: 0.25; z-index: -1;
         }
 
         .hero-logo {
-            width: 500px;
-            max-width: 85%;
-            margin-top: -50px;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
-            animation: fadeIn 1.5s ease-out;
+            width: 450px; max-width: 90%;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
         }
 
-        .hero h1 { font-weight: 900; font-size: 2.5rem; margin: 20px 0; letter-spacing: -1px; }
-        .hero p { color: var(--text-dim); max-width: 600px; font-size: 1.1rem; margin-bottom: 30px; }
+        .hero h1 { font-weight: 900; font-size: 1.8rem; margin: 15px 0; letter-spacing: -1px; line-height: 1.2; }
+        .hero p { color: var(--text-dim); max-width: 500px; font-size: 1rem; margin-bottom: 35px; }
 
         .btn-main {
-            background: white;
-            color: black;
-            padding: 20px 50px;
-            font-weight: 900;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 2px;
-            transition: 0.4s;
-            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+            background: white; color: black;
+            padding: 18px 40px; font-weight: 900;
+            text-decoration: none; text-transform: uppercase;
+            letter-spacing: 1px; border-radius: 4px;
+            width: 100%; max-width: 300px; /* Ancho completo en móvil */
+            display: inline-block;
         }
-        .btn-main:hover { transform: translateY(-5px); box-shadow: 0 15px 40px var(--accent-glow); background: var(--accent); color: white; }
 
-        /* --- SECCIÓN BIGO --- */
-        .bigo-bar {
-            padding: 60px 0;
-            text-align: center;
-            border-bottom: 1px solid #1a1a1a;
-        }
-        .bigo-bar p { font-weight: 700; letter-spacing: 5px; color: #444; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 15px; }
-        .bigo-bar img { width: 140px; opacity: 0.8; }
+        /* --- BIGO BAR --- */
+        .bigo-bar { padding: 40px 0; text-align: center; }
+        .bigo-bar p { font-weight: 700; letter-spacing: 3px; color: #444; text-transform: uppercase; font-size: 0.65rem; margin-bottom: 10px; }
+        .bigo-bar img { width: 110px; opacity: 0.8; }
 
-        /* --- CARRUSEL TÁCTIL --- */
-        .services { padding: 100px 5%; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 2rem; font-weight: 900; text-transform: uppercase; }
-        .section-title div { width: 50px; height: 4px; background: var(--accent); margin: 10px auto; }
+        /* --- CARRUSEL TÁCTIL (MÓVIL) --- */
+        .services { padding: 60px 0 60px 5%; }
+        .section-title { padding-right: 5%; text-align: center; margin-bottom: 40px; }
+        .section-title h2 { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; }
+        .section-title div { width: 40px; height: 3px; background: var(--accent); margin: 8px auto; }
 
         .slider-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 25px;
-            padding: 20px 0;
-            scrollbar-width: none;
-            cursor: grab;
+            display: flex; overflow-x: auto;
+            gap: 15px; padding: 10px 0 30px;
+            scrollbar-width: none; /* Oculta scroll en Firefox */
+            -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
         }
         .slider-container::-webkit-scrollbar { display: none; }
 
         .card {
-            min-width: 300px;
+            min-width: 260px; /* Tamaño ideal para móvil */
             background: var(--card-bg);
-            padding: 50px 35px;
-            border-radius: 4px;
-            border: 1px solid #222;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
+            padding: 40px 25px;
+            border-radius: 8px;
+            border: 1px solid #1a1a1a;
+            flex-shrink: 0;
         }
-        .card:hover { border-color: var(--accent); transform: translateY(-10px); }
-        .card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--accent); }
-        .card p { color: var(--text-dim); font-size: 0.9rem; }
+        .card h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--accent); }
+        .card p { color: var(--text-dim); font-size: 0.85rem; }
 
         /* --- FAQ --- */
-        .faq { padding: 100px 10%; background: #050505; }
-        details { background: var(--card-bg); margin-bottom: 15px; padding: 25px; border-radius: 2px; border: 1px solid #1a1a1a; transition: 0.3s; }
-        details[open] { border-color: var(--accent); }
-        summary { font-weight: 700; list-style: none; cursor: pointer; display: flex; justify-content: space-between; }
+        .faq { padding: 60px 5%; background: #050505; }
+        details { background: var(--card-bg); margin-bottom: 10px; padding: 20px; border-radius: 6px; border: 1px solid #1a1a1a; }
+        summary { font-weight: 700; font-size: 0.9rem; list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         summary::after { content: '+'; color: var(--accent); font-size: 1.2rem; }
 
-        footer { padding: 60px; text-align: center; color: #333; font-size: 0.8rem; border-top: 1px solid #1a1a1a; }
+        footer { padding: 40px 20px; text-align: center; color: #333; font-size: 0.75rem; border-top: 1px solid #1a1a1a; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 768px) {
-            .hero-logo { width: 80%; }
-            .hero h1 { font-size: 1.8rem; }
+        /* --- AJUSTES PARA PANTALLAS GRANDES --- */
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .nav-brand { font-size: 1.4rem; }
+            .hero-logo { width: 550px; }
+            .slider-container { justify-content: center; gap: 25px; }
+            .btn-main { width: auto; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="nav" id="nav">
+    <nav class="nav">
         <div class="nav-brand">SUITS <span>AGENCY</span></div>
-        <a href="https://wa.me/595982678695" class="nav-cta">Postular Ahora</a>
+        <a href="https://wa.me/595982678695" class="nav-cta">Únete</a>
     </nav>
 
     <header class="hero">
         <div class="hero-bg"></div>
         <img src="logo.png" alt="Suits Agency" class="hero-logo">
-        <p>Transformamos streamers en íconos globales. Agencia oficial líder en Bigo Live LATAM.</p>
-        <a href="https://wa.me/595982678695" class="btn-main">Únete a la Élite</a>
+        <p>Potenciamos tu talento. Agencia oficial líder en Bigo Live LATAM para streamers de élite.</p>
+        <a href="https://wa.me/595982678695" class="btn-main">Empezar a Ganar</a>
     </header>
 
     <section class="bigo-bar">
-        <p>Partners Oficiales de</p>
+        <p>Partner Oficial</p>
         <img src="bigo.png" alt="Bigo Live">
     </section>
 
-    <section class="services" id="beneficios">
+    <section class="services">
         <div class="section-title">
-            <h2>Por qué Suits</h2>
+            <h2>Beneficios</h2>
             <div></div>
         </div>
         <div class="slider-container">
             <div class="card">
-                <h3>Soporte Técnico 24/7</h3>
-                <p>No estás solo. Nuestro equipo técnico optimiza tu set-up para que tu streaming sea nivel cine.</p>
+                <h3>Soporte 24/7</h3>
+                <p>Asesoría personalizada para mejorar tu set-up y calidad de imagen desde el día 1.</p>
             </div>
             <div class="card">
-                <h3>Bonos de Crecimiento</h3>
-                <p>Pagos transparentes. Si cumples tus horas y semillas, tu bono llega sin excusas cada mes.</p>
+                <h3>Bonos Reales</h3>
+                <p>Sistemas de metas claros. Cumple tus semillas y recibe tus bonos sin retrasos.</p>
             </div>
             <div class="card">
-                <h3>Retiros Globales</h3>
-                <p>Dlocal para Colombia, Payoneer y PayPal para Paraguay y el mundo. Tu dinero donde lo necesites.</p>
-            </div>
-            <div class="card">
-                <h3>Contenido Viral</h3>
-                <p>Te enseñamos las métricas que importan para que Bigo te ponga siempre en recomendados.</p>
+                <h3>Pagos Locales</h3>
+                <p>Recibe tu dinero vía Dlocal (Colombia), Payoneer o PayPal de forma segura.</p>
             </div>
         </div>
     </section>
@@ -214,49 +172,16 @@
             <div></div>
         </div>
         <details>
-            <summary>¿Necesito equipo profesional?</summary>
-            <p>No. Solo un smartphone y buena iluminación. Nosotros te guiamos para mejorar tu calidad paso a paso.</p>
+            <summary>¿Qué necesito para empezar?</summary>
+            <p style="padding-top:10px; color:var(--text-dim)">Solo un teléfono, buena conexión a internet y ganas de crecer.</p>
         </details>
         <details>
-            <summary>¿Cuándo recibo mi pago?</summary>
-            <p>Los cortes son mensuales. Una vez finalizado el mes, el procesamiento es inmediato según tu método elegido.</p>
-        </details>
-        <details>
-            <summary>¿Qué horarios debo cumplir?</summary>
-            <p>La flexibilidad es total, pero para obtener bonos oficiales recomendamos un mínimo de 2 horas diarias.</p>
+            <summary>¿Tiene algún costo?</summary>
+            <p style="padding-top:10px; color:var(--text-dim)">Ninguno. Somos una agencia oficial; nosotros ganamos cuando tú ganas.</p>
         </details>
     </section>
 
-    <footer>&copy; 2026 Suits Agency | Elite Recruitment Agency.</footer>
+    <footer>&copy; 2026 Suits Agency | Recruitment Team.</footer>
 
-    <script>
-        // Animación de la barra de navegación
-        window.onscroll = function() {
-            const nav = document.getElementById('nav');
-            if (window.pageYOffset > 100) nav.classList.add("shrink");
-            else nav.classList.remove("shrink");
-        };
-
-        // Soporte para deslizar el carrusel con el mouse (como si fuera touch)
-        const slider = document.querySelector('.slider-container');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        });
-        slider.addEventListener('mouseleave', () => isDown = false);
-        slider.addEventListener('mouseup', () => isDown = false);
-        slider.addEventListener('mousemove', (e) => {
-            if(!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
-            slider.scrollLeft = scrollLeft - walk;
-        });
-    </script>
 </body>
 </html>
