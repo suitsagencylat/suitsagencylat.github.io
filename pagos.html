@@ -113,17 +113,25 @@
             overflow-x: auto; /* Scroll horizontal en móvil */
             box-shadow: 0 25px 50px rgba(0,0,0,0.6);
             margin-top: 15px;
+            
+            /* --- CENTRADO DEL BLOQUE --- */
+            display: flex;
+            justify-content: center;
+            padding: 10px; /* Un poco de aire alrededor de la tabla compacta */
         }
 
         table {
-            width: 100%;
+            /* --- SOLUCIÓN: Ancho automático para no estirarse --- */
+            width: auto; 
+            margin: 0 auto; /* Centrado interno */
+            
             border-collapse: collapse;
             text-align: center;
             
             /* --- TEXTO REDUCIDO PARA CABER --- */
             font-size: 0.82rem; 
             
-            min-width: 650px; /* Evita que se colapse demasiado en móvil */
+            /* min-width eliminado para no forzar estiramiento */
         }
 
         th {
@@ -131,18 +139,21 @@
             color: var(--accent-blue);
             
             /* --- ESPACIADO REDUCIDO --- */
-            padding: 12px 6px; 
+            padding: 12px 10px; /* Un poco más de aire lateral para legibilidad */
             
             text-transform: uppercase;
             font-weight: bold;
             font-size: 0.7rem; /* Cabeceras más pequeñas */
             letter-spacing: 1px;
             border-bottom: 1px solid var(--glass-border);
+            
+            /* Evita que los títulos largos ensanchen la columna si hay BR */
+            white-space: nowrap; 
         }
 
         td {
             /* --- ESPACIADO REDUCIDO --- */
-            padding: 10px 6px; 
+            padding: 10px 10px; /* Un poco más de aire lateral */
             
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--silver);
@@ -175,9 +186,12 @@
             .meta-info { font-size: 0.75rem; letter-spacing: 1px; }
             body::before { background-size: 180%; opacity: 0.15; } /* Logo más grande y suave */
             .container { padding: 15px 5px; }
-            table { font-size: 0.75rem; }
+            
+            /* Volvemos a estirar en móvil para usar todo el ancho */
+            table { font-size: 0.75rem; width: 100%; min-width: 600px; }
             th { font-size: 0.6rem; padding: 10px 3px; }
             td { padding: 8px 3px; }
+            .table-wrapper { padding: 0; }
         }
     </style>
 </head>
