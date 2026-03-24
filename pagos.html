@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remuneración | Suits Agency</title>
+    <title>Remuneración Oficial | Suits Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -11,7 +11,7 @@
             --accent-blue: #00d4ff;
             --silver: #e0e0e0;
             --glass-border: rgba(255, 255, 255, 0.15);
-            --success-green: #00ff88;
+            --fuchsia: #ff00ff; /* Fucsia brillante de tu imagen */
         }
 
         body {
@@ -23,7 +23,7 @@
             min-height: 100vh;
         }
 
-        /* LOGO AGRANDADO (Ajustado al 110%) */
+        /* LOGO DE FONDO AGRANDADO (Ajustado al 110%) */
         body::before {
             content: "";
             position: fixed;
@@ -45,7 +45,7 @@
         }
 
         .container {
-            max-width: 950px;
+            max-width: 1100px; /* Un poco más ancha para la tabla completa */
             margin: 0 auto;
             padding: 40px 15px;
         }
@@ -76,7 +76,7 @@
             margin-top: 5px;
         }
 
-        /* TABLA ESTILIZADA */
+        /* TABLA ESTILIZADA AL ESTILO WEBSAFE */
         .table-wrapper {
             background: rgba(10, 10, 10, 0.7);
             border-radius: 15px;
@@ -91,25 +91,27 @@
             border-collapse: collapse;
             text-align: center;
             font-size: 0.85rem;
+            table-layout: fixed; /* Ayuda con el diseño responsive */
         }
 
         th {
             background: rgba(0, 212, 255, 0.2);
             color: var(--accent-blue);
-            padding: 15px 10px;
+            padding: 15px 5px;
             text-transform: uppercase;
+            font-weight: bold;
         }
 
         td {
-            padding: 12px 10px;
+            padding: 12px 5px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--silver);
         }
 
         tr:hover { background: rgba(255, 255, 255, 0.05); }
 
-        .total-usd { color: #ff00ff; font-weight: bold; } /* Color fucsia de tu tabla */
-        .total-cop { color: var(--success-green); font-weight: bold; }
+        .total-usd { color: var(--fuchsia); font-weight: bold; } /* Color de tu tabla */
+        .cop-calc { color: #888; font-size: 0.75rem; }
 
         footer {
             margin-top: 40px;
@@ -122,7 +124,8 @@
         @media (max-width: 768px) {
             h1 { font-size: 1.5rem; }
             body::before { background-size: 160%; } /* Súper grande en móvil */
-            table { font-size: 0.75rem; }
+            table { font-size: 0.7rem; }
+            th, td { padding: 8px 2px; }
         }
     </style>
 </head>
@@ -141,37 +144,27 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Meta Semillas</th>
-                            <th>Total USD</th>
-                            <th>Total COP (Aprox)</th>
+                            <th>Meta Mensual <br>(Semillas)</th>
+                            <th>Valor Monedero <br>(USD)</th>
+                            <th style="font-size: 1rem;">+</th>
+                            <th>Remuneración <br>(Bigo USD)</th>
+                            <th>Ganancia Total <br>(USD)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>2,000</td><td class="total-usd">24</td><td class="total-cop">$93,600</td></tr>
-                        <tr><td>5,000</td><td class="total-usd">58</td><td class="total-cop">$226,200</td></tr>
-                        <tr><td>10,000</td><td class="total-usd">122</td><td class="total-cop">$475,800</td></tr>
-                        <tr><td>20,000</td><td class="total-usd">236</td><td class="total-cop">$920,400</td></tr>
-                        <tr><td>30,000</td><td class="total-usd">354</td><td class="total-cop">$1,380,600</td></tr>
-                        <tr><td>60,000</td><td class="total-usd">708</td><td class="total-cop">$2,761,200</td></tr>
-                        <tr><td>100,000</td><td class="total-usd">1,136</td><td class="total-cop">$4,430,400</td></tr>
-                        <tr><td>150,000</td><td class="total-usd">1,704</td><td class="total-cop">$6,645,600</td></tr>
-                        <tr><td>200,000</td><td class="total-usd">2,272</td><td class="total-cop">$8,860,800</td></tr>
-                        <tr><td>250,000</td><td class="total-usd">2,840</td><td class="total-cop">$11,076,000</td></tr>
-                        <tr><td>300,000</td><td class="total-usd">3,409</td><td class="total-cop">$13,295,100</td></tr>
-                        <tr><td>400,000</td><td class="total-usd">4,605</td><td class="total-cop">$17,959,500</td></tr>
-                        <tr><td>500,000</td><td class="total-usd">5,931</td><td class="total-cop">$23,130,900</td></tr>
-                        <tr><td>750,000</td><td class="total-usd">9,071</td><td class="total-cop">$35,376,900</td></tr>
-                        <tr><td>1,000,000</td><td class="total-usd">11,562</td><td class="total-cop">$45,091,800</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <footer>
-                &copy; 2026 Suits Agency | Tasa de cambio: $3,900 COP. <br>
-                Los pagos se procesan según las políticas de Bigo Live.
-            </footer>
-        </div>
-    </div>
-
-</body>
-</html>
+                        <tr><td>2,000</td><td>10</td><td>+</td><td>14</td><td class="total-usd">24</td></tr>
+                        <tr><td>5,000</td><td>24</td><td>+</td><td>34</td><td class="total-usd">58</td></tr>
+                        <tr><td>10,000</td><td>48</td><td>+</td><td>74</td><td class="total-usd">122</td></tr>
+                        <tr><td>20,000</td><td>95</td><td>+</td><td>141</td><td class="total-usd">236</td></tr>
+                        <tr><td>30,000</td><td>143</td><td>+</td><td>211</td><td class="total-usd">354</td></tr>
+                        <tr><td>60,000</td><td>286</td><td>+</td><td>422</td><td class="total-usd">708</td></tr>
+                        <tr><td>100,000</td><td>476</td><td>+</td><td>660</td><td class="total-usd">1136</td></tr>
+                        <tr><td>150,000</td><td>714</td><td>+</td><td>990</td><td class="total-usd">1704</td></tr>
+                        <tr><td>200,000</td><td>952</td><td>+</td><td>1320</td><td class="total-usd">2272</td></tr>
+                        <tr><td>250,000</td><td>1190</td><td>+</td><td>1650</td><td class="total-usd">2840</td></tr>
+                        <tr><td>300,000</td><td>1429</td><td>+</td><td>1980</td><td class="total-usd">3409</td></tr>
+                        <tr><td>400,000</td><td>1905</td><td>+</td><td>2700</td><td class="total-usd">4605</td></tr>
+                        <tr><td>500,000</td><td>2381</td><td>+</td><td>3550</td><td class="total-usd">5931</td></tr>
+                        <tr><td>750,000</td><td >3571</td><td>+</td><td>5500</td><td class="total-usd">9071</td></tr>
+                        <tr><td>1,000,000</td><td>4762</td><td>+</td><td>6800</td><td class="total-
+                                                                                      
