@@ -3,253 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suits Agency | Preview Fondo Logo</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
-    
+    <title>Suits Agency | Elite Streaming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ffffff;
+            --accent: #8a2be2;
+            --accent-glow: rgba(138, 43, 226, 0.6);
             --bg: #000000;
-            --accent: #111111;
-            --text-gray: #b3b3b3;
-            --purple-neon: #8a2be2;
-            --purple-glow: rgba(138, 43, 226, 0.4);
+            --card-bg: #0a0a0a;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
         }
 
+        * { margin: 0; padding: 0; box-box: border-box; }
+        
         body {
-            margin: 0;
-            padding-top: 70px; /* Espacio para el menú fijo */
-            font-family: 'Montserrat', sans-serif;
             background-color: var(--bg);
-            color: var(--primary);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* --- MENÚ ESTILO LIVEITALIA --- */
-        .navbar {
+        /* --- NAVEGACIÓN ELITE --- */
+        .nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #000;
-            padding: 20px 0;
-            z-index: 1000;
-            transition: all 0.3s;
-            border-bottom: 1px solid #111;
-        }
-
-        .navbar.shrink {
-            padding: 10px 0;
-            background-color: rgba(0, 0, 0, 0.95);
-            box-shadow: 0 2px 10px rgba(138, 43, 226, 0.2);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: auto;
+            height: 80px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 0 25px;
+            justify-content: space-between;
+            padding: 0 5%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #1a1a1a;
+            transition: 0.4s;
         }
 
-        .nav-logo { font-weight: 800; letter-spacing: 1px; color: #fff; text-decoration: none; }
-        .nav-logo span { color: var(--purple-neon); }
+        .nav.shrink { height: 60px; background: #000; }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            margin: 0;
-        }
+        .nav-brand { font-weight: 900; font-size: 1.2rem; letter-spacing: 2px; }
+        .nav-brand span { color: var(--accent); }
 
-        .nav-links a {
-            color: #fff;
+        .nav-cta {
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 2px;
             text-decoration: none;
-            text-transform: uppercase;
             font-weight: 700;
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
             transition: 0.3s;
         }
 
-        .nav-links a:hover { color: var(--purple-neon); }
-
-        /* --- HERO CON FONDO LOGO.PNG --- */
+        /* --- HERO SECTION --- */
         .hero {
-            height: 85vh;
+            position: relative;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             text-align: center;
-            /* SEÑAL DE CAMBIO: Usando logo.png como fondo con superposición oscura */
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('logo.png'); 
+            overflow: hidden;
+        }
+
+        /* Fondo de logo con movimiento sutil */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), #000), url('logo.png');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            padding-top: 0;
+            opacity: 0.3;
+            z-index: -1;
+            transform: scale(1.1);
         }
 
-        .agency-logo-placeholder {
-            width: 550px;
-            max-width: 90%;
-            margin-top: -30px;
-            margin-bottom: 5px;
-            filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.3));
+        .hero-logo {
+            width: 500px;
+            max-width: 85%;
+            margin-top: -50px;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
+            animation: fadeIn 1.5s ease-out;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            max-width: 700px;
-            margin-bottom: 30px;
-            padding: 0 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Sombra para legibilidad */
-        }
+        .hero h1 { font-weight: 900; font-size: 2.5rem; margin: 20px 0; letter-spacing: -1px; }
+        .hero p { color: var(--text-dim); max-width: 600px; font-size: 1.1rem; margin-bottom: 30px; }
 
-        .btn-cta {
-            background-color: #fff;
-            color: #000;
-            padding: 18px 40px;
+        .btn-main {
+            background: white;
+            color: black;
+            padding: 20px 50px;
+            font-weight: 900;
             text-decoration: none;
-            font-weight: 800;
-            border-radius: 4px;
             text-transform: uppercase;
-            transition: 0.3s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+            border-radius: 2px;
+            transition: 0.4s;
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
         }
+        .btn-main:hover { transform: translateY(-5px); box-shadow: 0 15px 40px var(--accent-glow); background: var(--accent); color: white; }
 
-        .btn-cta:hover { transform: scale(1.05); background: #eee; }
-
-        /* --- BIGO SECTION --- */
-        .bigo-section {
-            padding: 20px 0 40px;
+        /* --- SECCIÓN BIGO --- */
+        .bigo-bar {
+            padding: 60px 0;
             text-align: center;
-            background-color: var(--bg); /* Asegura fondo negro */
+            border-bottom: 1px solid #1a1a1a;
         }
-
-        .bigo-section p {
-            font-size: 0.85rem;
-            color: #fff;
-            font-weight: 800;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
+        .bigo-bar p { font-weight: 700; letter-spacing: 5px; color: #444; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 15px; }
+        .bigo-bar img { width: 140px; opacity: 0.8; }
 
         /* --- CARRUSEL TÁCTIL --- */
-        .slider {
-            background: #000;
-            padding: 50px 0;
-            overflow-x: auto;
+        .services { padding: 100px 5%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2rem; font-weight: 900; text-transform: uppercase; }
+        .section-title div { width: 50px; height: 4px; background: var(--accent); margin: 10px auto; }
+
+        .slider-container {
             display: flex;
+            overflow-x: auto;
+            gap: 25px;
+            padding: 20px 0;
             scrollbar-width: none;
             cursor: grab;
         }
-
-        .slider::-webkit-scrollbar { display: none; }
-
-        .slider-track {
-            display: flex;
-            animation: scroll 35s linear infinite;
-        }
-
-        .slider:active .slider-track, .slider-track.paused { animation-play-state: paused; }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-300px * 3)); }
-        }
+        .slider-container::-webkit-scrollbar { display: none; }
 
         .card {
-            width: 280px;
-            margin: 0 15px;
-            background: #0a0a0a;
-            padding: 40px 30px;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid var(--purple-neon);
-            box-shadow: 0 0 20px var(--purple-glow);
-            flex-shrink: 0;
+            min-width: 300px;
+            background: var(--card-bg);
+            padding: 50px 35px;
+            border-radius: 4px;
+            border: 1px solid #222;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
         }
-
-        .card h3 { font-size: 1rem; margin-bottom: 15px; color: #fff; }
-        .card p { font-size: 0.8rem; color: var(--text-gray); }
+        .card:hover { border-color: var(--accent); transform: translateY(-10px); }
+        .card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--accent); }
+        .card p { color: var(--text-dim); font-size: 0.9rem; }
 
         /* --- FAQ --- */
-        .faq { padding: 80px 20px; max-width: 800px; margin: auto; background-color: var(--bg); }
-        .faq h2 { text-align: center; margin-bottom: 40px; font-weight: 800; }
-        details { background: #0a0a0a; margin-bottom: 10px; padding: 20px; border-radius: 5px; border-left: 4px solid var(--purple-neon); cursor: pointer; }
-        summary { font-weight: 600; list-style: none; display: flex; justify-content: space-between; }
-        summary::after { content: '↓'; color: var(--purple-neon); }
+        .faq { padding: 100px 10%; background: #050505; }
+        details { background: var(--card-bg); margin-bottom: 15px; padding: 25px; border-radius: 2px; border: 1px solid #1a1a1a; transition: 0.3s; }
+        details[open] { border-color: var(--accent); }
+        summary { font-weight: 700; list-style: none; cursor: pointer; display: flex; justify-content: space-between; }
+        summary::after { content: '+'; color: var(--accent); font-size: 1.2rem; }
 
-        footer { padding: 40px; text-align: center; border-top: 1px solid #111; color: #444; font-size: 0.8rem; background-color: var(--bg); }
+        footer { padding: 60px; text-align: center; color: #333; font-size: 0.8rem; border-top: 1px solid #1a1a1a; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .hero-logo { width: 80%; }
+            .hero h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar" id="mainNav">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">SUITS <span>AGENCY</span></a>
-            <ul class="nav-links">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#beneficios">Beneficios</a></li>
-                <li><a href="https://wa.me/595982678695" style="color: var(--purple-neon);">Únete</a></li>
-            </ul>
-        </div>
+    <nav class="nav" id="nav">
+        <div class="nav-brand">SUITS <span>AGENCY</span></div>
+        <a href="https://wa.me/595982678695" class="nav-cta">Postular Ahora</a>
     </nav>
 
-    <section class="hero">
-        <img src="logo.png" alt="Logo Gigante Central" class="agency-logo-placeholder">
-        <p>Maximiza tus ganancias con nosotros. <strong>Bigo Live</strong> convierte tu talento en resultados reales.</p>
-        <a href="https://wa.me/595982678695" class="btn-cta">Empezar a Ganar</a>
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <img src="logo.png" alt="Suits Agency" class="hero-logo">
+        <p>Transformamos streamers en íconos globales. Agencia oficial líder en Bigo Live LATAM.</p>
+        <a href="https://wa.me/595982678695" class="btn-main">Únete a la Élite</a>
+    </header>
+
+    <section class="bigo-bar">
+        <p>Partners Oficiales de</p>
+        <img src="bigo.png" alt="Bigo Live">
     </section>
 
-    <div class="bigo-section">
-        <p>Agencia Oficial en Bigo Live</p>
-        <img src="bigo.png" alt="Bigo Logo Oficial">
-    </div>
-
-    <div class="slider" id="beneficios">
-        <div class="slider-track" id="sliderTrack">
-            <div class="card"><h3>Capacitación</h3><p>Resolvemos tus dudas y enviamos materiales exclusivos.</p></div>
-            <div class="card"><h3>Metas Reales</h3><p>Bonos transparentes por cumplimiento de horas y semillas.</p></div>
-            <div class="card"><h3>Pagos Seguros</h3><p>Dlocal para Colombia, Payoneer y PayPal para el resto del mundo.</p></div>
-            <div class="card"><h3>Capacitación</h3><p>Resolvemos tus dudas y enviamos materiales exclusivos.</p></div>
-            <div class="card"><h3>Metas Reales</h3><p>Bonos transparentes por cumplimiento de horas y semillas.</p></div>
-            <div class="card"><h3>Pagos Seguros</h3><p>Dlocal para Colombia, Payoneer y PayPal para el resto del mundo.</p></div>
+    <section class="services" id="beneficios">
+        <div class="section-title">
+            <h2>Por qué Suits</h2>
+            <div></div>
         </div>
-    </div>
+        <div class="slider-container">
+            <div class="card">
+                <h3>Soporte Técnico 24/7</h3>
+                <p>No estás solo. Nuestro equipo técnico optimiza tu set-up para que tu streaming sea nivel cine.</p>
+            </div>
+            <div class="card">
+                <h3>Bonos de Crecimiento</h3>
+                <p>Pagos transparentes. Si cumples tus horas y semillas, tu bono llega sin excusas cada mes.</p>
+            </div>
+            <div class="card">
+                <h3>Retiros Globales</h3>
+                <p>Dlocal para Colombia, Payoneer y PayPal para Paraguay y el mundo. Tu dinero donde lo necesites.</p>
+            </div>
+            <div class="card">
+                <h3>Contenido Viral</h3>
+                <p>Te enseñamos las métricas que importan para que Bigo te ponga siempre en recomendados.</p>
+            </div>
+        </div>
+    </section>
 
     <section class="faq">
-        <h2>Preguntas Frecuentes</h2>
+        <div class="section-title">
+            <h2>Preguntas</h2>
+            <div></div>
+        </div>
         <details>
-            <summary>¿Cómo recibo mis ganancias?</summary>
-            <p>Retiros directos a cuenta bancaria en Colombia o billeteras digitales globales.</p>
+            <summary>¿Necesito equipo profesional?</summary>
+            <p>No. Solo un smartphone y buena iluminación. Nosotros te guiamos para mejorar tu calidad paso a paso.</p>
         </details>
         <details>
-            <summary>¿Cuándo es el reseteo?</summary>
-            <p>En Colombia y México a las 00:00. En Paraguay a la 01:00 AM.</p>
+            <summary>¿Cuándo recibo mi pago?</summary>
+            <p>Los cortes son mensuales. Una vez finalizado el mes, el procesamiento es inmediato según tu método elegido.</p>
+        </details>
+        <details>
+            <summary>¿Qué horarios debo cumplir?</summary>
+            <p>La flexibilidad es total, pero para obtener bonos oficiales recomendamos un mínimo de 2 horas diarias.</p>
         </details>
     </section>
 
-    <footer>&copy; 2026 Suits Agency.</footer>
+    <footer>&copy; 2026 Suits Agency | Elite Recruitment Agency.</footer>
 
     <script>
+        // Animación de la barra de navegación
         window.onscroll = function() {
-            const nav = document.getElementById('mainNav');
-            if (window.pageYOffset > 50) nav.classList.add("shrink");
+            const nav = document.getElementById('nav');
+            if (window.pageYOffset > 100) nav.classList.add("shrink");
             else nav.classList.remove("shrink");
         };
 
-        const track = document.getElementById('sliderTrack');
-        const slider = document.getElementById('beneficios');
+        // Soporte para deslizar el carrusel con el mouse (como si fuera touch)
+        const slider = document.querySelector('.slider-container');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-        slider.addEventListener('mousedown', () => track.classList.add('paused'));
-        slider.addEventListener('mouseup', () => track.classList.remove('paused'));
-        slider.addEventListener('touchstart', () => track.classList.add('paused'));
-        slider.addEventListener('touchend', () => track.classList.remove('paused'));
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => isDown = false);
+        slider.addEventListener('mouseup', () => isDown = false);
+        slider.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
     </script>
 </body>
 </html>
