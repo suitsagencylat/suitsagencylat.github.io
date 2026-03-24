@@ -6,8 +6,8 @@
     <title>Suits Agency | Potencia tu Streaming</title>
     
     <link rel="icon" type="image/png" href="logo.png">
-
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #ffffff;
@@ -55,12 +55,9 @@
             text-transform: uppercase;
         }
 
-        .btn-cta:hover {
-            background-color: #cccccc;
-            transform: scale(1.05);
-        }
+        .btn-cta:hover { background-color: #cccccc; transform: scale(1.05); }
 
-        /* Sección del Logo de Bigo */
+        /* Sección Bigo */
         .bigo-logo-section {
             padding: 40px 0;
             text-align: center;
@@ -76,7 +73,7 @@
             margin-bottom: 15px;
         }
 
-        /* Sección Beneficios */
+        /* Beneficios */
         .features {
             padding: 80px 20px;
             display: grid;
@@ -94,21 +91,115 @@
             border: 1px solid #333;
         }
 
-        .card h3 { margin-top: 0; color: var(--primary); }
-        .card p { color: var(--text-gray); font-size: 0.9rem; }
-
-        /* Sección Tips Rápidos */
-        .tips-section {
-            background-color: #111;
-            padding: 60px 20px;
-            text-align: center;
+        /* SECCIÓN PREGUNTAS (ACORDEÓN) */
+        .faq-section {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: auto;
         }
 
-        .tips-list {
+        .faq-section h2 { text-align: center; margin-bottom: 40px; }
+
+        details {
+            background: #111;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        details:hover { border-color: #555; }
+
+        summary {
+            font-weight: 600;
+            outline: none;
             list-style: none;
-            padding: 0;
-            max-width: 800px;
-            margin: 20px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--text-gray);
+        }
+
+        details[open] summary::after { content: '-'; }
+
+        details p {
+            margin-top: 15px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            border-top: 1px solid #222;
+            padding-top: 10px;
+        }
+
+        /* Footer */
+        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #555; }
+
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <img src="logo.png" alt="Suits Agency Logo" style="width: 250px; height: auto; margin-bottom: 20px;">
+        <p>Impulsamos tu carrera como emisor profesional. Únete a la comunidad líder de streamers en Latinoamérica.</p>
+        <a href="https://wa.me/595982678695?text=Hola%20Suits%20Agency,%20me%20gustaría%20postularme%20como%20emisor" class="btn-cta">Postular Ahora</a>
+    </section>
+
+    <div class="bigo-logo-section">
+        <p>Agencia Oficial en</p>
+        <img src="bigo.png" alt="Bigo Live" style="width: 120px; height: auto;">
+    </div>
+
+    <section class="features">
+        <div class="card">
+            <h3>Asesoría 24/7</h3>
+            <p>Soporte técnico y estratégico personalizado para que nunca dejes de transmitir.</p>
+        </div>
+        <div class="card">
+            <h3>Metas Claras</h3>
+            <p>Sistemas de bonos transparentes basados en tus horas y semillas mensuales.</p>
+        </div>
+        <div class="card">
+            <h3>Pagos Seguros</h3>
+            <p>Gestión eficiente de tus ganancias con métodos directos y globales.</p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2>Preguntas Frecuentes</h2>
+
+        <details>
+            <summary>¿Cómo recibo mis ganancias?</summary>
+            <p>Depende de tu ubicación. En <strong>Colombia</strong>, puedes retirar directamente a tu cuenta bancaria local a través de Dlocal. Para los demás países de Latam, gestionamos los pagos mediante <strong>Payoneer o PayPal</strong> para tu mayor comodidad.</p>
+        </details>
+
+        <details>
+            <summary>¿Necesito experiencia previa?</summary>
+            <p>No es necesario. En Suits Agency te brindamos capacitación desde cero sobre iluminación, encuadre e interacción para que tu contenido sea profesional desde el primer día.</p>
+        </details>
+
+        <details>
+            <summary>¿A qué hora es el reseteo de metas diario?</summary>
+            <p>Para Colombia y México el reseteo es a las 00:00 (medianoche). Para Paraguay, el nuevo día comienza a la 01:00 AM.</p>
+        </details>
+
+        <details>
+            <summary>¿Cuáles son los requisitos básicos?</summary>
+            <p>Transmitir por lo menos 2 horas diarias, hacerlo en una sala individual sin distracciones y tener una interacción constante con tu audiencia.</p>
+        </details>
+    </section>
+
+    <footer>
+        &copy; 2026 Suits Agency. Todos los derechos reservados.
+    </footer>
+
+</body>
+</html>
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
