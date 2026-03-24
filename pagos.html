@@ -26,7 +26,7 @@
             position: relative; 
         }
 
-        /* 2. EL LOGO DE FONDO (FIJO Y DETRÁS) */
+        /* 2. EL LOGO DE FONDO (FIJO, AGRANDADO Y DETRÁS) */
         body::before {
             content: "";
             position: fixed; /* Fijo en la pantalla */
@@ -37,10 +37,13 @@
             background-image: url('logo.png'); /* Ruta a tu imagen */
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 110%; /* Súper grande */
-            opacity: 0.2; /* Muy sutil para no tapar */
             
-            /* --- LA SOLUCIÓN AQUÍ --- */
+            /* --- LOGO AGRANDADO --- */
+            background-size: 110%; /* Ajustado al 110% como pediste */
+            
+            opacity: 0.2; /* Sutil para no tapar */
+            
+            /* --- CAPAS (Z-Index) --- */
             z-index: -1; /* Capa negativa: AL FONDO DEL TODO */
             
             filter: brightness(1.2);
@@ -49,7 +52,7 @@
 
         /* 3. CONTENEDOR DE CONTENIDO (DELANTE) */
         .main-content {
-            /* --- LA OTRA PARTE DE LA SOLUCIÓN --- */
+            /* --- CAPAS (Z-Index) --- */
             position: relative;
             z-index: 10; /* Capa alta: DELANTE DEL FONDO */
             
@@ -60,9 +63,9 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 950px; /* Un poco más ancha para la tabla completa */
             margin: 0 auto;
-            padding: 40px 15px;
+            padding: 30px 15px; /* Reducido para móviles */
             flex: 1; /* Empuja el footer hacia abajo */
         }
 
@@ -70,8 +73,8 @@
         .back-btn {
             color: var(--accent-blue);
             text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -80,10 +83,10 @@
         .back-btn:hover { text-shadow: 0 0 10px var(--accent-blue); }
 
         /* Encabezado */
-        header { text-align: center; margin-bottom: 30px; }
+        header { text-align: center; margin-bottom: 25px; }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             background: linear-gradient(to bottom, #ffffff, #aaaaaa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -97,42 +100,50 @@
             color: var(--accent-blue);
             font-weight: bold;
             letter-spacing: 3px;
-            margin-top: 8px;
-            font-size: 0.9rem;
+            margin-top: 6px;
+            font-size: 0.85rem;
         }
 
-        /* TABLA ESTILO CRISTAL */
+        /* TABLA ESTILO CRISTAL OPTIMIZADA (Más compacta) */
         .table-wrapper {
-            background: rgba(10, 10, 10, 0.7); /* Fondo oscuro traslúcido */
-            border-radius: 16px;
+            background: rgba(10, 10, 10, 0.75); /* Fondo un poco más oscuro */
+            border-radius: 12px;
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(15px); /* Efecto cristalino */
             overflow-x: auto; /* Scroll horizontal en móvil */
             box-shadow: 0 25px 50px rgba(0,0,0,0.6);
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: center;
-            font-size: 0.95rem;
-            min-width: 600px; /* Evita que se colapse en móvil */
+            
+            /* --- TEXTO REDUCIDO PARA CABER --- */
+            font-size: 0.82rem; 
+            
+            min-width: 650px; /* Evita que se colapse demasiado en móvil */
         }
 
         th {
             background: rgba(0, 212, 255, 0.15); /* Tinte azul en cabecera */
             color: var(--accent-blue);
-            padding: 18px 10px;
+            
+            /* --- ESPACIADO REDUCIDO --- */
+            padding: 12px 6px; 
+            
             text-transform: uppercase;
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: 0.7rem; /* Cabeceras más pequeñas */
             letter-spacing: 1px;
             border-bottom: 1px solid var(--glass-border);
         }
 
         td {
-            padding: 16px 10px;
+            /* --- ESPACIADO REDUCIDO --- */
+            padding: 10px 6px; 
+            
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--silver);
         }
@@ -144,27 +155,29 @@
         .total-usd { 
             color: var(--fuchsia); 
             font-weight: bold; 
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+            text-shadow: 0 0 8px rgba(255, 0, 255, 0.2);
+            font-size: 0.85rem; /* Resaltamos Ganancia Total */
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             color: rgba(255, 255, 255, 0.2);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             margin-top: auto; /* Empuja al final */
         }
 
         /* AJUSTES PARA MÓVIL */
         @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            .meta-info { font-size: 0.8rem; letter-spacing: 1px; }
+            h1 { font-size: 1.6rem; }
+            .meta-info { font-size: 0.75rem; letter-spacing: 1px; }
             body::before { background-size: 180%; opacity: 0.15; } /* Logo más grande y suave */
-            .container { padding: 20px 10px; }
-            table { font-size: 0.8rem; }
-            th, td { padding: 12px 5px; }
+            .container { padding: 15px 5px; }
+            table { font-size: 0.75rem; }
+            th { font-size: 0.6rem; padding: 10px 3px; }
+            td { padding: 8px 3px; }
         }
     </style>
 </head>
@@ -204,6 +217,10 @@
                         <tr><td>200,000</td><td>952</td><td>1320</td><td class="total-usd">2272</td></tr>
                         <tr><td>250,000</td><td>1190</td><td>1650</td><td class="total-usd">2840</td></tr>
                         <tr><td>300,000</td><td>1429</td><td>1980</td><td class="total-usd">3409</td></tr>
+                        <tr><td>400,000</td><td>1905</td><td>2700</td><td class="total-usd">4605</td></tr>
+                        <tr><td>500,000</td><td>2381</td><td>3550</td><td class="total-usd">5931</td></tr>
+                        <tr><td>750,000</td><td>3571</td><td>5500</td><td class="total-usd">9071</td></tr>
+                        <tr><td>1,000,000</td><td>4762</td><td>6800</td><td class="total-usd">11562</td></tr>
                     </tbody>
                 </table>
             </div>
