@@ -21,6 +21,32 @@
             font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
             line-height: 1.6;
+            
+            /* --- NUEVO: Imagen de fondo (Logo) --- */
+            background-image: url('logo.png'); /* Ruta a tu imagen */
+            background-repeat: no-repeat;
+            background-position: center; /* Centrada */
+            background-attachment: fixed; /* Fija al hacer scroll */
+            background-size: 40%; /* Tamaño grande pero no gigante */
+            /* Efecto marca de agua: Usamos un pseudo-elemento para la opacidad */
+        }
+
+        /* --- NUEVO: Ajuste para la opacidad del fondo --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 50%; /* Ajusta el tamaño aquí (50% del ancho) */
+            opacity: 0.05; /* MUY transparente (0.05 de 1). Súbelo si está muy invisible */
+            z-index: -1; /* Detrás de todo el contenido */
+        }
+        
+        /* Eliminamos el gradiente del body original para que no tape el logo */
+        body {
+            background-image: none;
         }
 
         header {
@@ -31,7 +57,8 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #121212 100%);
+            /* Gradient suave sobre el fondo negro para el hero */
+            background: radial-gradient(circle at center, rgba(26,26,26,0.8) 0%, rgba(18,18,18,1) 100%);
         }
 
         h1 {
@@ -55,6 +82,8 @@
             border-radius: 50px;
             font-weight: bold;
             transition: transform 0.3s ease;
+            position: relative; /* Para asegurar que esté sobre el fondo */
+            z-index: 1;
         }
 
         .cta-main:hover {
@@ -68,6 +97,8 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             padding: 50px 10% 100px;
+            position: relative; /* Sobre el fondo */
+            z-index: 1;
         }
 
         .nav-card {
@@ -77,13 +108,14 @@
             text-decoration: none;
             color: white;
             border: 1px solid #333;
-            transition: border 0.3s ease, vertical-align 0.3s ease;
+            transition: border 0.3s ease, vertical-align 0.3s ease, background-color 0.3s ease;
             text-align: center;
         }
 
         .nav-card:hover {
             border-color: var(--accent-color);
             margin-top: -5px;
+            background-color: rgba(30, 30, 30, 0.9); /* Ligeramente más opaco al hover */
         }
 
         .nav-card i {
@@ -108,11 +140,14 @@
             border-top: 1px solid #333;
             font-size: 0.8rem;
             color: var(--text-dim);
+            position: relative;
+            z-index: 1;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
+            body::before { background-size: 70%; } /* Logo más grande en móvil */
         }
     </style>
 </head>
