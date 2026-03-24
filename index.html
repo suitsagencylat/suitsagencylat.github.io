@@ -11,11 +11,11 @@
     <style>
         :root {
             --primary: #ffffff;
-            --bg: #0a0a0a;
-            --accent: #161616;
+            --bg: #000000; /* Negro puro para evitar rastros de gris */
+            --accent: #111111;
             --text-gray: #b3b3b3;
             --purple-neon: #8a2be2;
-            --purple-glow: rgba(138, 43, 226, 0.5);
+            --purple-glow: rgba(138, 43, 226, 0.4);
         }
 
         body {
@@ -32,65 +32,63 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centrado vertical mejorado */
+            justify-content: flex-start; /* Alinea al inicio para poder subir el logo */
             align-items: center;
             text-align: center;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1598550874175-4d0fe427c706?auto=format&fit=crop&q=80'); 
             background-size: cover;
-            padding: 20px;
+            padding-top: 5vh; /* Espacio mínimo arriba */
         }
 
-        /* Logo de la agencia más grande y arriba */
+        /* Logo de la agencia: MUCHO MÁS GRANDE Y ARRIBA */
         .agency-logo {
-            width: 500px; /* Doble del tamaño anterior */
-            max-width: 90%; /* Ajuste para móviles */
+            width: 550px; 
+            max-width: 95%; 
             height: auto;
-            margin-top: -50px; /* Lo sube un poco más */
-            margin-bottom: 30px;
+            margin-top: -20px; /* Sube el logo agresivamente */
+            margin-bottom: 10px;
         }
 
         .hero p {
             font-size: 1.3rem;
             color: var(--text-gray);
             max-width: 750px;
-            margin-bottom: 35px;
-            line-height: 1.4;
+            margin-bottom: 30px;
             text-shadow: 2px 2px 8px rgba(0,0,0,1);
         }
 
         .btn-cta {
             background-color: var(--primary);
-            color: var(--bg);
-            padding: 15px 40px;
+            color: #000;
+            padding: 18px 45px;
             text-decoration: none;
             font-weight: 800;
             border-radius: 5px;
-            transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
-        /* Sección Bigo (Fondo Gris eliminado) */
-        .bigo-logo-section {
-            padding: 60px 0;
+        /* Sección Bigo: TOTALMENTE LIMPIA */
+        .bigo-clean-section {
+            padding: 50px 0;
             text-align: center;
-            background: transparent; /* Fondo eliminado */
-            border-bottom: 1px solid #222; /* Borde más sutil */
+            background: transparent; /* Sin fondo */
+            border: none; /* Sin líneas grises */
         }
 
-        .bigo-logo-section p {
+        .bigo-clean-section p {
             font-size: 0.7rem;
-            color: #444;
+            color: #333;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
         }
 
         /* Carrusel de Beneficios */
         .slider {
             background: var(--bg);
-            padding: 80px 0;
+            padding: 60px 0;
             overflow: hidden;
             position: relative;
             cursor: pointer;
@@ -122,18 +120,13 @@
             user-select: none;
         }
 
-        .card h3 { color: var(--primary); margin-top: 0; font-size: 1.1rem; }
-        .card p { color: var(--text-gray); font-size: 0.85rem; }
-
         /* FAQ */
         .faq-section { padding: 80px 20px; max-width: 800px; margin: auto; }
-        .faq-section h2 { text-align: center; margin-bottom: 40px; font-weight: 800; }
-        details { background: #111; margin-bottom: 15px; padding: 18px 25px; border-radius: 8px; border: 1px solid var(--purple-neon); cursor: pointer; }
+        details { background: #080808; margin-bottom: 15px; padding: 18px 25px; border-radius: 8px; border: 1px solid var(--purple-neon); cursor: pointer; }
         summary { font-weight: 600; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
         summary::after { content: '+'; font-size: 1.4rem; color: var(--purple-neon); }
-        details[open] summary::after { content: '-'; }
 
-        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #444; border-top: 1px solid #111; }
+        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #222; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
@@ -144,9 +137,9 @@
         <a href="https://wa.me/595982678695?text=Hola%20Suits%20Agency,%20vi%20la%20página%20y%20quiero%20empezar%20a%20ganar" class="btn-cta">Empezar a Ganar</a>
     </section>
 
-    <div class="bigo-logo-section">
+    <div class="bigo-clean-section">
         <p>Agencia Oficial en</p>
-        <img src="bigo.png" alt="Bigo Live" style="width: 120px; height: auto;">
+        <img src="bigo.png" alt="Bigo Live" style="width: 130px; height: auto;">
     </div>
 
     <div class="slider" id="sliderContainer">
@@ -185,12 +178,12 @@
             <p>En <strong>Colombia</strong>, retiras directo a tu banco con Dlocal. En otros países, usamos <strong>Payoneer o PayPal</strong>.</p>
         </details>
         <details>
-            <summary>¿Necesito experiencia previa?</summary>
-            <p>No. Te capacitamos desde cero con materiales técnicos para elevar tu calidad e interacción.</p>
-        </details>
-        <details>
             <summary>¿A qué hora es el reseteo diario?</summary>
             <p>Colombia/México: 00:00. Paraguay: 01:00 AM.</p>
+        </details>
+        <details>
+            <summary>¿Cuáles son los requisitos básicos?</summary>
+            <p>Transmitir por lo menos 2 horas diarias en una sala individual iluminada e interactuar con tu audiencia.</p>
         </details>
     </section>
 
