@@ -27,9 +27,10 @@
             overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* Hero Section - Ajustada al máximo superior */
         .hero {
-            height: 100vh;
+            height: auto;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -37,21 +38,22 @@
             text-align: center;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1598550874175-4d0fe427c706?auto=format&fit=crop&q=80'); 
             background-size: cover;
-            padding-top: 2vh; /* Subido al máximo */
+            padding-top: 0; /* Sin espacio arriba */
         }
 
         .agency-logo {
             width: 550px; 
             max-width: 95%; 
             height: auto;
-            margin-top: -10px; 
-            margin-bottom: 5px;
+            margin-top: -40px; /* Logo subido agresivamente */
+            margin-bottom: 0px;
         }
 
         .hero p {
             font-size: 1.2rem;
             color: var(--text-gray);
             max-width: 750px;
+            margin-top: 10px;
             margin-bottom: 25px;
             text-shadow: 2px 2px 8px rgba(0,0,0,1);
         }
@@ -65,36 +67,36 @@
             border-radius: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
-        /* Sección Bigo: Más arriba y texto visible */
+        /* Sección Bigo: Texto blanco y pegada arriba */
         .bigo-clean-section {
-            padding: 30px 0; /* Reducido para subirlo */
+            padding: 10px 0 30px 0; /* Casi sin espacio arriba */
             text-align: center;
             background: transparent;
         }
 
         .bigo-clean-section p {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.8); /* Texto más claro y visible */
-            font-weight: 600;
+            font-size: 0.85rem;
+            color: #ffffff; /* Blanco para máxima visibilidad */
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         /* Carrusel: Deslizable con el dedo */
         .slider {
             background: var(--bg);
             padding: 40px 0;
-            overflow-x: auto; /* Permite deslizar con el dedo */
+            overflow-x: auto;
             display: flex;
-            scrollbar-width: none; /* Oculta scroll en Firefox */
+            scrollbar-width: none;
+            touch-action: pan-x; /* Optimizado para deslizar con el dedo */
         }
 
-        .slider::-webkit-scrollbar {
-            display: none; /* Oculta scroll en Chrome/Safari */
-        }
+        .slider::-webkit-scrollbar { display: none; }
 
         .slider-track {
             display: flex;
@@ -102,7 +104,6 @@
             animation: scroll 30s linear infinite;
         }
 
-        /* Pausa al tocar/hacer hover */
         .slider:active .slider-track,
         .slider-track.paused {
             animation-play-state: paused;
@@ -126,8 +127,7 @@
             user-select: none;
         }
 
-        /* FAQ y Footer */
-        .faq-section { padding: 60px 20px; max-width: 800px; margin: auto; }
+        .faq-section { padding: 40px 20px; max-width: 800px; margin: auto; }
         details { background: #080808; margin-bottom: 12px; padding: 15px; border-radius: 8px; border: 1px solid var(--purple-neon); cursor: pointer; }
         summary { font-weight: 600; display: flex; justify-content: space-between; align-items: center; list-style: none; }
         summary::after { content: '+'; color: var(--purple-neon); }
@@ -140,71 +140,5 @@
     <section class="hero">
         <img src="logo.png" alt="Suits Agency Logo" class="agency-logo">
         <p>Maximiza tus ganancias con nosotros. <strong>Bigo Live</strong> convierte tu talento en resultados reales.</p>
-        <a href="https://wa.me/595982678695?text=Hola%20Suits%20Agency,%20vi%20la%20página%20y%20quiero%20empezar%20a%20ganar" class="btn-cta">Empezar a Ganar</a>
-    </section>
-
-    <div class="bigo-clean-section">
-        <p>Agencia Oficial en Bigo Live</p>
-        <img src="bigo.png" alt="Bigo Live" style="width: 120px; height: auto;">
-    </div>
-
-    <div class="slider" id="sliderContainer">
-        <div class="slider-track" id="sliderTrack">
-            <div class="card">
-                <h3>Capacitación Continua</h3>
-                <p>Resolvemos todas tus dudas y enviamos materiales exclusivos para dominar la plataforma.</p>
-            </div>
-            <div class="card">
-                <h3>Metas Claras</h3>
-                <p>Sistemas de bonos transparentes basados en tus objetivos de horas y semillas.</p>
-            </div>
-            <div class="card">
-                <h3>Pagos Seguros</h3>
-                <p>Retiros directos en Colombia vía Dlocal y globales mediante Payoneer o PayPal.</p>
-            </div>
-            <div class="card">
-                <h3>Capacitación Continua</h3>
-                <p>Resolvemos todas tus dudas y enviamos materiales exclusivos para dominar la plataforma.</p>
-            </div>
-            <div class="card">
-                <h3>Metas Claras</h3>
-                <p>Sistemas de bonos transparentes basados en tus objetivos de horas y semillas.</p>
-            </div>
-            <div class="card">
-                <h3>Pagos Seguros</h3>
-                <p>Retiros directos en Colombia vía Dlocal y globales mediante Payoneer o PayPal.</p>
-            </div>
-        </div>
-    </div>
-
-    <section class="faq-section">
-        <h2 style="text-align: center; margin-bottom: 30px;">Preguntas Frecuentes</h2>
-        <details>
-            <summary>¿Cómo recibo mis ganancias?</summary>
-            <p>En <strong>Colombia</strong>, retiras directo a tu banco con Dlocal. En otros países, usamos <strong>Payoneer o PayPal</strong>.</p>
-        </details>
-        <details>
-            <summary>¿A qué hora es el reseteo diario?</summary>
-            <p>Colombia/México: 00:00. Paraguay: 01:00 AM.</p>
-        </details>
-        <details>
-            <summary>¿Cuáles son los requisitos básicos?</summary>
-            <p>Transmitir por lo menos 2 horas diarias en una sala individual iluminada e interactuar con tu audiencia.</p>
-        </details>
-    </section>
-
-    <footer>&copy; 2026 Suits Agency. Todos los derechos reservados.</footer>
-
-    <script>
-        const sliderTrack = document.getElementById('sliderTrack');
-        const sliderContainer = document.getElementById('sliderContainer');
-
-        // Pausa la animación al tocar (Móvil) o hacer clic (PC)
-        sliderContainer.addEventListener('touchstart', () => sliderTrack.classList.add('paused'));
-        sliderContainer.addEventListener('touchend', () => sliderTrack.classList.remove('paused'));
-        sliderContainer.addEventListener('mousedown', () => sliderTrack.classList.add('paused'));
-        sliderContainer.addEventListener('mouseup', () => sliderTrack.classList.remove('paused'));
-    </script>
-
-</body>
-</html>
+        <a href="
+            
