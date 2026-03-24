@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suits Agency | Preview</title>
+    <title>Suits Agency | Preview Fondo Logo</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
     
@@ -75,7 +75,7 @@
 
         .nav-links a:hover { color: var(--purple-neon); }
 
-        /* --- HERO --- */
+        /* --- HERO CON FONDO LOGO.PNG --- */
         .hero {
             height: 85vh;
             display: flex;
@@ -83,9 +83,11 @@
             justify-content: flex-start;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop'); 
+            /* SEÑAL DE CAMBIO: Usando logo.png como fondo con superposición oscura */
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('logo.png'); 
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             padding-top: 0;
         }
 
@@ -103,6 +105,7 @@
             max-width: 700px;
             margin-bottom: 30px;
             padding: 0 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Sombra para legibilidad */
         }
 
         .btn-cta {
@@ -114,6 +117,7 @@
             border-radius: 4px;
             text-transform: uppercase;
             transition: 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
         .btn-cta:hover { transform: scale(1.05); background: #eee; }
@@ -122,6 +126,7 @@
         .bigo-section {
             padding: 20px 0 40px;
             text-align: center;
+            background-color: var(--bg); /* Asegura fondo negro */
         }
 
         .bigo-section p {
@@ -173,13 +178,13 @@
         .card p { font-size: 0.8rem; color: var(--text-gray); }
 
         /* --- FAQ --- */
-        .faq { padding: 80px 20px; max-width: 800px; margin: auto; }
+        .faq { padding: 80px 20px; max-width: 800px; margin: auto; background-color: var(--bg); }
         .faq h2 { text-align: center; margin-bottom: 40px; font-weight: 800; }
         details { background: #0a0a0a; margin-bottom: 10px; padding: 20px; border-radius: 5px; border-left: 4px solid var(--purple-neon); cursor: pointer; }
         summary { font-weight: 600; list-style: none; display: flex; justify-content: space-between; }
         summary::after { content: '↓'; color: var(--purple-neon); }
 
-        footer { padding: 40px; text-align: center; border-top: 1px solid #111; color: #444; font-size: 0.8rem; }
+        footer { padding: 40px; text-align: center; border-top: 1px solid #111; color: #444; font-size: 0.8rem; background-color: var(--bg); }
     </style>
 </head>
 <body>
@@ -196,14 +201,14 @@
     </nav>
 
     <section class="hero">
-        <img src="https://via.placeholder.com/550x250/000000/FFFFFF?text=SUITS+AGENCY+LOGO" alt="Logo" class="agency-logo-placeholder">
+        <img src="logo.png" alt="Logo Gigante Central" class="agency-logo-placeholder">
         <p>Maximiza tus ganancias con nosotros. <strong>Bigo Live</strong> convierte tu talento en resultados reales.</p>
         <a href="https://wa.me/595982678695" class="btn-cta">Empezar a Ganar</a>
     </section>
 
     <div class="bigo-section">
         <p>Agencia Oficial en Bigo Live</p>
-        <img src="https://via.placeholder.com/120x50/000000/FFFFFF?text=Bigo+Logo" alt="Bigo">
+        <img src="bigo.png" alt="Bigo Logo Oficial">
     </div>
 
     <div class="slider" id="beneficios">
