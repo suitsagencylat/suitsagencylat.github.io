@@ -32,12 +32,21 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: center; /* Centrado vertical mejorado */
             align-items: center;
             text-align: center;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1598550874175-4d0fe427c706?auto=format&fit=crop&q=80'); 
             background-size: cover;
             padding: 20px;
+        }
+
+        /* Logo de la agencia más grande y arriba */
+        .agency-logo {
+            width: 500px; /* Doble del tamaño anterior */
+            max-width: 90%; /* Ajuste para móviles */
+            height: auto;
+            margin-top: -50px; /* Lo sube un poco más */
+            margin-bottom: 30px;
         }
 
         .hero p {
@@ -62,13 +71,29 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
+        /* Sección Bigo (Fondo Gris eliminado) */
+        .bigo-logo-section {
+            padding: 60px 0;
+            text-align: center;
+            background: transparent; /* Fondo eliminado */
+            border-bottom: 1px solid #222; /* Borde más sutil */
+        }
+
+        .bigo-logo-section p {
+            font-size: 0.7rem;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
         /* Carrusel de Beneficios */
         .slider {
             background: var(--bg);
             padding: 80px 0;
             overflow: hidden;
             position: relative;
-            cursor: pointer; /* Indica que se puede interactuar */
+            cursor: pointer;
         }
 
         .slider-track {
@@ -77,10 +102,7 @@
             animation: scroll 25s linear infinite;
         }
 
-        /* Clase que aplicaremos con JS para pausar */
-        .paused {
-            animation-play-state: paused !important;
-        }
+        .paused { animation-play-state: paused !important; }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
@@ -97,7 +119,7 @@
             border: 2px solid var(--purple-neon);
             box-shadow: 0 0 15px var(--purple-glow);
             flex-shrink: 0;
-            user-select: none; /* Evita seleccionar texto al mantener pulsado */
+            user-select: none;
         }
 
         .card h3 { color: var(--primary); margin-top: 0; font-size: 1.1rem; }
@@ -117,14 +139,14 @@
 <body>
 
     <section class="hero">
-        <img src="logo.png" alt="Suits Agency Logo" style="width: 250px; height: auto; margin-bottom: 25px;">
+        <img src="logo.png" alt="Suits Agency Logo" class="agency-logo">
         <p>Maximiza tus ganancias con nosotros. <strong>Bigo Live</strong> convierte tu talento en resultados reales.</p>
         <a href="https://wa.me/595982678695?text=Hola%20Suits%20Agency,%20vi%20la%20página%20y%20quiero%20empezar%20a%20ganar" class="btn-cta">Empezar a Ganar</a>
     </section>
 
-    <div class="bigo-logo-section" style="padding: 40px 0; text-align: center; background: #0d0d0d; border-bottom: 1px solid #333;">
-        <p style="font-size: 0.7rem; color: #444; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px;">Agencia Oficial en</p>
-        <img src="bigo.png" alt="Bigo Live" style="width: 110px; height: auto;">
+    <div class="bigo-logo-section">
+        <p>Agencia Oficial en</p>
+        <img src="bigo.png" alt="Bigo Live" style="width: 120px; height: auto;">
     </div>
 
     <div class="slider" id="sliderContainer">
@@ -163,6 +185,10 @@
             <p>En <strong>Colombia</strong>, retiras directo a tu banco con Dlocal. En otros países, usamos <strong>Payoneer o PayPal</strong>.</p>
         </details>
         <details>
+            <summary>¿Necesito experiencia previa?</summary>
+            <p>No. Te capacitamos desde cero con materiales técnicos para elevar tu calidad e interacción.</p>
+        </details>
+        <details>
             <summary>¿A qué hora es el reseteo diario?</summary>
             <p>Colombia/México: 00:00. Paraguay: 01:00 AM.</p>
         </details>
@@ -173,16 +199,12 @@
     <script>
         const sliderTrack = document.getElementById('sliderTrack');
         const sliderContainer = document.getElementById('sliderContainer');
-
         const pauseSlider = () => sliderTrack.classList.add('paused');
         const playSlider = () => sliderTrack.classList.remove('paused');
 
-        // Eventos para PC (Mouse)
         sliderContainer.addEventListener('mousedown', pauseSlider);
         sliderContainer.addEventListener('mouseup', playSlider);
         sliderContainer.addEventListener('mouseleave', playSlider);
-
-        // Eventos para Móviles (Toque)
         sliderContainer.addEventListener('touchstart', pauseSlider);
         sliderContainer.addEventListener('touchend', playSlider);
     </script>
