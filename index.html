@@ -6,23 +6,25 @@
     <title>Suits Agency | Bigo Live</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* CONFIGURACIÓN DE COLORES BASADA EN TU LOGO */
         :root {
             --bg-color: #050505; 
-            --accent-blue: #00d4ff; 
-            --silver: #e0e0e0; 
-            --card-bg: rgba(255, 255, 255, 0.03); /* Fondo de tarjeta casi invisible */
+            --accent-blue: #00d4ff; /* Cian del brillo */
+            --silver: #e0e0e0; /* Plateado de las letras AS */
+            --card-bg: rgba(255, 255, 255, 0.02); /* Casi invisible para ver el logo */
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
             background-color: var(--bg-color);
             color: #ffffff;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* CONFIGURACIÓN DEL LOGO DE FONDO */
+        /* LOGO DE FONDO (MARCA DE AGUA) */
         body::before {
             content: "";
             position: fixed;
@@ -33,150 +35,60 @@
             background-image: url('logo.png'); 
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 85%; /* MÁS GRANDE: Ahora ocupa el 85% de la pantalla */
-            opacity: 0.35; /* MÁS VISIBLE: Subido al 35% de opacidad */
+            background-size: 85%; /* Tamaño grande */
+            opacity: 0.4; /* Visibilidad clara del logo */
             z-index: -1;
-            filter: brightness(1.1) contrast(1.1); /* Realza los colores del logo */
+            filter: brightness(1.1);
         }
 
         header {
-            height: 60vh;
+            height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-top: 50px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
-            font-size: 4.5rem;
+            font-size: 4rem;
             margin: 0;
             background: linear-gradient(to bottom, #ffffff, #888888);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
             letter-spacing: 5px;
+            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.4));
         }
 
         .hero-subtitle {
             color: var(--silver);
             font-size: 1rem;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             margin-top: 10px;
             text-transform: uppercase;
+            opacity: 0.8;
         }
 
-        /* ESTILO DE TARJETAS "CRISTAL" (Para ver el logo atrás) */
+        /* CONTENEDOR DE TARJETAS TRASLÚCIDAS */
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            padding: 50px 10%;
+            padding: 20px 10% 80px;
+            position: relative;
+            z-index: 1;
         }
 
         .nav-card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 15px;
+            background: var(--card-bg); /* Transparencia total */
+            padding: 45px 30px;
+            border-radius: 20px;
             text-decoration: none;
             color: white;
             border: 1px solid var(--glass-border);
             text-align: center;
-            backdrop-filter: blur(4px); /* Suave desenfoque para leer bien el texto */
-            transition: all 0.4s ease;
-        }
-
-        .nav-card:hover {
-            background: rgba(0, 212, 255, 0.1); /* Se tiñe levemente de azul al pasar el mouse */
-            border-color: var(--accent-blue);
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .nav-card i {
-            font-size: 2.5rem;
-            color: var(--accent-blue);
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px var(--accent-blue);
-        }
-
-        .nav-card h3 {
-            margin: 10px 0;
-            color: var(--silver);
-            font-size: 1.4rem;
-        }
-
-        .nav-card p {
-            color: #bbbbbb;
-            font-size: 0.9rem;
-        }
-
-        .cta-main {
-            margin-top: 30px;
-            display: inline-block;
-            padding: 15px 45px;
-            background: transparent;
-            border: 2px solid var(--accent-blue);
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-
-        .cta-main:hover {
-            background: var(--accent-blue);
-            color: #000;
-            box-shadow: 0 0 25px var(--accent-blue);
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            color: #555;
-            font-size: 0.8rem;
-        }
-
-        /* Ajuste para móviles */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            body::before { background-size: 95%; opacity: 0.25; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>SUITS AGENCY</h1>
-        <p class="hero-subtitle">Con nosotros convierte tu talento en resultados reales</p>
-        <a href="registro.html" class="cta-main">Postular ahora</a>
-    </header>
-
-    <section class="nav-grid">
-        <a href="pagos.html" class="nav-card">
-            <i class="fas fa-gem"></i>
-            <h3>Tabla de Metas</h3>
-            <p>Conoce cuánto puedes ganar según tu rendimiento mensual.</p>
-        </a>
-
-        <a href="academia.html" class="nav-card">
-            <i class="fas fa-rocket"></i>
-            <h3>Crecimiento</h3>
-            <p>Guías exclusivas para maximizar tus semillas y audiencia.</p>
-        </a>
-
-        <a href="https://wa.me/TU_NUMERO" class="nav-card">
-            <i class="fab fa-whatsapp"></i>
-            <h3>Soporte Técnico</h3>
-            <p>Resolución de dudas y gestión de cuenta 24/7.</p>
-        </a>
-    </section>
-
-    <footer>
-        &copy; 2026 Suits Agency | Agencia Líder en Bigo Live LATAM.
-    </footer>
-
-</body>
-</html>
+            backdrop-filter: blur(8px); /* Efecto cristal para legibilidad */
+            transition: all 0.4s cubic-bezier(0
