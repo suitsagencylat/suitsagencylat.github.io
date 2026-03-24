@@ -6,6 +6,7 @@
     <title>Suits Agency | Potencia tu Streaming</title>
     
     <link rel="icon" type="image/png" href="logo.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -33,25 +34,41 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1598550874175-4d0fe427c706?auto=format&fit=crop&q=80'); 
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1598550874175-4d0fe427c706?auto=format&fit=crop&q=80'); 
             background-size: cover;
             padding: 20px;
         }
 
-        .hero p { font-size: 1.2rem; color: var(--text-gray); max-width: 600px; margin-bottom: 30px; }
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            max-width: 750px;
+            margin-bottom: 35px;
+            line-height: 1.4;
+            text-shadow: 2px 2px 8px rgba(0,0,0,1); /* Sombra para legibilidad */
+        }
+
+        .hero p strong {
+            color: var(--primary); /* Resalta Suits Agency en blanco */
+            font-weight: 800;
+        }
 
         .btn-cta {
             background-color: var(--primary);
             color: var(--bg);
             padding: 15px 40px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 800;
             border-radius: 5px;
             transition: 0.3s;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-cta:hover { background-color: #cccccc; transform: scale(1.05); }
+        .btn-cta:hover { 
+            background-color: #cccccc; 
+            transform: scale(1.05); 
+        }
 
         /* Sección Bigo Oficial */
         .bigo-logo-section {
@@ -69,7 +86,7 @@
             margin-bottom: 15px;
         }
 
-        /* Carrusel Infinito */
+        /* Carrusel de Beneficios */
         .slider {
             background: var(--bg);
             padding: 80px 0;
@@ -105,32 +122,64 @@
         .card p { color: var(--text-gray); font-size: 0.85rem; }
 
         /* FAQ Acordeón */
-        .faq-section { padding: 80px 20px; max-width: 800px; margin: auto; }
-        .faq-section h2 { text-align: center; margin-bottom: 40px; }
+        .faq-section { 
+            padding: 80px 20px; 
+            max-width: 800px; 
+            margin: auto; 
+        }
+        
+        .faq-section h2 { 
+            text-align: center; 
+            margin-bottom: 40px; 
+            font-weight: 800; 
+        }
 
         details {
             background: #111;
             margin-bottom: 15px;
-            padding: 15px 20px;
+            padding: 18px 25px;
             border-radius: 8px;
             border: 1px solid #333;
             cursor: pointer;
+            transition: 0.3s;
         }
 
-        summary { font-weight: 600; display: flex; justify-content: space-between; align-items: center; list-style: none; }
-        summary::after { content: '+'; font-size: 1.2rem; }
+        details:hover { border-color: #555; }
+
+        summary { 
+            font-weight: 600; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            list-style: none; 
+            outline: none;
+        }
+
+        summary::after { 
+            content: '+'; 
+            font-size: 1.4rem; 
+            color: var(--text-gray);
+        }
+
         details[open] summary::after { content: '-'; }
 
         /* Footer */
-        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #555; border-top: 1px solid #111; }
+        footer { 
+            padding: 40px; 
+            text-align: center; 
+            font-size: 0.8rem; 
+            color: #444; 
+            border-top: 1px solid #111; 
+        }
+
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <img src="logo.png" alt="Suits Agency Logo" style="width: 250px; height: auto; margin-bottom: 20px;">
-        <p>Impulsamos tu carrera como emisor profesional. Únete a la comunidad líder de streamers en Latinoamérica.</p>
-        <a href="https://wa.me/595982678695?text=Hola%20Suits%20Agency,%20me%20gustaría%20postularme%20como%20emisor" class="btn-cta">Postular Ahora</a>
+        <img src="logo.png" alt="Suits Agency Logo" style="width: 250px; height: auto; margin-bottom: 25px;">
+        <p>Maximiza tus ganancias en Bigo Live. <strong>Suits Agency</strong> convierte tu talento en resultados reales.</p>
+        <a href="https://wa.me/595982678695?text=Hola%20Suits%20Agency,%20vi%20la%20página%20y%20quiero%20empezar%20a%20ganar" class="btn-cta">Empezar a Ganar</a>
     </section>
 
     <div class="bigo-logo-section">
@@ -172,22 +221,22 @@
 
         <details>
             <summary>¿Cómo recibo mis ganancias?</summary>
-            <p>En <strong>Colombia</strong>, puedes retirar directamente a tu cuenta bancaria local con Dlocal. Para los demás países, usamos <strong>Payoneer o PayPal</strong>.</p>
+            <p>En <strong>Colombia</strong>, puedes retirar directamente a tu cuenta bancaria local con Dlocal. Para los demás países, gestionamos tus pagos a través de <strong>Payoneer o PayPal</strong>.</p>
         </details>
 
         <details>
             <summary>¿Necesito experiencia previa?</summary>
-            <p>No. En Suits Agency te brindamos capacitación y materiales técnicos desde cero para elevar la calidad de tus directos.</p>
+            <p>No. En Suits Agency te brindamos capacitación y materiales técnicos desde cero para elevar la calidad de tus directos e interacción.</p>
         </details>
 
         <details>
             <summary>¿A qué hora es el reseteo diario?</summary>
-            <p>Colombia/México: 00:00 (medianoche). Paraguay: 01:00 AM.</p>
+            <p>El día operativo comienza a las 00:00 (medianoche) para Colombia y México. Para Paraguay, el reseteo ocurre a la 01:00 AM.</p>
         </details>
 
         <details>
             <summary>¿Cuáles son los requisitos básicos?</summary>
-            <p>Transmitir por lo menos 2 horas diarias en sala individual y mantener una interacción constante con tu audiencia.</p>
+            <p>Transmitir por lo menos 2 horas diarias en una sala individual iluminada y mantener una interacción constante con tu audiencia.</p>
         </details>
     </section>
 
