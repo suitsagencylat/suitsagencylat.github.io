@@ -6,7 +6,6 @@
     <title>Suits Agency | Potencia tu Streaming</title>
     
     <link rel="icon" type="image/png" href="logo.png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -15,6 +14,8 @@
             --bg: #0a0a0a;
             --accent: #161616;
             --text-gray: #b3b3b3;
+            --purple-neon: #8a2be2;
+            --purple-glow: rgba(138, 43, 226, 0.5);
         }
 
         body {
@@ -45,12 +46,7 @@
             max-width: 750px;
             margin-bottom: 35px;
             line-height: 1.4;
-            text-shadow: 2px 2px 8px rgba(0,0,0,1); /* Sombra para legibilidad */
-        }
-
-        .hero p strong {
-            color: var(--primary); /* Resalta Suits Agency en blanco */
-            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0,0,0,1);
         }
 
         .btn-cta {
@@ -63,27 +59,7 @@
             transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .btn-cta:hover { 
-            background-color: #cccccc; 
-            transform: scale(1.05); 
-        }
-
-        /* Sección Bigo Oficial */
-        .bigo-logo-section {
-            padding: 40px 0;
-            text-align: center;
-            background: #0d0d0d;
-            border-bottom: 1px solid #333;
-        }
-
-        .bigo-logo-section p {
-            font-size: 0.7rem;
-            color: #444;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         /* Carrusel de Beneficios */
@@ -92,6 +68,7 @@
             padding: 80px 0;
             overflow: hidden;
             position: relative;
+            cursor: pointer; /* Indica que se puede interactuar */
         }
 
         .slider-track {
@@ -100,7 +77,10 @@
             animation: scroll 25s linear infinite;
         }
 
-        .slider-track:hover { animation-play-state: paused; }
+        /* Clase que aplicaremos con JS para pausar */
+        .paused {
+            animation-play-state: paused !important;
+        }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
@@ -114,81 +94,41 @@
             padding: 40px 30px;
             border-radius: 15px;
             text-align: center;
-            border: 1px solid #222;
+            border: 2px solid var(--purple-neon);
+            box-shadow: 0 0 15px var(--purple-glow);
             flex-shrink: 0;
+            user-select: none; /* Evita seleccionar texto al mantener pulsado */
         }
 
         .card h3 { color: var(--primary); margin-top: 0; font-size: 1.1rem; }
         .card p { color: var(--text-gray); font-size: 0.85rem; }
 
-        /* FAQ Acordeón */
-        .faq-section { 
-            padding: 80px 20px; 
-            max-width: 800px; 
-            margin: auto; 
-        }
-        
-        .faq-section h2 { 
-            text-align: center; 
-            margin-bottom: 40px; 
-            font-weight: 800; 
-        }
-
-        details {
-            background: #111;
-            margin-bottom: 15px;
-            padding: 18px 25px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        details:hover { border-color: #555; }
-
-        summary { 
-            font-weight: 600; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            list-style: none; 
-            outline: none;
-        }
-
-        summary::after { 
-            content: '+'; 
-            font-size: 1.4rem; 
-            color: var(--text-gray);
-        }
-
+        /* FAQ */
+        .faq-section { padding: 80px 20px; max-width: 800px; margin: auto; }
+        .faq-section h2 { text-align: center; margin-bottom: 40px; font-weight: 800; }
+        details { background: #111; margin-bottom: 15px; padding: 18px 25px; border-radius: 8px; border: 1px solid var(--purple-neon); cursor: pointer; }
+        summary { font-weight: 600; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
+        summary::after { content: '+'; font-size: 1.4rem; color: var(--purple-neon); }
         details[open] summary::after { content: '-'; }
 
-        /* Footer */
-        footer { 
-            padding: 40px; 
-            text-align: center; 
-            font-size: 0.8rem; 
-            color: #444; 
-            border-top: 1px solid #111; 
-        }
-
+        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #444; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
     <section class="hero">
         <img src="logo.png" alt="Suits Agency Logo" style="width: 250px; height: auto; margin-bottom: 25px;">
-        <p>Maximiza tus ganancias en Bigo Live. <strong>Suits Agency</strong> convierte tu talento en resultados reales.</p>
+        <p>Maximiza tus ganancias con nosotros. <strong>Bigo Live</strong> convierte tu talento en resultados reales.</p>
         <a href="https://wa.me/595982678695?text=Hola%20Suits%20Agency,%20vi%20la%20página%20y%20quiero%20empezar%20a%20ganar" class="btn-cta">Empezar a Ganar</a>
     </section>
 
-    <div class="bigo-logo-section">
-        <p>Agencia Oficial en</p>
+    <div class="bigo-logo-section" style="padding: 40px 0; text-align: center; background: #0d0d0d; border-bottom: 1px solid #333;">
+        <p style="font-size: 0.7rem; color: #444; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px;">Agencia Oficial en</p>
         <img src="bigo.png" alt="Bigo Live" style="width: 110px; height: auto;">
     </div>
 
-    <div class="slider">
-        <div class="slider-track">
+    <div class="slider" id="sliderContainer">
+        <div class="slider-track" id="sliderTrack">
             <div class="card">
                 <h3>Capacitación Continua</h3>
                 <p>Resolvemos todas tus dudas y enviamos materiales exclusivos para dominar la plataforma.</p>
@@ -218,31 +158,34 @@
 
     <section class="faq-section">
         <h2>Preguntas Frecuentes</h2>
-
         <details>
             <summary>¿Cómo recibo mis ganancias?</summary>
-            <p>En <strong>Colombia</strong>, puedes retirar directamente a tu cuenta bancaria local con Dlocal. Para los demás países, gestionamos tus pagos a través de <strong>Payoneer o PayPal</strong>.</p>
+            <p>En <strong>Colombia</strong>, retiras directo a tu banco con Dlocal. En otros países, usamos <strong>Payoneer o PayPal</strong>.</p>
         </details>
-
-        <details>
-            <summary>¿Necesito experiencia previa?</summary>
-            <p>No. En Suits Agency te brindamos capacitación y materiales técnicos desde cero para elevar la calidad de tus directos e interacción.</p>
-        </details>
-
         <details>
             <summary>¿A qué hora es el reseteo diario?</summary>
-            <p>El día operativo comienza a las 00:00 (medianoche) para Colombia y México. Para Paraguay, el reseteo ocurre a la 01:00 AM.</p>
-        </details>
-
-        <details>
-            <summary>¿Cuáles son los requisitos básicos?</summary>
-            <p>Transmitir por lo menos 2 horas diarias en una sala individual iluminada y mantener una interacción constante con tu audiencia.</p>
+            <p>Colombia/México: 00:00. Paraguay: 01:00 AM.</p>
         </details>
     </section>
 
-    <footer>
-        &copy; 2026 Suits Agency. Todos los derechos reservados.
-    </footer>
+    <footer>&copy; 2026 Suits Agency. Todos los derechos reservados.</footer>
+
+    <script>
+        const sliderTrack = document.getElementById('sliderTrack');
+        const sliderContainer = document.getElementById('sliderContainer');
+
+        const pauseSlider = () => sliderTrack.classList.add('paused');
+        const playSlider = () => sliderTrack.classList.remove('paused');
+
+        // Eventos para PC (Mouse)
+        sliderContainer.addEventListener('mousedown', pauseSlider);
+        sliderContainer.addEventListener('mouseup', playSlider);
+        sliderContainer.addEventListener('mouseleave', playSlider);
+
+        // Eventos para Móviles (Toque)
+        sliderContainer.addEventListener('touchstart', pauseSlider);
+        sliderContainer.addEventListener('touchend', playSlider);
+    </script>
 
 </body>
 </html>
