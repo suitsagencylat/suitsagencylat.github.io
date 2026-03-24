@@ -7,93 +7,116 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #050505;
-            --accent-blue: #00d4ff;
-            --silver: #e0e0e0;
+            --bg-color: #050505; /* Negro profundo */
+            --accent-blue: #00d4ff; /* Cian brillante del logo */
+            --silver: #e0e0e0; /* Plateado para texto */
             --glass-border: rgba(255, 255, 255, 0.12);
-            --fuchsia: #ff00ff;
+            --fuchsia: #ff00ff; /* Fucsia para Ganancia Total */
         }
 
+        /* 1. CONFIGURACIÓN BÁSICA DEL BODY */
         body {
             background-color: var(--bg-color);
             color: #ffffff;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            position: relative;
-            overflow-x: hidden; /* SOLUCIÓN #2: Evita rebotes o scrolls laterales indeseados */
+            /* Importante para que el pseudo-elemento funcione */
+            position: relative; 
+            overflow-x: hidden; /* Evita scrolls laterales accidentales */
         }
 
-        /* Logo de Fondo (Marca de Agua) */
+        /* 2. EL LOGO DE FONDO (FIJO, AGRANDADO Y DETRÁS) */
         body::before {
             content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('logo.png');
+            position: fixed; /* Fijo en la pantalla */
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background-image: url('logo.png'); /* Ruta a tu imagen */
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 110%; /* Super grande en PC */
-            opacity: 0.15;
-            z-index: -1;
+            
+            /* --- LOGO AGRANDADO --- */
+            background-size: 110%; /* Ajustado al 110% como pediste */
+            
+            opacity: 0.15; /* Un poco más sutil para móvil */
+            
+            /* --- CAPAS (Z-Index) --- */
+            z-index: -1; /* Capa negativa: AL FONDO DEL TODO */
+            
             filter: brightness(1.2);
-            pointer-events: none;
+            pointer-events: none; /* Ignora clics, deja pasar al contenido */
         }
 
-        /* Contenedor principal que flota sobre el fondo */
+        /* 3. CONTENEDOR DE CONTENIDO (DELANTE) */
         .main-content {
+            /* --- CAPAS (Z-Index) --- */
             position: relative;
-            z-index: 10;
+            z-index: 10; /* Capa alta: DELANTE DEL FONDO */
+            
             width: 100%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centra el contenido */
+            align-items: center; /* Centra el contenido horizontalmente */
         }
 
         .container {
             width: 100%;
             max-width: 900px; /* Ancho máximo en PC */
-            padding: 20px 10px; /* Margen lateral en PC */
+            padding: 20px 10px; /* Margen lateral reducido para móviles */
             box-sizing: border-box; /* Importante para que el padding no sume ancho */
+            flex: 1; /* Empuja el footer hacia abajo */
         }
 
         /* Botón Volver */
         .back-btn {
             color: var(--accent-blue);
             text-decoration: none;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
+            font-size: 0.8rem; /* Un poco más pequeño para móvil */
+            margin-bottom: 20px;
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            transition: 0.3s;
         }
+        .back-btn:hover { text-shadow: 0 0 10px var(--accent-blue); }
 
         /* Encabezado */
         header { text-align: center; margin-bottom: 20px; }
         
         h1 {
-            font-size: 1.8rem; /* Tamaño más sensato para móvil */
+            font-size: 2.0rem; /* Un poco más pequeño para móvil */
             background: linear-gradient(to bottom, #ffffff, #aaaaaa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3));
         }
 
         .meta-info {
             color: var(--accent-blue);
             font-weight: bold;
-            letter-spacing: 1px;
-            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            font-size: 0.8rem;
         }
 
-        /* TABLA AJUSTADA A MÓVIL (SÚPER COMPACTA) */
+        /* TABLA ESTILO CRISTAL OPTIMIZADA (Más compacta para móvil) */
         .table-wrapper {
-            background: rgba(10, 10, 10, 0.8);
+            background: rgba(10, 10, 10, 0.8); /* Fondo oscuro traslúcido */
             border-radius: 12px;
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            overflow-x: auto; /* Scroll lateral en móvil *SOLO* si es necesario */
+            backdrop-filter: blur(15px); /* Efecto cristalino */
+            
+            /* --- SOLUCIÓN scroll lateral: Evita que la tabla fuerce el ancho de pantalla --- */
+            overflow-x: auto; 
+            
             box-shadow: 0 15px 30px rgba(0,0,0,0.5);
             margin-top: 10px;
             width: 100%;
@@ -102,57 +125,73 @@
         }
 
         table {
-            /* SOLUCIÓN #3: Ancho automático para no estirarse */
+            /* --- SOLUCIÓN 2: Ancho automático para no estirarse --- */
             width: auto; 
+            margin: 0 auto; /* Centrado interno */
             border-collapse: collapse;
             text-align: center;
             
-            /* SOLUCIÓN #4: Tamaño de texto reducido a lo necesario */
-            font-size: 0.75rem; 
+            /* --- TEXTO REDUCIDO PARA CABER --- */
+            font-size: 0.82rem; 
+            
+            /* Eliminado min-width para no forzar estiramiento */
         }
 
         th {
-            background: rgba(0, 212, 255, 0.1);
+            background: rgba(0, 212, 255, 0.1); /* Tinte azul en cabecera */
             color: var(--accent-blue);
             
-            /* SOLUCIÓN #5: Padding lateral mínimo (4px) */
-            padding: 10px 4px; 
+            /* --- SOLUCIÓN: padding lateral AUMENTADO UN POCO MÁS --- */
+            padding: 12px 6px; /* Aumentado lateral para separar */
             
             text-transform: uppercase;
             font-weight: bold;
-            font-size: 0.6rem; /* Cabeceras aún más pequeñas */
+            font-size: 0.65rem; /* Cabeceras aún más pequeñas para caber con padding */
+            letter-spacing: 1px;
             border-bottom: 1px solid var(--glass-border);
+            
+            /* Evita que los títulos largos ensanchen la columna si hay BR */
+            white-space: nowrap; 
         }
 
         td {
-            /* SOLUCIÓN #6: Padding mínimo lateral (4px) */
-            padding: 8px 4px; 
+            /* --- SOLUCIÓN: padding lateral AUMENTADO UN POCO MÁS --- */
+            padding: 10px 6px; /* Aumentado lateral para separar */
             
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--silver);
         }
 
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255, 255, 255, 0.03); }
+
+        /* Resaltado Fucsia */
         .total-usd { 
             color: var(--fuchsia); 
             font-weight: bold; 
-            font-size: 0.8rem; /* Ganancia total un poquito más grande */
+            text-shadow: 0 0 8px rgba(255, 0, 255, 0.2);
+            font-size: 0.9rem; /* Resaltamos Ganancia Total */
         }
 
+        /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.65rem;
-            margin-top: auto;
+            padding: 30px 20px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.7rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: auto; /* Empuja al final */
         }
 
-        /* MEDIA QUERY ESPECÍFICO PARA PANTALLAS PEQUEÑAS (HACK ÚLTIMO RECURSO) */
+        /* AJUSTES ADICIONALES PARA MÓVILES SÚPER PEQUEÑOS (HACK) */
         @media (max-width: 480px) {
-            h1 { font-size: 1.4rem; }
-            th { font-size: 0.55rem; padding: 8px 2px; }
-            td { font-size: 0.7rem; padding: 6px 2px; }
-            .total-usd { font-size: 0.75rem; }
+            h1 { font-size: 1.6rem; }
+            .meta-info { font-size: 0.75rem; letter-spacing: 1px; }
             body::before { background-size: 150%; }
+            table { font-size: 0.75rem; }
+            th { font-size: 0.55rem; padding: 10px 4px; } /* Más compacto aún */
+            td { padding: 8px 4px; }
+            .total-usd { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -161,19 +200,20 @@
     <div class="main-content">
         <div class="container">
             <a href="index.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i> VOLVER AL INICIO
+                <i class="fas fa-arrow-left"></i>
+                <span>VOLVER AL INICIO</span>
             </a>
             
             <header>
-                <h1>Remuneración</h1>
-                <div class="meta-info">44 HORAS MENSUALES</div>
+                <h1>Tabla de Remuneración</h1>
+                <div class="meta-info">44 HORAS MENSUALES | OFICIAL BIGO LIVE</div>
             </header>
 
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
-                            <th>META <br>SEMILLAS</th>
+                            <th>META <br>(SEMILLAS)</th>
                             <th>MONEDERO <br>USD</th>
                             <th>REMUNERACIÓN <br>USD</th>
                             <th>GANANCIA <br>TOTAL</th>
