@@ -22,9 +22,10 @@
             padding: 0;
             min-height: 100vh;
             position: relative;
-            overflow-x: hidden; /* Evita rebotes laterales */
+            overflow-x: hidden; /* SOLUCIÓN #2: Evita rebotes o scrolls laterales indeseados */
         }
 
+        /* Logo de Fondo (Marca de Agua) */
         body::before {
             content: "";
             position: fixed;
@@ -32,29 +33,31 @@
             background-image: url('logo.png');
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 110%;
+            background-size: 110%; /* Super grande en PC */
             opacity: 0.15;
             z-index: -1;
             filter: brightness(1.2);
             pointer-events: none;
         }
 
+        /* Contenedor principal que flota sobre el fondo */
         .main-content {
             position: relative;
             z-index: 10;
             width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* Centra el contenido */
         }
 
         .container {
             width: 100%;
-            max-width: 900px;
-            padding: 20px 10px;
-            box-sizing: border-box;
+            max-width: 900px; /* Ancho máximo en PC */
+            padding: 20px 10px; /* Margen lateral en PC */
+            box-sizing: border-box; /* Importante para que el padding no sume ancho */
         }
 
+        /* Botón Volver */
         .back-btn {
             color: var(--accent-blue);
             text-decoration: none;
@@ -65,10 +68,11 @@
             gap: 5px;
         }
 
+        /* Encabezado */
         header { text-align: center; margin-bottom: 20px; }
         
         h1 {
-            font-size: 1.8rem;
+            font-size: 1.8rem; /* Tamaño más sensato para móvil */
             background: linear-gradient(to bottom, #ffffff, #aaaaaa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -83,39 +87,47 @@
             font-size: 0.75rem;
         }
 
-        /* TABLA AJUSTADA A MÓVIL */
+        /* TABLA AJUSTADA A MÓVIL (SÚPER COMPACTA) */
         .table-wrapper {
             background: rgba(10, 10, 10, 0.8);
             border-radius: 12px;
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
+            overflow-x: auto; /* Scroll lateral en móvil *SOLO* si es necesario */
             box-shadow: 0 15px 30px rgba(0,0,0,0.5);
             margin-top: 10px;
             width: 100%;
             display: flex;
             justify-content: center; /* Centra la tabla compacta */
-            overflow: hidden; /* Evita que la sombra genere scroll */
         }
 
         table {
-            width: 100%; /* Ocupa el contenedor */
+            /* SOLUCIÓN #3: Ancho automático para no estirarse */
+            width: auto; 
             border-collapse: collapse;
             text-align: center;
-            font-size: 0.75rem; /* Tamaño ideal para móvil */
+            
+            /* SOLUCIÓN #4: Tamaño de texto reducido a lo necesario */
+            font-size: 0.75rem; 
         }
 
         th {
             background: rgba(0, 212, 255, 0.1);
             color: var(--accent-blue);
-            padding: 10px 4px;
+            
+            /* SOLUCIÓN #5: Padding lateral mínimo (4px) */
+            padding: 10px 4px; 
+            
             text-transform: uppercase;
             font-weight: bold;
-            font-size: 0.6rem;
+            font-size: 0.6rem; /* Cabeceras aún más pequeñas */
             border-bottom: 1px solid var(--glass-border);
         }
 
         td {
-            padding: 8px 4px;
+            /* SOLUCIÓN #6: Padding mínimo lateral (4px) */
+            padding: 8px 4px; 
+            
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--silver);
         }
@@ -123,7 +135,7 @@
         .total-usd { 
             color: var(--fuchsia); 
             font-weight: bold; 
-            font-size: 0.8rem;
+            font-size: 0.8rem; /* Ganancia total un poquito más grande */
         }
 
         footer {
@@ -134,7 +146,7 @@
             margin-top: auto;
         }
 
-        /* MEDIA QUERY ESPECÍFICO PARA PANTALLAS PEQUEÑAS */
+        /* MEDIA QUERY ESPECÍFICO PARA PANTALLAS PEQUEÑAS (HACK ÚLTIMO RECURSO) */
         @media (max-width: 480px) {
             h1 { font-size: 1.4rem; }
             th { font-size: 0.55rem; padding: 8px 2px; }
@@ -161,10 +173,10 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>META<br>SEMILLAS</th>
-                            <th>MONEDERO<br>USD</th>
-                            <th>BIGO<br>USD</th>
-                            <th>TOTAL<br>USD</th>
+                            <th>META <br>SEMILLAS</th>
+                            <th>MONEDERO <br>USD</th>
+                            <th>BIGO <br>USD</th>
+                            <th>TOTAL <br>USD</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -186,12 +198,10 @@
                     </tbody>
                 </table>
             </div>
-        </div>
 
-        <footer>
-            &copy; 2026 Suits Agency | Datos oficiales Bigo Live.
+        </div> <footer>
+            &copy; 2026 Suits Agency | Datos oficiales de remuneración Bigo Live.
         </footer>
-    </div>
 
-</body>
+    </div> </body>
 </html>
