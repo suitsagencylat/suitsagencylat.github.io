@@ -38,6 +38,8 @@
             padding: 20px;
         }
 
+        .hero p { font-size: 1.2rem; color: var(--text-gray); max-width: 600px; margin-bottom: 30px; }
+
         .btn-cta {
             background-color: var(--primary);
             color: var(--bg);
@@ -49,25 +51,39 @@
             text-transform: uppercase;
         }
 
+        .btn-cta:hover { background-color: #cccccc; transform: scale(1.05); }
+
+        /* Sección Bigo Oficial */
+        .bigo-logo-section {
+            padding: 40px 0;
+            text-align: center;
+            background: #0d0d0d;
+            border-bottom: 1px solid #333;
+        }
+
+        .bigo-logo-section p {
+            font-size: 0.7rem;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
         /* Carrusel Infinito */
         .slider {
-            background: #0d0d0d;
-            padding: 60px 0;
+            background: var(--bg);
+            padding: 80px 0;
             overflow: hidden;
             position: relative;
-            border-top: 1px solid #222;
-            border-bottom: 1px solid #222;
         }
 
         .slider-track {
             display: flex;
-            width: calc(300px * 6); /* Doble de tarjetas para el bucle */
-            animation: scroll 20s linear infinite;
+            width: calc(300px * 6); 
+            animation: scroll 25s linear infinite;
         }
 
-        .slider-track:hover {
-            animation-play-state: paused; /* Se detiene al pasar el mouse */
-        }
+        .slider-track:hover { animation-play-state: paused; }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
@@ -78,76 +94,106 @@
             width: 260px;
             margin: 0 20px;
             background: var(--accent);
-            padding: 30px;
-            border-radius: 12px;
+            padding: 40px 30px;
+            border-radius: 15px;
             text-align: center;
-            border: 1px solid #333;
+            border: 1px solid #222;
             flex-shrink: 0;
         }
 
         .card h3 { color: var(--primary); margin-top: 0; font-size: 1.1rem; }
         .card p { color: var(--text-gray); font-size: 0.85rem; }
 
-        /* FAQ */
+        /* FAQ Acordeón */
         .faq-section { padding: 80px 20px; max-width: 800px; margin: auto; }
-        details { background: #111; margin-bottom: 15px; padding: 15px 20px; border-radius: 8px; border: 1px solid #333; cursor: pointer; }
-        summary { font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
-        summary::after { content: '+'; }
+        .faq-section h2 { text-align: center; margin-bottom: 40px; }
+
+        details {
+            background: #111;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        summary { font-weight: 600; display: flex; justify-content: space-between; align-items: center; list-style: none; }
+        summary::after { content: '+'; font-size: 1.2rem; }
         details[open] summary::after { content: '-'; }
 
-        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #555; }
+        /* Footer */
+        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #555; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
     <section class="hero">
         <img src="logo.png" alt="Suits Agency Logo" style="width: 250px; height: auto; margin-bottom: 20px;">
-        <p>Impulsamos tu carrera como emisor profesional.</p>
+        <p>Impulsamos tu carrera como emisor profesional. Únete a la comunidad líder de streamers en Latinoamérica.</p>
         <a href="https://wa.me/595982678695?text=Hola%20Suits%20Agency,%20me%20gustaría%20postularme%20como%20emisor" class="btn-cta">Postular Ahora</a>
     </section>
+
+    <div class="bigo-logo-section">
+        <p>Agencia Oficial en</p>
+        <img src="bigo.png" alt="Bigo Live" style="width: 110px; height: auto;">
+    </div>
 
     <div class="slider">
         <div class="slider-track">
             <div class="card">
                 <h3>Capacitación Continua</h3>
-                <p>Resolvemos todas tus dudas y enviamos materiales exclusivos para tu éxito.</p>
+                <p>Resolvemos todas tus dudas y enviamos materiales exclusivos para dominar la plataforma.</p>
             </div>
             <div class="card">
                 <h3>Metas Claras</h3>
-                <p>Sistemas de bonos transparentes basados en tus horas y semillas mensuales.</p>
+                <p>Sistemas de bonos transparentes basados en tus objetivos de horas y semillas.</p>
             </div>
             <div class="card">
                 <h3>Pagos Seguros</h3>
-                <p>Retiros directos en Colombia (Dlocal) y globales vía Payoneer o PayPal.</p>
+                <p>Retiros directos en Colombia vía Dlocal y globales mediante Payoneer o PayPal.</p>
             </div>
             <div class="card">
                 <h3>Capacitación Continua</h3>
-                <p>Resolvemos todas tus dudas y enviamos materiales exclusivos para tu éxito.</p>
+                <p>Resolvemos todas tus dudas y enviamos materiales exclusivos para dominar la plataforma.</p>
             </div>
             <div class="card">
                 <h3>Metas Claras</h3>
-                <p>Sistemas de bonos transparentes basados en tus horas y semillas mensuales.</p>
+                <p>Sistemas de bonos transparentes basados en tus objetivos de horas y semillas.</p>
             </div>
             <div class="card">
                 <h3>Pagos Seguros</h3>
-                <p>Retiros directos en Colombia (Dlocal) y globales vía Payoneer o PayPal.</p>
+                <p>Retiros directos en Colombia vía Dlocal y globales mediante Payoneer o PayPal.</p>
             </div>
         </div>
     </div>
 
     <section class="faq-section">
         <h2>Preguntas Frecuentes</h2>
+
         <details>
             <summary>¿Cómo recibo mis ganancias?</summary>
-            <p>En <strong>Colombia</strong>, retiras a tu cuenta bancaria local con Dlocal. En el resto de Latam, usamos <strong>Payoneer o PayPal</strong>.</p>
+            <p>En <strong>Colombia</strong>, puedes retirar directamente a tu cuenta bancaria local con Dlocal. Para los demás países, usamos <strong>Payoneer o PayPal</strong>.</p>
         </details>
+
+        <details>
+            <summary>¿Necesito experiencia previa?</summary>
+            <p>No. En Suits Agency te brindamos capacitación y materiales técnicos desde cero para elevar la calidad de tus directos.</p>
+        </details>
+
         <details>
             <summary>¿A qué hora es el reseteo diario?</summary>
             <p>Colombia/México: 00:00 (medianoche). Paraguay: 01:00 AM.</p>
         </details>
+
+        <details>
+            <summary>¿Cuáles son los requisitos básicos?</summary>
+            <p>Transmitir por lo menos 2 horas diarias en sala individual y mantener una interacción constante con tu audiencia.</p>
+        </details>
     </section>
 
-    <footer>&copy; 2026 Suits Agency. Todos los derechos reservados.</footer>
+    <footer>
+        &copy; 2026 Suits Agency. Todos los derechos reservados.
+    </footer>
 
 </body>
 </html>
