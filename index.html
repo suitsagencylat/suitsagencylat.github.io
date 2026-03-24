@@ -3,130 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suits Agency LAT</title>
+    <title>Suits Agency | Potencia tu Streaming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+        :root {
+            --primary: #ffffff;
+            --bg: #0a0a0a;
+            --accent: #222222;
+            --text-gray: #b3b3b3;
         }
-        header {
-            background-color: #1a73e8;
-            color: white;
-            padding: 40px 20px;
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1598550874175-4d0fe427c706?auto=format&fit=crop&q=80'); /* Imagen de fondo profesional */
+            background-size: cover;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .btn-cta {
+            background-color: var(--primary);
+            color: var(--bg);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-cta:hover {
+            background-color: #cccccc;
+            transform: scale(1.05);
+        }
+
+        /* Sección Beneficios */
+        .features {
+            padding: 80px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            background: var(--accent);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .card h3 { margin-top: 0; color: var(--primary); }
+        .card p { color: var(--text-gray); font-size: 0.9rem; }
+
+        /* Sección Tips Rápidos */
+        .tips-section {
+            background-color: #111;
+            padding: 60px 20px;
             text-align: center;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        header p {
-            font-size: 1.2em;
-        }
-        section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        h2 {
-            color: #1a73e8;
-        }
-        .benefits, .how-it-works, .earnings {
+
+        .tips-list {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 20px auto;
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 15px;
         }
-        .card {
-            background-color: white;
-            padding: 20px;
-            flex: 1 1 250px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+        .tips-list li {
+            background: #1a1a1a;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid #444;
+            font-size: 0.85rem;
         }
-        .contact-button {
-            display: block;
-            width: fit-content;
-            margin: 20px auto;
-            background-color: #1a73e8;
-            color: white;
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-        }
+
         footer {
+            padding: 40px;
             text-align: center;
-            padding: 20px;
-            background-color: #eee;
-            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #555;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Suits Agency LAT</h1>
-    <p>Gana dinero transmitiendo en Bigo Live con nuestra agencia profesional</p>
-</header>
+    <section class="hero">
+        <h1>SUITS AGENCY</h1>
+        <p>Impulsamos tu carrera como emisor profesional. Únete a la comunidad líder de streamers en Latinoamérica.</p>
+        <a href="#contacto" class="btn-cta">Postular Ahora</a>
+    </section>
 
-<section>
-    <h2>Beneficios de unirte</h2>
-    <div class="benefits">
-        <div class="card">Pagos en dólares seguros</div>
-        <div class="card">Bonos por metas y reclutamiento</div>
-        <div class="card">Asesoría 24/7 para transmisiones</div>
-        <div class="card">No necesitas experiencia previa</div>
-    </div>
-</section>
+    <section class="features">
+        <div class="card">
+            <h3>Asesoría 24/7</h3>
+            <p>Soporte técnico y estratégico personalizado para que nunca dejes de transmitir.</p>
+        </div>
+        <div class="card">
+            <h3>Metas Claras</h3>
+            <p>Sistemas de bonos transparentes basados en tus horas y semillas mensuales.</p>
+        </div>
+        <div class="card">
+            <h3>Pagos Seguros</h3>
+            <p>Gestión eficiente de tus ganancias con múltiples métodos de retiro internacionales.</p>
+        </div>
+    </section>
 
-<section>
-    <h2>Cómo funciona</h2>
-    <div class="how-it-works">
-        <div class="card">1. Registrate con nosotros</div>
-        <div class="card">2. Configura tu cuenta en Bigo Live</div>
-        <div class="card">3. Transmite y gana dinero</div>
-        <div class="card">4. Recibe pagos y bonos</div>
-    </div>
-</section>
+    <section class="tips-section">
+        <h2>Claves para el Éxito</h2>
+        <ul class="tips-list">
+            <li>✓ Transmisión en sala individual</li>
+            <li>✓ Mínimo 2 horas diarias</li>
+            <li>✓ Interacción con la audiencia</li>
+            <li>✓ Fondo y luz profesional</li>
+        </ul>
+    </section>
 
-<section>
-    <h2>Ganancias aproximadas</h2>
-    <div class="earnings">
-        <div class="card">20 horas al mes → $X</div>
-        <div class="card">Bonos por cada nuevo emisor válido → $Y</div>
-        <div class="card">Bono mensual por metas → $Z</div>
-    </div>
-</section>
-
-<section>
-    <h2>Aplica ahora</h2>
-    <a class="contact-button" href="https://wa.me/595XXXXXXXXX">Contactar por WhatsApp</a>
-</section>
-
-<section>
-    <h2>Preguntas frecuentes</h2>
-    <div class="card">
-        <strong>¿Necesito experiencia?</strong>
-        <p>No, te damos asesoría completa.</p>
-    </div>
-    <div class="card">
-        <strong>¿Desde qué países puedo participar?</strong>
-        <p>Todos los países donde Bigo Live funciona.</p>
-    </div>
-    <div class="card">
-        <strong>¿Cuánto puedo ganar?</strong>
-        <p>Depende de tus horas y metas, con bonos adicionales por reclutamiento.</p>
-    </div>
-</section>
-
-<footer>
-    &copy; 2026 Suits Agency LAT. Todos los derechos reservados.
-</footer>
+    <footer>
+        &copy; 2026 Suits Agency. Todos los derechos reservados.
+    </footer>
 
 </body>
 </html>
