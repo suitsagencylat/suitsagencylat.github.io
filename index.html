@@ -7,157 +7,175 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #050505; /* Negro más profundo */
-            --card-bg: rgba(20, 25, 35, 0.7); /* Azul muy oscuro traslúcido */
-            --accent-blue: #00d4ff; /* El cian del brillo de tu logo */
-            --silver: #c0c0c0; /* El plateado de las letras AS */
-            --text-main: #ffffff;
+            --bg-color: #050505; 
+            --accent-blue: #00d4ff; 
+            --silver: #e0e0e0; 
+            --card-bg: rgba(255, 255, 255, 0.03); /* Fondo de tarjeta casi invisible */
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-main);
+            color: #ffffff;
             font-family: 'Inter', sans-serif;
             margin: 0;
-            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Marca de agua con tu logo */
+        /* CONFIGURACIÓN DEL LOGO DE FONDO */
         body::before {
             content: "";
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('logo.png'); /* Asegúrate que se llame así en el repo */
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background-image: url('logo.png'); 
             background-repeat: no-repeat;
-            background-position: center;
-            background-size: 60%; 
-            opacity: 0.15; /* Subí un poco la opacidad para que se note el azul */
+            background-position: center center;
+            background-size: 85%; /* MÁS GRANDE: Ahora ocupa el 85% de la pantalla */
+            opacity: 0.35; /* MÁS VISIBLE: Subido al 35% de opacidad */
             z-index: -1;
-            filter: brightness(1.2); /* Resalta los brillos azules */
+            filter: brightness(1.1) contrast(1.1); /* Realza los colores del logo */
         }
 
         header {
-            height: 90vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
+            padding-top: 50px;
         }
 
         h1 {
-            font-size: 4rem;
-            margin-bottom: 0;
+            font-size: 4.5rem;
+            margin: 0;
             background: linear-gradient(to bottom, #ffffff, #888888);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3));
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
+            letter-spacing: 5px;
         }
 
         .hero-subtitle {
             color: var(--silver);
-            font-size: 1.1rem;
-            max-width: 500px;
+            font-size: 1rem;
+            letter-spacing: 4px;
             margin-top: 10px;
             text-transform: uppercase;
-            letter-spacing: 3px;
         }
 
-        .cta-main {
-            margin-top: 40px;
-            border: 2px solid var(--accent-blue);
-            color: var(--accent-blue);
-            padding: 12px 35px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            background: transparent;
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
-        }
-
-        .cta-main:hover {
-            background: var(--accent-blue);
-            color: black;
-            box-shadow: 0 0 30px var(--accent-blue);
-        }
-
-        /* Estilo de las tarjetas con el azul del logo */
+        /* ESTILO DE TARJETAS "CRISTAL" (Para ver el logo atrás) */
         .nav-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            padding: 0 10% 100px;
+            padding: 50px 10%;
         }
 
         .nav-card {
             background: var(--card-bg);
             padding: 40px;
-            border-radius: 5px;
+            border-radius: 15px;
             text-decoration: none;
             color: white;
-            border-left: 3px solid transparent;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            backdrop-filter: blur(4px); /* Suave desenfoque para leer bien el texto */
+            transition: all 0.4s ease;
         }
 
         .nav-card:hover {
-            border-left: 3px solid var(--accent-blue);
-            background: rgba(30, 40, 60, 0.9);
-            transform: translateX(10px);
+            background: rgba(0, 212, 255, 0.1); /* Se tiñe levemente de azul al pasar el mouse */
+            border-color: var(--accent-blue);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .nav-card i {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--accent-blue);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--accent-blue);
         }
 
-        .nav-card h3 { margin: 0; font-size: 1.3rem; color: var(--silver); }
-        .nav-card p { color: #888; font-size: 0.9rem; }
+        .nav-card h3 {
+            margin: 10px 0;
+            color: var(--silver);
+            font-size: 1.4rem;
+        }
+
+        .nav-card p {
+            color: #bbbbbb;
+            font-size: 0.9rem;
+        }
+
+        .cta-main {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 15px 45px;
+            background: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .cta-main:hover {
+            background: var(--accent-blue);
+            color: #000;
+            box-shadow: 0 0 25px var(--accent-blue);
+        }
 
         footer {
             text-align: center;
-            padding: 30px;
-            border-top: 1px solid #222;
-            color: #444;
-            font-size: 0.7rem;
+            padding: 60px 20px;
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        /* Ajuste para móviles */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            body::before { background-size: 95%; opacity: 0.25; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo.png" alt="Suits Agency Logo" style="width: 150px; margin-bottom: 20px;">
         <h1>SUITS AGENCY</h1>
-        <p class="hero-subtitle">Maximiza tus ingresos en Bigo Live</p>
-        <a href="registro.html" class="cta-main">ÚNETE AHORA</a>
+        <p class="hero-subtitle">Con nosotros convierte tu talento en resultados reales</p>
+        <a href="registro.html" class="cta-main">Postular ahora</a>
     </header>
 
     <section class="nav-grid">
         <a href="pagos.html" class="nav-card">
-            <i class="fas fa-chart-line"></i>
-            <h3>TABLA DE METAS</h3>
-            <p>Estructura de pagos y bonos mensuales.</p>
+            <i class="fas fa-gem"></i>
+            <h3>Tabla de Metas</h3>
+            <p>Conoce cuánto puedes ganar según tu rendimiento mensual.</p>
         </a>
 
         <a href="academia.html" class="nav-card">
-            <i class="fas fa-lightbulb"></i>
-            <h3>CONSEJOS TOP</h3>
-            <p>Guía para subir de nivel rápidamente.</p>
+            <i class="fas fa-rocket"></i>
+            <h3>Crecimiento</h3>
+            <p>Guías exclusivas para maximizar tus semillas y audiencia.</p>
         </a>
 
         <a href="https://wa.me/TU_NUMERO" class="nav-card">
             <i class="fab fa-whatsapp"></i>
-            <h3>SOPORTE 24/7</h3>
-            <p>Contacto directo con el equipo técnico.</p>
+            <h3>Soporte Técnico</h3>
+            <p>Resolución de dudas y gestión de cuenta 24/7.</p>
         </a>
     </section>
 
     <footer>
-        &copy; 2026 Suits Agency | Los resultados dependen de tu talento y constancia.
+        &copy; 2026 Suits Agency | Agencia Líder en Bigo Live LATAM.
     </footer>
 
 </body>
