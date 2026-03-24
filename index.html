@@ -91,4 +91,105 @@
             border: 1px solid var(--glass-border);
             text-align: center;
             backdrop-filter: blur(8px); /* Efecto cristal para legibilidad */
-            transition: all 0.4s cubic-bezier(0
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-card:hover {
+            background: rgba(0, 212, 255, 0.08); /* Tinte azul muy suave */
+            border-color: var(--accent-blue);
+            transform: translateY(-12px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-card i {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 8px var(--accent-blue));
+        }
+
+        .nav-card h3 {
+            margin: 10px 0;
+            color: var(--silver);
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-card p {
+            color: #cccccc;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .cta-main {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 14px 40px;
+            background: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-main:hover {
+            background: var(--accent-blue);
+            color: #000;
+            box-shadow: 0 0 20px var(--accent-blue);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            body::before { background-size: 100%; opacity: 0.3; }
+            .nav-grid { padding: 20px 5% 50px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SUITS AGENCY</h1>
+        <p class="hero-subtitle">Resultados reales para tu talento</p>
+        <a href="registro.html" class="cta-main">Postular ahora</a>
+    </header>
+
+    <section class="nav-grid">
+        <a href="pagos.html" class="nav-card">
+            <i class="fas fa-gem"></i>
+            <h3>Tabla de Metas</h3>
+            <p>Estructura de ganancias en COP y bonos por cumplimiento.</p>
+        </a>
+
+        <a href="academia.html" class="nav-card">
+            <i class="fas fa-rocket"></i>
+            <h3>Academia</h3>
+            <p>Guías paso a paso para dominar Bigo Live y subir de nivel.</p>
+        </a>
+
+        <a href="https://wa.me/TU_NUMERO_AQUI" target="_blank" class="nav-card">
+            <i class="fab fa-whatsapp"></i>
+            <h3>Soporte Manager</h3>
+            <p>Atención directa para resolver dudas sobre tu cuenta o pagos.</p>
+        </a>
+    </section>
+
+    <footer>
+        &copy; 2026 Suits Agency | Agencia Oficial Bigo Live.
+    </footer>
+
+</body>
+</html>
