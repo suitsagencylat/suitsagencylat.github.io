@@ -140,5 +140,67 @@
     <section class="hero">
         <img src="logo.png" alt="Suits Agency Logo" class="agency-logo">
         <p>Maximiza tus ganancias con nosotros. <strong>Bigo Live</strong> convierte tu talento en resultados reales.</p>
-        <a href="
-            
+        <a href="https://wa.me/595982678695?text=Hola%20Suits%20Agency,%20vi%20la%20página%20y%20quiero%20empezar%20a%20ganar" class="btn-cta">Empezar a Ganar</a>
+    </section>
+
+    <div class="bigo-clean-section">
+        <p>Agencia Oficial en Bigo Live</p>
+        <img src="bigo.png" alt="Bigo Live" style="width: 120px; height: auto;">
+    </div>
+
+    <div class="slider" id="sliderContainer">
+        <div class="slider-track" id="sliderTrack">
+            <div class="card">
+                <h3>Capacitación Continua</h3>
+                <p>Resolvemos todas tus dudas y enviamos materiales exclusivos para dominar la plataforma.</p>
+            </div>
+            <div class="card">
+                <h3>Metas Claras</h3>
+                <p>Sistemas de bonos transparentes basados en tus objetivos de horas y semillas.</p>
+            </div>
+            <div class="card">
+                <h3>Pagos Seguros</h3>
+                <p>Retiros directos en Colombia vía Dlocal y globales mediante Payoneer o PayPal.</p>
+            </div>
+            <div class="card">
+                <h3>Capacitación Continua</h3>
+                <p>Resolvemos todas tus dudas y enviamos materiales exclusivos para dominar la plataforma.</p>
+            </div>
+            <div class="card">
+                <h3>Metas Claras</h3>
+                <p>Sistemas de bonos transparentes basados en tus objetivos de horas y semillas.</p>
+            </div>
+            <div class="card">
+                <h3>Pagos Seguros</h3>
+                <p>Retiros directos en Colombia vía Dlocal y globales mediante Payoneer o PayPal.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="faq-section">
+        <h2 style="text-align: center; margin-bottom: 30px;">Preguntas Frecuentes</h2>
+        <details>
+            <summary>¿Cómo recibo mis ganancias?</summary>
+            <p>En <strong>Colombia</strong>, retiras directo a tu banco con Dlocal. En otros países, usamos <strong>Payoneer o PayPal</strong>.</p>
+        </details>
+        <details>
+            <summary>¿A qué hora es el reseteo diario?</summary>
+            <p>Colombia/México: 00:00. Paraguay: 01:00 AM.</p>
+        </details>
+    </section>
+
+    <footer>&copy; 2026 Suits Agency. Todos los derechos reservados.</footer>
+
+    <script>
+        const sliderTrack = document.getElementById('sliderTrack');
+        const sliderContainer = document.getElementById('sliderContainer');
+
+        // Pausa al tocar o mantener presionado
+        sliderContainer.addEventListener('touchstart', () => sliderTrack.classList.add('paused'));
+        sliderContainer.addEventListener('touchend', () => sliderTrack.classList.remove('paused'));
+        sliderContainer.addEventListener('mousedown', () => sliderTrack.classList.add('paused'));
+        sliderContainer.addEventListener('mouseup', () => sliderTrack.classList.remove('paused'));
+    </script>
+
+</body>
+</html>
