@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Academia | Suits Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --accent-blue: #00d4ff;
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --silver: #e0e0e0;
+        }
 
+        body {
+            background-color: var(--bg-color);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Logo de fondo (Cargando desde la raíz con ../) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('../logo.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 110%;
+            opacity: 0.12;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .back-btn {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        header { text-align: center; margin-bottom: 30px; }
+        h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(to bottom, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        /* TARJETAS DE MÓDULOS */
+        .module-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .module-card:active { transform: scale(0.98); background: rgba(255, 255, 255, 0.07); }
+
+        .icon-box {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--accent-blue);
+            width: 50px; height: 50px;
+            border-radius: 12px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info h3 { margin: 0; font-size: 1rem; color: #fff; }
+        .info p { margin: 5px 0 0; font-size: 0.75rem; color: var(--silver); line-height: 1.3; }
+
+        footer { text-align: center; padding: 30px; color: rgba(255, 255, 255, 0.2); font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> VOLVER AL INICIO</a>
+        
+        <header>
+            <h1>Academia Suits</h1>
+            <p style="color: var(--silver); font-size: 0.8rem;">Guías esenciales para emisores</p>
+        </header>
+
+        <a href="#" class="module-card">
+            <div class="icon-box"><i class="fas fa-lightbulb"></i></div>
+            <div class="info">
+                <h3>Primeros Pasos</h3>
+                <p>Configuración de perfil, biografía y foto para atraer audiencia.</p>
+            </div>
+        </a>
+
+        <a href="#" class="module-card">
+            <div class="icon-box"><i class="fas fa-video"></i></div>
+            <div class="info">
+                <h3>Calidad de Stream</h3>
+                <p>Iluminación, encuadre y cómo mantener a la gente en tu live.</p>
+            </div>
+        </a>
+
+        <a href="#" class="module-card">
+            <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+            <div class="info">
+                <h3>Reglas y Seguridad</h3>
+                <p>Lo que no debes hacer en Bigo para evitar baneos o multas.</p>
+            </div>
+        </a>
+
+        <footer>
+            © 2026 Suits Agency | Formación Profesional.
+        </footer>
+    </div>
+
+</body>
+</html>
