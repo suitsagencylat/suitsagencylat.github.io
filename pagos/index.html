@@ -1,1 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Remuneración Oficial | Suits Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050505; /* Negro profundo */
+            --accent-blue: #00d4ff; /* Cian brillante del logo */
+            --silver: #e0e0e0; /* Plateado para texto */
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --fuchsia: #ff00ff; /* Fucsia para Ganancia Total */
+        }
 
+        /* 1. CONFIGURACIÓN BÁSICA DEL BODY */
+        body {
+            background-color: var(--bg-color);
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Importante para que el pseudo-elemento funcione */
+            position: relative; 
+            overflow-x: hidden; /* Evita scrolls laterales accidentales */
+        }
+
+        /* 2. EL LOGO DE FONDO (FIJO, AGRANDADO Y DETRÁS) */
+        body::before {
+            content: "";
+            position: fixed; /* Fijo en la pantalla */
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background-image: url('logo.png'); /* Ruta a tu imagen */
+            background-repeat: no-repeat;
+            background-position: center center;
+            
+            /* --- LOGO AGRANDADO --- */
+            background-size: 110%; /* Ajustado al 110% como pediste */
+            
+            opacity: 0.15; /* Un poco más sutil para móvil */
+            
+            /* --- CAPAS (Z-Index) --- */
+            z-index: -1; /* Capa negativa: AL FONDO DEL TODO */
+            
+            filter: brightness(1.2);
+            pointer-events: none; /* Ignora clics, deja pasar al contenido */
+        }
+
+        /* 3. CONTENEDOR DE CONTENIDO (DELANTE) */
+        .main-content {
+            /* --- CAPAS (Z-Index) --- */
+            position: relative;
+            z-index: 10; /* Capa alta: DELANTE DEL FONDO */
+            
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra el contenido horizontalmente */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px; /* Ancho máximo en PC */
+            padding: 20px 10px; /* Margen lateral reducido para móviles */
+            box-sizing: border-box; /* Importante para que el padding no sume ancho */
+            flex: 1; /* Empuja el footer hacia abajo */
+        }
+
+        /* Botón Volver */
+        .back-btn {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 0.8rem; /* Un poco más pequeño para móvil */
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { text-shadow: 0 0 10px var(--accent-blue); }
+
+        /* Encabezado */
+        header { text-align: center; margin-bottom: 20px; }
+        
+        h1 {
+            font-size: 2.0rem; /* Un poco más pequeño para móvil */
+            background: linear-gradient(to bottom, #ffffff, #aaaaaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3));
+        }
+
+        .meta-info {
+            color: var(--accent-blue);
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            font-size: 0.8rem;
+        }
+
+        /* TABLA ESTILO CRISTAL OPTIMIZADA (Más compacta para móvil) */
+        .table-wrapper {
+            background: rgba(10, 10, 10, 0.8); /* Fondo oscuro traslúcido */
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px); /* Efecto cristalino */
+            
+            /* --- SOLUCIÓN scroll lateral: Evita que la tabla fuerce el ancho de pantalla --- */
+            overflow-x: auto; 
+            
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Centra la tabla compacta */
+        }
+
+        table {
+            /* --- SOLUCIÓN 2: Ancho automático para no estirarse --- */
+            width: auto; 
+            margin: 0 auto; /* Centrado interno */
+            border-collapse: collapse;
+            text-align: center;
+            
+            /* --- TEXTO REDUCIDO PARA CABER --- */
+            font-size: 0.82rem; 
+            
+            /* Eliminado min-width para no forzar estiramiento */
+        }
+
+        th {
+            background: rgba(0, 212, 255, 0.1); /* Tinte azul en cabecera */
+            color: var(--accent-blue);
+            
+            /* --- SOLUCIÓN: padding lateral AUMENTADO UN POCO MÁS --- */
+            padding: 12px 6px; /* Aumentado lateral para separar */
+            
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.65rem; /* Cabeceras aún más pequeñas para caber con padding */
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--glass-border);
+            
+            /* Evita que los títulos largos ensanchen la columna si hay BR */
+            white-space: nowrap; 
+        }
+
+        td {
+            /* --- SOLUCIÓN: padding lateral AUMENTADO UN POCO MÁS --- */
+            padding: 10px 6px; /* Aumentado lateral para separar */
+            
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--silver);
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255, 255, 255, 0.03); }
+
+        /* Resaltado Fucsia */
+        .total-usd { 
+            color: var(--fuchsia); 
+            font-weight: bold; 
+            text-shadow: 0 0 8px rgba(255, 0, 255, 0.2);
+            font-size: 0.9rem; /* Resaltamos Ganancia Total */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.7rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: auto; /* Empuja al final */
+        }
+
+        /* AJUSTES ADICIONALES PARA MÓVILES SÚPER PEQUEÑOS (HACK) */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.6rem; }
+            .meta-info { font-size: 0.75rem; letter-spacing: 1px; }
+            body::before { background-size: 150%; }
+            table { font-size: 0.75rem; }
+            th { font-size: 0.55rem; padding: 10px 4px; } /* Más compacto aún */
+            td { padding: 8px 4px; }
+            .total-usd { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-content">
+        <div class="container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>VOLVER AL INICIO</span>
+            </a>
+            
+            <header>
+                <h1>Tabla de Remuneración</h1>
+                <div class="meta-info">44 HORAS MENSUALES | OFICIAL BIGO LIVE</div>
+            </header>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>META <br>(SEMILLAS)</th>
+                            <th>MONEDERO <br>USD</th>
+                            <th>REMUNERACIÓN <br>USD</th>
+                            <th>GANANCIA <br>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2,000</td><td>10</td><td>14</td><td class="total-usd">24</td></tr>
+                        <tr><td>5,000</td><td>24</td><td>34</td><td class="total-usd">58</td></tr>
+                        <tr><td>10,000</td><td>48</td><td>74</td><td class="total-usd">122</td></tr>
+                        <tr><td>20,000</td><td>95</td><td>141</td><td class="total-usd">236</td></tr>
+                        <tr><td>30,000</td><td>143</td><td>211</td><td class="total-usd">354</td></tr>
+                        <tr><td>60,000</td><td>286</td><td>422</td><td class="total-usd">708</td></tr>
+                        <tr><td>100,000</td><td>476</td><td>660</td><td class="total-usd">1136</td></tr>
+                        <tr><td>150,000</td><td>714</td><td>990</td><td class="total-usd">1704</td></tr>
+                        <tr><td>200,000</td><td>952</td><td>1320</td><td class="total-usd">2272</td></tr>
+                        <tr><td>250,000</td><td>1190</td><td>1650</td><td class="total-usd">2840</td></tr>
+                        <tr><td>300,000</td><td>1429</td><td>1980</td><td class="total-usd">3409</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div> <footer>
+            &copy; 2026 Suits Agency | Datos oficiales de remuneración Bigo Live.
+        </footer>
+
+    </div> </body>
+</html>
