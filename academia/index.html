@@ -19,6 +19,7 @@
             font-family: 'Inter', sans-serif;
             margin: 0; padding: 0;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* LOGO DE FONDO */
@@ -35,7 +36,7 @@
             pointer-events: none;
         }
 
-        .container { width: 90%; max-width: 450px; margin: 0 auto; padding: 20px 0; }
+        .container { width: 92%; max-width: 450px; margin: 0 auto; padding: 20px 0; }
 
         .back-btn {
             color: var(--accent-blue);
@@ -43,8 +44,7 @@
             font-size: 0.85rem;
             margin-bottom: 20px;
             display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            align-items: center; gap: 8px;
         }
 
         header h1 {
@@ -54,50 +54,64 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
-            margin-bottom: 30px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
         }
 
-        /* REPRODUCTOR PRINCIPAL */
-        .video-box {
+        /* REPRODUCTOR ADAPTABLE */
+        #video-wrapper {
             background: #000;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--glass-border);
             margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
         }
 
-        video { width: 100%; display: block; }
+        /* Clase para video horizontal (16:9) */
+        .ratio-horizontal { aspect-ratio: 16 / 9; }
+
+        /* Clase para video vertical (9:16) */
+        .ratio-vertical { aspect-ratio: 9 / 16; max-width: 300px; }
+
+        video { width: 100%; height: 100%; display: block; object-fit: contain; background: #000; }
 
         .video-info {
             padding: 15px;
             background: rgba(255,255,255,0.03);
             border-top: 1px solid var(--glass-border);
+            text-align: center;
         }
 
-        #video-title { margin: 0; font-size: 1rem; color: var(--accent-blue); }
+        #video-title { margin: 0; font-size: 1rem; color: var(--accent-blue); font-weight: 600; }
 
         /* LISTA DE VIDEOS */
-        .video-list { display: flex; flex-direction: column; gap: 10px; }
+        .video-list { display: flex; flex-direction: column; gap: 12px; }
 
         .video-item {
             background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            padding: 18px;
+            border-radius: 15px;
             border: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        .video-item:active { transform: scale(0.97); background: rgba(0, 212, 255, 0.1); }
+        .video-item:active { transform: scale(0.96); background: rgba(0, 212, 255, 0.1); border-color: var(--accent-blue); }
 
-        .video-item i { color: var(--accent-blue); font-size: 1.2rem; }
-        .video-item span { font-size: 0.9rem; font-weight: 500; }
+        .video-item i { color: var(--accent-blue); font-size: 1.2rem; width: 25px; text-align: center; }
+        .video-item div span { display: block; font-size: 0.95rem; font-weight: 500; }
+        .video-item div small { color: var(--silver); font-size: 0.75rem; opacity: 0.6; }
 
-        footer { text-align: center; padding: 40px; color: rgba(255,255,255,0.2); font-size: 0.7rem; }
+        footer { text-align: center; padding: 40px; color: rgba(255,255,255,0.2); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -109,49 +123,74 @@
             <h1>Academia Suits</h1>
         </header>
 
-        <div class="video-box">
-            <video id="main-video" controls>
+        <div id="video-wrapper" class="ratio-horizontal">
+            <video id="main-video" controls poster="Tabla de remuneración.jpeg">
                 <source src="Cómo paga Bigo Live.mp4" type="video/mp4">
-            </video>
+                Tu navegador no soporta video.
+            </div>
             <div class="video-info">
-                <h3 id="video-title">Selecciona un tutorial</h3>
+                <h3 id="video-title">Cómo paga Bigo Live</h3>
             </div>
         </div>
 
         <div class="video-list">
-            <div class="video-item" onclick="changeVideo('Cómo paga Bigo Live.mp4', 'Cómo paga Bigo Live')">
-                <i class="fas fa-play-circle"></i>
-                <span>Cómo paga Bigo Live</span>
+            <div class="video-item" onclick="changeVideo('Cómo paga Bigo Live.mp4', 'Cómo paga Bigo Live', 'h')">
+                <i class="fas fa-money-bill-wave"></i>
+                <div>
+                    <span>Cómo paga Bigo Live</span>
+                    <small>Tutorial de pagos y cobros</small>
+                </div>
             </div>
 
-            <div class="video-item" onclick="changeVideo('Cómo revisar el Live Data.mp4', 'Cómo revisar el Live Data')">
-                <i class="fas fa-chart-bar"></i>
-                <span>Cómo revisar el Live Data</span>
+            <div class="video-item" onclick="changeVideo('Cómo revisar el Live Data.mp4', 'Cómo revisar el Live Data', 'v')">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    <span>Cómo revisar el Live Data</span>
+                    <small>Estadísticas en tiempo real</small>
+                </div>
             </div>
 
-            <div class="video-item" onclick="changeVideo('Explicación tabla de remuneración.mp4', 'Explicación tabla de remuneración')">
+            <div class="video-item" onclick="changeVideo('Explicación tabla de remuneración.mp4', 'Tabla de remuneración', 'h')">
                 <i class="fas fa-table"></i>
-                <span>Tabla de remuneración</span>
+                <div>
+                    <span>Tabla de remuneración</span>
+                    <small>Metas y bonos mensuales</small>
+                </div>
             </div>
 
-            <div class="video-item" onclick="changeVideo('Primera trasmisión.mp4', 'Primera trasmisión')">
+            <div class="video-item" onclick="changeVideo('Primera trasmisión.mp4', 'Primera trasmisión', 'v')">
                 <i class="fas fa-video"></i>
-                <span>Primera trasmisión</span>
+                <div>
+                    <span>Primera trasmisión</span>
+                    <small>Guía de inicio y configuración</small>
+                </div>
             </div>
         </div>
 
         <footer>
-            © 2026 SUITS AGENCY
+            &copy; 2026 SUITS AGENCY | AGENCIA OFICIAL
         </footer>
     </div>
 
     <script>
-        function changeVideo(file, title) {
+        function changeVideo(file, title, orientation) {
             const video = document.getElementById('main-video');
+            const wrapper = document.getElementById('video-wrapper');
             const titleElement = document.getElementById('video-title');
             
+            // Ajustar el tamaño del reproductor según la orientación
+            if(orientation === 'v') {
+                wrapper.className = 'video-box ratio-vertical';
+            } else {
+                wrapper.className = 'video-box ratio-horizontal';
+            }
+
+            // Cambiar fuente y título
             video.src = file;
             titleElement.innerText = title;
+            
+            // Reiniciar y reproducir
+            video.load();
             video.play();
         }
     </script>
