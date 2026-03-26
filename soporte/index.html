@@ -28,7 +28,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- HEADER AJUSTADO --- */
+        /* --- HEADER MODIFICADO CON LOGO --- */
         header.main-header {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 75px;
@@ -43,12 +43,26 @@
             z-index: 10000;
         }
 
-        .header-logo { text-decoration: none; color: white; }
+        .header-logo { 
+            text-decoration: none; 
+            color: white; 
+            display: flex; /* Para alinear texto y logo */
+            align-items: center; 
+            gap: 15px; /* Espacio entre el texto y el logo */
+        }
+
         .header-logo h1 {
             font-family: var(--font-signature);
             font-size: 2.8rem; /* Más pequeño y elegante */
             margin: 0;
             line-height: 1;
+        }
+
+        /* ESTILO DEL LOGO SUBIDO */
+        .header-logo img {
+            height: 40px; /* Tamaño del logo ajustado al header */
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3)); /* Brillo sutil azul */
         }
 
         .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
@@ -97,7 +111,10 @@
     <div class="overlay-bg" id="overlay"></div>
 
     <header class="main-header">
-        <a href="../" class="header-logo"><h1>Suits Agency</h1></a>
+        <a href="../" class="header-logo">
+            <h1>Suits Agency</h1>
+            <img src="logo.png" alt="Logo Suits Agency">
+        </a>
         <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
         <nav class="header-nav" id="mainNav">
             <a href="../" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
@@ -113,57 +130,5 @@
         <section id="faq-list">
             <div class="faq-item"><div class="faq-question"><span>1. ¿Cómo me registro como emisor oficial?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Debes contactar a un reclutador de Suits Agency y completar el formulario de postulación en la app de Bigo Live.</div></div></div>
             <div class="faq-item"><div class="faq-question"><span>2. ¿Qué es un "Día Válido"?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Es un día donde transmites al menos 2 horas. No es necesario que sean seguidas, pero sí dentro del mismo día horario Bigo.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>3. ¿A qué hora reinicia el día (Reset)?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Para Colombia y Paraguay, el día reinicia exactamente a las 12:00 AM (Medianoche).</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>4. ¿Cuándo se pagan las metas?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Los pagos se procesan mensualmente entre los días 5 y 10 del mes siguiente.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>5. ¿Cuál es el mínimo de semillas para cobrar?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">El mínimo depende de tu contrato, generalmente la primera meta inicia en 10,000 o 30,000 semillas.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>6. ¿Cómo retiro mi dinero?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Puedes usar Payoneer, Wise, o transferencia directa si tu país está habilitado.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>7. ¿Qué pasa si me banean la cuenta?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Debes informar de inmediato a tu Manager en Suits Agency con tu ID para apelar la sanción si fue injusta.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>8. ¿Puedo transmitir con otra persona?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Sí, siempre y cuando cumplas con las normas de comunidad de Bigo Live.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>9. ¿Qué contenido está prohibido?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Contenido sexual, violencia, fumar o beber alcohol en vivo, y retransmitir contenido de terceros.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>10. ¿Cómo subo de nivel de emisor?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Recibiendo regalos (semillas) y manteniendo una audiencia constante cada mes.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>11. ¿Tengo que pagar para entrar a la agencia?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">No. Suits Agency nunca te pedirá dinero por entrar. Nosotros ganamos cuando tú ganas.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>12. ¿Puedo estar en dos agencias a la vez?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">No, Bigo Live solo permite estar vinculado a una agencia oficial.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>13. ¿Qué son los PKs?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Son batallas en vivo con otros emisores para ver quién recibe más apoyo en un tiempo determinado.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>14. ¿Cómo consigo seguidores rápido?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Transmite en horarios estables, usa buena iluminación y participa en eventos de la app.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>15. ¿Qué hago si mi app falla?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Limpia la caché de la app o reinstálala. Asegúrate de tener la última versión de la Store.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>16. ¿Suits Agency da bonos extra?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Sí, tenemos bonos especiales para los emisores que superen sus metas mensuales.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>17. ¿Cómo puedo ser reclutador?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Habla con soporte técnico para conocer los requisitos de nuestro programa de reclutadores.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>18. ¿Es necesario mostrar la cara?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Bigo Live es una plataforma visual; mostrar tu rostro aumenta drásticamente tus posibilidades de éxito.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>19. ¿Bigo quita comisión de mis semillas?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Sí, la plataforma tiene una tasa de conversión de semillas a dólares que ya está reflejada en nuestras tablas.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>20. ¿Cómo contacto a soporte humano?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Usa el botón de WhatsApp en nuestro menú principal para hablar con un Manager.</div></div></div>
-        </section>
-
-        <footer>&copy; 2026 Suits Agency | Bigo Live Official</footer>
-    </div>
-
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const overlay = document.getElementById('overlay');
-
-        menuToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            overlay.classList.toggle('active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars-staggered');
-            menuToggle.querySelector('i').classList.toggle('fa-xmark');
-        });
-
-        overlay.addEventListener('click', () => {
-            mainNav.classList.remove('active');
-            overlay.classList.remove('active');
-            menuToggle.querySelector('i').classList.add('fa-bars-staggered');
-            menuToggle.querySelector('i').classList.remove('fa-xmark');
-        });
-
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.parentElement;
-                document.querySelectorAll('.faq-item').forEach(el => {
-                    if(el !== item) el.classList.remove('open');
-                });
-                item.classList.toggle('open');
-            });
-        });
-    </script>
-</body>
-</html>
+            <div class="faq-item"><div class="
+                                      
