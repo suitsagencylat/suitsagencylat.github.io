@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
@@ -132,7 +133,6 @@
         .nav-card:hover { transform: translateY(-10px); border-color: var(--accent-blue); }
         .nav-card i { font-size: 2.2rem; color: var(--accent-blue); margin-bottom: 15px; }
         .nav-card h3 { margin: 10px 0; font-size: 1.4rem; color: var(--silver); }
-        .nav-card p { color: #cccccc; font-size: 0.9rem; }
 
         .cta-main {
             margin-top: 10px;
@@ -154,19 +154,19 @@
         .countries-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 900px; margin: 0 auto; }
         .country-item { background: rgba(255,255,255,0.05); padding: 6px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: bold; border: 1px solid var(--glass-border); color: var(--silver); }
 
-        /* --- NUEVA SECCIÓN DE REDES SOCIALES --- */
+        /* SECCIÓN DE REDES SOCIALES MEJORADA */
         .social-section {
             padding: 40px 10% 20px;
             text-align: center;
             position: relative;
-            z-index: 1;
+            z-index: 10;
         }
 
         .social-section h4 {
             font-family: var(--font-signature);
             font-size: 3rem;
             color: #ffffff;
-            margin: 0 0 20px;
+            margin: 0 0 25px;
             font-weight: 400;
         }
 
@@ -179,23 +179,23 @@
 
         .social-link {
             text-decoration: none;
-            color: var(--accent-blue);
+            color: var(--accent-blue) !important; /* Asegurar el color */
             font-size: 2rem;
-            transition: transform 0.3s, filter 0.3s;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.03);
+            background: rgba(255,255,255,0.05);
             border: 1px solid var(--glass-border);
         }
 
         .social-link:hover {
             transform: scale(1.1) translateY(-5px);
-            filter: drop-shadow(0 0 10px var(--accent-blue));
-            background: rgba(0, 212, 255, 0.05);
+            filter: drop-shadow(0 0 15px var(--accent-blue));
+            background: rgba(0, 212, 255, 0.1);
             border-color: var(--accent-blue);
         }
 
@@ -206,7 +206,6 @@
             .hero-subtitle { font-size: 0.85rem; }
             .slider-container { width: 70%; max-width: 240px; }
             .social-section h4 { font-size: 2.5rem; }
-            .social-link { font-size: 1.8rem; width: 50px; height: 50px; }
         }
     </style>
 </head>
@@ -230,17 +229,17 @@
 
     <section class="nav-grid">
         <a href="pagos/" class="nav-card">
-            <i class="fas fa-gem"></i>
+            <i class="fa-solid fa-gem"></i>
             <h3>Tabla de Metas</h3>
             <p>Estructura de ganancias y bonos por cumplimiento.</p>
         </a>
         <a href="academia/" class="nav-card">
-            <i class="fas fa-rocket"></i>
+            <i class="fa-solid fa-rocket"></i>
             <h3>Academia</h3>
             <p>Guías paso a paso para dominar Bigo Live.</p>
         </a>
         <a href="https://wa.me/595982678695" target="_blank" class="nav-card">
-            <i class="fab fa-whatsapp"></i>
+            <i class="fa-brands fa-whatsapp"></i>
             <h3>Soporte Manager</h3>
             <p>Atención directa para dudas o pagos.</p>
         </a>
@@ -263,5 +262,34 @@
         </div>
     </section>
 
+    <section class="social-section">
+        <h4>Síguenos</h4>
+        <div class="social-icons">
+            <a href="#" target="_blank" class="social-link" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" target="_blank" class="social-link" title="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="#" target="_blank" class="social-link" title="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/595982678695" target="_blank" class="social-link" title="WhatsApp Oficial">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+        </div>
+    </section>
 
-    
+    <footer>&copy; 2026 Suits Agency | Agencia Oficial Bigo Live.</footer>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
+    </script>
+</body>
+</html>
