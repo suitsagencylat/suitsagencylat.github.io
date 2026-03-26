@@ -28,10 +28,10 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- HEADER: LOGO, TEXTO Y LEYENDA --- */
+        /* --- HEADER: LOGO MAXIMIZADO Y LEYENDA AZUL --- */
         header.main-header {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 90px; /* Ajustado para la leyenda */
+            top: 0; left: 0; width: 100%; height: 90px;
             background: rgba(5, 5, 5, 0.98);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
@@ -51,13 +51,13 @@
             gap: 12px;
         }
 
+        /* Logo con tamaño máximo */
         .header-logo img {
             height: 65px; 
             width: auto;
             filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
         }
 
-        /* Contenedor para alinear texto y leyenda verticalmente */
         .logo-text-group {
             display: flex;
             flex-direction: column;
@@ -68,16 +68,17 @@
             font-family: var(--font-signature);
             font-size: 2.2rem;
             margin: 0;
-            line-height: 0.8; /* Ajustado para dar espacio a la leyenda */
+            line-height: 0.8;
         }
 
-        .header-logo span {
-            font-size: 0.65rem;
+        /* Leyenda azul debajo del nombre */
+        .header-logo .leyenda {
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--accent-blue);
-            font-weight: 600;
-            margin-top: 5px;
+            font-weight: 700;
+            margin-top: 4px;
         }
 
         .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
@@ -126,7 +127,7 @@
             <img src="logo.png" alt="Logo Suits Agency">
             <div class="logo-text-group">
                 <h1>Suits Agency</h1>
-                <span>Agencia oficial de Bigo Live</span>
+                <span class="leyenda">Agencia oficial de Bigo Live</span>
             </div>
         </a>
         <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
