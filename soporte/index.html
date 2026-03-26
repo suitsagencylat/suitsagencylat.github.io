@@ -1,1 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte | Suits Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --accent-blue: #00d4ff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
 
+        body {
+            background-color: var(--bg-color);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container { max-width: 650px; margin: 0 auto; padding-top: 40px; padding-bottom: 60px; }
+
+        h1 {
+            font-family: 'Tangerine', cursive;
+            font-size: 5rem;
+            text-align: center;
+            margin: 0;
+            color: white;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+
+        /* --- ESTILO FAQ --- */
+        .faq-section h2 { font-size: 1.2rem; border-left: 3px solid var(--accent-blue); padding-left: 15px; margin-bottom: 25px; letter-spacing: 1px; }
+
+        .faq-item {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .faq-question {
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.active { border-color: var(--accent-blue); background: rgba(0, 212, 255, 0.02); }
+        .faq-item.active .faq-answer { padding: 5px 20px 20px; max-height: 300px; }
+        .faq-item.active i { transform: rotate(180deg); color: var(--accent-blue); }
+
+        /* --- LINKS --- */
+        .links-section { margin-top: 50px; }
+        .links-section h2 { font-size: 1.2rem; border-left: 3px solid var(--accent-blue); padding-left: 15px; margin-bottom: 20px; }
+
+        .interest-link {
+            display: flex;
+            align-items: center;
+            background: var(--glass);
+            padding: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 12px;
+            border: 1px solid var(--glass-border);
+            transition: 0.3s;
+        }
+
+        .interest-link:hover { border-color: var(--accent-blue); transform: translateX(8px); background: rgba(255,255,255,0.05); }
+        .interest-link i { margin-right: 15px; color: var(--accent-blue); font-size: 1.3rem; }
+        .link-text span { display: block; font-size: 0.75rem; color: #666; margin-top: 3px; }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 40px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--accent-blue); }
+
+        @media (max-width: 480px) { h1 { font-size: 4rem; } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Centro de Soporte</h1>
+        <p class="subtitle">Agencia Oficial Bigo Live</p>
+
+        <section class="faq-section">
+            <h2>Preguntas Frecuentes</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Cómo se cuentan mis semillas y horas? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">Las semillas se acumulan por los regalos que recibes. Para que un día cuente como "día válido", debes transmitir al menos 2 horas continuas o alternas dentro de un mismo día (horario reset 00:00).</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Cuándo recibo el pago de mis metas? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">Bigo Live procesa los pagos entre los días 5 y 10 del mes siguiente al cierre. Por ejemplo, lo trabajado en marzo se cobra a inicios de abril.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Qué pasa si no llego a la meta mínima? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">Si no alcanzas la meta mínima de semillas, el saldo queda en tu billetera de Bigo. Si eres emisor oficial bajo contrato, debes cumplir la meta mínima para recibir los bonos de la agencia.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Es obligatorio estar en la agencia? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">Estar en <strong>Suits Agency</strong> te da acceso a bonos exclusivos, soporte prioritario ante baneos y guías de crecimiento que un emisor independiente no tiene.</div>
+            </div>
+        </section>
+
+        <section class="links-section">
+            <h2>Enlaces de Interés</h2>
+            
+            <a href="https://www.bigo.tv/" target="_blank" class="interest-link">
+                <i class="fa-solid fa-circle-play"></i>
+                <div class="link-text">Web Oficial Bigo Live<span>Accede a tu cuenta desde la PC</span></div>
+            </a>
+
+            <a href="../pagos/" class="interest-link">
+                <i class="fa-solid fa-table-list"></i>
+                <div class="link-text">Tabla de Comisiones 2026<span>Revisa cuánto ganas según tus semillas</span></div>
+            </a>
+
+            <a href="https://wa.me/595982678695" target="_blank" class="interest-link" style="border-color: #25d36633;">
+                <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i>
+                <div class="link-text">Hablar con un Manager<span>Soporte personalizado vía WhatsApp</span></div>
+            </a>
+        </section>
+
+        <a href="../" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Volver a la página principal</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                
+                // Cerrar otros si se abre uno
+                document.querySelectorAll('.faq-item').forEach(child => {
+                    if (child !== parent) child.classList.remove('active');
+                });
+
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
