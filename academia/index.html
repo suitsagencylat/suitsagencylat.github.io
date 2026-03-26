@@ -70,6 +70,27 @@
             margin-left: auto;
             margin-right: auto;
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            position: relative; /* Necesario para la miniatura */
+        }
+
+        /* MINIATURA PERSONALIZADA */
+        .video-placeholder {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('miniatura.jpg'); /* NOMBRE DE TU IMAGEN */
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-placeholder i {
+            font-size: 3.5rem;
+            color: var(--accent-blue);
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
         }
 
         /* Proporción Vertical (9:16) */
@@ -124,6 +145,10 @@
         </header>
 
         <div id="video-wrapper" class="ratio-vertical">
+            <div id="thumb-overlay" class="video-placeholder" onclick="startFirstVideo()">
+                <i class="fas fa-play-circle"></i>
+            </div>
+
             <iframe id="main-video" 
                     src="https://www.youtube.com/embed/5qklulnr12c?rel=0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -145,21 +170,20 @@
             </div>
 
             <div class="video-item" onclick="changeVideo('5qklulnr12c', 'Cómo Paga Bigo Live', 'v', true)">
-    <i class="fas fa-play-circle"></i>
-    <div>
-        <span>Cómo Paga Bigo Live</span>
-        
-    </div>
-</div>
+                <i class="fas fa-play-circle"></i>
+                <div>
+                    <span>Cómo Paga Bigo Live</span>
+                </div>
+            </div>
 
 
             <div class="video-item" onclick="changeVideo('I6VhuzfdhXg', 'Explicación de la tabla de pagos', 'h', true)">
-    <i class="fas fa-play-circle"></i>
-    <div>
-        <span>Explicación de la Tabla de pagos</span>
-        <small>YouTube - Horizontal</small>
-    </div>
-</div>
+                <i class="fas fa-play-circle"></i>
+                <div>
+                    <span>Explicación de la Tabla de pagos</span>
+                    <small>YouTube - Horizontal</small>
+                </div>
+            </div>
 
 
             <div class="video-item" onclick="changeVideo('eyOC7ZL6vRc', 'Tu primera trasmisión', 'v', true)">
@@ -177,10 +201,22 @@
     </div>
 
     <script>
+        // Función para quitar la miniatura y dar play al primer video
+        function startFirstVideo() {
+            const overlay = document.getElementById('thumb-overlay');
+            const iframe = document.getElementById('main-video');
+            overlay.style.display = 'none';
+            iframe.src += "&autoplay=1";
+        }
+
         function changeVideo(source, title, orientation, isYouTube) {
             const wrapper = document.getElementById('video-wrapper');
             const titleElement = document.getElementById('video-title');
             
+            // Ocultar la miniatura si se cambia de video
+            const overlay = document.getElementById('thumb-overlay');
+            if(overlay) overlay.style.display = 'none';
+
             // Ajustar el tamaño del reproductor
             if(orientation === 'v') {
                 wrapper.className = 'ratio-vertical';
@@ -191,7 +227,6 @@
             titleElement.innerText = title;
 
             if (isYouTube) {
-                // Reemplazar el contenido por un iframe para YouTube
                 wrapper.innerHTML = `
                     <iframe id="main-video" 
                             src="https://www.youtube.com/embed/${source}?autoplay=1&rel=0" 
@@ -200,7 +235,6 @@
                     </iframe>
                     <div class="video-info"><h3 id="video-title">${title}</h3></div>`;
             } else {
-                // Reemplazar el contenido por un reproductor de video local
                 wrapper.innerHTML = `
                     <video id="main-video" controls autoplay>
                         <source src="${source}" type="video/mp4">
