@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suits Agency | Bigo Live</title>
+    <title>Suits Agency | Bigo Live Official</title>
 
     <meta name="description" content="Suits Agency: Agencia Oficial de Bigo Live. Reclutamiento de streamers en Paraguay, Colombia, México, Perú y 24 países. Únete y gana dinero transmitiendo.">
     <meta name="keywords" content="Bigo Live, Suits Agency, Agencia Bigo, Ganar dinero streaming, Reclutamiento streamers, Argentina, Bolivia, Chile, Colombia, Costa Rica, Ecuador, El Salvador, Guatemala, Honduras, México, Nicaragua, Panamá, Paraguay, Perú, Puerto Rico, Uruguay, Venezuela">
@@ -43,7 +43,7 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 85%; 
-            opacity: 0.4; 
+            opacity: 0.3; 
             z-index: -1;
             filter: brightness(1.1);
         }
@@ -96,7 +96,7 @@
             color: white;
             border: 1px solid var(--glass-border);
             text-align: center;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -127,7 +127,35 @@
             line-height: 1.4;
         }
 
-        /* NUEVA SECCIÓN DE PAÍSES */
+        /* SECCIÓN QUIÉNES SOMOS */
+        .about-section {
+            padding: 60px 10%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            margin: 40px 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .about-section h2 {
+            color: var(--accent-blue);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+        }
+
+        /* SECCIÓN DE PAÍSES */
         .countries-section {
             padding: 40px 10%;
             text-align: center;
@@ -196,9 +224,10 @@
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            body::before { background-size: 100%; opacity: 0.3; }
+            body::before { background-size: 110%; opacity: 0.2; }
             .nav-grid { padding: 20px 5% 40px; }
             .countries-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-section { padding: 40px 5%; }
         }
     </style>
 </head>
@@ -207,7 +236,7 @@
     <header>
         <h1>SUITS AGENCY</h1>
         <p class="hero-subtitle">Resultados reales para tu talento</p>
-        <a href="/registro" class="cta-main">Postular ahora</a>
+        <a href="https://wa.me/595982678695" class="cta-main">Postular ahora</a>
     </header>
 
     <section class="nav-grid">
@@ -228,6 +257,13 @@
             <h3>Soporte Manager</h3>
             <p>Atención directa para dudas sobre tu cuenta o pagos.</p>
         </a>
+    </section>
+
+    <section class="about-section">
+        <h2>Liderando el Streaming en Latam</h2>
+        <p>
+            En <strong>Suits Agency</strong>, nos especializamos en transformar creadores de contenido en emisores profesionales de alto impacto. Como agencia oficial de <strong>Bigo Live</strong>, ofrecemos un ecosistema de soporte estratégico, capacitación avanzada y gestión de pagos transparente. Nuestra misión es potenciar tu talento bajo estándares internacionales, garantizando que cada transmisión sea un paso hacia tu libertad financiera.
+        </p>
     </section>
 
     <section class="countries-section">
