@@ -49,7 +49,7 @@
         }
 
         header {
-            height: auto; /* Cambiado de 50vh para dar espacio al slider */
+            height: auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -79,7 +79,6 @@
             opacity: 0.8;
         }
 
-        /* ESTILOS DEL CARRUSEL (SLIDER) */
         .slider-container {
             width: 90%; 
             max-width: 320px;
@@ -182,40 +181,42 @@
             font-size: 1.1rem;
         }
 
+        /* SECCIÓN DE PAÍSES COMPACTA */
         .countries-section {
-            padding: 40px 10%;
+            padding: 20px 10% 40px;
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
         .countries-section h2 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--accent-blue);
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
             opacity: 0.9;
         }
 
         .countries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .country-item {
-            background: rgba(255,255,255,0.03);
+            background: rgba(255,255,255,0.05);
             border: 1px solid var(--glass-border);
-            padding: 12px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 0.85rem;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 0.75rem;
             color: var(--silver);
-            backdrop-filter: blur(4px);
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .cta-main {
@@ -257,7 +258,6 @@
                 opacity: 0.2; 
             }
             .nav-grid { padding: 10px 5% 40px; }
-            .countries-grid { grid-template-columns: repeat(2, 1fr); }
             .about-section { padding: 40px 5%; }
             .slider-container { height: 350px; width: 85%; }
         }
@@ -281,7 +281,7 @@
             </div>
         </div>
 
-        <a href="https://wa.me/595982678695" class="cta-main">Postular ahora</a>
+        <a href="registro/" class="cta-main">Postular ahora</a>
     </header>
 
     <section class="nav-grid">
@@ -307,33 +307,37 @@
     <section class="about-section">
         <h2>Liderando el Streaming en Latam</h2>
         <p>
-            En <strong>Suits Agency</strong>, nos especializamos en transformar creadores de contenido en emisores profesionales de alto impacto. Como agencia oficial de <strong>Bigo Live</strong>, ofrecemos un ecosistema de soporte estratégico, capacitación avanzada y gestión de pagos transparente. Nuestra misión es potenciar tu talento bajo estándares internacionales, garantizando que cada transmisión sea un paso hacia tu libertad financiera.
+            En <strong>Suits Agency</strong>, nos especializamos en transformar creadores de contenido en emisores profesionales de alto impacto. Como agencia oficial de <strong>Bigo Live</strong>, ofrecemos un ecosistema de soporte estratégico, capacitación avanzada y gestión de pagos transparente.
         </p>
     </section>
 
     <section class="countries-section">
-        <h2>Cobertura en 24 Países</h2>
+        <h2>Cobertura Regional</h2>
         <div class="countries-grid">
-            <div class="country-item">🇦🇷 Argentina</div>
-            <div class="country-item">🇧🇴 Bolivia</div>
-            <div class="country-item">🇨🇱 Chile</div>
-            <div class="country-item">🇨🇴 Colombia</div>
-            <div class="country-item">🇨🇷 Costa Rica</div>
-            <div class="country-item">🇪🇨 Ecuador</div>
-            <div class="country-item">🇸🇻 El Salvador</div>
-            <div class="country-item">🇬🇹 Guatemala</div>
-            <div class="country-item">🇭🇳 Honduras</div>
-            <div class="country-item">🇲🇽 México</div>
-            <div class="country-item">🇳🇮 Nicaragua</div>
-            <div class="country-item">🇵🇦 Panamá</div>
-            <div class="country-item">🇵🇾 Paraguay</div>
-            <div class="country-item">🇵🇪 Perú</div>
-            <div class="country-item">🇩🇴 R. Dominicana</div>
-            <div class="country-item">🇺🇾 Uruguay</div>
-            <div class="country-item">🇻🇪 Venezuela</div>
-            <div class="country-item">🇵🇷 Puerto Rico</div>
-            <div class="country-item">🇨🇺 Cuba</div>
-            <div class="country-item">🇯🇲 Jamaica</div>
+            <div class="country-item">AR</div>
+            <div class="country-item">BO</div>
+            <div class="country-item">CL</div>
+            <div class="country-item">CO</div>
+            <div class="country-item">CR</div>
+            <div class="country-item">CU</div>
+            <div class="country-item">DO</div>
+            <div class="country-item">EC</div>
+            <div class="country-item">SV</div>
+            <div class="country-item">GT</div>
+            <div class="country-item">HN</div>
+            <div class="country-item">MX</div>
+            <div class="country-item">NI</div>
+            <div class="country-item">PA</div>
+            <div class="country-item">PY</div>
+            <div class="country-item">PE</div>
+            <div class="country-item">PR</div>
+            <div class="country-item">UY</div>
+            <div class="country-item">VE</div>
+            <div class="country-item">JM</div>
+            <div class="country-item">BS</div>
+            <div class="country-item">BB</div>
+            <div class="country-item">KY</div>
+            <div class="country-item">TT</div>
         </div>
     </section>
 
@@ -351,7 +355,7 @@
             slides[currentSlide].classList.add('active');
         }
 
-        setInterval(nextSlide, 5000); // Cambia cada 5 segundos
+        setInterval(nextSlide, 5000);
     </script>
 
 </body>
