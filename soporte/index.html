@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -24,15 +25,15 @@
             color: white;
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding-top: 110px; /* Espacio para el header grande */
+            padding-top: 120px; /* Espacio para el header */
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- HEADER ORIGINAL CON MENÚ DESPLEGABLE --- */
+        /* --- HEADER FIJO --- */
         header.main-header {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100px;
-            background: rgba(5, 5, 5, 0.95);
+            background: rgba(5, 5, 5, 0.98);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
             display: flex;
@@ -46,74 +47,70 @@
         .header-logo { text-decoration: none; color: white; }
         .header-logo h1 {
             font-family: var(--font-signature);
-            font-size: 4.5rem; /* Tamaño original recuperado */
+            font-size: 4.5rem; /* Tamaño original restaurado */
             margin: 0;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
             line-height: 1;
         }
 
         .menu-toggle { 
             color: white; 
-            font-size: 2rem; 
+            font-size: 2.2rem; 
             cursor: pointer; 
             z-index: 10002;
-            transition: 0.3s;
         }
 
-        /* MENÚ DESPLEGABLE (OVERLAY) */
+        /* --- MENÚ DESPLEGABLE --- */
         .header-nav {
             position: fixed;
             top: 0; right: -100%; width: 80%; height: 100vh;
-            background: rgba(5, 5, 5, 0.98);
+            background: #080808;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 40px;
-            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: right 0.4s ease-in-out;
             z-index: 10001;
             border-left: 1px solid var(--glass-border);
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
         }
 
         .header-nav.active { right: 0; }
         
         .nav-link {
             text-decoration: none; 
-            color: #efefef; 
-            font-size: 1.3rem;
+            color: #eee; 
+            font-size: 1.4rem;
             text-transform: uppercase; 
             letter-spacing: 3px;
             display: flex; 
             align-items: center; 
             gap: 20px;
-            transition: 0.3s;
         }
-        .nav-link i { color: var(--accent-blue); width: 30px; text-align: center; }
-        .nav-link.active { color: var(--accent-blue); border-bottom: 1px solid var(--accent-blue); }
+        .nav-link i { color: var(--accent-blue); width: 30px; }
+        .nav-link.active { color: var(--accent-blue); }
 
         .overlay-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); display: none; z-index: 9999;
+            background: rgba(0,0,0,0.85); display: none; z-index: 9999;
         }
         .overlay-bg.active { display: block; }
 
-        /* --- SECCIÓN SOPORTE Y FAQ --- */
-        .container { max-width: 700px; margin: 0 auto; padding: 20px; }
+        /* --- CONTENIDO PRINCIPAL --- */
+        .container { max-width: 650px; margin: 0 auto; padding: 20px; }
         
-        .main-title { text-align: center; font-size: 1.8rem; margin-bottom: 5px; letter-spacing: 1px; }
+        .main-title { text-align: center; font-size: 2rem; margin-bottom: 5px; }
         .subtitle { 
             text-align: center; color: var(--accent-blue); 
             font-size: 0.8rem; letter-spacing: 3px; 
             text-transform: uppercase; margin-bottom: 50px; 
         }
 
+        /* --- ACORDEONES FAQ --- */
         .faq-item {
             background: var(--glass); 
             border: 1px solid var(--glass-border);
             border-radius: 15px; 
             margin-bottom: 15px;
-            transition: 0.3s;
         }
         .faq-question { 
             padding: 22px; 
@@ -123,48 +120,24 @@
             align-items: center;
             font-weight: 500;
         }
-        .faq-answer { max-height: 0; overflow: hidden; transition: 0.4s ease; background: rgba(255,255,255,0.01); }
-        .faq-answer-content { padding: 0 22px 22px; color: #aaa; line-height: 1.6; font-size: 0.95rem; }
+        .faq-answer { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.3s ease; 
+            background: rgba(255,255,255,0.01); 
+        }
+        .faq-answer-content { padding: 0 22px 22px; color: #aaa; line-height: 1.6; }
         
-        .faq-item.open { border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(0, 212, 255, 0.1); }
-        .faq-item.open .faq-answer { max-height: 400px; }
+        .faq-item.open { border-color: var(--accent-blue); }
+        .faq-item.open .faq-answer { max-height: 300px; }
         .faq-item.open i { transform: rotate(180deg); color: var(--accent-blue); }
 
-        /* PAÍSES Y REDES SOCIALES ORIGINALES */
-        .countries-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 50px 0; }
-        .country-item { 
-            background: rgba(255,255,255,0.05); 
-            padding: 8px 12px; 
-            border-radius: 8px; 
-            font-size: 0.8rem; 
-            border: 1px solid var(--glass-border);
-            color: var(--accent-blue);
-            font-weight: bold;
-        }
-
-        .social-icons { display: flex; justify-content: center; gap: 25px; margin: 40px 0; }
-        .social-link { 
-            color: var(--accent-blue); 
-            font-size: 1.8rem; 
-            width: 60px; height: 60px; 
-            border-radius: 50%; 
-            background: var(--glass); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            border: 1px solid var(--glass-border);
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .social-link:hover { transform: translateY(-5px); border-color: var(--accent-blue); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.2); }
-
-        footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; letter-spacing: 1px; border-top: 1px solid var(--glass-border); }
+        footer { text-align: center; padding: 60px 20px; color: #333; font-size: 0.8rem; }
 
         @media (max-width: 480px) {
             .header-logo h1 { font-size: 3.5rem; }
             header.main-header { height: 90px; }
-            body { padding-top: 100px; }
-            .header-nav { width: 85%; }
+            body { padding-top: 110px; }
         }
     </style>
 </head>
@@ -180,41 +153,25 @@
             <a href="../" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
             <a href="../pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
             <a href="#" class="nav-link active"><i class="fa-solid fa-headset"></i>Soporte</a>
-            <a href="https://wa.me/595982678695" target="_blank" class="nav-link"><i class="fab fa-whatsapp"></i>WhatsApp</a>
         </nav>
     </header>
 
     <div class="container">
         <h2 class="main-title">Centro de Soporte</h2>
-        <p class="subtitle">Resultados reales para tu talento</p>
+        <p class="subtitle">Agencia Oficial Bigo Live</p>
 
         <section class="faq-section">
             <div class="faq-item">
                 <div class="faq-question"><span>¿Cómo se cuentan mis semillas?</span> <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer"><div class="faq-answer-content">Las semillas se acumulan por los regalos recibidos de tus seguidores. Para que un día cuente como válido, debes transmitir al menos 2 horas en un mismo día (reset 00:00 local).</div></div>
+                <div class="faq-answer"><div class="faq-answer-content">Las semillas se acumulan por los regalos recibidos. Para un día válido, debes transmitir al menos 2 horas diarias.</div></div>
             </div>
             <div class="faq-item">
                 <div class="faq-question"><span>¿Cuándo recibo mis pagos?</span> <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer"><div class="faq-answer-content">Los pagos de metas y bonos se procesan oficialmente entre los días 5 y 10 del mes siguiente al cierre de actividades.</div></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question"><span>¿Por qué elegir Suits Agency?</span> <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer"><div class="faq-answer-content">Brindamos soporte directo, protección ante baneos injustos y estrategias personalizadas para que maximices tus ingresos en Bigo Live.</div></div>
+                <div class="faq-answer"><div class="faq-answer-content">Los pagos se procesan oficialmente entre los días 5 y 10 del mes siguiente al cierre.</div></div>
             </div>
         </section>
 
-        <div class="countries-grid">
-            <div class="country-item">🇦🇷 AR</div><div class="country-item">🇨🇴 CO</div><div class="country-item">🇵🇾 PY</div><div class="country-item">🇲🇽 MX</div>
-            <div class="country-item">🇨🇱 CL</div><div class="country-item">🇵🇪 PE</div><div class="country-item">🇺🇾 UY</div><div class="country-item">🇪🇨 EC</div>
-        </div>
-
-        <div class="social-icons">
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-            <a href="https://wa.me/595982678695" class="social-link"><i class="fab fa-whatsapp"></i></a>
-        </div>
-
-        <footer>&copy; 2026 Suits Agency | Agencia Oficial Bigo Live</footer>
+        <footer>&copy; 2026 Suits Agency | Bigo Live Official</footer>
     </div>
 
     <script>
@@ -222,32 +179,23 @@
         const mainNav = document.getElementById('mainNav');
         const overlay = document.getElementById('overlay');
 
-        // Función Menú Hamburguesa
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
             overlay.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars-staggered');
-            icon.classList.toggle('fa-xmark');
+            menuToggle.querySelector('i').classList.toggle('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.toggle('fa-xmark');
         });
 
         overlay.addEventListener('click', () => {
             mainNav.classList.remove('active');
             overlay.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.add('fa-bars-staggered');
-            icon.classList.remove('fa-xmark');
+            menuToggle.querySelector('i').classList.add('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.remove('fa-xmark');
         });
 
-        // Lógica de Acordeones
         document.querySelectorAll('.faq-question').forEach(q => {
             q.addEventListener('click', () => {
-                const item = q.parentElement;
-                // Cerrar otros al abrir uno (opcional, mejora la usabilidad)
-                document.querySelectorAll('.faq-item').forEach(el => {
-                    if(el !== item) el.classList.remove('open');
-                });
-                item.classList.toggle('open');
+                q.parentElement.classList.toggle('open');
             });
         });
     </script>
