@@ -28,10 +28,10 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- HEADER: LOGO GRANDE Y TEXTO PEQUEÑO --- */
+        /* --- HEADER: LOGO, TEXTO Y LEYENDA --- */
         header.main-header {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 85px; /* Un poco más de altura para el logo */
+            top: 0; left: 0; width: 100%; height: 90px; /* Ajustado para la leyenda */
             background: rgba(5, 5, 5, 0.98);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
@@ -48,24 +48,36 @@
             color: white; 
             display: flex; 
             align-items: center; 
-            gap: 10px;
+            gap: 12px;
         }
 
-        /* LOGO: MÁXIMO TAMAÑO POSIBLE EN EL HEADER */
         .header-logo img {
-            height: 65px; /* Aumentado para protagonismo total */
+            height: 65px; 
             width: auto;
             filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
-            transition: 0.3s;
         }
 
-        /* TEXTO: MÁS PEQUEÑO Y DISCRETO */
+        /* Contenedor para alinear texto y leyenda verticalmente */
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .header-logo h1 {
             font-family: var(--font-signature);
-            font-size: 2.2rem; /* Reducido para equilibrio visual */
+            font-size: 2.2rem;
             margin: 0;
-            line-height: 1;
-            opacity: 0.9;
+            line-height: 0.8; /* Ajustado para dar espacio a la leyenda */
+        }
+
+        .header-logo span {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-top: 5px;
         }
 
         .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
@@ -103,11 +115,6 @@
         .faq-item.open i { transform: rotate(180deg); color: var(--accent-blue); }
 
         footer { text-align: center; padding: 50px 20px; color: #333; font-size: 0.75rem; }
-
-        @media (max-width: 480px) {
-            .header-logo img { height: 55px; }
-            .header-logo h1 { font-size: 1.8rem; }
-        }
     </style>
 </head>
 <body>
@@ -117,7 +124,10 @@
     <header class="main-header">
         <a href="../" class="header-logo">
             <img src="logo.png" alt="Logo Suits Agency">
-            <h1>Suits Agency</h1>
+            <div class="logo-text-group">
+                <h1>Suits Agency</h1>
+                <span>Agencia oficial de Bigo Live</span>
+            </div>
         </a>
         <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
         <nav class="header-nav" id="mainNav">
