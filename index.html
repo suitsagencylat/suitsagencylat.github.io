@@ -79,10 +79,11 @@
             opacity: 0.8;
         }
 
+        /* CONFIGURACIÓN DEL CARRUSEL */
         .slider-container {
             width: 90%; 
             max-width: 320px;
-            height: 400px;
+            height: 500px; /* Altura ideal para móviles */
             position: relative;
             overflow: hidden;
             border-radius: 20px;
@@ -97,48 +98,20 @@
             top: 0; left: 0; width: 100%; height: 100%;
             opacity: 0;
             transition: opacity 1s ease-in-out;
-        }
-        <style>
-    /* ... (mantén todo lo anterior igual) ... */
-
-    .slider-container {
-        width: 90%; 
-        max-width: 320px;
-        height: 500px; /* Aumentado para que luzca el formato vertical */
-        position: relative;
-        overflow: hidden;
-        border-radius: 20px;
-        border: 1px solid var(--glass-border);
-        margin: 30px auto;
-        background: #000;
-        box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
-    }
-
-    .slide {
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-    }
-
-    /* ESTA ES LA LÍNEA QUE FALTABA PARA QUE SE VEAN */
-    .slide.active { 
-        opacity: 1; 
-        z-index: 2;
-    }
-
-    .slide img {
-        width: 100%; 
-        height: 100%;
-        object-fit: contain; 
-        background-color: #000;
-    }
-
-    /* ... (el resto del código se queda igual) ... */
-</style>
-
+            z-index: 1;
         }
 
+        .slide.active { 
+            opacity: 1; 
+            z-index: 2;
+        }
+
+        .slide img {
+            width: 100%; 
+            height: 100%;
+            object-fit: contain; /* Muestra la imagen completa sin recortes */
+            background-color: #000;
+        }
 
         .nav-grid {
             display: grid;
@@ -215,7 +188,6 @@
             font-size: 1.1rem;
         }
 
-        /* SECCIÓN DE PAÍSES COMPACTA */
         .countries-section {
             padding: 20px 10% 40px;
             text-align: center;
@@ -293,7 +265,7 @@
             }
             .nav-grid { padding: 10px 5% 40px; }
             .about-section { padding: 40px 5%; }
-            .slider-container { height: 350px; width: 85%; }
+            .slider-container { height: 450px; width: 85%; }
         }
     </style>
 </head>
@@ -345,7 +317,7 @@
         </p>
     </section>
 
-        <section class="countries-section">
+    <section class="countries-section">
         <h2>Cobertura Regional</h2>
         <div class="countries-grid">
             <div class="country-item">🇦🇷 AR</div>
@@ -375,7 +347,6 @@
         </div>
     </section>
 
-
     <footer>
         &copy; 2026 Suits Agency | Agencia Oficial Bigo Live.
     </footer>
@@ -385,11 +356,15 @@
         let currentSlide = 0;
 
         function nextSlide() {
+            // Eliminar active de la imagen actual
             slides[currentSlide].classList.remove('active');
+            // Pasar a la siguiente imagen
             currentSlide = (currentSlide + 1) % slides.length;
+            // Añadir active a la nueva imagen
             slides[currentSlide].classList.add('active');
         }
 
+        // Intervalo de 5 segundos
         setInterval(nextSlide, 5000);
     </script>
 
