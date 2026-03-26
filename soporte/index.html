@@ -16,7 +16,7 @@
             --accent-blue: #00d4ff;
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --header-bg: rgba(5, 5, 5, 0.98);
+            --font-signature: 'Tangerine', cursive;
         }
 
         body {
@@ -24,15 +24,15 @@
             color: white;
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding-top: 80px;
+            padding-top: 100px;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- HEADER FIJO CON MENÚ DESPLEGABLE --- */
+        /* --- HEADER FIJO CON TAMAÑO ORIGINAL --- */
         header.main-header {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 70px;
-            background: var(--header-bg);
+            top: 0; left: 0; width: 100%; height: 90px;
+            background: rgba(5, 5, 5, 0.95);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
             display: flex;
@@ -45,116 +45,76 @@
 
         .header-logo { text-decoration: none; color: white; }
         .header-logo h1 {
-            font-family: 'Tangerine', cursive;
-            font-size: 2.8rem;
+            font-family: var(--font-signature);
+            font-size: 4rem; /* Restaurado el impacto visual */
             margin: 0;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
         }
 
-        /* Icono Hamburguesa */
-        .menu-toggle {
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 10002;
-        }
+        .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
 
-        /* Menú Lateral (Overlay) */
+        /* MENÚ DESPLEGABLE */
         .header-nav {
             position: fixed;
-            top: 0;
-            right: -100%; /* Escondido a la derecha */
-            width: 70%;
-            height: 100vh;
+            top: 0; right: -100%; width: 75%; height: 100vh;
             background: rgba(5, 5, 5, 0.98);
-            backdrop-filter: blur(20px);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 30px;
-            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-            border-left: 1px solid var(--glass-border);
+            gap: 35px;
+            transition: right 0.4s ease;
             z-index: 10001;
+            border-left: 1px solid var(--glass-border);
         }
 
-        .header-nav.active {
-            right: 0; /* Aparece */
-        }
-
+        .header-nav.active { right: 0; }
         .nav-link {
-            text-decoration: none;
-            color: #ccc;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: 0.3s;
+            text-decoration: none; color: #ccc; font-size: 1.2rem;
+            text-transform: uppercase; letter-spacing: 2px;
+            display: flex; align-items: center; gap: 15px;
         }
-
         .nav-link.active { color: var(--accent-blue); }
-        .nav-link i { color: var(--accent-blue); width: 25px; text-align: center; }
 
-        /* Capa oscura para cerrar el menú al tocar fuera */
         .overlay-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            display: none;
-            z-index: 9999;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); display: none; z-index: 9999;
         }
         .overlay-bg.active { display: block; }
 
-        /* --- CONTENIDO PRINCIPAL (FAQ) --- */
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .main-title { text-align: center; font-size: 1.6rem; margin-bottom: 5px; }
-        .subtitle { text-align: center; color: var(--accent-blue); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
-
+        /* --- CONTENIDO --- */
+        .container { max-width: 700px; margin: 0 auto; padding: 20px; }
+        
+        /* ACORDEONES */
         .faq-item {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            margin-bottom: 12px;
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: 15px; margin-bottom: 15px;
         }
-
-        .faq-question {
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.95rem;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-
-        .faq-answer-content { padding: 0 20px 20px; color: #aaa; font-size: 0.9rem; line-height: 1.6; }
-
+        .faq-question { padding: 22px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.3s; background: rgba(255,255,255,0.01); }
+        .faq-answer-content { padding: 0 22px 22px; color: #aaa; line-height: 1.6; }
         .faq-item.open { border-color: var(--accent-blue); }
-        .faq-item.open .faq-answer { max-height: 200px; }
-        .faq-item.open i { transform: rotate(180deg); color: var(--accent-blue); }
+        .faq-item.open .faq-answer { max-height: 300px; }
 
-        /* --- ENLACES --- */
-        .links-section { margin-top: 40px; }
-        .interest-link {
-            display: flex;
-            align-items: center;
-            background: var(--glass);
-            padding: 15px;
-            border-radius: 12px;
+        /* SECCIÓN PAÍSES REINTEGRADA */
+        .countries-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 40px 0; }
+        .country-item { background: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 5px; font-size: 0.7rem; border: 1px solid var(--glass-border); }
+
+        /* REDES SOCIALES REINTEGRADAS */
+        .social-icons { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+        .social-link { 
+            color: var(--accent-blue); font-size: 1.5rem; width: 50px; height: 50px; 
+            border-radius: 50%; background: var(--glass); display: flex; 
+            align-items: center; justify-content: center; border: 1px solid var(--glass-border);
             text-decoration: none;
-            color: white;
-            margin-bottom: 10px;
-            border: 1px solid var(--glass-border);
         }
-        .interest-link i { margin-right: 15px; color: var(--accent-blue); }
 
-        footer { text-align: center; padding: 40px; color: #444; font-size: 0.7rem; }
+        footer { text-align: center; padding: 50px; color: #333; font-size: 0.75rem; }
+
+        @media (max-width: 480px) {
+            .header-logo h1 { font-size: 3rem; }
+            body { padding-top: 90px; }
+        }
     </style>
 </head>
 <body>
@@ -162,44 +122,36 @@
     <div class="overlay-bg" id="overlay"></div>
 
     <header class="main-header">
-        <a href="../" class="header-logo">
-            <h1>Suits Agency</h1>
-        </a>
-        
-        <div class="menu-toggle" id="menuToggle">
-            <i class="fa-solid fa-bars-staggered"></i>
-        </div>
-
+        <a href="../" class="header-logo"><h1>Suits Agency</h1></a>
+        <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
         <nav class="header-nav" id="mainNav">
             <a href="../" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
             <a href="../pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
             <a href="#" class="nav-link active"><i class="fa-solid fa-headset"></i>Soporte</a>
-            <a href="https://wa.me/595982678695" target="_blank" class="nav-link"><i class="fab fa-whatsapp"></i>WhatsApp</a>
         </nav>
     </header>
 
     <div class="container">
-        <h2 class="main-title">Centro de Soporte</h2>
-        <p class="subtitle">Agencia Oficial Bigo Live</p>
-
         <section class="faq-section">
             <div class="faq-item">
                 <div class="faq-question"><span>¿Cómo se cuentan mis semillas?</span> <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer"><div class="faq-answer-content">Las semillas se acumulan por los regalos recibidos. Un día válido requiere 2 horas de transmisión (reset 00:00 local).</div></div>
+                <div class="faq-answer"><div class="faq-answer-content">Las semillas se acumulan por regalos. Un día válido requiere 2 horas de transmisión.</div></div>
             </div>
-
             <div class="faq-item">
                 <div class="faq-question"><span>¿Cuándo recibo mis pagos?</span> <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer"><div class="faq-answer-content">Los pagos se procesan entre los días 5 y 10 del mes siguiente al cierre de metas.</div></div>
+                <div class="faq-answer"><div class="faq-answer-content">Los pagos se procesan entre los días 5 y 10 del mes siguiente al cierre.</div></div>
             </div>
         </section>
 
-        <section class="links-section">
-            <a href="../pagos/" class="interest-link">
-                <i class="fa-solid fa-table-list"></i>
-                <div>Tabla de Metas 2026</div>
-            </a>
-        </section>
+        <div class="countries-grid">
+            <div class="country-item">🇦🇷 AR</div><div class="country-item">🇨🇴 CO</div><div class="country-item">🇵🇾 PY</div><div class="country-item">🇲🇽 MX</div>
+        </div>
+
+        <div class="social-icons">
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/595982678695" class="social-link"><i class="fab fa-whatsapp"></i></a>
+        </div>
 
         <footer>&copy; 2026 Suits Agency | Bigo Live Official</footer>
     </div>
@@ -208,34 +160,24 @@
         const menuToggle = document.getElementById('menuToggle');
         const mainNav = document.getElementById('mainNav');
         const overlay = document.getElementById('overlay');
-        const faqQuestions = document.querySelectorAll('.faq-question');
 
-        // Función para abrir/cerrar el menú
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
             overlay.classList.toggle('active');
-            // Cambiar el icono de barras a una 'X'
-            const icon = menuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars-staggered');
-            icon.classList.toggle('fa-xmark');
+            menuToggle.querySelector('i').classList.toggle('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.toggle('fa-xmark');
         });
 
-        // Cerrar menú al tocar el overlay
         overlay.addEventListener('click', () => {
             mainNav.classList.remove('active');
             overlay.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.add('fa-bars-staggered');
-            icon.classList.remove('fa-xmark');
+            menuToggle.querySelector('i').classList.add('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.remove('fa-xmark');
         });
 
-        // Lógica de acordeones
-        faqQuestions.forEach(q => {
+        document.querySelectorAll('.faq-question').forEach(q => {
             q.addEventListener('click', () => {
                 const item = q.parentElement;
-                document.querySelectorAll('.faq-item').forEach(el => {
-                    if(el !== item) el.classList.remove('open');
-                });
                 item.classList.toggle('open');
             });
         });
