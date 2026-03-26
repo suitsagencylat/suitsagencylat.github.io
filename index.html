@@ -32,6 +32,7 @@
             margin: 0;
             min-height: 100vh;
             overflow-x: hidden;
+            padding-top: 100px; /* Espacio para el header fijo */
         }
 
         body::before {
@@ -46,44 +47,89 @@
             z-index: -1;
         }
 
-        header {
+        /* --- NUEVO ENCABEZADO FIJO REPLICADO --- */
+        header.main-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 95px;
+            background: rgba(5, 5, 5, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4%;
+            box-sizing: border-box;
+            z-index: 10000;
+        }
+
+        .header-logo { 
+            text-decoration: none; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
+        }
+
+        .header-logo img {
+            height: 65px; 
+            width: auto;
+            filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
+        }
+
+        .logo-text-group {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 50px 20px 10px;
-            position: relative;
-            z-index: 1;
         }
 
-        h1.agency-name {
+        .header-logo h1 {
             font-family: var(--font-signature);
-            font-size: 6.5rem; 
-            font-weight: 700;
-            color: #ffffff;
+            font-size: 2.2rem;
             margin: 0;
-            line-height: 0.8;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+            line-height: 0.7;
         }
 
-        .official-titles { margin-top: 15px; }
-
-        .hero-subtitle {
-            color: var(--silver);
-            font-size: 1rem;
-            letter-spacing: 3px;
-            margin: 5px 0;
+        .header-logo .leyenda {
+            font-size: 0.6rem;
             text-transform: uppercase;
-            opacity: 0.9;
-        }
-
-        .bigo-status {
+            letter-spacing: 1px;
             color: var(--accent-blue);
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
+
+        .header-nav {
+            position: fixed;
+            top: 0; right: -100%; width: 75%; height: 100vh;
+            background: #080808;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            transition: right 0.4s ease-in-out;
+            z-index: 10001;
+            border-left: 1px solid var(--glass-border);
+        }
+
+        .header-nav.active { right: 0; }
+        .nav-link { text-decoration: none; color: #eee; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 15px; }
+        .nav-link.active { color: var(--accent-blue); }
+
+        .overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 9999; }
+        .overlay-bg.active { display: block; }
+
+        /* --- CONTENIDO HERO (AJUSTADO) --- */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px 20px;
         }
 
         .slider-container {
@@ -94,7 +140,7 @@
             overflow: hidden;
             border-radius: 15px;
             border: 1px solid var(--glass-border);
-            margin: 30px auto;
+            margin: 20px auto 30px;
             background: transparent;
             box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
         }
@@ -110,11 +156,27 @@
         .slide.active { opacity: 1; z-index: 2; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
 
+        .cta-main {
+            display: inline-block;
+            padding: 14px 40px;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .cta-main:hover { background: var(--accent-blue); color: #000; box-shadow: 0 0 20px var(--accent-blue); }
+
+        /* --- RESTO DEL DISEÑO (SIN MODIFICACIONES) --- */
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            padding: 20px 10% 40px;
+            padding: 40px 10%;
             z-index: 1;
         }
 
@@ -134,76 +196,19 @@
         .nav-card i { font-size: 2.2rem; color: var(--accent-blue); margin-bottom: 15px; }
         .nav-card h3 { margin: 10px 0; font-size: 1.4rem; color: var(--silver); }
 
-        .cta-main {
-            margin-top: 10px;
-            display: inline-block;
-            padding: 14px 40px;
-            border: 2px solid var(--accent-blue);
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .cta-main:hover { background: var(--accent-blue); color: #000; box-shadow: 0 0 20px var(--accent-blue); }
-
         .countries-section { padding: 20px 10%; text-align: center; }
         .countries-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 900px; margin: 0 auto; }
         .country-item { background: rgba(255,255,255,0.05); padding: 6px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: bold; border: 1px solid var(--glass-border); color: var(--silver); }
 
-        /* SECCIÓN DE REDES SOCIALES MEJORADA */
-        .social-section {
-            padding: 40px 10% 20px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        .social-section h4 {
-            font-family: var(--font-signature);
-            font-size: 3rem;
-            color: #ffffff;
-            margin: 0 0 25px;
-            font-weight: 400;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            text-decoration: none;
-            color: var(--accent-blue) !important; /* Asegurar el color */
-            font-size: 2rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-        }
-
-        .social-link:hover {
-            transform: scale(1.1) translateY(-5px);
-            filter: drop-shadow(0 0 15px var(--accent-blue));
-            background: rgba(0, 212, 255, 0.1);
-            border-color: var(--accent-blue);
-        }
+        .social-section { padding: 40px 10% 20px; text-align: center; position: relative; z-index: 10; }
+        .social-section h4 { font-family: var(--font-signature); font-size: 3rem; color: #ffffff; margin: 0 0 25px; font-weight: 400; }
+        .social-icons { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+        .social-link { text-decoration: none; color: var(--accent-blue) !important; font-size: 2rem; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); }
+        .social-link:hover { transform: scale(1.1) translateY(-5px); filter: drop-shadow(0 0 15px var(--accent-blue)); background: rgba(0, 212, 255, 0.1); border-color: var(--accent-blue); }
 
         footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-size: 0.75rem; position: relative; z-index: 1; }
 
         @media (max-width: 768px) {
-            h1.agency-name { font-size: 4.5rem; }
-            .hero-subtitle { font-size: 0.85rem; }
             .slider-container { width: 70%; max-width: 240px; }
             .social-section h4 { font-size: 2.5rem; }
         }
@@ -211,21 +216,32 @@
 </head>
 <body>
 
-    <header>
-        <h1 class="agency-name">Suits Agency</h1>
-        <div class="official-titles">
-            <p class="hero-subtitle">Agencia de Streaming</p>
-            <p class="bigo-status">Agencia Oficial de Bigo Live</p>
-        </div>
+    <div class="overlay-bg" id="overlay"></div>
 
+    <header class="main-header">
+        <a href="#" class="header-logo">
+            <img src="logo.png" alt="Logo Suits Agency">
+            <div class="logo-text-group">
+                <h1>Suits Agency</h1>
+                <span class="leyenda">Agencia oficial de Bigo Live</span>
+            </div>
+        </a>
+        <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
+        <nav class="header-nav" id="mainNav">
+            <a href="#" class="nav-link active"><i class="fa-solid fa-house"></i>Inicio</a>
+            <a href="pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
+            <a href="soporte/" class="nav-link"><i class="fa-solid fa-headset"></i>Soporte</a>
+        </nav>
+    </header>
+
+    <section class="hero-section">
         <div class="slider-container">
             <div class="slide active"><img src="publicidad1.jpg" alt="1"></div>
             <div class="slide"><img src="publicidad2.jpg" alt="2"></div>
             <div class="slide"><img src="publicidad3.jpg" alt="3"></div>
         </div>
-
         <a href="registro/" class="cta-main">Postular ahora</a>
-    </header>
+    </section>
 
     <section class="nav-grid">
         <a href="pagos/" class="nav-card">
@@ -239,10 +255,10 @@
             <p>Guías paso a paso para dominar Bigo Live.</p>
         </a>
         <a href="soporte/" class="nav-card">
-    <i class="fa-solid fa-headset"></i> <h3>Centro de Soporte</h3>
-    <p>Preguntas frecuentes, guías rápidas y enlaces de interés.</p>
-</a>
-
+            <i class="fa-solid fa-headset"></i> 
+            <h3>Centro de Soporte</h3>
+            <p>Preguntas frecuentes, guías rápidas y enlaces de interés.</p>
+        </a>
     </section>
 
     <section class="countries-section">
@@ -283,6 +299,7 @@
     <footer>&copy; 2026 Suits Agency | Agencia Oficial Bigo Live.</footer>
 
     <script>
+        // Script del Slider Original
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         setInterval(() => {
@@ -290,6 +307,25 @@
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }, 5000);
+
+        // Script del Menú Hamburguesa
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const overlay = document.getElementById('overlay');
+
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.toggle('fa-xmark');
+        });
+
+        overlay.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            overlay.classList.remove('active');
+            menuToggle.querySelector('i').classList.add('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.remove('fa-xmark');
+        });
     </script>
 </body>
 </html>
