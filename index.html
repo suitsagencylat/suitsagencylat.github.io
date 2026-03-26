@@ -5,20 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suits Agency | Bigo Live Official</title>
 
-    <meta name="description" content="Suits Agency: Agencia Oficial de Bigo Live. Reclutamiento de streamers en Paraguay, Colombia, México, Perú y 24 países. Únete y gana dinero transmitiendo.">
-    <meta name="keywords" content="Bigo Live, Suits Agency, Agencia Bigo, Ganar dinero streaming, Reclutamiento streamers, Argentina, Bolivia, Chile, Colombia, Costa Rica, Ecuador, El Salvador, Guatemala, Honduras, México, Nicaragua, Panamá, Paraguay, Perú, Puerto Rico, Uruguay, Venezuela">
+    <meta name="description" content="Suits Agency: Agencia Oficial de Bigo Live. Reclutamiento de streamers en 24 países. Únete y gana dinero transmitiendo.">
     <meta name="author" content="Suits Agency">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Suits Agency | Conviértete en Agente Oficial Bigo Live">
-    <meta property="og:description" content="Colaboramos con emisores de 24 países. Soporte, academia y los mejores bonos del ecosistema Bigo.">
-    <meta property="og:image" content="https://suitsagencylat.github.io/logo.png">
-    <meta property="og:url" content="https://suitsagencylat.github.io/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -28,8 +20,7 @@
             --silver: #e0e0e0; 
             --card-bg: rgba(255, 255, 255, 0.02); 
             --glass-border: rgba(255, 255, 255, 0.1);
-            /* Fuentes asignadas a variables */
-            --font-luxury: 'Cormorant Garamond', serif;
+            --font-signature: 'Tangerine', cursive;
             --font-clean: 'Inter', sans-serif;
         }
 
@@ -50,61 +41,54 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 85%; 
-            opacity: 0.3; 
+            opacity: 0.2; 
             z-index: -1;
-            filter: brightness(1.1);
         }
 
         header {
-            height: auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 50px 20px 15px; /* Más espacio superior */
+            padding: 40px 20px 10px;
             position: relative;
             z-index: 1;
         }
 
-        /* ESTILO DEL NOMBRE PRINCIPAL (LUJO) */
+        /* ESTILO TANGERINE PARA EL NOMBRE */
         h1.agency-name {
-            font-family: var(--font-luxury);
-            font-size: 5rem; /* Grande y elegante */
-            font-weight: 600;
+            font-family: var(--font-signature);
+            font-size: 6.5rem; /* Tangerine necesita ser grande para lucir */
+            font-weight: 700;
             color: #ffffff;
             margin: 0;
-            letter-spacing: 2px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
-            text-transform: none; /* No forzar mayúsculas */
+            line-height: 0.8;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
         }
 
-        /* BLOQUE DE TÍTULOS OFICIALES */
         .official-titles {
-            font-family: var(--font-clean);
-            margin-top: -5px; /* Pegado al nombre */
+            margin-top: 15px;
         }
 
         .hero-subtitle {
             color: var(--silver);
-            font-size: 1.1rem;
+            font-size: 1rem;
             letter-spacing: 3px;
-            margin: 10px 0 5px;
+            margin: 5px 0;
             text-transform: uppercase;
             opacity: 0.9;
         }
 
-        /* TEXTO OFICIAL DE BIGO (EN AZUL) */
         .bigo-status {
             color: var(--accent-blue);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 600;
-            opacity: 0.8;
-            filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.3));
         }
 
+        /* CARRUSEL VERTICAL ADAPTADO */
         .slider-container {
             width: 75%; 
             max-width: 260px;
@@ -113,7 +97,7 @@
             overflow: hidden;
             border-radius: 15px;
             border: 1px solid var(--glass-border);
-            margin: 30px auto; /* Más espacio con el título */
+            margin: 30px auto;
             background: transparent;
             box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
         }
@@ -126,191 +110,76 @@
             z-index: 1;
         }
 
-        .slide.active { 
-            opacity: 1; 
-            z-index: 2;
-        }
-
-        .slide img {
-            width: 100%; 
-            height: 100%;
-            object-fit: cover; 
-        }
+        .slide.active { opacity: 1; z-index: 2; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
 
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 20px;
             padding: 20px 10% 40px;
-            position: relative;
             z-index: 1;
         }
 
         .nav-card {
             background: var(--card-bg);
-            padding: 45px 30px;
+            padding: 40px 25px;
             border-radius: 20px;
             text-decoration: none;
             color: white;
             border: 1px solid var(--glass-border);
             text-align: center;
             backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.3s;
         }
 
-        .nav-card:hover {
-            background: rgba(0, 212, 255, 0.08);
-            border-color: var(--accent-blue);
-            transform: translateY(-12px);
-        }
-
-        .nav-card i {
-            font-size: 2.5rem;
-            color: var(--accent-blue);
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 8px var(--accent-blue));
-        }
-
-        .nav-card h3 {
-            margin: 10px 0;
-            color: var(--silver);
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-        }
-
-        .nav-card p {
-            color: #cccccc;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        .about-section {
-            padding: 60px 10%;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(5px);
-            margin: 40px 0;
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .about-section h2 {
-            font-family: var(--font-luxury);
-            font-weight: 600;
-            color: var(--accent-blue);
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-        }
-
-        .about-section p {
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            color: #e0e0e0;
-            font-size: 1.1rem;
-        }
-
-        .countries-section {
-            padding: 20px 10% 40px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .countries-section h2 {
-            font-size: 1rem;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .countries-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .country-item {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            padding: 6px 10px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            color: var(--silver);
-            text-transform: uppercase;
-            font-weight: bold;
-        }
+        .nav-card:hover { transform: translateY(-10px); border-color: var(--accent-blue); }
+        .nav-card i { font-size: 2.2rem; color: var(--accent-blue); margin-bottom: 15px; }
+        .nav-card h3 { margin: 10px 0; font-size: 1.4rem; color: var(--silver); }
+        .nav-card p { color: #cccccc; font-size: 0.9rem; }
 
         .cta-main {
-            margin-top: 5px;
+            margin-top: 10px;
             display: inline-block;
             padding: 14px 40px;
-            background: transparent;
             border: 2px solid var(--accent-blue);
             color: var(--accent-blue);
             text-decoration: none;
             font-weight: bold;
             border-radius: 4px;
-            transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: 0.3s;
         }
 
-        .cta-main:hover {
-            background: var(--accent-blue);
-            color: #000;
-            box-shadow: 0 0 20px var(--accent-blue);
-        }
+        .cta-main:hover { background: var(--accent-blue); color: #000; box-shadow: 0 0 20px var(--accent-blue); }
 
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.75rem;
-            position: relative;
-            z-index: 1;
-        }
+        .countries-section { padding: 40px 10%; text-align: center; }
+        .countries-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+        .country-item { background: rgba(255,255,255,0.05); padding: 6px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: bold; }
 
-        /* AJUSTES RESPONSIVE PARA MÓVIL (POCO X7 PRO) */
+        footer { text-align: center; padding: 40px; color: rgba(255,255,255,0.3); font-size: 0.75rem; }
+
         @media (max-width: 768px) {
-            header { padding: 40px 15px 10px; }
-            h1.agency-name { font-size: 3rem; } /* Ajuste de tamaño en móvil */
-            .hero-subtitle { font-size: 0.95rem; letter-spacing: 2px; }
-            .bigo-status { font-size: 0.8rem; letter-spacing: 1px; }
-            body::before { background-size: 110%; background-position: center 15%; opacity: 0.2; }
-            .nav-grid { padding: 10px 5% 40px; }
-            .about-section { padding: 40px 5%; }
-            .about-section h2 { font-size: 1.8rem; }
-            .slider-container { width: 70%; max-width: 240px; margin: 25px auto; }
+            h1.agency-name { font-size: 4.5rem; }
+            .hero-subtitle { font-size: 0.85rem; }
+            .slider-container { width: 70%; max-width: 240px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1 class="agency-name">SUITS AGENCY</h1>
-        
+        <h1 class="agency-name">Suits Agency</h1>
         <div class="official-titles">
-            <p class="hero-subtitle">Captación de Talentos y Gestión de Streamers</p>
+            <p class="hero-subtitle">Agencia de Streaming</p>
             <p class="bigo-status">Agencia Oficial de Bigo Live</p>
         </div>
 
         <div class="slider-container">
-            <div class="slide active">
-                <img src="publicidad1.jpg" alt="Streamer Bigo 1">
-            </div>
-            <div class="slide">
-                <img src="publicidad2.jpg" alt="Streamer Bigo 2">
-            </div>
-            <div class="slide">
-                <img src="publicidad3.jpg" alt="Streamer Bigo 3">
-            </div>
+            <div class="slide active"><img src="publicidad1.jpg" alt="1"></div>
+            <div class="slide"><img src="publicidad2.jpg" alt="2"></div>
+            <div class="slide"><img src="publicidad3.jpg" alt="3"></div>
         </div>
 
         <a href="registro/" class="cta-main">Postular ahora</a>
@@ -322,69 +191,21 @@
             <h3>Tabla de Metas</h3>
             <p>Estructura de ganancias y bonos por cumplimiento.</p>
         </a>
-
         <a href="academia/" class="nav-card">
             <i class="fas fa-rocket"></i>
             <h3>Academia</h3>
-            <p>Guías paso a paso para dominar Bigo Live y subir de nivel.</p>
+            <p>Guías paso a paso para dominar Bigo Live.</p>
         </a>
-
         <a href="https://wa.me/595982678695" target="_blank" class="nav-card">
             <i class="fab fa-whatsapp"></i>
             <h3>Soporte Manager</h3>
-            <p>Atención directa para dudas sobre tu cuenta o pagos.</p>
+            <p>Atención directa para dudas o pagos.</p>
         </a>
     </section>
 
-    <section class="about-section">
-        <h2>Liderando el Streaming en Latam</h2>
-        <p>
-            En <strong>Suits Agency</strong>, nos especializamos en transformar creadores de contenido en emisores profesionales de alto impacto. Como agencia oficial de <strong>Bigo Live</strong>, ofrecemos un ecosistema de soporte estratégico y gestión transparente para maximizar tus resultados.
-        </p>
-    </section>
-
     <section class="countries-section">
-        <h2>Cobertura Regional</h2>
         <div class="countries-grid">
-            <div class="country-item">🇦🇷 AR</div>
-            <div class="country-item">🇧🇴 BO</div>
-            <div class="country-item">🇨🇱 CL</div>
-            <div class="country-item">🇨🇴 CO</div>
-            <div class="country-item">🇨🇷 CR</div>
-            <div class="country-item">🇨🇺 CU</div>
-            <div class="country-item">🇩🇴 DO</div>
-            <div class="country-item">🇪🇨 EC</div>
-            <div class="country-item">🇸🇻 SV</div>
-            <div class="country-item">🇬🇹 GT</div>
-            <div class="country-item">🇭🇳 HN</div>
-            <div class="country-item">🇲🇽 MX</div>
-            <div class="country-item">🇳🇮 NI</div>
-            <div class="country-item">🇵🇦 PA</div>
-            <div class="country-item">🇵🇾 PY</div>
-            <div class="country-item">🇵🇪 PE</div>
-            <div class="country-item">🇵🇷 PR</div>
-            <div class="country-item">🇺🇾 UY</div>
-            <div class="country-item">🇻🇪 VE</div>
-            <div class="country-item">🇯🇲 JM</div>
-        </div>
-    </section>
-
-    <footer>
-        &copy; 2026 Suits Agency | Agencia Oficial Bigo Live.
-    </footer>
-
-    <script>
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-
-        setInterval(nextSlide, 5000);
-    </script>
-
-</body>
-</html>
+            <div class="country-item">🇦🇷 AR</div><div class="country-item">🇧🇴 BO</div>
+            <div class="country-item">🇨🇱 CL</div><div class="country-item">🇨🇴 CO</div>
+            <div class="country-item">🇲🇽 MX</div><div class="country-item">🇵
+                
