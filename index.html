@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suits Agency | Bigo Live</title>
+
+    <meta name="description" content="Suits Agency: Agencia Oficial de Bigo Live. Reclutamiento de streamers en Paraguay, Colombia, México, Perú y 24 países. Únete y gana dinero transmitiendo.">
+    <meta name="keywords" content="Bigo Live, Suits Agency, Agencia Bigo, Ganar dinero streaming, Reclutamiento streamers, Argentina, Bolivia, Chile, Colombia, Costa Rica, Ecuador, El Salvador, Guatemala, Honduras, México, Nicaragua, Panamá, Paraguay, Perú, Puerto Rico, Uruguay, Venezuela">
+    <meta name="author" content="Suits Agency">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Suits Agency | Conviértete en Agente Oficial Bigo Live">
+    <meta property="og:description" content="Colaboramos con emisores de 24 países. Soporte, academia y los mejores bonos del ecosistema Bigo.">
+    <meta property="og:image" content="https://suitsagencylat.github.io/logo.png">
+    <meta property="og:url" content="https://suitsagencylat.github.io/">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* CONFIGURACIÓN DE COLORES BASADA EN TU LOGO */
         :root {
             --bg-color: #050505; 
-            --accent-blue: #00d4ff; /* Cian del brillo */
-            --silver: #e0e0e0; /* Plateado de las letras AS */
-            --card-bg: rgba(255, 255, 255, 0.02); /* Casi invisible para ver el logo */
+            --accent-blue: #00d4ff; 
+            --silver: #e0e0e0; 
+            --card-bg: rgba(255, 255, 255, 0.02); 
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -24,19 +35,15 @@
             overflow-x: hidden;
         }
 
-        /* LOGO DE FONDO (MARCA DE AGUA) */
         body::before {
             content: "";
             position: fixed;
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('logo.png'); 
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 85%; /* Tamaño grande */
-            opacity: 0.4; /* Visibilidad clara del logo */
+            background-size: 85%; 
+            opacity: 0.4; 
             z-index: -1;
             filter: brightness(1.1);
         }
@@ -72,30 +79,29 @@
             opacity: 0.8;
         }
 
-        /* CONTENEDOR DE TARJETAS TRASLÚCIDAS */
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            padding: 20px 10% 80px;
+            padding: 20px 10% 40px;
             position: relative;
             z-index: 1;
         }
 
         .nav-card {
-            background: var(--card-bg); /* Transparencia total */
+            background: var(--card-bg);
             padding: 45px 30px;
             border-radius: 20px;
             text-decoration: none;
             color: white;
             border: 1px solid var(--glass-border);
             text-align: center;
-            backdrop-filter: blur(8px); /* Efecto cristal para legibilidad */
+            backdrop-filter: blur(8px);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .nav-card:hover {
-            background: rgba(0, 212, 255, 0.08); /* Tinte azul muy suave */
+            background: rgba(0, 212, 255, 0.08);
             border-color: var(--accent-blue);
             transform: translateY(-12px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
@@ -121,6 +127,43 @@
             line-height: 1.4;
         }
 
+        /* NUEVA SECCIÓN DE PAÍSES */
+        .countries-section {
+            padding: 40px 10%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countries-section h2 {
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .country-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            padding: 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--silver);
+            backdrop-filter: blur(4px);
+        }
+
         .cta-main {
             margin-top: 30px;
             display: inline-block;
@@ -144,18 +187,18 @@
 
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             color: rgba(255, 255, 255, 0.3);
             font-size: 0.75rem;
             position: relative;
             z-index: 1;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             body::before { background-size: 100%; opacity: 0.3; }
-            .nav-grid { padding: 20px 5% 50px; }
+            .nav-grid { padding: 20px 5% 40px; }
+            .countries-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -171,7 +214,7 @@
         <a href="pagos/" class="nav-card">
             <i class="fas fa-gem"></i>
             <h3>Tabla de Metas</h3>
-            <p>Estructura de ganancias en COP y bonos por cumplimiento.</p>
+            <p>Estructura de ganancias y bonos por cumplimiento.</p>
         </a>
 
         <a href="academia/" class="nav-card">
@@ -183,10 +226,35 @@
         <a href="https://wa.me/595982678695" target="_blank" class="nav-card">
             <i class="fab fa-whatsapp"></i>
             <h3>Soporte Manager</h3>
-            <p>Atención directa para resolver dudas sobre tu cuenta o pagos.</p>
+            <p>Atención directa para dudas sobre tu cuenta o pagos.</p>
         </a>
     </section>
 
+    <section class="countries-section">
+        <h2>Cobertura en 24 Países</h2>
+        <div class="countries-grid">
+            <div class="country-item">🇦🇷 Argentina</div>
+            <div class="country-item">🇧🇴 Bolivia</div>
+            <div class="country-item">🇨🇱 Chile</div>
+            <div class="country-item">🇨🇴 Colombia</div>
+            <div class="country-item">🇨🇷 Costa Rica</div>
+            <div class="country-item">🇪🇨 Ecuador</div>
+            <div class="country-item">🇸🇻 El Salvador</div>
+            <div class="country-item">🇬🇹 Guatemala</div>
+            <div class="country-item">🇭🇳 Honduras</div>
+            <div class="country-item">🇲🇽 México</div>
+            <div class="country-item">🇳🇮 Nicaragua</div>
+            <div class="country-item">🇵🇦 Panamá</div>
+            <div class="country-item">🇵🇾 Paraguay</div>
+            <div class="country-item">🇵🇪 Perú</div>
+            <div class="country-item">🇩🇴 R. Dominicana</div>
+            <div class="country-item">🇺🇾 Uruguay</div>
+            <div class="country-item">🇻🇪 Venezuela</div>
+            <div class="country-item">🇵🇷 Puerto Rico</div>
+            <div class="country-item">🇨🇺 Cuba</div>
+            <div class="country-item">🇯🇲 Jamaica</div>
+        </div>
+    </section>
 
     <footer>
         &copy; 2026 Suits Agency | Agencia Oficial Bigo Live.
