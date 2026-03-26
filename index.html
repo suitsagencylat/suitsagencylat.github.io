@@ -16,7 +16,11 @@
     <meta property="og:image" content="https://suitsagencylat.github.io/logo.png">
     <meta property="og:url" content="https://suitsagencylat.github.io/">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         :root {
             --bg-color: #050505; 
@@ -24,12 +28,15 @@
             --silver: #e0e0e0; 
             --card-bg: rgba(255, 255, 255, 0.02); 
             --glass-border: rgba(255, 255, 255, 0.1);
+            /* Fuentes asignadas a variables */
+            --font-luxury: 'Cormorant Garamond', serif;
+            --font-clean: 'Inter', sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
             color: #ffffff;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: var(--font-clean);
             margin: 0;
             min-height: 100vh;
             overflow-x: hidden;
@@ -55,40 +62,58 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 20px 10px;
+            padding: 50px 20px 15px; /* Más espacio superior */
             position: relative;
             z-index: 1;
         }
 
-        h1 {
-            font-size: 4rem;
+        /* ESTILO DEL NOMBRE PRINCIPAL (LUJO) */
+        h1.agency-name {
+            font-family: var(--font-luxury);
+            font-size: 5rem; /* Grande y elegante */
+            font-weight: 600;
+            color: #ffffff;
             margin: 0;
-            background: linear-gradient(to bottom, #ffffff, #888888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 5px;
-            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.4));
+            letter-spacing: 2px;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+            text-transform: none; /* No forzar mayúsculas */
+        }
+
+        /* BLOQUE DE TÍTULOS OFICIALES */
+        .official-titles {
+            font-family: var(--font-clean);
+            margin-top: -5px; /* Pegado al nombre */
         }
 
         .hero-subtitle {
             color: var(--silver);
-            font-size: 1rem;
+            font-size: 1.1rem;
             letter-spacing: 3px;
-            margin-top: 10px;
+            margin: 10px 0 5px;
             text-transform: uppercase;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
-        /* --- AJUSTE DE CARRUSEL SIN BORDES NEGROS --- */
+        /* TEXTO OFICIAL DE BIGO (EN AZUL) */
+        .bigo-status {
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.3));
+        }
+
         .slider-container {
-            width: 75%; /* Más estrecho para formato móvil */
+            width: 75%; 
             max-width: 260px;
-            aspect-ratio: 9 / 16; /* Forzamos la forma de la imagen vertical */
+            aspect-ratio: 9 / 16; 
             position: relative;
             overflow: hidden;
             border-radius: 15px;
             border: 1px solid var(--glass-border);
-            margin: 25px auto;
+            margin: 30px auto; /* Más espacio con el título */
             background: transparent;
             box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
         }
@@ -109,7 +134,7 @@
         .slide img {
             width: 100%; 
             height: 100%;
-            object-fit: cover; /* Ahora sí, llena todo el contenedor sin bordes */
+            object-fit: cover; 
         }
 
         .nav-grid {
@@ -172,8 +197,10 @@
         }
 
         .about-section h2 {
+            font-family: var(--font-luxury);
+            font-weight: 600;
             color: var(--accent-blue);
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             margin-bottom: 20px;
         }
 
@@ -250,21 +277,29 @@
             z-index: 1;
         }
 
+        /* AJUSTES RESPONSIVE PARA MÓVIL (POCO X7 PRO) */
         @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; letter-spacing: 3px; }
-            .hero-subtitle { font-size: 0.85rem; letter-spacing: 2px; }
+            header { padding: 40px 15px 10px; }
+            h1.agency-name { font-size: 3rem; } /* Ajuste de tamaño en móvil */
+            .hero-subtitle { font-size: 0.95rem; letter-spacing: 2px; }
+            .bigo-status { font-size: 0.8rem; letter-spacing: 1px; }
             body::before { background-size: 110%; background-position: center 15%; opacity: 0.2; }
             .nav-grid { padding: 10px 5% 40px; }
             .about-section { padding: 40px 5%; }
-            .slider-container { width: 70%; max-width: 240px; }
+            .about-section h2 { font-size: 1.8rem; }
+            .slider-container { width: 70%; max-width: 240px; margin: 25px auto; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>SUITS AGENCY</h1>
-        <p class="hero-subtitle">Resultados reales para tu talento</p>
+        <h1 class="agency-name">Suits Agency</h1>
+        
+        <div class="official-titles">
+            <p class="hero-subtitle">Reclutamiento y Gestión de Streaming</p>
+            <p class="bigo-status">Agencia Oficial de Bigo Live</p>
+        </div>
 
         <div class="slider-container">
             <div class="slide active">
@@ -304,7 +339,7 @@
     <section class="about-section">
         <h2>Liderando el Streaming en Latam</h2>
         <p>
-            En <strong>Suits Agency</strong>, nos especializamos en transformar creadores de contenido en emisores profesionales de alto impacto. Como agencia oficial de <strong>Bigo Live</strong>, ofrecemos un ecosistema de soporte estratégico y gestión transparente.
+            En <strong>Suits Agency</strong>, nos especializamos en transformar creadores de contenido en emisores profesionales de alto impacto. Como agencia oficial de <strong>Bigo Live</strong>, ofrecemos un ecosistema de soporte estratégico y gestión transparente para maximizar tus resultados.
         </p>
     </section>
 
