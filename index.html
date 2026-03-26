@@ -98,11 +98,45 @@
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
-        .slide img {
-            width: 100%; 
-            height: 100%;
-            object-fit: contain; /* Esto evita que la imagen se recorte */
-            background-color: #000; /* Pone fondo negro si la imagen es más flaca que el cuadro */
+        <style>
+    /* ... (mantén todo lo anterior igual) ... */
+
+    .slider-container {
+        width: 90%; 
+        max-width: 320px;
+        height: 500px; /* Aumentado para que luzca el formato vertical */
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        border: 1px solid var(--glass-border);
+        margin: 30px auto;
+        background: #000;
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+    }
+
+    .slide {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    /* ESTA ES LA LÍNEA QUE FALTABA PARA QUE SE VEAN */
+    .slide.active { 
+        opacity: 1; 
+        z-index: 2;
+    }
+
+    .slide img {
+        width: 100%; 
+        height: 100%;
+        object-fit: contain; 
+        background-color: #000;
+    }
+
+    /* ... (el resto del código se queda igual) ... */
+</style>
+
         }
 
 
