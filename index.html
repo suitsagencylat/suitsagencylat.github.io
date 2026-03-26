@@ -221,14 +221,29 @@
             position: relative;
             z-index: 1;
         }
+/* --- ESTE ES EL NUEVO BLOQUE ACTUALIZADO --- */
+@media (max-width: 768px) {
+    h1 { 
+        font-size: 2.2rem; /* Título más pequeño en móvil */
+        letter-spacing: 3px; /* Espaciado ajustado */
+    }
+    .hero-subtitle {
+        font-size: 0.85rem; /* Subtítulo ajustado */
+        letter-spacing: 2px;
+    }
+    body::before { 
+        background-size: 110%; /* Logo más grande pero... */
+        background-position: center 15%; /* ...subido para alinearlo con el título */
+        opacity: 0.2; /* Mucho más sutil para legibilidad */
+    }
+    .nav-grid { 
+        padding: 10px 5% 40px; /* Menos espacio superior */
+    }
+    .countries-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-section { padding: 40px 5%; }
+}
+/* ---------------------------------------------- */
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            body::before { background-size: 110%; opacity: 0.2; }
-            .nav-grid { padding: 20px 5% 40px; }
-            .countries-grid { grid-template-columns: repeat(2, 1fr); }
-            .about-section { padding: 40px 5%; }
-        }
     </style>
 </head>
 <body>
