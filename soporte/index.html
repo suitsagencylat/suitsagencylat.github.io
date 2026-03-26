@@ -3,183 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte | Suits Agency - Bigo Live Official</title>
+    <title>Soporte | Suits Agency</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <style>
         :root {
             --bg-color: #050505;
             --accent-blue: #00d4ff;
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --header-bg: rgba(5, 5, 5, 0.9); /* Fondo casi opaco para el header fijo */
+            --header-bg: rgba(5, 5, 5, 0.98);
         }
 
         body {
-            background-color: var(--bg-color);
+            background: radial-gradient(circle at top, #121212 0%, #050505 100%);
             color: white;
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 0; /* Eliminamos el padding del body */
-            padding-top: 80px; /* Espacio para que el header fijo no tape el contenido */
+            padding-top: 90px; /* Espacio para el header fijo */
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- ESTILO DEL ENCABEZADO FIJO (STICKY HEADER) --- */
+        /* --- HEADER FIJO MEJORADO --- */
         header.main-header {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            background-color: var(--header-bg);
-            backdrop-filter: blur(10px); /* Efecto borroso elegante */
+            top: 0; left: 0; width: 100%; height: 75px;
+            background: var(--header-bg);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 5%; /* Padding lateral flexible */
+            padding: 0 5%;
             box-sizing: border-box;
-            z-index: 1000; /* Asegurar que esté por encima de todo */
+            z-index: 9999;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
         }
 
-        /* LADO IZQUIERDO: NOMBRE DE LA AGENCIA (LOGO) */
-        .header-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-        }
-
+        .header-logo { text-decoration: none; color: white; }
         .header-logo h1 {
             font-family: 'Tangerine', cursive;
-            font-size: 3rem; /* Tamaño ajustado para el header */
+            font-size: 2.8rem;
             margin: 0;
             line-height: 1;
         }
 
-        /* LADO DERECHO: MENÚ DE NAVEGACIÓN */
-        .header-nav {
-            display: flex;
-            gap: 20px;
-        }
-
+        .header-nav { display: flex; gap: 15px; }
         .nav-link {
             text-decoration: none;
-            color: #aaa;
-            font-size: 0.85rem;
-            font-weight: 500;
+            color: #ccc;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: 0.3s;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 4px;
+        }
+        .nav-link.active { color: var(--accent-blue); font-weight: 600; }
+        .nav-link i { font-size: 1rem; }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        
+        .main-title { text-align: center; font-size: 1.6rem; margin-bottom: 5px; }
+        .subtitle { 
+            text-align: center; color: var(--accent-blue); 
+            font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 40px; opacity: 0.8;
         }
 
-        .nav-link:hover, .nav-link.active {
-            color: var(--accent-blue);
-        }
-
-        .nav-link i {
-            font-size: 1rem;
-        }
-
-        /* --- CONTENIDO PRINCIPAL --- */
-        .container { max-width: 650px; margin: 0 auto; padding: 40px 20px 60px; }
-
-        .main-title {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: white;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            margin-bottom: 50px;
-            opacity: 0.8;
-        }
-
-        /* --- ESTILO FAQ --- */
-        .faq-section h2 { font-size: 1.2rem; border-left: 3px solid var(--accent-blue); padding-left: 15px; margin-bottom: 25px; letter-spacing: 1px; }
+        /* --- ACORDEONES (FAQ) CORREGIDOS --- */
+        .faq-section h2 { font-size: 1.1rem; border-left: 3px solid var(--accent-blue); padding-left: 12px; margin-bottom: 20px; }
 
         .faq-item {
             background: var(--glass);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
             margin-bottom: 12px;
-            overflow: hidden;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
         .faq-question {
-            padding: 18px 20px;
+            padding: 20px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 500;
             font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .faq-answer {
-            padding: 0 20px;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s ease-in-out;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            background: rgba(255,255,255,0.01);
+        }
+
+        .faq-answer-content {
+            padding: 0 20px 20px;
             color: #aaa;
             font-size: 0.9rem;
             line-height: 1.6;
         }
 
-        .faq-item.active { border-color: var(--accent-blue); background: rgba(0, 212, 255, 0.02); }
-        .faq-item.active .faq-answer { padding: 5px 20px 20px; max-height: 400px; /* Aumentado por si acaso */ }
-        .faq-item.active i { transform: rotate(180deg); color: var(--accent-blue); }
+        /* Clase activa para JavaScript */
+        .faq-item.open { border-color: var(--accent-blue); background: rgba(0, 212, 255, 0.03); }
+        .faq-item.open .faq-answer { max-height: 1000px; transition: max-height 0.8s ease-in; }
+        .faq-item.open i { transform: rotate(180deg); color: var(--accent-blue); }
 
-        /* --- LINKS --- */
+        /* --- LINKS DE INTERÉS --- */
         .links-section { margin-top: 50px; }
-        .links-section h2 { font-size: 1.2rem; border-left: 3px solid var(--accent-blue); padding-left: 15px; margin-bottom: 20px; }
+        .links-section h2 { font-size: 1.1rem; border-left: 3px solid var(--accent-blue); padding-left: 12px; margin-bottom: 20px; }
 
         .interest-link {
             display: flex;
             align-items: center;
             background: var(--glass);
-            padding: 18px;
+            padding: 15px;
             border-radius: 12px;
             text-decoration: none;
             color: white;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             border: 1px solid var(--glass-border);
             transition: 0.3s;
         }
+        .interest-link i { margin-right: 15px; color: var(--accent-blue); font-size: 1.2rem; }
+        .link-text span { display: block; font-size: 0.7rem; color: #666; margin-top: 2px; }
 
-        .interest-link:hover { border-color: var(--accent-blue); transform: translateX(8px); background: rgba(255,255,255,0.05); }
-        .interest-link i { margin-right: 15px; color: var(--accent-blue); font-size: 1.3rem; }
-        .link-text span { display: block; font-size: 0.75rem; color: #666; margin-top: 3px; }
+        footer { text-align: center; padding: 40px; color: #444; font-size: 0.7rem; }
 
-        footer { text-align: center; padding: 40px; color: rgba(255,255,255,0.3); font-size: 0.75rem; position: relative; z-index: 1; border-top: 1px solid var(--glass-border); }
-
-        /* --- AJUSTES RESPONSIVE PARA MÓVIL --- */
-        @media (max-width: 600px) {
-            header.main-header { padding: 0 3%; height: 60px; }
-            .header-logo h1 { font-size: 2.5rem; }
-            .header-nav { gap: 10px; }
-            .nav-link { font-size: 0.7rem; gap: 4px; letter-spacing: 0.5px; }
-            .nav-link i { font-size: 0.9rem; }
-            body { padding-top: 70px; }
-            .main-title { font-size: 1.5rem; }
-            .container { padding: 30px 15px 50px; }
+        @media (max-width: 480px) {
+            header.main-header { padding: 0 4%; }
+            .header-logo h1 { font-size: 2.3rem; }
+            .nav-link { font-size: 0.65rem; gap: 2px; }
         }
     </style>
 </head>
@@ -189,9 +151,93 @@
         <a href="../" class="header-logo">
             <h1>Suits Agency</h1>
         </a>
-        
         <nav class="header-nav">
             <a href="../" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
             <a href="../pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
             <a href="#" class="nav-link active"><i class="fa-solid fa-headset"></i>Soporte</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2 class="main-title">Centro de Soporte</h2>
+        <p class="subtitle">Resultados reales para tu talento</p>
+
+        <section class="faq-section">
+            <h2>Preguntas Frecuentes</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Cómo se cuentan mis semillas y horas?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Las semillas se acumulan por los regalos recibidos. Un "día válido" requiere transmitir al menos 2 horas en un mismo día (horario reset 00:00 local en Colombia/Paraguay).
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Cuándo recibo el pago de mis metas?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Los pagos se procesan entre los días 5 y 10 del mes siguiente al cierre. Puedes recibir tu dinero vía Payoneer, Wise o cuenta local.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Es obligatorio estar en la agencia?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Sí, para recibir bonos exclusivos de <strong>Suits Agency</strong> y soporte prioritario oficial en Bigo Live.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="links-section">
+            <h2>Enlaces de Interés</h2>
+            <a href="https://wa.me/595982678695" target="_blank" class="interest-link">
+                <i class="fa-brands fa-whatsapp"></i>
+                <div class="link-text">WhatsApp Manager<span>Atención personalizada directa</span></div>
+            </a>
+            <a href="../pagos/" class="interest-link">
+                <i class="fa-solid fa-table-list"></i>
+                <div class="link-text">Tabla de Metas 2026<span>Revisa tus objetivos mensuales</span></div>
+            </a>
+        </section>
+
+        <footer>&copy; 2026 Suits Agency | Agencia Oficial Bigo Live</footer>
+    </div>
+
+    <script>
+        // SCRIPT DE ACORDEÓN CORREGIDO PARA MÓVILES
+        document.addEventListener('DOMContentLoaded', () => {
+            const questions = document.querySelectorAll('.faq-question');
             
+            questions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    
+                    // Cerrar otros acordeones abiertos
+                    document.querySelectorAll('.faq-item').forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('open');
+                        }
+                    });
+
+                    // Abrir/Cerrar el actual
+                    item.classList.toggle('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
