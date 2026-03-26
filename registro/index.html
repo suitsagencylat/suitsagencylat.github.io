@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pasos de Registro | Suits Agency</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         :root {
             --bg-color: #050505;
             --accent-blue: #00d4ff;
             --glass-border: rgba(255, 255, 255, 0.12);
             --silver: #e0e0e0;
+            --font-signature: 'Tangerine', cursive;
         }
 
         body {
@@ -19,8 +25,8 @@
             font-family: 'Inter', sans-serif;
             margin: 0; padding: 0;
             min-height: 100vh;
-            position: relative;
             overflow-x: hidden;
+            padding-top: 110px; /* Espacio para el header fijo */
         }
 
         /* Logo de Fondo */
@@ -37,6 +43,81 @@
             pointer-events: none;
         }
 
+        /* --- ENCABEZADO FIJO UNIFICADO --- */
+        header.main-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 95px;
+            background: rgba(5, 5, 5, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4%;
+            box-sizing: border-box;
+            z-index: 10000;
+        }
+
+        .header-logo { 
+            text-decoration: none; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
+        }
+
+        .header-logo img {
+            height: 65px; 
+            width: auto;
+            filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
+        }
+
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .header-logo h1 {
+            font-family: var(--font-signature);
+            font-size: 2.2rem;
+            margin: 0;
+            line-height: 0.7;
+        }
+
+        .header-logo .leyenda {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
+
+        .header-nav {
+            position: fixed;
+            top: 0; right: -100%; width: 75%; height: 100vh;
+            background: #080808;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            transition: right 0.4s ease-in-out;
+            z-index: 10001;
+            border-left: 1px solid var(--glass-border);
+        }
+
+        .header-nav.active { right: 0; }
+        .nav-link { text-decoration: none; color: #eee; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 15px; }
+        .overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 9999; }
+        .overlay-bg.active { display: block; }
+
+        /* --- CONTENIDO DE REGISTRO (SIN CAMBIOS) --- */
         .main-content {
             position: relative;
             z-index: 10;
@@ -44,28 +125,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 0;
         }
 
         .container { width: 90%; max-width: 500px; }
 
-        .back-btn {
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        header { text-align: center; margin-bottom: 30px; }
-        h1 {
+        header.content-title { text-align: center; margin-bottom: 30px; }
+        header.content-title h2 {
             font-size: 1.8rem;
             background: linear-gradient(to bottom, #ffffff, #aaaaaa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
+            margin: 0;
         }
 
         .step-card {
@@ -89,7 +160,6 @@
         .step-card h3 { margin: 10px 0; font-size: 1.1rem; }
         .step-card p { font-size: 0.85rem; color: var(--silver); line-height: 1.4; }
 
-        /* Contenedor de la imagen perfil.jpg */
         .guide-container {
             margin: 15px 0;
             text-align: center;
@@ -131,13 +201,29 @@
 </head>
 <body>
 
+    <div class="overlay-bg" id="overlay"></div>
+
+    <header class="main-header">
+        <a href="../" class="header-logo">
+            <img src="logo.png" alt="Logo Suits Agency">
+            <div class="logo-text-group">
+                <h1>Suits Agency</h1>
+                <span class="leyenda">Agencia oficial de Bigo Live</span>
+            </div>
+        </a>
+        <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
+        <nav class="header-nav" id="mainNav">
+            <a href="../" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
+            <a href="../pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
+            <a href="../soporte/" class="nav-link"><i class="fa-solid fa-headset"></i>Soporte</a>
+        </nav>
+    </header>
+
     <div class="main-content">
         <div class="container">
-            <a href="/" class="back-btn">
-<i class="fas fa-arrow-left"></i> VOLVER AL INICIO</a>
             
-            <header>
-                <h1>Pasos para Unirte</h1>
+            <header class="content-title">
+                <h2>Pasos para Unirte</h2>
             </header>
 
             <div class="step-card">
@@ -176,5 +262,25 @@
         </footer>
     </div>
 
+    <script>
+        // Script del Menú Hamburguesa
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const overlay = document.getElementById('overlay');
+
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.toggle('fa-xmark');
+        });
+
+        overlay.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            overlay.classList.remove('active');
+            menuToggle.querySelector('i').classList.add('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.remove('fa-xmark');
+        });
+    </script>
 </body>
 </html>
