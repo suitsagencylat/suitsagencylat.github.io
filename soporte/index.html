@@ -28,10 +28,10 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- HEADER: LOGO MAXIMIZADO Y LEYENDA AZUL --- */
+        /* --- HEADER: LOGO A LA IZQUIERDA Y TEXTO CENTRADO --- */
         header.main-header {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 90px;
+            top: 0; left: 0; width: 100%; height: 95px;
             background: rgba(5, 5, 5, 0.98);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
@@ -48,37 +48,38 @@
             color: white; 
             display: flex; 
             align-items: center; 
-            gap: 12px;
+            gap: 15px;
         }
 
-        /* Logo con tamaño máximo */
         .header-logo img {
             height: 65px; 
             width: auto;
             filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
         }
 
+        /* GRUPO DE TEXTO CENTRADO */
         .logo-text-group {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center; /* Centra el texto y la leyenda entre sí */
+            text-align: center;
         }
 
         .header-logo h1 {
             font-family: var(--font-signature);
             font-size: 2.2rem;
             margin: 0;
-            line-height: 0.8;
+            line-height: 0.7; /* Ajuste fino para la posición del nombre */
         }
 
-        /* Leyenda azul debajo del nombre */
         .header-logo .leyenda {
             font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--accent-blue);
             font-weight: 700;
-            margin-top: 4px;
+            margin-top: 8px; /* Espacio entre el nombre y la leyenda */
         }
 
         .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
