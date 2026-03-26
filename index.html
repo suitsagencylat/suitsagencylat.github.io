@@ -79,25 +79,25 @@
             opacity: 0.8;
         }
 
-        /* CONFIGURACIÓN DEL CARRUSEL */
+        /* --- AJUSTE DE CARRUSEL SIN BORDES NEGROS --- */
         .slider-container {
-            width: 90%; 
-            max-width: 320px;
-            height: 500px; /* Altura ideal para móviles */
+            width: 75%; /* Más estrecho para formato móvil */
+            max-width: 260px;
+            aspect-ratio: 9 / 16; /* Forzamos la forma de la imagen vertical */
             position: relative;
             overflow: hidden;
-            border-radius: 20px;
+            border-radius: 15px;
             border: 1px solid var(--glass-border);
-            margin: 30px auto;
-            background: #000;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+            margin: 25px auto;
+            background: transparent;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
         }
 
         .slide {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 0.8s ease-in-out;
             z-index: 1;
         }
 
@@ -109,8 +109,7 @@
         .slide img {
             width: 100%; 
             height: 100%;
-            object-fit: contain; /* Muestra la imagen completa sin recortes */
-            background-color: #000;
+            object-fit: cover; /* Ahora sí, llena todo el contenedor sin bordes */
         }
 
         .nav-grid {
@@ -138,7 +137,6 @@
             background: rgba(0, 212, 255, 0.08);
             border-color: var(--accent-blue);
             transform: translateY(-12px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
 
         .nav-card i {
@@ -177,7 +175,6 @@
             color: var(--accent-blue);
             font-size: 1.8rem;
             margin-bottom: 20px;
-            letter-spacing: 2px;
         }
 
         .about-section p {
@@ -201,7 +198,6 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 20px;
-            opacity: 0.9;
         }
 
         .countries-grid {
@@ -222,11 +218,10 @@
             color: var(--silver);
             text-transform: uppercase;
             font-weight: bold;
-            letter-spacing: 1px;
         }
 
         .cta-main {
-            margin-top: 10px;
+            margin-top: 5px;
             display: inline-block;
             padding: 14px 40px;
             background: transparent;
@@ -258,14 +253,10 @@
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; letter-spacing: 3px; }
             .hero-subtitle { font-size: 0.85rem; letter-spacing: 2px; }
-            body::before { 
-                background-size: 110%; 
-                background-position: center 15%; 
-                opacity: 0.2; 
-            }
+            body::before { background-size: 110%; background-position: center 15%; opacity: 0.2; }
             .nav-grid { padding: 10px 5% 40px; }
             .about-section { padding: 40px 5%; }
-            .slider-container { height: 450px; width: 85%; }
+            .slider-container { width: 70%; max-width: 240px; }
         }
     </style>
 </head>
@@ -313,7 +304,7 @@
     <section class="about-section">
         <h2>Liderando el Streaming en Latam</h2>
         <p>
-            En <strong>Suits Agency</strong>, nos especializamos en transformar creadores de contenido en emisores profesionales de alto impacto. Como agencia oficial de <strong>Bigo Live</strong>, ofrecemos un ecosistema de soporte estratégico, capacitación avanzada y gestión de pagos transparente.
+            En <strong>Suits Agency</strong>, nos especializamos en transformar creadores de contenido en emisores profesionales de alto impacto. Como agencia oficial de <strong>Bigo Live</strong>, ofrecemos un ecosistema de soporte estratégico y gestión transparente.
         </p>
     </section>
 
@@ -340,10 +331,6 @@
             <div class="country-item">🇺🇾 UY</div>
             <div class="country-item">🇻🇪 VE</div>
             <div class="country-item">🇯🇲 JM</div>
-            <div class="country-item">🇧🇸 BS</div>
-            <div class="country-item">🇧🇧 BB</div>
-            <div class="country-item">🇰🇾 KY</div>
-            <div class="country-item">🇹🇹 TT</div>
         </div>
     </section>
 
@@ -356,15 +343,11 @@
         let currentSlide = 0;
 
         function nextSlide() {
-            // Eliminar active de la imagen actual
             slides[currentSlide].classList.remove('active');
-            // Pasar a la siguiente imagen
             currentSlide = (currentSlide + 1) % slides.length;
-            // Añadir active a la nueva imagen
             slides[currentSlide].classList.add('active');
         }
 
-        // Intervalo de 5 segundos
         setInterval(nextSlide, 5000);
     </script>
 
