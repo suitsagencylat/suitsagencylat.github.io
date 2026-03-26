@@ -72,13 +72,13 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
         }
 
-        /* Clase para video horizontal (16:9) */
+        /* Proporción Vertical (9:16) */
+        .ratio-vertical { aspect-ratio: 9 / 16; max-width: 300px; }
+        
+        /* Proporción Horizontal (16:9) */
         .ratio-horizontal { aspect-ratio: 16 / 9; }
 
-        /* Clase para video vertical (9:16) */
-        .ratio-vertical { aspect-ratio: 9 / 16; max-width: 300px; }
-
-        video { width: 100%; height: 100%; display: block; object-fit: contain; background: #000; }
+        iframe { width: 100%; height: 100%; border: none; background: #000; }
 
         .video-info {
             padding: 15px;
@@ -123,46 +123,48 @@
             <h1>Academia Suits</h1>
         </header>
 
-        <div id="video-wrapper" class="ratio-horizontal">
-            <video id="main-video" controls poster="Tabla de remuneración.jpeg">
-                <source src="Cómo paga Bigo Live.mp4" type="video/mp4">
-                Tu navegador no soporta video.
-            </div>
+        <div id="video-wrapper" class="ratio-vertical">
+            <iframe id="main-video" 
+                    src="https://www.youtube.com/embed/n-v2Q1TztQA?rel=0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
             <div class="video-info">
-                <h3 id="video-title">Cómo paga Bigo Live</h3>
+                <h3 id="video-title">Cómo revisar el Live Data</h3>
             </div>
         </div>
 
         <div class="video-list">
-            <div class="video-item" onclick="changeVideo('Cómo paga Bigo Live.mp4', 'Cómo paga Bigo Live', 'h')">
-                <i class="fas fa-money-bill-wave"></i>
-                <div>
-                    <span>Cómo paga Bigo Live</span>
-                    <small>Tutorial de pagos y cobros</small>
-                </div>
-            </div>
-
-            <div class="video-item" onclick="changeVideo('Cómo revisar el Live Data.mp4', 'Cómo revisar el Live Data', 'v')">
+            
+            <div class="video-item" onclick="changeVideo('n-v2Q1TztQA', 'Cómo revisar el Live Data', 'v', true)">
                 <i class="fas fa-chart-line"></i>
                 <div>
                     <span>Cómo revisar el Live Data</span>
-                    <small>Estadísticas en tiempo real</small>
+                    <small>YouTube Shorts - Vertical</small>
                 </div>
             </div>
 
-            <div class="video-item" onclick="changeVideo('Explicación tabla de remuneración.mp4', 'Tabla de remuneración', 'h')">
+            <div class="video-item" onclick="changeVideo('Cómo paga Bigo Live.mp4', 'Cómo paga Bigo Live', 'h', false)">
+                <i class="fas fa-money-bill-wave"></i>
+                <div>
+                    <span>Cómo paga Bigo Live</span>
+                    <small>Archivo local - Horizontal</small>
+                </div>
+            </div>
+
+            <div class="video-item" onclick="changeVideo('Explicación tabla de remuneración.mp4', 'Tabla de remuneración', 'h', false)">
                 <i class="fas fa-table"></i>
                 <div>
                     <span>Tabla de remuneración</span>
-                    <small>Metas y bonos mensuales</small>
+                    <small>Archivo local - Horizontal</small>
                 </div>
             </div>
 
-            <div class="video-item" onclick="changeVideo('Primera trasmisión.mp4', 'Primera trasmisión', 'v')">
+            <div class="video-item" onclick="changeVideo('Primera trasmisión.mp4', 'Primera trasmisión', 'v', false)">
                 <i class="fas fa-video"></i>
                 <div>
                     <span>Primera trasmisión</span>
-                    <small>Guía de inicio y configuración</small>
+                    <small>Archivo local - Vertical</small>
                 </div>
             </div>
         </div>
@@ -173,25 +175,36 @@
     </div>
 
     <script>
-        function changeVideo(file, title, orientation) {
-            const video = document.getElementById('main-video');
+        function changeVideo(source, title, orientation, isYouTube) {
             const wrapper = document.getElementById('video-wrapper');
             const titleElement = document.getElementById('video-title');
             
-            // Ajustar el tamaño del reproductor según la orientación
+            // Ajustar el tamaño del reproductor
             if(orientation === 'v') {
-                wrapper.className = 'video-box ratio-vertical';
+                wrapper.className = 'ratio-vertical';
             } else {
-                wrapper.className = 'video-box ratio-horizontal';
+                wrapper.className = 'ratio-horizontal';
             }
 
-            // Cambiar fuente y título
-            video.src = file;
             titleElement.innerText = title;
-            
-            // Reiniciar y reproducir
-            video.load();
-            video.play();
+
+            if (isYouTube) {
+                // Reemplazar el contenido por un iframe para YouTube
+                wrapper.innerHTML = `
+                    <iframe id="main-video" 
+                            src="https://www.youtube.com/embed/${source}?autoplay=1&rel=0" 
+                            allow="autoplay; encrypted-media" 
+                            allowfullscreen>
+                    </iframe>
+                    <div class="video-info"><h3 id="video-title">${title}</h3></div>`;
+            } else {
+                // Reemplazar el contenido por un reproductor de video local
+                wrapper.innerHTML = `
+                    <video id="main-video" controls autoplay>
+                        <source src="${source}" type="video/mp4">
+                    </video>
+                    <div class="video-info"><h3 id="video-title">${title}</h3></div>`;
+            }
         }
     </script>
 
