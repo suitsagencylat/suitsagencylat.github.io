@@ -4,92 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Remuneración Oficial | Suits Agency</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         :root {
-            --bg-color: #050505; /* Negro profundo */
-            --accent-blue: #00d4ff; /* Cian brillante del logo */
-            --silver: #e0e0e0; /* Plateado para texto */
+            --bg-color: #050505;
+            --accent-blue: #00d4ff;
+            --silver: #e0e0e0;
             --glass-border: rgba(255, 255, 255, 0.12);
-            --fuchsia: #ff00ff; /* Fucsia para Ganancia Total */
+            --fuchsia: #ff00ff;
+            --font-signature: 'Tangerine', cursive;
         }
 
-        /* 1. CONFIGURACIÓN BÁSICA DEL BODY */
         body {
             background-color: var(--bg-color);
             color: #ffffff;
             font-family: 'Inter', -apple-system, sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             min-height: 100vh;
-            /* Importante para que el pseudo-elemento funcione */
             position: relative; 
-            overflow-x: hidden; /* Evita scrolls laterales accidentales */
+            overflow-x: hidden;
+            padding-top: 110px; /* Espacio para el header fijo */
         }
 
-        /* 2. EL LOGO DE FONDO (FIJO, AGRANDADO Y DETRÁS) */
+        /* EL LOGO DE FONDO */
         body::before {
             content: "";
-            position: fixed; /* Fijo en la pantalla */
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            background-image: url('logo.png'); /* Ruta a tu imagen */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('logo.png');
             background-repeat: no-repeat;
             background-position: center center;
-            
-            /* --- LOGO AGRANDADO --- */
-            background-size: 110%; /* Ajustado al 110% como pediste */
-            
-            opacity: 0.15; /* Un poco más sutil para móvil */
-            
-            /* --- CAPAS (Z-Index) --- */
-            z-index: -1; /* Capa negativa: AL FONDO DEL TODO */
-            
+            background-size: 110%;
+            opacity: 0.15;
+            z-index: -1;
             filter: brightness(1.2);
-            pointer-events: none; /* Ignora clics, deja pasar al contenido */
+            pointer-events: none;
         }
 
-        /* 3. CONTENEDOR DE CONTENIDO (DELANTE) */
-        .main-content {
-            /* --- CAPAS (Z-Index) --- */
-            position: relative;
-            z-index: 10; /* Capa alta: DELANTE DEL FONDO */
-            
-            width: 100%;
-            min-height: 100vh;
+        /* --- ENCABEZADO FIJO UNIFICADO --- */
+        header.main-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 95px;
+            background: rgba(5, 5, 5, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4%;
+            box-sizing: border-box;
+            z-index: 10000;
+        }
+
+        .header-logo { 
+            text-decoration: none; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
+        }
+
+        .header-logo img {
+            height: 65px; 
+            width: auto;
+            filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
+        }
+
+        .logo-text-group {
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centra el contenido horizontalmente */
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .header-logo h1 {
+            font-family: var(--font-signature);
+            font-size: 2.2rem;
+            margin: 0;
+            line-height: 0.7;
+        }
+
+        .header-logo .leyenda {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
+
+        .header-nav {
+            position: fixed;
+            top: 0; right: -100%; width: 75%; height: 100vh;
+            background: #080808;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            transition: right 0.4s ease-in-out;
+            z-index: 10001;
+            border-left: 1px solid var(--glass-border);
+        }
+
+        .header-nav.active { right: 0; }
+        .nav-link { text-decoration: none; color: #eee; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 15px; }
+        .overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 9999; }
+        .overlay-bg.active { display: block; }
+
+        /* --- CONTENIDO DE TABLA (SIN CAMBIOS) --- */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
             width: 100%;
-            max-width: 900px; /* Ancho máximo en PC */
-            padding: 20px 10px; /* Margen lateral reducido para móviles */
-            box-sizing: border-box; /* Importante para que el padding no sume ancho */
-            flex: 1; /* Empuja el footer hacia abajo */
+            max-width: 900px;
+            padding: 20px 10px;
+            box-sizing: border-box;
         }
 
-        /* Botón Volver */
-        .back-btn {
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-size: 0.8rem; /* Un poco más pequeño para móvil */
-            margin-bottom: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: 0.3s;
-        }
-        .back-btn:hover { text-shadow: 0 0 10px var(--accent-blue); }
-
-        /* Encabezado */
-        header { text-align: center; margin-bottom: 20px; }
+        header.table-header { text-align: center; margin-bottom: 20px; }
         
-        h1 {
-            font-size: 2.0rem; /* Un poco más pequeño para móvil */
+        header.table-header h2 {
+            font-size: 2.0rem;
             background: linear-gradient(to bottom, #ffffff, #aaaaaa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -107,104 +158,93 @@
             font-size: 0.8rem;
         }
 
-        /* TABLA ESTILO CRISTAL OPTIMIZADA (Más compacta para móvil) */
         .table-wrapper {
-            background: rgba(10, 10, 10, 0.8); /* Fondo oscuro traslúcido */
+            background: rgba(10, 10, 10, 0.8);
             border-radius: 12px;
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(15px); /* Efecto cristalino */
-            
-            /* --- SOLUCIÓN scroll lateral: Evita que la tabla fuerce el ancho de pantalla --- */
+            backdrop-filter: blur(15px);
             overflow-x: auto; 
-            
             box-shadow: 0 15px 30px rgba(0,0,0,0.5);
             margin-top: 10px;
             width: 100%;
             display: flex;
-            justify-content: center; /* Centra la tabla compacta */
+            justify-content: center;
         }
 
         table {
-            /* --- SOLUCIÓN 2: Ancho automático para no estirarse --- */
             width: auto; 
-            margin: 0 auto; /* Centrado interno */
+            margin: 0 auto;
             border-collapse: collapse;
             text-align: center;
-            
-            /* --- TEXTO REDUCIDO PARA CABER --- */
             font-size: 0.82rem; 
-            
-            /* Eliminado min-width para no forzar estiramiento */
         }
 
         th {
-            background: rgba(0, 212, 255, 0.1); /* Tinte azul en cabecera */
+            background: rgba(0, 212, 255, 0.1);
             color: var(--accent-blue);
-            
-            /* --- SOLUCIÓN: padding lateral AUMENTADO UN POCO MÁS --- */
-            padding: 12px 6px; /* Aumentado lateral para separar */
-            
+            padding: 12px 6px;
             text-transform: uppercase;
             font-weight: bold;
-            font-size: 0.65rem; /* Cabeceras aún más pequeñas para caber con padding */
+            font-size: 0.65rem;
             letter-spacing: 1px;
             border-bottom: 1px solid var(--glass-border);
-            
-            /* Evita que los títulos largos ensanchen la columna si hay BR */
             white-space: nowrap; 
         }
 
         td {
-            /* --- SOLUCIÓN: padding lateral AUMENTADO UN POCO MÁS --- */
-            padding: 10px 6px; /* Aumentado lateral para separar */
-            
+            padding: 10px 6px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--silver);
         }
 
-        tr:last-child td { border-bottom: none; }
-        tr:hover td { background: rgba(255, 255, 255, 0.03); }
-
-        /* Resaltado Fucsia */
         .total-usd { 
             color: var(--fuchsia); 
             font-weight: bold; 
             text-shadow: 0 0 8px rgba(255, 0, 255, 0.2);
-            font-size: 0.9rem; /* Resaltamos Ganancia Total */
+            font-size: 0.9rem;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 30px 20px;
             color: rgba(255, 255, 255, 0.2);
             font-size: 0.7rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: auto; /* Empuja al final */
         }
 
-        /* AJUSTES ADICIONALES PARA MÓVILES SÚPER PEQUEÑOS (HACK) */
         @media (max-width: 480px) {
-            h1 { font-size: 1.6rem; }
-            .meta-info { font-size: 0.75rem; letter-spacing: 1px; }
-            body::before { background-size: 150%; }
+            header.table-header h2 { font-size: 1.6rem; }
             table { font-size: 0.75rem; }
-            th { font-size: 0.55rem; padding: 10px 4px; } /* Más compacto aún */
+            th { font-size: 0.55rem; padding: 10px 4px; }
             td { padding: 8px 4px; }
-            .total-usd { font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
+    <div class="overlay-bg" id="overlay"></div>
+
+    <header class="main-header">
+        <a href="../" class="header-logo">
+            <img src="logo.png" alt="Logo Suits Agency">
+            <div class="logo-text-group">
+                <h1>Suits Agency</h1>
+                <span class="leyenda">Agencia oficial de Bigo Live</span>
+            </div>
+        </a>
+        <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
+        <nav class="header-nav" id="mainNav">
+            <a href="../" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
+            <a href="#" class="nav-link active"><i class="fa-solid fa-gem"></i>Pagos</a>
+            <a href="../soporte/" class="nav-link"><i class="fa-solid fa-headset"></i>Soporte</a>
+        </nav>
+    </header>
+
     <div class="main-content">
         <div class="container">
-            <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> VOLVER AL INICIO</a>
-
-            </a>
             
-            <header>
-                <h1>Tabla de Remuneración</h1>
+            <header class="table-header">
+                <h2>Tabla de Remuneración</h2>
                 <div class="meta-info">44 HORAS MENSUALES | OFICIAL BIGO LIVE</div>
             </header>
 
@@ -234,9 +274,31 @@
                 </table>
             </div>
 
-        </div> <footer>
+        </div> 
+        
+        <footer>
             &copy; 2026 Suits Agency | Datos oficiales de remuneración Bigo Live.
         </footer>
+    </div>
 
-    </div> </body>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const overlay = document.getElementById('overlay');
+
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.toggle('fa-xmark');
+        });
+
+        overlay.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            overlay.classList.remove('active');
+            menuToggle.querySelector('i').classList.add('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.remove('fa-xmark');
+        });
+    </script>
+</body>
 </html>
