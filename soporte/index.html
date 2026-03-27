@@ -28,7 +28,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- HEADER: LOGO A LA IZQUIERDA Y TEXTO CENTRADO --- */
+        /* --- HEADER --- */
         header.main-header {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 95px;
@@ -57,12 +57,11 @@
             filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
         }
 
-        /* GRUPO DE TEXTO CENTRADO */
         .logo-text-group {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center; /* Centra el texto y la leyenda entre sí */
+            align-items: center;
             text-align: center;
         }
 
@@ -70,7 +69,7 @@
             font-family: var(--font-signature);
             font-size: 2.2rem;
             margin: 0;
-            line-height: 0.7; /* Ajuste fino para la posición del nombre */
+            line-height: 0.7;
         }
 
         .header-logo .leyenda {
@@ -79,12 +78,11 @@
             letter-spacing: 1px;
             color: var(--accent-blue);
             font-weight: 700;
-            margin-top: 8px; /* Espacio entre el nombre y la leyenda */
+            margin-top: 8px;
         }
 
         .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
 
-        /* --- RESTO DEL DISEÑO (SIN CAMBIOS) --- */
         .header-nav {
             position: fixed;
             top: 0; right: -100%; width: 75%; height: 100vh;
@@ -113,7 +111,7 @@
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: rgba(255,255,255,0.01); }
         .faq-answer-content { padding: 0 20px 20px; color: #aaa; line-height: 1.5; font-size: 0.85rem; }
         .faq-item.open { border-color: var(--accent-blue); }
-        .faq-item.open .faq-answer { max-height: 250px; }
+        .faq-item.open .faq-answer { max-height: 350px; }
         .faq-item.open i { transform: rotate(180deg); color: var(--accent-blue); }
 
         footer { text-align: center; padding: 50px 20px; color: #333; font-size: 0.75rem; }
@@ -141,29 +139,80 @@
 
     <div class="container">
         <h2 class="main-title">Centro de Soporte</h2>
-        <p class="subtitle">Preguntas Frecuentes</p>
+        <p class="subtitle">Reglamento Oficial Marzo 2026</p>
 
         <section id="faq-list">
-            <div class="faq-item"><div class="faq-question"><span>1. ¿Cómo me registro como emisor oficial?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Debes contactar a un reclutador de Suits Agency y completar el formulario de postulación en la app de Bigo Live.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>2. ¿Qué es un "Día Válido"?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Es un día donde transmites al menos 2 horas. No es necesario que sean seguidas, pero sí dentro del mismo día horario Bigo.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>3. ¿A qué hora reinicia el día (Reset)?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Para Colombia y Paraguay, el día reinicia exactamente a las 12:00 AM (Medianoche).</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>4. ¿Cuándo se pagan las metas?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Los pagos se procesan mensualmente entre los días 5 y 10 del mes siguiente.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>5. ¿Cuál es el mínimo de semillas para cobrar?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">El mínimo depende de tu contrato, generalmente la primera meta inicia en 10,000 o 30,000 semillas.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>6. ¿Cómo retiro mi dinero?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Puedes usar Payoneer, Wise, o transferencia directa si tu país está habilitado.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>7. ¿Qué pasa si me banean la cuenta?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Debes informar de inmediato a tu Manager en Suits Agency con tu ID para apelar la sanción si fue injusta.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>8. ¿Puedo transmitir con otra persona?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Sí, siempre y cuando cumplas con las normas de comunidad de Bigo Live.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>9. ¿Qué contenido está prohibido?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Contenido sexual, violencia, fumar o beber alcohol en vivo, y retransmitir contenido de terceros.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>10. ¿Cómo subo de nivel de emisor?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Recibiendo regalos (semillas) y manteniendo una audiencia constante cada mes.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>11. ¿Tengo que pagar para entrar a la agencia?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">No. Suits Agency nunca te pedirá dinero por entrar. Nosotros ganamos cuando tú ganas.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>12. ¿Puedo estar en dos agencias a la vez?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">No, Bigo Live solo permite estar vinculado a una agencia oficial.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>13. ¿Qué son los PKs?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Son batallas en vivo con otros emisores para ver quién recibe más apoyo en un tiempo determinado.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>14. ¿Cómo consigo seguidores rápido?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Transmite en horarios estables, usa buena iluminación y participa en eventos de la app.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>15. ¿Qué hago si mi app falla?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Limpia la caché de la app o reinstálala. Asegúrate de tener la última versión de la Store.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>16. ¿Suits Agency da bonos extra?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Sí, tenemos bonos especiales para los emisores que superen sus metas mensuales.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>17. ¿Cómo puedo ser reclutador?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Habla con soporte técnico para conocer los requisitos de nuestro programa de reclutadores.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>18. ¿Es necesario mostrar la cara?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Bigo Live es una plataforma visual; mostrar tu rostro aumenta drásticamente tus posibilidades de éxito.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>19. ¿Bigo quita comisión de mis semillas?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Sí, la plataforma tiene una tasa de conversión de semillas a dólares que ya está reflejada en nuestras tablas.</div></div></div>
-            <div class="faq-item"><div class="faq-question"><span>20. ¿Cómo contacto a soporte humano?</span><i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer"><div class="faq-answer-content">Usa el botón de WhatsApp en nuestro menú principal para hablar con un Manager.</div></div></div>
+            
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué requisitos debe cumplir un "Día Válido"?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Se contabiliza como día válido aquel en el que el emisor transmite un mínimo de 30 minutos (0.5 horas). Si la transmisión es menor a este tiempo, el día no será computado para la meta mensual.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Existe un límite de horas contables por día?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Sí, el sistema de Bigo Live solo permite sumar un máximo de 2 horas válidas por día. Cualquier tiempo de transmisión adicional ese mismo día no contará para completar el requisito de las 44 horas mensuales.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué penalización hay por no completar las 44 horas?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Si alcanzas tu meta de semillas pero transmites entre 20 y 43 horas, solo recibirás el 50% de la remuneración correspondiente. Si transmites menos de 20 horas, el pago será de $0 USD.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cómo afectan las semillas extranjeras a mi pago?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Las semillas provenientes de regiones externas (como Vietnam, Filipinas o India) se valoran al 50%. Esto significa que si recibes 1,000 semillas de estos países, solo sumarán 500 para tu meta de cobro.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cuál es el horario de reinicio (Reset) por país?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">El cierre de metas se rige por zonas horarias fijas: Colombia, Perú y Panamá operan en UTC-5. Paraguay, Chile y Bolivia operan en UTC-4. Argentina y Uruguay en UTC-3.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué es la restricción de Semillas Mutuas?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Si las semillas recibidas de otros emisores oficiales de la región LATAM superan el 50% de tu meta total, la remuneración será cancelada por la plataforma para evitar el intercambio artificial de regalos.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cuál es el pago proporcional para nuevos emisores?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Únicamente durante su primer mes de firma, si el emisor no alcanza las 44 horas requeridas, se le pagará un monto proporcional basado exactamente en las horas que haya logrado transmitir (Horas reales / 44).</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Puedo transmitir desde fuera de Latinoamérica?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">No es permitido. El emisor debe residir en los países autorizados de la región LATAM. Estar fuera de la región por más de 30 días sin notificación previa es motivo de rescisión automática del contrato.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué sucede si transmito una sesión de 25 minutos?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">Dicha sesión no sumará tiempo a tu meta mensual, ya que el sistema exige sesiones mínimas de 30 minutos para empezar a contabilizar tiempo válido.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cuál es la meta mínima de semillas?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">La meta base (Nivel e) para calificar a una remuneración económica comienza en las 2,000 semillas mensuales, siempre y cuando se cumplan las horas de transmisión estipuladas.</div>
+                </div>
+            </div>
+
         </section>
 
         <footer>&copy; 2026 Suits Agency | Bigo Live Official</footer>
