@@ -61,6 +61,41 @@
             z-index: 10000;
         }
 
+        /* --- ESTILOS DEL TICKER (NOTICIERO) --- */
+        .news-ticker {
+            position: fixed;
+            top: 95px; /* Justo debajo del header de 95px */
+            left: 0;
+            width: 100%;
+            background: #000;
+            border-bottom: 1px solid var(--accent-blue);
+            overflow: hidden;
+            padding: 10px 0;
+            z-index: 9998;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: ticker 30s linear infinite;
+        }
+
+        .ticker-content span {
+            font-size: 0.75rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-right: 80px;
+            font-weight: 600;
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+        /* -------------------------------------- */
+
         .header-logo { 
             text-decoration: none; 
             color: white; 
@@ -127,7 +162,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 20px 20px;
+            padding: 60px 20px 20px; /* Aumentado para no chocar con el ticker */
         }
 
         .slider-container {
@@ -193,33 +228,31 @@
         .nav-card i { font-size: 2.2rem; color: var(--accent-blue); margin-bottom: 15px; }
         .nav-card h3 { margin: 10px 0; font-size: 1.4rem; color: var(--silver); }
 
-        /* AJUSTE TAMAÑO BANDERAS */
         .countries-section { padding: 20px 10%; text-align: center; }
         .countries-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-width: 900px; margin: 0 auto; }
         .country-item { 
             background: rgba(255,255,255,0.05); 
-            padding: 4px 8px; /* Reducido */
+            padding: 4px 8px; 
             border-radius: 6px; 
-            font-size: 0.6rem; /* Reducido */
+            font-size: 0.6rem; 
             font-weight: bold; 
             border: 1px solid var(--glass-border); 
             color: var(--silver); 
         }
 
-        /* AJUSTE TAMAÑO REDES SOCIALES */
         .social-section { padding: 40px 10% 20px; text-align: center; position: relative; z-index: 10; }
         .social-section h4 { font-family: var(--font-signature); font-size: 3rem; color: #ffffff; margin: 0 0 25px; font-weight: 400; }
         .social-icons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .social-link { 
             text-decoration: none; 
             color: var(--accent-blue) !important; 
-            font-size: 1.4rem; /* Reducido */
+            font-size: 1.4rem; 
             transition: all 0.3s ease; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            width: 45px; /* Reducido */
-            height: 45px; /* Reducido */
+            width: 45px; 
+            height: 45px; 
             border-radius: 50%; 
             background: rgba(255,255,255,0.05); 
             border: 1px solid var(--glass-border); 
@@ -253,6 +286,15 @@
             <a href="soporte/" class="nav-link"><i class="fa-solid fa-headset"></i>Soporte</a>
         </nav>
     </header>
+
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <span>"Suits Agency: El negocio de ser tú mismo."</span>
+            <span>"Suits Agency: Vístete de éxito."</span>
+            <span>"Suits Agency: La etiqueta del streaming profesional."</span>
+            <span>"Suits Agency: Tu mejor versión es tu mejor negocio."</span>
+        </div>
+    </div>
 
     <section class="hero-section">
         <div class="slider-container">
