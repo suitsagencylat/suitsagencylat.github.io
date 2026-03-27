@@ -61,16 +61,16 @@
             z-index: 10000;
         }
 
-        /* --- ESTILOS DEL TICKER (NOTICIERO) --- */
+                /* --- ESTILOS DEL TICKER (MÁS LENTO Y ELEGANTE) --- */
         .news-ticker {
             position: fixed;
-            top: 95px; /* Justo debajo del header de 95px */
+            top: 95px; 
             left: 0;
             width: 100%;
-            background: #000;
-            border-bottom: 1px solid var(--accent-blue);
+            background: rgba(5, 5, 5, 0.95); /* Negro casi total */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Línea casi invisible */
             overflow: hidden;
-            padding: 10px 0;
+            padding: 6px 0; /* Un poco más delgado */
             z-index: 9998;
         }
 
@@ -78,23 +78,23 @@
             display: inline-block;
             white-space: nowrap;
             padding-left: 100%;
-            animation: ticker 30s linear infinite;
+            animation: ticker 45s linear infinite; /* Mucho más lento (de 30s a 45s) */
         }
 
         .ticker-content span {
-            font-size: 0.75rem;
-            color: #fff;
+            font-size: 0.65rem; /* Letras más pequeñas y finas */
+            color: rgba(255, 255, 255, 0.7); /* Blanco suave, no chillón */
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-right: 80px;
-            font-weight: 600;
+            letter-spacing: 3px; /* Más espacio entre letras para estilo premium */
+            margin-right: 120px; /* Más espacio entre frases */
+            font-weight: 400;
         }
 
         @keyframes ticker {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-100%, 0, 0); }
         }
-        /* -------------------------------------- */
+
 
         .header-logo { 
             text-decoration: none; 
