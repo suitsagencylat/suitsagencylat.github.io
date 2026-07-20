@@ -92,7 +92,7 @@ header.main-header {
 }
 
 .logo-text-group {
-    display: flex;
+    display: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;
