@@ -3,123 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title> SUITS ACADEMY </title>
-    
+    <title>SUITS ACADEMY</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://suitsagencylat.github.io/styles.css">
 
     <style>
-        :root {
-            --bg-color: #050505;
-            --accent-blue: #00d4ff;
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --silver: #e0e0e0;
-            --font-signature: 'Tangerine', cursive;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            margin: 0; padding: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-            padding-top: 110px; /* Espacio para el header fijo */
-        }
-
-        /* LOGO DE FONDO */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('../logo.png');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 110%;
-            opacity: 0.15;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* --- ENCABEZADO FIJO UNIFICADO --- */
-        header.main-header {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 95px;
-            background: rgba(5, 5, 5, 0.98);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 4%;
-            box-sizing: border-box;
-            z-index: 10000;
-        }
-
-        .header-logo { 
-            text-decoration: none; 
-            color: white; 
-            display: flex; 
-            align-items: center; 
-            gap: 15px;
-        }
-
-        .header-logo img {
-            height: 65px; 
-            width: auto;
-            filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
-        }
-
-        .logo-text-group {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .header-logo h1 {
-            font-family: var(--font-signature);
-            font-size: 2.2rem;
-            margin: 0;
-            line-height: 0.7;
-        }
-
-        .header-logo .leyenda {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-blue);
-            font-weight: 700;
-            margin-top: 8px;
-        }
-
-        .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
-
-        .header-nav {
-            position: fixed;
-            top: 0; right: -100%; width: 75%; height: 100vh;
-            background: #080808;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 35px;
-            transition: right 0.4s ease-in-out;
-            z-index: 10001;
-            border-left: 1px solid var(--glass-border);
-        }
-
-        .header-nav.active { right: 0; }
-        .nav-link { text-decoration: none; color: #eee; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 15px; }
-        .nav-link.active { color: var(--accent-blue); }
-
-        .overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 9999; }
-        .overlay-bg.active { display: block; }
-
-        /* --- CONTENIDO DE ACADEMIA (SIN CAMBIOS) --- */
+        /* Estilos específicos de esta página (Academia) */
         .container { width: 92%; max-width: 450px; margin: 0 auto; position: relative; z-index: 10; }
 
         header.content-title h2 {
@@ -192,8 +85,6 @@
         .video-item i { color: var(--accent-blue); font-size: 1.2rem; width: 25px; text-align: center; }
         .video-item div span { display: block; font-size: 0.95rem; font-weight: 500; }
         .video-item div small { color: var(--silver); font-size: 0.75rem; opacity: 0.6; }
-
-        footer { text-align: center; padding: 40px; color: rgba(255,255,255,0.2); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -201,23 +92,23 @@
     <div class="overlay-bg" id="overlay"></div>
 
     <header class="main-header">
-        <a href="../" class="header-logo">
-            <img src="../logo.png" alt="Logo Suits Agency">
+        <a href="https://suitsagencylat.github.io/" class="header-logo">
+            <img src="https://suitsagencylat.github.io/logo.png" alt="Logo Suits Agency">
             <div class="logo-text-group">
-                <h1>Suits Agency</h1>
+                <h1>SUITS AGENCY</h1>
                 <span class="leyenda">Agencia oficial de Bigo Live</span>
             </div>
         </a>
         <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
         <nav class="header-nav" id="mainNav">
-            <a href="../" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
-            <a href="../pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
-            <a href="../soporte/" class="nav-link"><i class="fa-solid fa-headset"></i>Soporte</a>
+            <a href="https://suitsagencylat.github.io/" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
+            <a href="https://suitsagencylat.github.io/pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
+            <a href="https://suitsagencylat.github.io/soporte/" class="nav-link"><i class="fa-solid fa-headset"></i>Soporte</a>
         </nav>
     </header>
 
     <div class="container">
-        
+
         <header class="content-title">
             <h2>SUITS ACADEMY</h2>
         </header>
