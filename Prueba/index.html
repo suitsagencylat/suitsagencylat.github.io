@@ -10,151 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://suitsagencylat.github.io/styles.css">
+
     <style>
-        :root {
-            --bg-color: #050505;
-            --accent-blue: #00d4ff;
-            --silver: #e0e0e0;
-            --card-bg: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-clean: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: #ffffff;
-            font-family: var(--font-clean);
-            margin: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-            padding-top: 100px;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://suitsagencylat.github.io/logo.png');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 85%;
-            opacity: 0.2;
-            z-index: -1;
-        }
-
-        header.main-header {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 95px;
-            background: rgba(5, 5, 5, 0.98);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 4%;
-            box-sizing: border-box;
-            z-index: 10000;
-        }
-
-        .news-ticker {
-            position: fixed;
-            top: 95px;
-            left: 0;
-            width: 100%;
-            background: rgba(5, 5, 5, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            overflow: hidden;
-            padding: 6px 0;
-            z-index: 9998;
-        }
-
-        .ticker-content {
-            display: inline-block;
-            white-space: nowrap;
-            padding-left: 100%;
-            animation: ticker 65s linear infinite;
-        }
-
-        .ticker-content span {
-            font-size: 0.65rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-right: 120px;
-            font-weight: 400;
-        }
-
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
-
-        .header-logo {
-            text-decoration: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .header-logo img {
-            height: 65px;
-            width: auto;
-            filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
-        }
-
-        .logo-text-group {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .header-logo h1 {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            margin: 0;
-            line-height: 1;
-            letter-spacing: 5px;
-            color: #00d4ff;
-            text-shadow:
-                0 0 6px rgba(0, 212, 255, 0.5),
-                0 0 15px rgba(0, 212, 255, 0.25);
-        }
-
-        .header-logo .leyenda {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-blue);
-            font-weight: 700;
-            margin-top: 5px;
-        }
-
-        .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
-
-        .header-nav {
-            position: fixed;
-            top: 0; right: -100%; width: 75%; height: 100vh;
-            background: #080808;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 35px;
-            transition: right 0.4s ease-in-out;
-            z-index: 10001;
-            border-left: 1px solid var(--glass-border);
-        }
-
-        .header-nav.active { right: 0; }
-        .nav-link { text-decoration: none; color: #eee; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 15px; }
-        .nav-link.active { color: var(--accent-blue); }
-
-        .overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 9999; }
-        .overlay-bg.active { display: block; }
-
+        /* Estilos específicos de esta página (Inicio) */
         .hero-section {
             display: flex;
             flex-direction: column;
@@ -238,30 +97,97 @@
             color: var(--silver);
         }
 
-        .social-section { padding: 40px 10% 20px; text-align: center; position: relative; z-index: 10; }
-        .social-section h4 { font-family: var(--font-display); font-size: 3rem; color: #ffffff; margin: 0 0 25px; letter-spacing: 4px; }
-        .social-icons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .social-link {
-            text-decoration: none;
-            color: var(--accent-blue) !important;
-            font-size: 1.4rem;
-            transition: all 0.3s ease;
+        /* --- NUEVO: Sección de Requisitos --- */
+        .section-title {
+            text-align: center;
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+            color: #ffffff;
+            margin: 0 0 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+        }
+
+        .requisitos-section { padding: 60px 10% 20px; }
+
+        .requisitos-list {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .requisito-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
+            gap: 15px;
+            background: var(--card-bg);
             border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 16px 20px;
         }
-        .social-link:hover { transform: scale(1.1) translateY(-5px); filter: drop-shadow(0 0 15px var(--accent-blue)); background: rgba(0, 212, 255, 0.1); border-color: var(--accent-blue); }
 
-        footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-size: 0.75rem; position: relative; z-index: 1; }
+        .requisito-item i {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .requisito-item span {
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+
+        /* --- NUEVO: Sección de Beneficios --- */
+        .beneficios-section { padding: 60px 10% 20px; }
+
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .beneficio-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 22px;
+            text-align: left;
+        }
+
+        .beneficio-card .num {
+            color: var(--accent-blue);
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .beneficio-card p {
+            color: var(--silver);
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin: 0;
+        }
 
         @media (max-width: 768px) {
             .slider-container { width: 70%; max-width: 240px; }
             .social-section h4 { font-size: 2.5rem; }
+            .section-title { font-size: 1.7rem; }
         }
     </style>
 </head>
@@ -270,18 +196,20 @@
     <div class="overlay-bg" id="overlay"></div>
 
     <header class="main-header">
-        <a href="#" class="header-logo">
+        <a href="https://suitsagencylat.github.io/" class="header-logo">
             <img src="https://suitsagencylat.github.io/logo.png" alt="Logo Suits Agency">
             <div class="logo-text-group">
                 <h1>SUITS AGENCY</h1>
                 <span class="leyenda">Agencia oficial de Bigo Live</span>
             </div>
         </a>
-        <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
+        <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></div>
         <nav class="header-nav" id="mainNav">
-            <a href="#" class="nav-link active"><i class="fa-solid fa-house"></i>Inicio</a>
-            <a href="pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
-            <a href="soporte/" class="nav-link"><i class="fa-solid fa-headset"></i>Soporte</a>
+            <a href="https://suitsagencylat.github.io/" class="nav-link active"><i class="fa-solid fa-house"></i>Inicio</a>
+            <a href="https://suitsagencylat.github.io/academia/" class="nav-link"><i class="fa-solid fa-rocket"></i>Academia</a>
+            <a href="https://suitsagencylat.github.io/pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
+            <a href="https://suitsagencylat.github.io/registro/" class="nav-link"><i class="fa-solid fa-user-plus"></i>Postular</a>
+            <a href="https://suitsagencylat.github.io/soporte/" class="nav-link"><i class="fa-solid fa-headset"></i>Soporte</a>
         </nav>
     </header>
 
@@ -321,6 +249,66 @@
         </a>
     </section>
 
+    <!-- NUEVA SECCIÓN: Requisitos -->
+    <section class="requisitos-section">
+        <h2 class="section-title">Requisitos</h2>
+        <p class="section-subtitle">Lo único que necesitas para empezar</p>
+        <div class="requisitos-list">
+            <div class="requisito-item">
+                <i class="fa-solid fa-user-check"></i>
+                <span>Ser mayor de 18 años</span>
+            </div>
+            <div class="requisito-item">
+                <i class="fa-solid fa-mobile-screen"></i>
+                <span>Celular con cámara frontal en buen estado</span>
+            </div>
+            <div class="requisito-item">
+                <i class="fa-solid fa-wifi"></i>
+                <span>Conexión a internet estable</span>
+            </div>
+            <div class="requisito-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>Disponibilidad de algunas horas por semana</span>
+            </div>
+            <div class="requisito-item">
+                <i class="fa-solid fa-earth-americas"></i>
+                <span>Residir en un país de Latinoamérica</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: Beneficios -->
+    <section class="beneficios-section">
+        <h2 class="section-title">Beneficios</h2>
+        <p class="section-subtitle">Por qué unirte a Suits Agency</p>
+        <div class="beneficios-grid">
+            <div class="beneficio-card">
+                <span class="num">01</span>
+                <p>No necesitas seguidores previos para empezar a ganar.</p>
+            </div>
+            <div class="beneficio-card">
+                <span class="num">02</span>
+                <p>Capacitación y acompañamiento sin costo.</p>
+            </div>
+            <div class="beneficio-card">
+                <span class="num">03</span>
+                <p>Pagos transparentes, sin sorpresas.</p>
+            </div>
+            <div class="beneficio-card">
+                <span class="num">04</span>
+                <p>Acompañamiento real de agentes, no solo reclutamiento.</p>
+            </div>
+            <div class="beneficio-card">
+                <span class="num">05</span>
+                <p>Presencia oficial en 24 países de Latinoamérica.</p>
+            </div>
+            <div class="beneficio-card">
+                <span class="num">06</span>
+                <p>Flexibilidad total de horarios, transmites cuando quieras.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="countries-section">
         <div class="countries-grid">
             <div class="country-item">🇦🇷 AR</div><div class="country-item">🇧🇴 BO</div>
@@ -341,8 +329,8 @@
     <section class="social-section">
         <h4>Síguenos</h4>
         <div class="social-icons">
-            <a href="#" target="_blank" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" target="_blank" class="social-link" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://instagram.com/suitsagency.lat" target="_blank" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://tiktok.com/@suitsagency.lat" target="_blank" class="social-link" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
             <a href="#" target="_blank" class="social-link" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="https://wa.me/595982678695" target="_blank" class="social-link" title="WhatsApp Oficial"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
@@ -366,14 +354,14 @@
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
             overlay.classList.toggle('active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
             menuToggle.querySelector('i').classList.toggle('fa-xmark');
         });
 
         overlay.addEventListener('click', () => {
             mainNav.classList.remove('active');
             overlay.classList.remove('active');
-            menuToggle.querySelector('i').classList.add('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.add('fa-bars');
             menuToggle.querySelector('i').classList.remove('fa-xmark');
         });
     </script>
