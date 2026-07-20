@@ -4,117 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soporte | Suits Agency</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://suitsagencylat.github.io/styles.css">
 
     <style>
-        :root {
-            --bg-color: #050505;
-            --accent-blue: #00d4ff;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --font-signature: 'Tangerine', cursive;
-        }
-
-        body {
-            background: radial-gradient(circle at top, #121212 0%, #050505 100%);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding-top: 100px;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* --- HEADER --- */
-        header.main-header {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 95px;
-            background: rgba(5, 5, 5, 0.98);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 4%;
-            box-sizing: border-box;
-            z-index: 10000;
-        }
-
-        .header-logo { 
-            text-decoration: none; 
-            color: white; 
-            display: flex; 
-            align-items: center; 
-            gap: 15px;
-        }
-
-        .header-logo img {
-            height: 65px; 
-            width: auto;
-            filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
-        }
-
-        .logo-text-group {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .header-logo h1 {
-            font-family: var(--font-signature);
-            font-size: 2.2rem;
-            margin: 0;
-            line-height: 0.7;
-        }
-
-        .header-logo .leyenda {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-blue);
-            font-weight: 700;
-            margin-top: 8px;
-        }
-
-        .menu-toggle { color: white; font-size: 1.8rem; cursor: pointer; z-index: 10002; }
-
-        .header-nav {
-            position: fixed;
-            top: 0; right: -100%; width: 75%; height: 100vh;
-            background: #080808;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 35px;
-            transition: right 0.4s ease-in-out;
-            z-index: 10001;
-            border-left: 1px solid var(--glass-border);
-        }
-        .header-nav.active { right: 0; }
-        .nav-link { text-decoration: none; color: #eee; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 15px; }
-        .nav-link.active { color: var(--accent-blue); }
-        .overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 9999; }
-        .overlay-bg.active { display: block; }
-
+        /* Estilos específicos de esta página (Soporte) */
         .container { max-width: 650px; margin: 0 auto; padding: 20px; }
         .main-title { text-align: center; font-size: 1.8rem; margin-bottom: 5px; }
         .subtitle { text-align: center; color: var(--accent-blue); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; }
 
-        .faq-item { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; margin-bottom: 10px; transition: 0.3s; }
+        .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); border-radius: 12px; margin-bottom: 10px; transition: 0.3s; }
         .faq-question { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; font-weight: 500; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: rgba(255,255,255,0.01); }
         .faq-answer-content { padding: 0 20px 20px; color: #aaa; line-height: 1.5; font-size: 0.85rem; }
         .faq-item.open { border-color: var(--accent-blue); }
         .faq-item.open .faq-answer { max-height: 350px; }
         .faq-item.open i { transform: rotate(180deg); color: var(--accent-blue); }
-
-        footer { text-align: center; padding: 50px 20px; color: #333; font-size: 0.75rem; }
     </style>
 </head>
 <body>
@@ -122,17 +31,17 @@
     <div class="overlay-bg" id="overlay"></div>
 
     <header class="main-header">
-        <a href="../" class="header-logo">
-            <img src="logo.png" alt="Logo Suits Agency">
+        <a href="https://suitsagencylat.github.io/" class="header-logo">
+            <img src="https://suitsagencylat.github.io/logo.png" alt="Logo Suits Agency">
             <div class="logo-text-group">
-                <h1>Suits Agency</h1>
+                <h1>SUITS AGENCY</h1>
                 <span class="leyenda">Agencia oficial de Bigo Live</span>
             </div>
         </a>
         <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
         <nav class="header-nav" id="mainNav">
-            <a href="../" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
-            <a href="../pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
+            <a href="https://suitsagencylat.github.io/" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
+            <a href="https://suitsagencylat.github.io/pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
             <a href="#" class="nav-link active"><i class="fa-solid fa-headset"></i>Soporte</a>
         </nav>
     </header>
