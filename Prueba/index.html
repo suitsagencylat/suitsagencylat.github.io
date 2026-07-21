@@ -1,369 +1,664 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suits Agency | Bigo Live Official</title>
-    <meta name="description" content="Suits Agency: Agencia Oficial de Bigo Live. Reclutamiento de streamers en 24 países. Únete y gana dinero transmitiendo.">
-    <meta name="author" content="Suits Agency">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://suitsagencylat.github.io/styles.css">
 
-    <style>
-        /* Estilos específicos de esta página (Inicio) */
-        .hero-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px 20px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .slider-container {
-            width: 75%;
-            max-width: 260px;
-            aspect-ratio: 9 / 16;
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            border: 1px solid var(--glass-border);
-            margin: 20px auto 30px;
-            background: transparent;
-            box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
-        }
+<title>Suits Agency | Agencia Oficial de Creadores Digitales</title>
 
-        .slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-            z-index: 1;
-        }
+<meta name="description" content="Suits Agency es una Agencia Oficial de Bigo Live que impulsa creadores digitales en Latinoamérica mediante estrategia, acompañamiento y oportunidades profesionales.">
 
-        .slide.active { opacity: 1; z-index: 2; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
+<meta name="author" content="Suits Agency">
 
-        .cta-main {
-            display: inline-block;
-            padding: 14px 40px;
-            border: 2px solid var(--accent-blue);
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
 
-        .cta-main:hover { background: var(--accent-blue); color: #000; box-shadow: 0 0 20px var(--accent-blue); }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 40px 10%;
-            z-index: 1;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-        .nav-card {
-            background: var(--card-bg);
-            padding: 40px 25px;
-            border-radius: 20px;
-            text-decoration: none;
-            color: white;
-            border: 1px solid var(--glass-border);
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s;
-        }
 
-        .nav-card:hover { transform: translateY(-10px); border-color: var(--accent-blue); }
-        .nav-card i { font-size: 2.2rem; color: var(--accent-blue); margin-bottom: 15px; }
-        .nav-card h3 { margin: 10px 0; font-size: 1.4rem; color: var(--silver); }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        .countries-section { padding: 20px 10%; text-align: center; }
-        .countries-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-width: 900px; margin: 0 auto; }
-        .country-item {
-            background: rgba(255,255,255,0.05);
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 0.6rem;
-            font-weight: bold;
-            border: 1px solid var(--glass-border);
-            color: var(--silver);
-        }
 
-        /* --- NUEVO: Sección de Requisitos --- */
-        .section-title {
-            text-align: center;
-            font-family: var(--font-display);
-            font-size: 2.2rem;
-            letter-spacing: 3px;
-            color: #ffffff;
-            margin: 0 0 10px;
-        }
+<link rel="stylesheet" href="https://suitsagencylat.github.io/styles.css">
 
-        .section-subtitle {
-            text-align: center;
-            color: var(--accent-blue);
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 35px;
-        }
 
-        .requisitos-section { padding: 60px 10% 20px; }
-
-        .requisitos-list {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .requisito-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 16px 20px;
-        }
-
-        .requisito-item i {
-            color: var(--accent-blue);
-            font-size: 1.2rem;
-            width: 24px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .requisito-item span {
-            color: var(--silver);
-            font-size: 0.9rem;
-        }
-
-        /* --- NUEVO: Sección de Beneficios --- */
-        .beneficios-section { padding: 60px 10% 20px; }
-
-        .beneficios-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 18px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .beneficio-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 22px;
-            text-align: left;
-        }
-
-        .beneficio-card .num {
-            color: var(--accent-blue);
-            font-family: var(--font-display);
-            font-size: 1.6rem;
-            letter-spacing: 1px;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .beneficio-card p {
-            color: var(--silver);
-            font-size: 0.85rem;
-            line-height: 1.4;
-            margin: 0;
-        }
-
-        @media (max-width: 768px) {
-            .slider-container { width: 70%; max-width: 240px; }
-            .social-section h4 { font-size: 2.5rem; }
-            .section-title { font-size: 1.7rem; }
-        }
-    </style>
 </head>
+
+
 <body>
 
-    <div class="overlay-bg" id="overlay"></div>
 
-    <header class="main-header">
-        <a href="https://suitsagencylat.github.io/" class="header-logo">
-            <img src="https://suitsagencylat.github.io/logo.png" alt="Logo Suits Agency">
-            <div class="logo-text-group">
-                <h1>SUITS AGENCY</h1>
-                <span class="leyenda">Agencia oficial de Bigo Live</span>
-            </div>
-        </a>
-        <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></div>
-        <nav class="header-nav" id="mainNav">
-            <a href="https://suitsagencylat.github.io/" class="nav-link active"><i class="fa-solid fa-house"></i>Inicio</a>
-            <a href="https://suitsagencylat.github.io/academia/" class="nav-link"><i class="fa-solid fa-rocket"></i>Academia</a>
-            <a href="https://suitsagencylat.github.io/pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
-            <a href="https://suitsagencylat.github.io/registro/" class="nav-link"><i class="fa-solid fa-user-plus"></i>Postular</a>
-            <a href="https://suitsagencylat.github.io/soporte/" class="nav-link"><i class="fa-solid fa-headset"></i>Soporte</a>
-        </nav>
-    </header>
+<div class="overlay-bg" id="overlay"></div>
 
-    <div class="news-ticker">
-        <div class="ticker-content">
-            <span>"Suits Agency: El negocio de ser tú mismo."</span>
-            <span>"Suits Agency: Vístete de éxito."</span>
-            <span>"Suits Agency: La etiqueta del streaming profesional."</span>
-            <span>"Suits Agency: Tu mejor versión es tu mejor negocio."</span>
-        </div>
-    </div>
 
-    <section class="hero-section">
-        <div class="slider-container">
-            <div class="slide active"><img src="https://suitsagencylat.github.io/publicidad1.png" alt="1"></div>
-            <div class="slide"><img src="https://suitsagencylat.github.io/publicidad2.jpg" alt="2"></div>
-            <div class="slide"><img src="https://suitsagencylat.github.io/publicidad3.jpg" alt="3"></div>
-        </div>
-        <a href="registro/" class="cta-main">Postular ahora</a>
-    </section>
 
-    <section class="nav-grid">
-        <a href="pagos/" class="nav-card">
-            <i class="fa-solid fa-gem"></i>
-            <h3>Tabla de Metas</h3>
-            <p>Estructura de ganancias y bonos por cumplimiento.</p>
-        </a>
-        <a href="academia/" class="nav-card">
-            <i class="fa-solid fa-rocket"></i>
-            <h3>Academia</h3>
-            <p>Guías paso a paso para dominar Bigo Live.</p>
-        </a>
-        <a href="soporte/" class="nav-card">
-            <i class="fa-solid fa-headset"></i>
-            <h3>Centro de Soporte</h3>
-            <p>Preguntas frecuentes, guías rápidas y enlaces de interés.</p>
-        </a>
-    </section>
+<header class="main-header">
 
-    <!-- NUEVA SECCIÓN: Requisitos -->
-    <section class="requisitos-section">
-        <h2 class="section-title">Requisitos</h2>
-        <p class="section-subtitle">Lo único que necesitas para empezar</p>
-        <div class="requisitos-list">
-            <div class="requisito-item">
-                <i class="fa-solid fa-user-check"></i>
-                <span>Ser mayor de 18 años</span>
-            </div>
-            <div class="requisito-item">
-                <i class="fa-solid fa-mobile-screen"></i>
-                <span>Celular con cámara frontal en buen estado</span>
-            </div>
-            <div class="requisito-item">
-                <i class="fa-solid fa-wifi"></i>
-                <span>Conexión a internet estable</span>
-            </div>
-            <div class="requisito-item">
-                <i class="fa-solid fa-clock"></i>
-                <span>Disponibilidad de algunas horas por semana</span>
-            </div>
-            <div class="requisito-item">
-                <i class="fa-solid fa-earth-americas"></i>
-                <span>Residir en un país de Latinoamérica</span>
-            </div>
-        </div>
-    </section>
 
-    <!-- NUEVA SECCIÓN: Beneficios -->
-    <section class="beneficios-section">
-        <h2 class="section-title">Beneficios</h2>
-        <p class="section-subtitle">Por qué unirte a Suits Agency</p>
-        <div class="beneficios-grid">
-            <div class="beneficio-card">
-                <span class="num">01</span>
-                <p>No necesitas seguidores previos para empezar a ganar.</p>
-            </div>
-            <div class="beneficio-card">
-                <span class="num">02</span>
-                <p>Capacitación y acompañamiento sin costo.</p>
-            </div>
-            <div class="beneficio-card">
-                <span class="num">03</span>
-                <p>Pagos transparentes, sin sorpresas.</p>
-            </div>
-            <div class="beneficio-card">
-                <span class="num">04</span>
-                <p>Acompañamiento real de agentes, no solo reclutamiento.</p>
-            </div>
-            <div class="beneficio-card">
-                <span class="num">05</span>
-                <p>Presencia oficial en 24 países de Latinoamérica.</p>
-            </div>
-            <div class="beneficio-card">
-                <span class="num">06</span>
-                <p>Flexibilidad total de horarios, transmites cuando quieras.</p>
-            </div>
-        </div>
-    </section>
+<a href="https://suitsagencylat.github.io/" class="header-logo">
 
-    <section class="countries-section">
-        <div class="countries-grid">
-            <div class="country-item">🇦🇷 AR</div><div class="country-item">🇧🇴 BO</div>
-            <div class="country-item">🇨🇱 CL</div><div class="country-item">🇨🇴 CO</div>
-            <div class="country-item">🇨🇷 CR</div><div class="country-item">🇨🇺 CU</div>
-            <div class="country-item">🇩🇴 DO</div><div class="country-item">🇪🇨 EC</div>
-            <div class="country-item">🇸🇻 SV</div><div class="country-item">🇬🇹 GT</div>
-            <div class="country-item">🇭🇳 HN</div><div class="country-item">🇲🇽 MX</div>
-            <div class="country-item">🇳🇮 NI</div><div class="country-item">🇵🇦 PA</div>
-            <div class="country-item">🇵🇾 PY</div><div class="country-item">🇵🇪 PE</div>
-            <div class="country-item">🇵🇷 PR</div><div class="country-item">🇺🇾 UY</div>
-            <div class="country-item">🇻🇪 VE</div><div class="country-item">🇯🇲 JM</div>
-            <div class="country-item">🇧🇸 BS</div><div class="country-item">🇧🇧 BB</div>
-            <div class="country-item">🇰🇾 KY</div><div class="country-item">🇹🇹 TT</div>
-        </div>
-    </section>
 
-    <section class="social-section">
-        <h4>Síguenos</h4>
-        <div class="social-icons">
-            <a href="https://instagram.com/suitsagency.lat" target="_blank" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://tiktok.com/@suitsagency.lat" target="_blank" class="social-link" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="#" target="_blank" class="social-link" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://wa.me/595982678695" target="_blank" class="social-link" title="WhatsApp Oficial"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-    </section>
+<img src="https://suitsagencylat.github.io/logo.png" alt="Suits Agency Logo">
 
-    <footer>&copy; 2026 Suits Agency | Agencia Oficial Bigo Live.</footer>
 
-    <script>
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5000);
+<div class="logo-text-group">
 
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const overlay = document.getElementById('overlay');
+<h1>SUITS AGENCY</h1>
 
-        menuToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            overlay.classList.toggle('active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars');
-            menuToggle.querySelector('i').classList.toggle('fa-xmark');
-        });
+<span class="leyenda">
+Agencia oficial de Bigo Live
+</span>
 
-        overlay.addEventListener('click', () => {
-            mainNav.classList.remove('active');
-            overlay.classList.remove('active');
-            menuToggle.querySelector('i').classList.add('fa-bars');
-            menuToggle.querySelector('i').classList.remove('fa-xmark');
-        });
-    </script>
-</body>
-</html>
+</div>
+
+
+</a>
+
+
+
+
+<div class="menu-toggle" id="menuToggle">
+
+<i class="fa-solid fa-bars"></i>
+
+</div>
+
+
+
+
+<nav class="header-nav" id="mainNav">
+
+
+<a href="https://suitsagencylat.github.io/" class="nav-link active">
+
+<i class="fa-solid fa-house"></i>
+Inicio
+
+</a>
+
+
+<a href="https://suitsagencylat.github.io/academia/" class="nav-link">
+
+<i class="fa-solid fa-rocket"></i>
+Academia
+
+</a>
+
+
+<a href="https://suitsagencylat.github.io/pagos/" class="nav-link">
+
+<i class="fa-solid fa-gem"></i>
+Pagos
+
+</a>
+
+
+
+<a href="https://suitsagencylat.github.io/registro/" class="nav-link">
+
+<i class="fa-solid fa-user-plus"></i>
+Postular
+
+</a>
+
+
+
+<a href="https://suitsagencylat.github.io/soporte/" class="nav-link">
+
+<i class="fa-solid fa-headset"></i>
+Soporte
+
+</a>
+
+
+</nav>
+
+
+</header>
+
+
+
+
+
+<div class="news-ticker">
+
+
+<div class="ticker-content">
+
+
+<span>
+"Suits Agency: El negocio de ser tú mismo."
+</span>
+
+
+<span>
+"Suits Agency: La etiqueta del streaming profesional."
+</span>
+
+
+<span>
+"Suits Agency: Construimos creadores digitales."
+</span>
+
+
+<span>
+"Suits Agency: Tu talento, nuestra estrategia."
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<section class="hero-section">
+
+
+
+<div class="hero-brand">
+
+
+<h2>
+SUITS AGENCY
+</h2>
+
+
+
+<h1>
+
+EL NEGOCIO DE<br>
+
+<span>SER TÚ MISMO</span>
+
+</h1>
+
+
+
+<p>
+
+Agencia oficial de Bigo Live.<br>
+
+Impulsamos creadores digitales en Latinoamérica,
+brindándoles estrategia, acompañamiento y herramientas
+para convertir su talento en nuevas oportunidades.
+
+</p>
+
+
+
+<a href="registro/" class="cta-main">
+
+POSTULAR AHORA
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+<div class="slider-container">
+
+
+<div class="slide active">
+
+<img src="https://suitsagencylat.github.io/publicidad1.png" alt="Suits Agency">
+
+</div>
+
+
+
+<div class="slide">
+
+<img src="https://suitsagencylat.github.io/publicidad2.jpg" alt="Suits Agency">
+
+</div>
+
+
+
+<div class="slide">
+
+<img src="https://suitsagencylat.github.io/publicidad3.jpg" alt="Suits Agency">
+
+</div>
+
+
+</div>
+
+
+
+</section><section class="nav-grid">
+
+
+<a href="pagos/" class="nav-card">
+
+
+<i class="fa-solid fa-gem"></i>
+
+
+<h3>
+Metas y Beneficios
+</h3>
+
+
+<p>
+Conoce nuestra estructura de crecimiento,
+metas y recompensas dentro del ecosistema digital.
+</p>
+
+
+</a>
+
+
+
+
+
+<a href="academia/" class="nav-card">
+
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+
+<h3>
+Academia Suits
+</h3>
+
+
+<p>
+Aprende estrategias, herramientas y conocimientos
+para mejorar tu rendimiento como creador.
+</p>
+
+
+</a>
+
+
+
+
+
+<a href="soporte/" class="nav-card">
+
+
+<i class="fa-solid fa-headset"></i>
+
+
+<h3>
+Centro de Soporte
+</h3>
+
+
+<p>
+Guías, respuestas y acompañamiento
+durante tu crecimiento.
+</p>
+
+
+</a>
+
+
+
+</section>
+
+
+
+
+
+
+<section class="why-suits">
+
+
+<h2>
+¿POR QUÉ SUITS?
+</h2>
+
+
+
+<div class="nav-grid">
+
+
+
+<div class="nav-card">
+
+
+<i class="fa-solid fa-crown"></i>
+
+
+<h3>
+Imagen Profesional
+</h3>
+
+
+<p>
+Construimos una marca alrededor
+de tu talento y personalidad.
+</p>
+
+
+</div>
+
+
+
+
+<div class="nav-card">
+
+
+<i class="fa-solid fa-chart-line"></i>
+
+
+<h3>
+Crecimiento Estratégico
+</h3>
+
+
+<p>
+No solo transmites.
+Desarrollas una carrera digital.
+</p>
+
+
+</div>
+
+
+
+
+<div class="nav-card">
+
+
+<i class="fa-solid fa-earth-americas"></i>
+
+
+<h3>
+Comunidad LATAM
+</h3>
+
+
+<p>
+Conecta con creadores y oportunidades
+en diferentes países.
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="countries-section">
+
+
+<h2>
+PRESENCIA LATINOAMERICANA
+</h2>
+
+
+
+<p>
+
+Creadores conectados desde diferentes países
+formando parte del ecosistema Suits Agency.
+
+</p>
+
+
+
+
+<div class="countries-grid">
+
+
+
+<div class="country-item">🇦🇷 Argentina</div>
+
+<div class="country-item">🇧🇴 Bolivia</div>
+
+<div class="country-item">🇨🇱 Chile</div>
+
+<div class="country-item">🇨🇴 Colombia</div>
+
+<div class="country-item">🇨🇷 Costa Rica</div>
+
+<div class="country-item">🇪🇨 Ecuador</div>
+
+<div class="country-item">🇲🇽 México</div>
+
+<div class="country-item">🇵🇦 Panamá</div>
+
+<div class="country-item">🇵🇾 Paraguay</div>
+
+<div class="country-item">🇵🇪 Perú</div>
+
+<div class="country-item">🇺🇾 Uruguay</div>
+
+<div class="country-item">🇻🇪 Venezuela</div>
+
+<div class="country-item">
++24 Países LATAM
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section class="social-section">
+
+
+<h4>
+SÍGUENOS
+</h4>
+
+
+
+<div class="social-icons">
+
+
+
+<a href="https://instagram.com/suitsagency.lat"
+target="_blank"
+class="social-link"
+title="Instagram">
+
+<i class="fa-brands fa-instagram"></i>
+
+</a>
+
+
+
+
+
+<a href="https://tiktok.com/@suitsagency.lat"
+target="_blank"
+class="social-link"
+title="TikTok">
+
+<i class="fa-brands fa-tiktok"></i>
+
+</a>
+
+
+
+
+
+<a href="#"
+class="social-link"
+title="Facebook">
+
+<i class="fa-brands fa-facebook-f"></i>
+
+</a>
+
+
+
+
+
+<a href="https://wa.me/595982678695"
+target="_blank"
+class="social-link"
+title="WhatsApp Oficial">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+<footer>
+
+© 2026 Suits Agency |
+Agencia Oficial Bigo Live.
+
+
+</footer><script>
+
+
+// ============================
+// SLIDER HERO
+// ============================
+
+const slides = document.querySelectorAll('.slide');
+
+let currentSlide = 0;
+
+
+if(slides.length > 0){
+
+setInterval(() => {
+
+slides[currentSlide].classList.remove('active');
+
+currentSlide = (currentSlide + 1) % slides.length;
+
+slides[currentSlide].classList.add('active');
+
+
+},5000);
+
+
+}
+
+
+
+// ============================
+// MENU MOBILE
+// ============================
+
+const menuToggle = document.getElementById('menuToggle');
+
+const mainNav = document.getElementById('mainNav');
+
+const overlay = document.getElementById('overlay');
+
+
+
+function closeMenu(){
+
+mainNav.classList.remove('active');
+
+overlay.classList.remove('active');
+
+
+const icon = menuToggle.querySelector('i');
+
+icon.classList.add('fa-bars');
+
+icon.classList.remove('fa-xmark');
+
+
+}
+
+
+
+
+menuToggle.addEventListener('click',()=>{
+
+
+mainNav.classList.toggle('active');
+
+overlay.classList.toggle('active');
+
+
+
+const icon = menuToggle.querySelector('i');
+
+
+icon.classList.toggle('fa-bars');
+
+icon.classList.toggle('fa-xmark');
+
+
+
+});
+
+
+
+
+overlay.addEventListener('click',()=>{
+
+
+closeMenu();
+
+
+});
+
+
+
+
+
+// Cerrar menú al seleccionar una opción
+
+document.querySelectorAll('.nav-link').forEach(link=>{
+
+
+link.addEventListener('click',()=>{
+
+
+closeMenu();
+
+
+});
+
+
+});
+
+
+
+</script>
