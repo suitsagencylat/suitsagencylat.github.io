@@ -19,6 +19,159 @@
 
 <link rel="stylesheet" href="https://suitsagencylat.github.io/styles.css">
 
+<style>
+/* ================================
+   SUITS AGENCY BRANDING 2.0
+   Premium Hero Section (solo para esta página de prueba)
+================================ */
+
+
+.hero-brand {
+    max-width: 850px;
+    margin: 20px auto 45px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+
+.hero-brand h2 {
+
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 8px;
+    color: #ffffff;
+    margin-bottom: 20px;
+
+}
+
+
+.hero-brand h1 {
+
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: .95;
+    letter-spacing: 2px;
+    margin: 0;
+
+}
+
+
+.hero-brand h1 span {
+
+    color: var(--accent-blue);
+    text-shadow:
+    0 0 10px rgba(0,212,255,.5),
+    0 0 25px rgba(0,212,255,.3);
+
+}
+
+
+.hero-brand p {
+
+    max-width:700px;
+    margin:30px auto;
+    color:var(--silver);
+    font-size:1.1rem;
+    line-height:1.8;
+
+}
+
+
+
+/* Tarjetas más premium */
+
+.nav-card {
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.4),
+    inset 0 0 30px rgba(0,212,255,.03);
+
+}
+
+
+.nav-card:hover {
+
+    transform:translateY(-12px);
+    box-shadow:
+    0 0 30px rgba(0,212,255,.15);
+
+}
+
+
+
+/* Países estilo presencia internacional
+   (se aplica directamente al <h2> ya existente en el HTML) */
+
+
+.countries-section h2 {
+
+    font-family:var(--font-display);
+    font-size:2.5rem;
+    letter-spacing:4px;
+    color:white;
+    margin-bottom:20px;
+
+}
+
+
+.country-item {
+
+    transition:.3s;
+
+}
+
+
+.country-item:hover {
+
+    color:var(--accent-blue);
+    border-color:var(--accent-blue);
+    transform:translateY(-3px);
+
+}
+
+
+
+/* Botón más premium */
+
+.cta-main {
+
+    background:transparent;
+    position:relative;
+    overflow:hidden;
+
+}
+
+
+.cta-main::before {
+
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:0%;
+    height:100%;
+    background:var(--accent-blue);
+    transition:.4s;
+    z-index:-1;
+
+}
+
+
+.cta-main:hover::before {
+
+    width:100%;
+
+}
+
+
+.cta-main:hover {
+
+    color:#000;
+
+}
+</style>
+
 </head>
 
 
