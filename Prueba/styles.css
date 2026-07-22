@@ -1,10 +1,9 @@
 /* ============================================
-   SUITS AGENCY - STYLES.CSS
-   Paleta: Negro | Blanco | Cian | Naranja
-   Naranja como luz indirecta / backlight
+   SUITS AGENCY - STYLES.CSS v2
+   Naranja como LUZ INDIRECTA real
+   Más intensidad, mejor posicionamiento
    ============================================ */
 
-/* ===== RESET ===== */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -16,12 +15,27 @@ html {
 }
 
 body {
-    background-color: #0a0a0a;
+    background-color: #080808;
     color: #ffffff;
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    position: relative;
+}
+
+/* ===== LUZ AMBIENTAL GLOBAL NARANJA ===== */
+body::before {
+    content: "";
+    position: fixed;
+    top: -200px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.18) 0%, rgba(255, 107, 0, 0.05) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(80px);
 }
 
 a {
@@ -29,24 +43,13 @@ a {
     color: inherit;
 }
 
-/* ===== VARIABLES ===== */
-:root {
-    --sa-black: #0a0a0a;
-    --sa-black-deep: #050505;
-    --sa-white: #ffffff;
-    --sa-silver: #a0a0a0;
-    --sa-silver-dim: #6a6a6a;
-    --sa-cyan: #00d4ff;
-    --sa-orange: #ff6b00;
-}
-
-/* ===== UTILITIES ===== */
+/* ===== OVERLAY ===== */
 .overlay-bg {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
     z-index: 90;
 }
 
@@ -60,12 +63,12 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 18px 35px;
-    border-bottom: 1px solid rgba(255, 107, 0, 0.05);
-    background: linear-gradient(180deg, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.92) 100%);
+    background: rgba(8, 8, 8, 0.85);
     backdrop-filter: blur(20px);
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid rgba(255, 107, 0, 0.08);
 }
 
 .header-logo {
@@ -114,27 +117,29 @@ a {
     position: relative;
 }
 
-.nav-link::after {
+/* Luz naranja detrás del link activo - ESTO ES LO QUE FUNCIONA BIEN */
+.nav-link::before {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: 2px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #ff6b00, transparent);
+    height: 3px;
+    background: #ff6b00;
+    border-radius: 2px;
     transition: width 0.3s ease;
+    box-shadow: 0 0 12px rgba(255, 107, 0, 0.6), 0 0 30px rgba(255, 107, 0, 0.3);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    width: 60%;
 }
 
 .nav-link:hover,
 .nav-link.active {
     color: #ffffff;
-    background: rgba(255, 107, 0, 0.04);
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 50%;
 }
 
 .nav-link i {
@@ -153,7 +158,7 @@ a {
 
 /* ===== NEWS TICKER ===== */
 .news-ticker {
-    background: linear-gradient(180deg, rgba(255,107,0,0.025) 0%, transparent 100%);
+    background: rgba(255, 107, 0, 0.02);
     border-bottom: 1px solid rgba(255, 107, 0, 0.06);
     overflow: hidden;
     white-space: nowrap;
@@ -166,30 +171,30 @@ a {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 80px;
+    width: 100px;
     z-index: 2;
 }
 
 .news-ticker::before {
     left: 0;
-    background: linear-gradient(90deg, #0a0a0a 0%, transparent 100%);
+    background: linear-gradient(90deg, #080808 0%, transparent 100%);
 }
 
 .news-ticker::after {
     right: 0;
-    background: linear-gradient(270deg, #0a0a0a 0%, transparent 100%);
+    background: linear-gradient(270deg, #080808 0%, transparent 100%);
 }
 
 .ticker-content {
     display: inline-block;
     animation: ticker 25s linear infinite;
-    padding: 12px 0;
+    padding: 14px 0;
 }
 
 .ticker-content span {
-    color: #6a6a6a;
+    color: #5a5a5a;
     font-size: 0.82rem;
-    margin-right: 60px;
+    margin-right: 80px;
     letter-spacing: 1px;
 }
 
@@ -203,34 +208,35 @@ a {
     position: relative;
     padding: 60px 20px 50px;
     text-align: center;
+    overflow: hidden;
 }
 
-/* Luz indirecta naranja - esquina superior derecha */
+/* LUZ NARANJA SUPERIOR DERECHA - más intensa y visible */
 .hero-section::before {
     content: "";
     position: absolute;
-    top: -80px;
-    right: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(255, 107, 0, 0.22) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-    filter: blur(50px);
-}
-
-/* Luz indirecta naranja - esquina inferior izquierda */
-.hero-section::after {
-    content: "";
-    position: absolute;
-    bottom: -30px;
-    left: -80px;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255, 107, 0, 0.08) 0%, transparent 70%);
+    top: -100px;
+    right: -50px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle at center, rgba(255, 140, 0, 0.25) 0%, rgba(255, 107, 0, 0.1) 30%, transparent 65%);
     pointer-events: none;
     z-index: 0;
     filter: blur(60px);
+}
+
+/* LUZ NARANJA INFERIOR IZQUIERDA */
+.hero-section::after {
+    content: "";
+    position: absolute;
+    bottom: 50px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle at center, rgba(255, 107, 0, 0.12) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(70px);
 }
 
 .hero-brand {
@@ -251,15 +257,15 @@ a {
 .hero-brand h1 span {
     color: #00d4ff;
     text-shadow:
-        0 0 10px rgba(0, 212, 255, 0.5),
-        0 0 25px rgba(0, 212, 255, 0.3),
-        0 0 50px rgba(0, 212, 255, 0.15);
+        0 0 15px rgba(0, 212, 255, 0.6),
+        0 0 35px rgba(0, 212, 255, 0.3),
+        0 0 60px rgba(0, 212, 255, 0.15);
 }
 
 .hero-brand p {
     max-width: 700px;
     margin: 25px auto;
-    color: #a0a0a0;
+    color: #909090;
     font-size: 1.1rem;
     line-height: 1.8;
 }
@@ -268,44 +274,50 @@ a {
 .cta-main {
     display: inline-block;
     padding: 16px 45px;
-    border: 1px solid rgba(255, 107, 0, 0.35);
     color: #ffffff;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.2rem;
     letter-spacing: 4px;
     border-radius: 12px;
-    background: linear-gradient(135deg, rgba(255,107,0,0.08) 0%, rgba(255,107,0,0.03) 100%);
+    background: rgba(255, 107, 0, 0.08);
+    border: 1px solid rgba(255, 107, 0, 0.3);
     position: relative;
     overflow: hidden;
     transition: all 0.4s ease;
     margin-top: 20px;
     box-shadow:
-        0 0 20px rgba(255, 107, 0, 0.08),
-        inset 0 0 20px rgba(255, 107, 0, 0.04);
-    cursor: pointer;
+        0 0 25px rgba(255, 107, 0, 0.1),
+        inset 0 0 20px rgba(255, 107, 0, 0.03);
 }
 
+/* Glow naranja intenso detrás del botón */
 .cta-main::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,107,0,0.15), transparent);
-    transition: left 0.6s ease;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(ellipse, rgba(255, 107, 0, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(20px);
 }
 
 .cta-main:hover::before {
-    left: 100%;
+    opacity: 1;
 }
 
 .cta-main:hover {
-    border-color: rgba(255, 107, 0, 0.6);
+    background: rgba(255, 107, 0, 0.15);
+    border-color: rgba(255, 107, 0, 0.5);
     box-shadow:
-        0 0 35px rgba(255, 107, 0, 0.2),
-        0 0 60px rgba(255, 107, 0, 0.08),
-        inset 0 0 25px rgba(255, 107, 0, 0.06);
+        0 0 40px rgba(255, 107, 0, 0.2),
+        0 0 80px rgba(255, 107, 0, 0.08),
+        inset 0 0 30px rgba(255, 107, 0, 0.06);
     transform: translateY(-2px);
 }
 
@@ -313,19 +325,33 @@ a {
 .tips-carousel {
     width: 92%;
     max-width: 700px;
-    height: 120px;
+    height: 110px;
     position: relative;
     overflow: hidden;
     border-radius: 16px;
-    border: 1px solid rgba(255, 107, 0, 0.15);
     margin: 20px auto 40px;
-    background: linear-gradient(135deg, rgba(255,107,0,0.04) 0%, rgba(255,255,255,0.01) 50%, rgba(0,212,255,0.03) 100%);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow:
-        0 0 30px rgba(255, 107, 0, 0.06),
-        inset 0 0 20px rgba(255, 107, 0, 0.02);
+        inset 0 0 30px rgba(255, 107, 0, 0.04),
+        0 0 40px rgba(255, 107, 0, 0.05);
 }
 
-.tip-slideip-slide {
+/* Luz naranja sutil en el interior del carousel */
+.tips-carousel::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 60%;
+    background: radial-gradient(ellipse, rgba(255, 107, 0, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.tip-slide {
     position: absolute;
     top: 0;
     left: 0;
@@ -338,6 +364,7 @@ a {
     padding: 0 25px;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
+    z-index: 1;
 }
 
 .tip-slide.active {
@@ -349,12 +376,12 @@ a {
     font-size: 1.8rem;
     color: #00d4ff;
     flex-shrink: 0;
-    text-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
 }
 
 .tip-slide p {
     margin: 0;
-    color: #a0a0a0;
+    color: #909090;
     font-size: 0.95rem;
     line-height: 1.5;
     text-align: left;
@@ -366,73 +393,27 @@ a {
 }
 
 /* ===== NAV GRID SECTION ===== */
-.nav-grid-section,
-.why-suits,
-.countries-section,
-.social-section {
+.nav-grid-section {
     padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
 }
 
-/* Separador sutil naranja entre secciones */
-.nav-grid-section::after,
-.why-suits::after,
-.countries-section::after {
+/* Luz naranja entre hero y cards */
+.nav-grid-section::before {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 25%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,107,0,0.12), transparent);
-}
-
-/* Luz indirecta en Why Suits */
-.why-suits::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    height: 150px;
-    background: radial-gradient(ellipse at bottom, rgba(255,107,0,0.06) 0%, transparent 70%);
+    top: -50px;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.12) 0%, transparent 65%);
     pointer-events: none;
+    filter: blur(50px);
     z-index: 0;
 }
 
-/* Luz indirecta en Countries */
-.countries-section::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 250px;
-    background: radial-gradient(ellipse, rgba(255,107,0,0.05) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-    filter: blur(35px);
-}
-
-/* Luz indirecta en Social */
-.social-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 250px;
-    height: 120px;
-    background: radial-gradient(ellipse at top, rgba(255,107,0,0.05) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-/* ===== NAV GRID ===== */
 .nav-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -443,7 +424,7 @@ a {
 
 /* ===== CARDS ===== */
 .nav-card {
-    background: linear-gradient(145deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.008) 100%);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 18px;
     padding: 30px 25px;
@@ -453,37 +434,39 @@ a {
     overflow: hidden;
 }
 
-/* Línea de luz naranja en borde superior al hover */
+/* Glow naranja en la parte superior de la tarjeta */
 .nav-card::before {
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 10%;
+    right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,107,0,0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.5), transparent);
     opacity: 0;
     transition: opacity 0.5s ease;
 }
 
-/* Halo naranja debajo de la tarjeta al hover */
+/* Luz naranja difusa debajo de la tarjeta al hover */
 .nav-card::after {
     content: "";
     position: absolute;
-    bottom: -40px;
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%;
-    height: 80px;
-    background: radial-gradient(ellipse, rgba(255,107,0,0.12) 0%, transparent 70%);
+    width: 80%;
+    height: 60px;
+    background: radial-gradient(ellipse, rgba(255, 107, 0, 0.2) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
+    filter: blur(15px);
 }
 
 .nav-card:hover {
     transform: translateY(-8px);
     border-color: rgba(255, 107, 0, 0.2);
+    background: rgba(255, 255, 255, 0.04);
     box-shadow:
         0 20px 50px rgba(0, 0, 0, 0.5),
         0 0 30px rgba(255, 107, 0, 0.08);
@@ -503,12 +486,12 @@ a {
     margin-bottom: 15px;
     display: block;
     transition: all 0.4s ease;
-    text-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+    text-shadow: 0 0 12px rgba(0, 212, 255, 0.25);
 }
 
 .nav-card:hover i {
     color: #ff6b00;
-    text-shadow: 0 0 18px rgba(255, 107, 0, 0.35);
+    text-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
 }
 
 .nav-card h3 {
@@ -520,35 +503,90 @@ a {
 }
 
 .nav-card p {
-    color: #a0a0a0;
+    color: #909090;
     font-size: 0.9rem;
     line-height: 1.7;
 }
 
-/* ===== SECTION TITLES ===== */
-.why-suits h2,
-.countries-section h2 {
+/* ===== WHY SUITS ===== */
+.why-suits {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Luz naranja grande y difusa desde abajo */
+.why-suits::before {
+    content: "";
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 300px;
+    background: radial-gradient(ellipse at bottom, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+}
+
+.why-suits h2 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    letter-spacing: 5px;
+    font-size: 2.4rem;
+    letter-spacing: 6px;
     color: #ffffff;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     position: relative;
     z-index: 2;
-    text-shadow: 0 0 25px rgba(255, 107, 0, 0.12);
+    text-shadow: 0 0 30px rgba(255, 107, 0, 0.15);
+}
+
+/* ===== COUNTRIES SECTION ===== */
+.countries-section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Luz naranja ambiental centrada */
+.countries-section::before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(255, 107, 0, 0.08) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(50px);
+}
+
+.countries-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: 6px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 30px rgba(255, 107, 0, 0.15);
 }
 
 .countries-section > p {
     text-align: center;
-    color: #a0a0a0;
-    margin-bottom: 35px;
+    color: #909090;
+    margin-bottom: 40px;
     position: relative;
     z-index: 2;
     font-size: 1rem;
 }
 
-/* ===== COUNTRIES GRID ===== */
 .countries-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -560,10 +598,10 @@ a {
 }
 
 .country-item {
-    background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.005) 100%);
+    background: rgba(255, 255, 255, 0.025);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 12px;
-    padding: 16px 12px;
+    padding: 18px 12px;
     text-align: center;
     color: #ffffff;
     font-size: 0.9rem;
@@ -573,45 +611,60 @@ a {
     overflow: hidden;
 }
 
-/* Barra de luz naranja en la base al hover */
+/* Barra de luz naranja brillante en la base */
 .country-item::before {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 15%;
+    right: 15%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #ff6b00, transparent);
+    background: #ff6b00;
     opacity: 0;
     transition: opacity 0.4s ease;
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.5), 0 0 20px rgba(255, 107, 0, 0.2);
+    border-radius: 1px;
 }
 
 .country-item:hover {
     transform: translateY(-4px);
-    border-color: rgba(255, 107, 0, 0.25);
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.4),
-        0 0 20px rgba(255, 107, 0, 0.08);
+    border-color: rgba(255, 107, 0, 0.2);
+    background: rgba(255, 255, 255, 0.035);
 }
 
 .country-item:hover::before {
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 /* ===== SOCIAL SECTION ===== */
 .social-section {
+    padding: 80px 20px;
     text-align: center;
+    position: relative;
+}
+
+/* Luz naranja sutil desde arriba */
+.social-section::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 200px;
+    background: radial-gradient(ellipse at top, rgba(255, 107, 0, 0.08) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .social-section h4 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.6rem;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     color: #ffffff;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     position: relative;
     z-index: 2;
-    text-shadow: 0 0 15px rgba(255, 107, 0, 0.1);
+    text-shadow: 0 0 20px rgba(255, 107, 0, 0.12);
 }
 
 .social-icons {
@@ -623,36 +676,37 @@ a {
 }
 
 .social-link {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #a0a0a0;
+    color: #6a6a6a;
     font-size: 1.3rem;
     transition: all 0.4s ease;
-    background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    background: rgba(255, 255, 255, 0.02);
     position: relative;
 }
 
-/* Halo naranja detrás del icono */
+/* Halo naranja alrededor del icono */
 .social-link::before {
     content: "";
     position: absolute;
-    inset: -2px;
+    inset: -3px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,107,0,0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.25) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: -1;
+    filter: blur(8px);
 }
 
 .social-link:hover {
     color: #00d4ff;
     border-color: rgba(0, 212, 255, 0.25);
-    transform: translateY(-4px);
+    transform: translateY(-5px);
     box-shadow: 0 0 25px rgba(0, 212, 255, 0.12);
 }
 
@@ -663,26 +717,28 @@ a {
 /* ===== FOOTER ===== */
 footer {
     text-align: center;
-    padding: 35px 20px;
-    color: #6a6a6a;
+    padding: 40px 20px;
+    color: #4a4a4a;
     font-size: 0.82rem;
-    border-top: 1px solid rgba(255, 107, 0, 0.06);
     position: relative;
+    border-top: 1px solid rgba(255, 107, 0, 0.05);
 }
 
+/* Línea naranja brillante en el borde superior del footer */
 footer::before {
     content: "";
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 150px;
+    width: 200px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,107,0,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.4), transparent);
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.2);
 }
 
 footer p {
-    color: #6a6a6a;
+    color: #4a4a4a;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -698,10 +754,10 @@ footer p {
         width: 75%;
         max-width: 300px;
         height: 100vh;
-        background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+        background: #080808;
         flex-direction: column;
         padding: 90px 25px;
-        border-left: 1px solid rgba(255, 107, 0, 0.08);
+        border-left: 1px solid rgba(255, 107, 0, 0.1);
         transition: right 0.4s ease;
         z-index: 95;
         box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
@@ -725,14 +781,14 @@ footer p {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .hero-section::before,
-    .hero-section::after {
-        width: 200px;
-        height: 200px;
+    .hero-section::before {
+        width: 300px;
+        height: 300px;
+        top: -50px;
     }
     
     .tips-carousel {
-        height: 140px;
+        height: 130px;
     }
     
     .tip-slide p {
@@ -741,6 +797,12 @@ footer p {
     
     .hero-brand h1 {
         font-size: clamp(2.2rem, 10vw, 3.5rem);
+    }
+    
+    .why-suits h2,
+    .countries-section h2 {
+        font-size: 1.8rem;
+        letter-spacing: 4px;
     }
 }
 
@@ -753,5 +815,10 @@ footer p {
         padding: 14px 30px;
         font-size: 1rem;
         letter-spacing: 3px;
+    }
+    
+    .country-item {
+        padding: 14px 10px;
+        font-size: 0.85rem;
     }
 }
