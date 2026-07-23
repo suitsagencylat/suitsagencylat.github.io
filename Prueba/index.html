@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Suits Agency | Agencia Oficial de Creadores Digitales — Prueba Violeta</title>
+<title>Suits Agency | Agencia Oficial de Creadores Digitales — Prueba Fondo</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +29,16 @@
 :root {
     --accent-blue: #00e8ff;
     --accent-violet: #9e00ff;
+}
+
+/* Fondo nuevo: reemplaza el logo como marca de agua
+   por la imagen de pulso/latido violeta */
+body::before {
+    background-image: url('https://suitsagencylat.github.io/background.png');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    opacity: 0.35;
 }
 
 .hero-brand {
