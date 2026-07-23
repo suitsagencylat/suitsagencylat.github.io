@@ -76,16 +76,16 @@ body::before {
 
 /* Carrusel de tips */
 .tips-carousel {
-    width: 90%;
-    max-width: 700px;
-    height: 130px;
+    width: 92%;
+    max-width: 780px;
+    height: 210px;
     position: relative;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 18px;
     border: 1px solid var(--glass-border);
-    margin: 20px auto 40px;
+    margin: 24px auto 40px;
     background: rgba(255, 255, 255, 0.02);
-    box-shadow: 0 0 25px rgba(0, 212, 255, 0.1);
+    box-shadow: 0 0 25px rgba(0, 232, 255, 0.1);
 }
 
 .tip-slide {
@@ -94,8 +94,8 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 18px;
-    padding: 0 30px;
+    gap: 24px;
+    padding: 0 36px;
     box-sizing: border-box;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
@@ -104,7 +104,7 @@ body::before {
 .tip-slide.active { opacity: 1; z-index: 2; }
 
 .tip-slide i {
-    font-size: 2rem;
+    font-size: 2.8rem;
     color: var(--accent-blue);
     flex-shrink: 0;
 }
@@ -112,16 +112,26 @@ body::before {
 .tip-slide p {
     margin: 0;
     color: var(--silver);
-    font-size: 1rem;
+    font-size: 1.35rem;
     line-height: 1.5;
     text-align: left;
 }
 
 .tip-slide strong { color: #ffffff; }
 
-@media (max-width: 480px) {
-    .tips-carousel { height: 150px; }
-    .tip-slide p { font-size: 0.9rem; }
+/* Palabras clave resaltadas dentro de cada tip */
+.tip-slide .kw {
+    color: var(--accent-violet);
+    font-weight: 800;
+}
+.tip-slide .kw.cy {
+    color: var(--accent-blue);
+}
+
+@media (max-width: 600px) {
+    .tips-carousel { height: 280px; }
+    .tip-slide p { font-size: 1.05rem; }
+    .tip-slide i { font-size: 2rem; }
 }
 
 /* Tarjetas: el cian se mantiene en reposo, el violeta aparece
@@ -342,17 +352,37 @@ POSTULAR AHORA
 
 <div class="tip-slide active">
 <i class="fa-solid fa-lightbulb"></i>
-<p><strong>Tip:</strong> Transmití siempre a la misma hora. La constancia hace que tu audiencia vuelva.</p>
+<p><strong>Tip:</strong> Transmití siempre a la <span class="kw">misma hora</span>. La <span class="kw">constancia</span> hace que tu audiencia vuelva.</p>
 </div>
 
 <div class="tip-slide">
 <i class="fa-solid fa-comments"></i>
-<p><strong>Tip:</strong> Interactuá con el chat todo el tiempo. Nombrar a tu audiencia genera fidelidad.</p>
+<p><strong>Tip:</strong> <span class="kw">Interactuá con el chat</span> todo el tiempo. Nombrar a tu audiencia genera <span class="kw cy">fidelidad</span>.</p>
 </div>
 
 <div class="tip-slide">
 <i class="fa-solid fa-chart-line"></i>
-<p><strong>Tip:</strong> Revisá tus estadísticas cada semana para saber qué contenido funciona mejor.</p>
+<p><strong>Tip:</strong> Revisá tus <span class="kw cy">estadísticas</span> cada semana para saber qué contenido <span class="kw">funciona mejor</span>.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-clock"></i>
+<p><strong>Tip:</strong> Empezá con <span class="kw">sesiones cortas</span> y andá subiendo la duración. Es mejor <span class="kw cy">calidad</span> que cantidad de horas.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-video"></i>
+<p><strong>Tip:</strong> Cuidá el <span class="kw cy">audio y la luz</span> antes que cualquier otra cosa. La <span class="kw">calidad técnica</span> retiene más audiencia que los filtros.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-users"></i>
+<p><strong>Tip:</strong> Invitá a tus <span class="kw">seguidores de otras redes</span> a tu primer live. Los primeros minutos definen el <span class="kw cy">alcance</span> del stream.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-gift"></i>
+<p><strong>Tip:</strong> Agradecé cada <span class="kw cy">regalo</span> en vivo y nombrá a quien lo envía. Es la forma más simple de generar <span class="kw">lealtad</span>.</p>
 </div>
 
 </div>
@@ -670,7 +700,7 @@ currentSlide = (currentSlide + 1) % slides.length;
 slides[currentSlide].classList.add('active');
 
 
-},5000);
+},6500);
 
 
 }
@@ -761,4 +791,3 @@ overlay.classList.remove('active');
 </body>
 
 </html>
-
