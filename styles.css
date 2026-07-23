@@ -1,6 +1,7 @@
 :root {
     --bg-color: #050505;
-    --accent-blue: #00d4ff;
+    --accent-blue: #00e8ff;
+    --accent-violet: #9e00ff;
     --silver: #e0e0e0;
     --card-bg: rgba(255, 255, 255, 0.02);
     --glass-border: rgba(255, 255, 255, 0.1);
@@ -18,15 +19,17 @@ body {
     padding-top: 100px;
 }
 
+/* Fondo: pulso violeta neón (reemplaza el logo como marca de agua) */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('https://suitsagencylat.github.io/logo.png');
+    background-image: url('https://suitsagencylat.github.io/Background.png');
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 85%;
-    opacity: 0.2;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.22;
     z-index: -1;
 }
 
@@ -88,7 +91,7 @@ header.main-header {
 .header-logo img {
     height: 48px;
     width: auto;
-    filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.4));
+    filter: drop-shadow(0 0 12px rgba(0, 232, 255, 0.4));
 }
 
 .logo-text-group {
@@ -104,10 +107,10 @@ header.main-header {
     margin: 0;
     line-height: 1;
     letter-spacing: 5px;
-    color: #00d4ff;
+    color: var(--accent-blue);
     text-shadow:
-        0 0 6px rgba(0, 212, 255, 0.5),
-        0 0 15px rgba(0, 212, 255, 0.25);
+        0 0 6px rgba(0, 232, 255, 0.5),
+        0 0 15px rgba(0, 232, 255, 0.25);
 }
 
 .header-logo .leyenda {
@@ -160,7 +163,7 @@ header.main-header {
     border: 1px solid var(--glass-border);
     margin: 20px auto 30px;
     background: transparent;
-    box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
+    box-shadow: 0 0 25px rgba(0, 232, 255, 0.15);
 }
 
 .slide {
@@ -174,11 +177,13 @@ header.main-header {
 .slide.active { opacity: 1; z-index: 2; }
 .slide img { width: 100%; height: 100%; object-fit: cover; }
 
+/* CTA principal: sólido en violeta (color de acción), texto blanco */
 .cta-main {
     display: inline-block;
     padding: 14px 40px;
-    border: 2px solid var(--accent-blue);
-    color: var(--accent-blue);
+    border: 2px solid var(--accent-violet);
+    background: linear-gradient(90deg, var(--accent-violet), #c04bff);
+    color: #fff;
     text-decoration: none;
     font-weight: bold;
     border-radius: 4px;
@@ -187,7 +192,7 @@ header.main-header {
     transition: 0.3s;
 }
 
-.cta-main:hover { background: var(--accent-blue); color: #000; box-shadow: 0 0 20px var(--accent-blue); }
+.cta-main:hover { box-shadow: 0 0 25px rgba(158, 0, 255, .5); color: #fff; }
 
 .nav-grid {
     display: grid;
@@ -206,11 +211,17 @@ header.main-header {
     border: 1px solid var(--glass-border);
     text-align: center;
     backdrop-filter: blur(10px);
-    transition: transform 0.3s;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
-.nav-card:hover { transform: translateY(-10px); border-color: var(--accent-blue); }
-.nav-card i { font-size: 2.2rem; color: var(--accent-blue); margin-bottom: 15px; }
+/* Hover pasa a violeta: refuerza que es el color de "interacción" */
+.nav-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-violet);
+    box-shadow: 0 0 30px rgba(158, 0, 255, .18);
+}
+.nav-card:hover i { color: var(--accent-violet); }
+.nav-card i { font-size: 2.2rem; color: var(--accent-blue); margin-bottom: 15px; transition: color 0.3s; }
 .nav-card h3 { margin: 10px 0; font-size: 1.4rem; color: var(--silver); }
 
 .countries-section { padding: 20px 10%; text-align: center; }
@@ -223,6 +234,18 @@ header.main-header {
     font-weight: bold;
     border: 1px solid var(--glass-border);
     color: var(--silver);
+    transition: 0.3s;
+}
+.country-item:hover {
+    color: var(--accent-violet);
+    border-color: var(--accent-violet);
+    transform: translateY(-3px);
+}
+.country-item.highlight {
+    background: rgba(158, 0, 255, 0.1);
+    border-color: var(--accent-violet);
+    color: var(--accent-violet);
+    font-weight: 800;
 }
 
 .social-section { padding: 40px 10% 20px; text-align: center; position: relative; z-index: 10; }
@@ -242,7 +265,7 @@ header.main-header {
     background: rgba(255,255,255,0.05);
     border: 1px solid var(--glass-border);
 }
-.social-link:hover { transform: scale(1.1) translateY(-5px); filter: drop-shadow(0 0 15px var(--accent-blue)); background: rgba(0, 212, 255, 0.1); border-color: var(--accent-blue); }
+.social-link:hover { transform: scale(1.1) translateY(-5px); filter: drop-shadow(0 0 15px var(--accent-blue)); background: rgba(0, 232, 255, 0.1); border-color: var(--accent-blue); }
 
 footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-size: 0.75rem; position: relative; z-index: 1; }
 
@@ -250,4 +273,3 @@ footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-s
     .slider-container { width: 70%; max-width: 240px; }
     .social-section h4 { font-size: 2.5rem; }
 }
-
