@@ -6,7 +6,7 @@
 // justo después de <body>.
 // ============================================
 
-fetch('https://suitsagencylat.github.io/header.html')
+fetch('/header.html')
   .then(res => res.text())
   .then(html => {
 
@@ -55,4 +55,3 @@ fetch('https://suitsagencylat.github.io/header.html')
 
   })
   .catch(err => console.error('No se pudo cargar el header:', err));
-
