@@ -77,29 +77,6 @@ body::before {
     line-height:1.8;
 }
 
-/* Mascota Bigo Dino: fija en la esquina, flota siempre visible
-   sin importar el scroll de la página */
-.dino-mascot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 90px;
-    height: auto;
-    filter: drop-shadow(0 0 16px rgba(0, 232, 255, 0.35));
-    animation: dino-float 3.5s ease-in-out infinite;
-    z-index: 9997;
-    pointer-events: none;
-}
-
-@keyframes dino-float {
-    0%, 100% { transform: translateY(0) rotate(-2deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
-}
-
-@media (max-width: 500px) {
-    .dino-mascot { width: 60px; bottom: 14px; right: 14px; }
-}
-
 /* Carrusel de tips */
 .tips-carousel {
     width: 92%;
