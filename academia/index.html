@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://suitsagencylat.github.io/styles.css">
+    <link rel="stylesheet" href="https://suitsagency.lat/styles.css">
 
     <style>
         /* Estilos específicos de esta página (Academia) */
@@ -88,24 +88,7 @@
     </style>
 </head>
 <body>
-
-    <div class="overlay-bg" id="overlay"></div>
-
-    <header class="main-header">
-        <a href="https://suitsagencylat.github.io/" class="header-logo">
-            <img src="https://suitsagencylat.github.io/logo.png" alt="Logo Suits Agency">
-            <div class="logo-text-group">
-                <h1>SUITS AGENCY</h1>
-                <span class="leyenda">Agencia oficial de Bigo Live</span>
-            </div>
-        </a>
-        <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
-        <nav class="header-nav" id="mainNav">
-            <a href="https://suitsagencylat.github.io/" class="nav-link"><i class="fa-solid fa-house"></i>Inicio</a>
-            <a href="https://suitsagencylat.github.io/pagos/" class="nav-link"><i class="fa-solid fa-gem"></i>Pagos</a>
-            <a href="https://suitsagencylat.github.io/soporte/" class="nav-link"><i class="fa-solid fa-headset"></i>Soporte</a>
-        </nav>
-    </header>
+    <script src="https://suitsagency.lat/include.js"></script>
 
     <div class="container">
 
@@ -168,26 +151,7 @@
     </div>
 
     <script>
-        // Script del Menú Hamburguesa
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const overlay = document.getElementById('overlay');
-
-        menuToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            overlay.classList.toggle('active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars-staggered');
-            menuToggle.querySelector('i').classList.toggle('fa-xmark');
-        });
-
-        overlay.addEventListener('click', () => {
-            mainNav.classList.remove('active');
-            overlay.classList.remove('active');
-            menuToggle.querySelector('i').classList.add('fa-bars-staggered');
-            menuToggle.querySelector('i').classList.remove('fa-xmark');
-        });
-
-        // Funciones del Reproductor
+        // Funciones del Reproductor (el menú/header ya lo maneja include.js)
         function startFirstVideo() {
             const overlay = document.getElementById('thumb-overlay');
             const iframe = document.getElementById('main-video');
