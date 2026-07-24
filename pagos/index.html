@@ -109,9 +109,9 @@
         .table-wrapper {
             background: rgba(10, 10, 10, 0.8); border-radius: 12px; border: 1px solid var(--glass-border);
             backdrop-filter: blur(15px); overflow-x: auto; box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            margin-top: 10px; width: 100%; display: flex; justify-content: center;
+            margin-top: 10px; width: 100%; -webkit-overflow-scrolling: touch;
         }
-        table { width: auto; margin: 0 auto; border-collapse: collapse; text-align: center; font-size: 0.82rem; }
+        table { width: max-content; min-width: 100%; margin: 0 auto; border-collapse: collapse; text-align: center; font-size: 0.82rem; }
         th {
             background: rgba(0, 212, 255, 0.1); color: var(--accent-blue); padding: 12px 6px;
             text-transform: uppercase; font-weight: bold; font-size: 0.65rem; letter-spacing: 1px;
@@ -190,7 +190,6 @@
                 <table id="paymentTable">
                     <thead>
                         <tr>
-                            <th>NIVEL</th>
                             <th>META <br>(SEMILLAS)</th>
                             <th>MONEDERO <br>USD</th>
                             <th>REMUNERACIÓN <br>USD</th>
@@ -248,7 +247,6 @@
             const tr = document.createElement('tr');
             tr.dataset.semillas = t.semillas;
             tr.innerHTML = `
-                <td class="nivel-cell">${t.nivel}</td>
                 <td>${t.semillas.toLocaleString('es-AR')}</td>
                 <td>${t.monedero.toLocaleString('es-AR')}</td>
                 <td>${t.remuneracion.toLocaleString('es-AR')}</td>
@@ -327,4 +325,6 @@
             optionsBox.innerHTML = matches.map(([code, name]) =>
                 `<div class="currency-opt" data-code="${code}">${name} <small>(${code})</small></div>`
             ).join('');
-            optionsBox.classLi
+            optionsBox.classList.add('open');
+
+            optionsBox.querySelectorAll('.currency-opt').forEa
