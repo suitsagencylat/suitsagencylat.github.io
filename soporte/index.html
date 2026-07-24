@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soporte | Suits Agency</title>
+    <meta name="description" content="Todo lo que necesitás saber para ser emisor oficial de Bigo Live con Suits Agency: requisitos, horarios, pagos y beneficios.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,10 +16,24 @@
         /* Estilos específicos de esta página (Soporte) */
         .container { max-width: 650px; margin: 0 auto; padding: 20px; }
         .main-title { text-align: center; font-size: 1.8rem; margin-bottom: 5px; }
-        .subtitle { text-align: center; color: var(--accent-blue); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; }
+        .subtitle { text-align: center; color: var(--accent-blue); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 25px; }
 
-        /* Banner de tips positivo: se muestra ANTES de las reglas,
-           para que la primera impresión no sea una lista de penalizaciones */
+        /* Nav rápida por categoría (ancla) */
+        .quick-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 30px; }
+        .quick-nav a {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--silver);
+            text-decoration: none;
+            border: 1px solid var(--glass-border);
+            padding: 7px 14px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .quick-nav a:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
+
+        /* Banner de tips positivo: resumen rápido antes de entrar al detalle */
         .tip-banner {
             background: linear-gradient(135deg, rgba(0,232,255,0.08), rgba(158,0,255,0.06));
             border: 1px solid var(--glass-border);
@@ -39,30 +54,92 @@
         .tip-banner li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: var(--silver); line-height: 1.4; }
         .tip-banner li i { color: var(--accent-blue); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
 
-        /* Encabezados de categoría dentro del FAQ */
+        /* Encabezados de categoría */
         .faq-category {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin: 30px 0 12px;
+            margin: 34px 0 12px;
             color: var(--accent-blue);
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 2px;
             font-weight: 700;
+            scroll-margin-top: 115px;
         }
         .faq-category:first-of-type { margin-top: 0; }
         .faq-category i { font-size: 0.9rem; }
 
         .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); border-radius: 12px; margin-bottom: 10px; transition: 0.3s; }
-        .faq-question { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; font-weight: 500; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: rgba(255,255,255,0.01); }
-        .faq-answer-content { padding: 0 20px 20px; color: #aaa; line-height: 1.5; font-size: 0.85rem; }
+        .faq-question { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 0.9rem; font-weight: 500; }
+        .faq-question i { flex-shrink: 0; transition: 0.3s; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: rgba(255,255,255,0.01); }
+        .faq-answer-content { padding: 0 20px 20px; color: #aaa; line-height: 1.55; font-size: 0.85rem; }
+        .faq-answer-content p { margin: 0 0 10px; }
+        .faq-answer-content p:last-child { margin-bottom: 0; }
+        .faq-answer-content ul { margin: 0 0 10px; padding-left: 18px; }
+        .faq-answer-content li { margin-bottom: 5px; }
+        .faq-answer-content strong { color: #ddd; }
+        .faq-answer-content a { color: var(--accent-blue); }
+        .faq-tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            background: rgba(0,232,255,0.06);
+            border-left: 2px solid var(--accent-blue);
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--silver) !important;
+        }
+        .faq-tip i { color: var(--accent-blue); margin-top: 2px; flex-shrink: 0; }
         .faq-item.open { border-color: var(--accent-blue); }
-        .faq-item.open .faq-answer { max-height: 350px; }
-        .faq-item.open i { transform: rotate(180deg); color: var(--accent-blue); }
+        .faq-item.open .faq-answer { max-height: 900px; }
+        .faq-item.open .faq-question i { transform: rotate(180deg); color: var(--accent-blue); }
 
-        /* CTA final: para lo que no esté cubierto en el FAQ */
+        /* 10 Mandamientos */
+        .mandamientos { margin-top: 45px; }
+        .mandamientos h2 {
+            text-align: center;
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            letter-spacing: 2px;
+            margin: 0 0 25px;
+            color: #fff;
+        }
+        .mandamiento-grid { display: flex; flex-direction: column; gap: 12px; }
+        .mandamiento-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+        .mandamiento-number {
+            background: var(--accent-blue);
+            color: #000;
+            width: 28px; height: 28px;
+            min-width: 28px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .mandamiento-item h4 { margin: 0 0 4px; font-size: 0.9rem; color: #fff; }
+        .mandamiento-item p { margin: 0; font-size: 0.8rem; color: var(--silver); line-height: 1.4; }
+        .mandamiento-quote {
+            text-align: center;
+            font-style: italic;
+            color: var(--silver);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 30px auto 0;
+        }
+
+        /* CTA final */
         .support-cta {
             margin-top: 35px;
             text-align: center;
@@ -93,110 +170,180 @@
 
     <div class="container">
         <h2 class="main-title">Centro de Soporte</h2>
-        <p class="subtitle">Reglamento Oficial Marzo 2026</p>
+        <p class="subtitle">Reglamento Oficial 2026</p>
+
+        <nav class="quick-nav">
+            <a href="#cat-requisitos">Requisitos</a>
+            <a href="#cat-horarios">Horarios</a>
+            <a href="#cat-pagos">Pagos</a>
+            <a href="#cat-reglas">Reglas</a>
+            <a href="#cat-beneficios">Beneficios</a>
+        </nav>
 
         <div class="tip-banner">
-            <h3><i class="fa-solid fa-star"></i> Cómo cobrar el 100% de tu remuneración</h3>
+            <h3><i class="fa-solid fa-star"></i> Lo esencial en 3 líneas</h3>
             <ul>
-                <li><i class="fa-solid fa-check"></i> Transmití al menos 30 minutos por sesión para que el día cuente como válido.</li>
-                <li><i class="fa-solid fa-check"></i> Repartí tus horas en varios días: el sistema solo suma hasta 2 horas válidas por día.</li>
-                <li><i class="fa-solid fa-check"></i> Llegá a las 44 horas mensuales para cobrar el 100% de tu meta de semillas.</li>
-                <li><i class="fa-solid fa-check"></i> Si sos nuevo, tu primer mes se paga proporcional a tus horas reales — no hace falta llegar a 44 desde el día uno.</li>
+                <li><i class="fa-solid fa-check"></i> No necesitás seguidores previos ni experiencia para empezar.</li>
+                <li><i class="fa-solid fa-check"></i> Meta mensual: 44 horas válidas + 2,000 semillas para calificar a remuneración.</li>
+                <li><i class="fa-solid fa-check"></i> Suits Agency no cobra comisión: recibís el 100% de lo que generás.</li>
             </ul>
         </div>
 
         <section id="faq-list">
 
-            <div class="faq-category"><i class="fa-solid fa-clock"></i> Requisitos de transmisión</div>
+            <div class="faq-category" id="cat-requisitos"><i class="fa-solid fa-clipboard-check"></i> Requisitos y admisión</div>
 
             <div class="faq-item">
-                <div class="faq-question"><span>¿Qué requisitos debe cumplir un "Día Válido"?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-question"><span>¿Cuáles son los requisitos para ser emisor?</span><i class="fa-solid fa-chevron-down"></i></div>
                 <div class="faq-answer">
-                    <div class="faq-answer-content">Se contabiliza como día válido aquel en el que el emisor transmite un mínimo de 30 minutos (0.5 horas). Una sesión de, por ejemplo, 25 minutos no llega a ese mínimo y ese día no se computa para la meta mensual.</div>
+                    <div class="faq-answer-content">
+                        <ul>
+                            <li><strong>Edad mínima:</strong> 18 años o más.</li>
+                            <li><strong>Residencia:</strong> vivir en un país de Latinoamérica.</li>
+                            <li><strong>Disponibilidad:</strong> tiempo para transmitir con regularidad.</li>
+                            <li><strong>Equipo:</strong> celular con cámara funcional y conexión a internet estable (WiFi o datos móviles).</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question"><span>¿Existe un límite de horas contables por día?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-question"><span>¿Necesito una cantidad mínima de seguidores?</span><i class="fa-solid fa-chevron-down"></i></div>
                 <div class="faq-answer">
-                    <div class="faq-answer-content">Sí, el sistema de Bigo Live solo permite sumar un máximo de 2 horas válidas por día. Cualquier tiempo de transmisión adicional ese mismo día no contará para completar el requisito de las 44 horas mensuales.</div>
+                    <div class="faq-answer-content">
+                        <p>No. Muchos de nuestros emisores más exitosos empezaron desde cero. Suits Agency te acompaña con:</p>
+                        <ul>
+                            <li>Capacitación inicial sobre la app y cómo atraer audiencia.</li>
+                            <li>Consejos de crecimiento y estrategia de contenido.</li>
+                            <li>Soporte continuo para dudas técnicas o de la plataforma.</li>
+                            <li>Eventos de visibilidad gestionados por la agencia (en general, 2 por mes).</li>
+                            <li>Guía paso a paso para hacer tus retiros.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question"><span>¿Puedo transmitir desde fuera de Latinoamérica?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-question"><span>¿Cuánto tarda la aprobación de mi solicitud?</span><i class="fa-solid fa-chevron-down"></i></div>
                 <div class="faq-answer">
-                    <div class="faq-answer-content">No es permitido. El emisor debe residir en los países autorizados de la región LATAM. Estar fuera de la región por más de 30 días sin notificación previa es motivo de rescisión automática del contrato.</div>
+                    <div class="faq-answer-content">
+                        <p>Entre 24 y 72 horas hábiles desde que aceptás el enlace de invitación. Una vez que Bigo Live aprueba tu solicitud, ya sos emisor oficial: las horas y semillas que acumules empiezan a sumar de inmediato.</p>
+                        <p>La firma digital del acuerdo de emisor oficial se hace después de esa aprobación, y es la que te habilita a realizar retiros. Al quedar aprobado, recibís un mensaje de bienvenida con tu credencial de emisor (insignia dorada en tu perfil).</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="faq-category"><i class="fa-solid fa-dollar-sign"></i> Cómo funciona el pago</div>
+            <div class="faq-category" id="cat-horarios"><i class="fa-solid fa-clock"></i> Horarios y transmisión</div>
 
             <div class="faq-item">
-                <div class="faq-question"><span>¿Cuál es la meta mínima de semillas?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-question"><span>¿Cuántas horas debo transmitir al mes?</span><i class="fa-solid fa-chevron-down"></i></div>
                 <div class="faq-answer">
-                    <div class="faq-answer-content">La meta base (Nivel e) para calificar a una remuneración económica comienza en las 2,000 semillas mensuales, siempre y cuando se cumplan las horas de transmisión estipuladas.</div>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question"><span>¿Cuál es el pago proporcional para nuevos emisores?</span><i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">Únicamente durante su primer mes de firma, si el emisor no alcanza las 44 horas requeridas, se le pagará un monto proporcional basado exactamente en las horas que haya logrado transmitir (Horas reales / 44).</div>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question"><span>¿Cuál es el horario de reinicio (Reset) por país?</span><i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">El cierre de metas se rige por zonas horarias fijas: Colombia, Perú y Panamá operan en UTC-5. Paraguay, Chile y Bolivia operan en UTC-4. Argentina y Uruguay en UTC-3.</div>
-                </div>
-            </div>
-
-            <div class="faq-category"><i class="fa-solid fa-shield-halved"></i> Reglas y restricciones</div>
-
-            <div class="faq-item">
-                <div class="faq-question"><span>¿Qué penalización hay por no completar las 44 horas?</span><i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">Si alcanzas tu meta de semillas pero transmites entre 20 y 43 horas, recibís el 50% de la remuneración correspondiente. Si transmites menos de 20 horas, el pago es de $0 USD. Por eso conviene repartir las horas a lo largo del mes en vez de dejarlas para el final.</div>
+                    <div class="faq-answer-content">
+                        <p>La meta mensual es de <strong>44 horas de transmisión válidas</strong>.</p>
+                        <p><strong>¿Qué es una hora válida?</strong> Aquella en la que transmitís un mínimo de 30 minutos seguidos con cámara encendida.</p>
+                        <p><strong>¿Hay límite diario?</strong> Sí, el sistema solo suma hasta 2 horas válidas por día. El tiempo extra ese mismo día no cuenta para la meta mensual.</p>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Con 2 horas por día necesitás 22 días válidos para llegar a 44 horas. Planificá tu calendario para no dejar todo para el final del mes.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question"><span>¿Cómo afectan las semillas extranjeras a mi pago?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-question"><span>¿Puedo elegir mi propio horario para transmitir?</span><i class="fa-solid fa-chevron-down"></i></div>
                 <div class="faq-answer">
-                    <div class="faq-answer-content">Las semillas provenientes de regiones externas (como Vietnam, Filipinas o India) se valoran al 50%. Esto significa que si recibes 1,000 semillas de estos países, solo sumarán 500 para tu meta de cobro.</div>
+                    <div class="faq-answer-content">
+                        <p>Sí, total libertad. No hay horarios obligatorios impuestos por la agencia. Aun así, te recomendamos:</p>
+                        <ul>
+                            <li><strong>Ser constante:</strong> transmitir siempre a las mismas horas ayuda a que tu audiencia te encuentre y a que el algoritmo te posicione mejor.</li>
+                            <li><strong>Horario pico:</strong> generalmente entre las 19:00 y 23:00 (hora local) hay más usuarios activos.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question"><span>¿Qué es la restricción de Semillas Mutuas?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-question"><span>¿Las 2 horas diarias deben ser continuas?</span><i class="fa-solid fa-chevron-down"></i></div>
                 <div class="faq-answer">
-                    <div class="faq-answer-content">Si las semillas recibidas de otros emisores oficiales de la región LATAM superan el 50% de tu meta total, la remuneración será cancelada por la plataforma para evitar el intercambio artificial de regalos.</div>
+                    <div class="faq-answer-content"><p>No necesariamente. Podés repartirlas, por ejemplo, en dos sesiones de 1 hora cada una.</p></div>
                 </div>
             </div>
 
-        </section>
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Es obligatorio transmitir todos los días?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>No es obligatorio, pero sí muy recomendable para mantener tu audiencia activa y mejorar tu posicionamiento en el algoritmo.</p>
+                        <ul>
+                            <li>Con 2 horas diarias, necesitás 22 días para completar las 44 horas mensuales.</li>
+                            <li>Con 1 hora diaria, necesitarías 44 días — no entra en un mes de 30-31 días.</li>
+                        </ul>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Si no podés todos los días, intentá al menos 5-6 días por semana. La constancia vale más que las sesiones largas esporádicas.</div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="support-cta">
-            <p>¿Tenés una duda que no está acá? Escribinos y te respondemos directo.</p>
-            <a href="https://wa.me/595982678695" class="action-btn"><i class="fa-brands fa-whatsapp"></i> HABLAR CON SOPORTE</a>
-        </div>
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué equipo necesito para empezar?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p><strong>Esencial:</strong> celular con cámara funcional, conexión estable a internet y un espacio con buena iluminación (la luz natural de una ventana alcanza).</p>
+                        <p><strong>Recomendado, a medida que crecés:</strong> aro de luz o lámpara frontal, trípode o soporte para el celular, fondo ordenado.</p>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Muchos emisores exitosos empezaron solo con su celular y una ventana. El contenido y la interacción importan más que el equipo.</div>
+                    </div>
+                </div>
+            </div>
 
-        <footer>&copy; 2026 Suits Agency | Bigo Live Official</footer>
-    </div>
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Debo mostrar mi rostro durante las transmisiones?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Sí. Bigo Live es una plataforma centrada en la conexión personal entre emisor y audiencia. Mostrar tu rostro suele traducirse en más confianza, más interacciones y regalos, y un crecimiento más rápido.</p>
+                        <p>Los modos de sala de audio, video pregrabado o avatar virtual no computan horas ni semillas para las metas.</p>
+                    </div>
+                </div>
+            </div>
 
-    <script>
-        // Acordeón FAQ (el menú/header ya lo maneja include.js)
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.parentElement;
-                document.querySelectorAll('.faq-item').forEach(el => {
-                    if(el !== item) el.classList.remove('open');
-                });
-                item.classList.toggle('open');
-            });
-        });
-    </script>
-</body>
-</html>
+            <div class="faq-category" id="cat-pagos"><i class="fa-solid fa-dollar-sign"></i> Pagos y semillas</div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué son las semillas y cómo influyen en mi pago?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Las semillas son la moneda virtual de Bigo Live. Los espectadores compran diamantes con dinero real y te los envían como regalos durante tus transmisiones; esos regalos se reflejan en semillas.</p>
+                        <ul>
+                            <li>Cada semilla tiene un valor en dólares (aproximadamente 210 semillas = 1 USD).</li>
+                            <li>Acumulás semillas durante todo el mes calendario en tu monedero, canjeable en dólares.</li>
+                            <li>Al cierre del mes, si cumpliste la meta de semillas y de horas, recibís una remuneración extra.</li>
+                        </ul>
+                        <p><strong>Meta mínima:</strong> 2,000 semillas mensuales (Nivel e) para calificar a remuneración. Sin esa meta, no hay pago ese mes aunque hayas cumplido las horas.</p>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Interactuá con tu audiencia, agradecé los regalos en vivo y creá contenido entretenido — las semillas nacen de la conexión genuina con tus espectadores.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cómo se calculan mis ingresos?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Tus ingresos dependen de tres factores:</p>
+                        <ul>
+                            <li><strong>Semillas acumuladas:</strong> la meta mínima (Nivel e) es 2,000; hay niveles superiores (d, c, b, a, s) con metas y pagos mayores. Podés ver la <a href="https://suitsagency.lat/pagos/">tabla de remuneración completa acá</a>.</li>
+                            <li><strong>Horas cumplidas:</strong> 44 horas o más paga el 100% de tu nivel; entre 20 y 43 horas paga el 50%; menos de 20 horas paga $0 USD.</li>
+                            <li><strong>Primer mes:</strong> si sos nuevo y no llegás a 44 horas, se te paga proporcional (Horas reales ÷ 44 × remuneración total). Ejemplo: con 22 horas cobrás el 50% de tu meta de semillas.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cuándo y cómo recibo mi pago?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p><strong>Frecuencia:</strong> mensual, por el mes calendario completo (del 1 al último día). La remuneración llega a tu monedero de Bigo Live alrededor del día 5 del mes siguiente, en forma de semillas equivalentes a tu ganancia.</p>
+                        <p><strong>Retiro:</strong> una vez acreditada la remuneración, podés retirar desde tu monedero con el método disponible en tu país: PayPal, Payoneer, Dlocal o Binance.</p>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Antes de tu primer retiro, pedile a tu agente encargado la guía paso a paso para evitar inconvenientes.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué pasa si un mes no cumplo la meta de 
