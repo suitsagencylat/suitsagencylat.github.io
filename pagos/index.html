@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Remuneración Oficial | Suits Agency</title>
+    <meta name="description" content="Calculá tu remuneración estimada como emisor de Bigo Live con Suits Agency y consultá la tabla oficial de pagos en tu moneda local.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +34,7 @@
             box-sizing: border-box;
         }
 
-        header.table-header { text-align: center; margin-bottom: 20px; }
+        header.table-header { text-align: center; margin-bottom: 25px; }
 
         header.table-header h2 {
             font-size: 2.0rem;
@@ -53,6 +54,116 @@
             margin-top: 5px;
             font-size: 0.8rem;
         }
+
+        /* Calculadora */
+        .calc-card {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto 40px;
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            padding: 24px 22px;
+            box-sizing: border-box;
+        }
+        .calc-card h3 {
+            margin: 0 0 4px;
+            font-size: 1.1rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .calc-card h3 i { color: var(--accent-blue); }
+        .calc-sub { margin: 0 0 20px; font-size: 0.8rem; color: var(--silver); }
+
+        .calc-field { margin-bottom: 14px; }
+        .calc-field label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            margin-bottom: 6px;
+        }
+        .calc-field input, .calc-field select {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 12px 14px;
+            color: #fff;
+            font-family: var(--font-clean);
+            font-size: 0.9rem;
+        }
+        .calc-field input:focus, .calc-field select:focus { outline: none; border-color: var(--accent-blue); }
+        .calc-field input::placeholder { color: rgba(255,255,255,0.3); }
+
+        .calc-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--accent-violet), #c04bff);
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 4px;
+        }
+        .calc-btn:hover { box-shadow: 0 0 20px rgba(158,0,255,.4); }
+        .calc-btn:disabled { opacity: 0.6; cursor: default; }
+
+        .calc-result {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--silver);
+            padding: 6px 0;
+        }
+        .calc-row span:last-child { color: #fff; font-weight: 600; }
+        .calc-row.calc-total { margin-top: 6px; padding-top: 12px; border-top: 1px dashed var(--glass-border); }
+        .calc-row.calc-total span:last-child { color: var(--fuchsia); font-size: 1.1rem; font-weight: bold; text-shadow: 0 0 8px rgba(255,0,255,0.2); }
+        .calc-row.calc-converted span:last-child { color: var(--accent-blue); font-size: 1.05rem; }
+        .calc-note { margin-top: 12px; font-size: 0.7rem; color: rgba(255,255,255,0.4); line-height: 1.4; }
+        .calc-warning {
+            margin-top: 14px;
+            background: rgba(255,80,80,0.08);
+            border-left: 2px solid #ff5050;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            color: var(--silver);
+        }
+        .calc-cta {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(0,232,255,0.08);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .calc-cta:hover { background: rgba(0,232,255,0.15); }
 
         .table-wrapper {
             background: rgba(10, 10, 10, 0.8);
@@ -91,6 +202,7 @@
             padding: 10px 6px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--silver);
+            transition: background 0.4s;
         }
 
         .total-usd {
@@ -99,6 +211,9 @@
             text-shadow: 0 0 8px rgba(255, 0, 255, 0.2);
             font-size: 0.9rem;
         }
+
+        tr.row-match td { background: rgba(0, 232, 255, 0.08); }
+        tr.row-match td:first-child { border-left: 2px solid var(--accent-blue); }
 
         @media (max-width: 480px) {
             header.table-header h2 { font-size: 1.6rem; }
@@ -119,8 +234,49 @@
                 <div class="meta-info">44 HORAS MENSUALES | OFICIAL BIGO LIVE</div>
             </header>
 
+            <div class="calc-card">
+                <h3><i class="fa-solid fa-calculator"></i> Calculadora de Remuneración</h3>
+                <p class="calc-sub">Estimá cuánto podrías cobrar este mes y convertilo a tu moneda.</p>
+
+                <div class="calc-field">
+                    <label for="calcSemillas">Semillas acumuladas este mes</label>
+                    <input type="number" id="calcSemillas" min="0" step="500" placeholder="Ej: 25000">
+                </div>
+
+                <div class="calc-field">
+                    <label for="calcHoras">Horas transmitidas este mes</label>
+                    <input type="number" id="calcHoras" min="0" max="300" step="1" placeholder="Ej: 44">
+                </div>
+
+                <div class="calc-field">
+                    <label for="calcMoneda">Convertir resultado a</label>
+                    <select id="calcMoneda">
+                        <option value="USD">Dólares (USD)</option>
+                        <option value="ARS">Argentina — Peso (ARS)</option>
+                        <option value="PYG">Paraguay — Guaraní (PYG)</option>
+                        <option value="CLP">Chile — Peso (CLP)</option>
+                        <option value="COP">Colombia — Peso (COP)</option>
+                        <option value="MXN">México — Peso (MXN)</option>
+                        <option value="PEN">Perú — Sol (PEN)</option>
+                        <option value="VES">Venezuela — Bolívar (VES)</option>
+                    </select>
+                </div>
+
+                <button id="calcBtn" class="calc-btn">Calcular remuneración</button>
+
+                <div id="calcResult" class="calc-result" style="display:none;">
+                    <div class="calc-row"><span>Monedero</span><span id="calcMonedero">$0</span></div>
+                    <div class="calc-row"><span>Remuneración</span><span id="calcRemuneracion">$0</span></div>
+                    <div class="calc-row calc-total"><span>Ganancia total (USD)</span><span id="calcTotal">$0</span></div>
+                    <div class="calc-row calc-converted" id="calcConvertedRow" style="display:none;"><span id="calcConvertedLabel">Equivalente</span><span id="calcConvertido">—</span></div>
+                    <div id="calcWarning"></div>
+                    <p class="calc-note" id="calcNote">Cálculo estimado según la tabla oficial vigente. La remuneración final la valida Bigo Live.</p>
+                    <a href="https://suitsagency.lat/registro/" class="calc-cta"><i class="fa-solid fa-rocket"></i> Quiero empezar a cobrar esto</a>
+                </div>
+            </div>
+
             <div class="table-wrapper">
-                <table>
+                <table id="paymentTable">
                     <thead>
                         <tr>
                             <th>META <br>(SEMILLAS)</th>
@@ -130,17 +286,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>2,000</td><td>10</td><td>14</td><td class="total-usd">24</td></tr>
-                        <tr><td>5,000</td><td>24</td><td>34</td><td class="total-usd">58</td></tr>
-                        <tr><td>10,000</td><td>48</td><td>74</td><td class="total-usd">122</td></tr>
-                        <tr><td>20,000</td><td>95</td><td>141</td><td class="total-usd">236</td></tr>
-                        <tr><td>30,000</td><td>143</td><td>211</td><td class="total-usd">354</td></tr>
-                        <tr><td>60,000</td><td>286</td><td>422</td><td class="total-usd">708</td></tr>
-                        <tr><td>100,000</td><td>476</td><td>660</td><td class="total-usd">1136</td></tr>
-                        <tr><td>150,000</td><td>714</td><td>990</td><td class="total-usd">1704</td></tr>
-                        <tr><td>200,000</td><td>952</td><td>1320</td><td class="total-usd">2272</td></tr>
-                        <tr><td>250,000</td><td>1190</td><td>1650</td><td class="total-usd">2840</td></tr>
-                        <tr><td>300,000</td><td>1429</td><td>1980</td><td class="total-usd">3409</td></tr>
+                        <tr data-semillas="2000"><td>2,000</td><td>10</td><td>14</td><td class="total-usd">24</td></tr>
+                        <tr data-semillas="5000"><td>5,000</td><td>24</td><td>34</td><td class="total-usd">58</td></tr>
+                        <tr data-semillas="10000"><td>10,000</td><td>48</td><td>74</td><td class="total-usd">122</td></tr>
+                        <tr data-semillas="20000"><td>20,000</td><td>95</td><td>141</td><td class="total-usd">236</td></tr>
+                        <tr data-semillas="30000"><td>30,000</td><td>143</td><td>211</td><td class="total-usd">354</td></tr>
+                        <tr data-semillas="60000"><td>60,000</td><td>286</td><td>422</td><td class="total-usd">708</td></tr>
+                        <tr data-semillas="100000"><td>100,000</td><td>476</td><td>660</td><td class="total-usd">1136</td></tr>
+                        <tr data-semillas="150000"><td>150,000</td><td>714</td><td>990</td><td class="total-usd">1704</td></tr>
+                        <tr data-semillas="200000"><td>200,000</td><td>952</td><td>1320</td><td class="total-usd">2272</td></tr>
+                        <tr data-semillas="250000"><td>250,000</td><td>1190</td><td>1650</td><td class="total-usd">2840</td></tr>
+                        <tr data-semillas="300000"><td>300,000</td><td>1429</td><td>1980</td><td class="total-usd">3409</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -151,6 +307,144 @@
             &copy; 2026 Suits Agency | Datos oficiales de remuneración Bigo Live.
         </footer>
     </div>
+
+    <script>
+        // Tabla oficial de tramos (misma data que se muestra abajo)
+        const tiers = [
+            { semillas: 2000,   monedero: 10,   remuneracion: 14,   total: 24 },
+            { semillas: 5000,   monedero: 24,   remuneracion: 34,   total: 58 },
+            { semillas: 10000,  monedero: 48,   remuneracion: 74,   total: 122 },
+            { semillas: 20000,  monedero: 95,   remuneracion: 141,  total: 236 },
+            { semillas: 30000,  monedero: 143,  remuneracion: 211,  total: 354 },
+            { semillas: 60000,  monedero: 286,  remuneracion: 422,  total: 708 },
+            { semillas: 100000, monedero: 476,  remuneracion: 660,  total: 1136 },
+            { semillas: 150000, monedero: 714,  remuneracion: 990,  total: 1704 },
+            { semillas: 200000, monedero: 952,  remuneracion: 1320, total: 2272 },
+            { semillas: 250000, monedero: 1190, remuneracion: 1650, total: 2840 },
+            { semillas: 300000, monedero: 1429, remuneracion: 1980, total: 3409 }
+        ];
+
+        // Interpola linealmente entre tramos conocidos de la tabla
+        function calcularTramo(semillas) {
+            if (semillas < tiers[0].semillas) {
+                return { monedero: 0, remuneracion: 0, total: 0, califica: false };
+            }
+            const last = tiers[tiers.length - 1];
+            if (semillas >= last.semillas) {
+                const ratio = semillas / last.semillas;
+                return {
+                    monedero: last.monedero * ratio,
+                    remuneracion: last.remuneracion * ratio,
+                    total: last.total * ratio,
+                    califica: true,
+                    extrapolado: semillas > last.semillas
+                };
+            }
+            for (let i = 0; i < tiers.length - 1; i++) {
+                const a = tiers[i], b = tiers[i + 1];
+                if (semillas >= a.semillas && semillas <= b.semillas) {
+                    const frac = (semillas - a.semillas) / (b.semillas - a.semillas);
+                    return {
+                        monedero: a.monedero + frac * (b.monedero - a.monedero),
+                        remuneracion: a.remuneracion + frac * (b.remuneracion - a.remuneracion),
+                        total: a.total + frac * (b.total - a.total),
+                        califica: true
+                    };
+                }
+            }
+        }
+
+        function factorHoras(horas) {
+            if (horas >= 44) return 1;
+            if (horas >= 20) return 0.5;
+            return 0;
+        }
+
+        function fmtUSD(n) {
+            return '$' + n.toLocaleString('es-AR', { maximumFractionDigits: 0 });
+        }
+
+        // Conversor de divisas en vivo (API pública, sin key)
+        async function obtenerTasa(moneda) {
+            if (moneda === 'USD') return 1;
+            try {
+                const res = await fetch('https://open.er-api.com/v6/latest/USD');
+                const data = await res.json();
+                if (data && data.rates && data.rates[moneda]) return data.rates[moneda];
+                return null;
+            } catch (err) {
+                return null;
+            }
+        }
+
+        const nombresMoneda = {
+            ARS: 'pesos argentinos', PYG: 'guaraníes', CLP: 'pesos chilenos',
+            COP: 'pesos colombianos', MXN: 'pesos mexicanos', PEN: 'soles', VES: 'bolívares'
+        };
+
+        const calcBtn = document.getElementById('calcBtn');
+        calcBtn.addEventListener('click', async () => {
+            const semillas = parseFloat(document.getElementById('calcSemillas').value) || 0;
+            const horas = parseFloat(document.getElementById('calcHoras').value) || 0;
+            const moneda = document.getElementById('calcMoneda').value;
+
+            calcBtn.disabled = true;
+            calcBtn.textContent = 'Calculando...';
+
+            const tramo = calcularTramo(semillas);
+            const factor = factorHoras(horas);
+
+            const monedero = tramo.monedero * factor;
+            const remuneracion = tramo.remuneracion * factor;
+            const total = tramo.total * factor;
+
+            document.getElementById('calcMonedero').textContent = fmtUSD(monedero);
+            document.getElementById('calcRemuneracion').textContent = fmtUSD(remuneracion);
+            document.getElementById('calcTotal').textContent = fmtUSD(total);
+
+            // Advertencias
+            const warningEl = document.getElementById('calcWarning');
+            warningEl.innerHTML = '';
+            if (!tramo.califica) {
+                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Con menos de 2,000 semillas no calificás a remuneración económica este mes.</div>';
+            } else if (horas < 20) {
+                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Con menos de 20 horas transmitidas, la remuneración de este mes sería $0 USD.</div>';
+            } else if (horas < 44) {
+                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Entre 20 y 43 horas cobrás el 50% de tu tramo. Llegá a 44 horas para cobrar el 100%.</div>';
+            }
+
+            // Conversión de moneda
+            const convertedRow = document.getElementById('calcConvertedRow');
+            if (moneda === 'USD') {
+                convertedRow.style.display = 'none';
+            } else {
+                const tasa = await obtenerTasa(moneda);
+                if (tasa) {
+                    const convertido = total * tasa;
+                    document.getElementById('calcConvertedLabel').textContent = 'Equivalente en ' + moneda;
+                    document.getElementById('calcConvertido').textContent = convertido.toLocaleString('es-AR', { maximumFractionDigits: 0 }) + ' ' + moneda;
+                    document.getElementById('calcNote').textContent = 'Cálculo estimado según la tabla oficial vigente. Tasa de cambio referencial en tiempo real (' + nombresMoneda[moneda] + '), puede variar al momento del pago.';
+                    convertedRow.style.display = 'flex';
+                } else {
+                    convertedRow.style.display = 'none';
+                    document.getElementById('calcNote').textContent = 'Cálculo estimado según la tabla oficial vigente. No se pudo obtener la tasa de cambio en este momento — probá de nuevo en unos segundos.';
+                }
+            }
+
+            // Resaltar el tramo correspondiente en la tabla
+            document.querySelectorAll('#paymentTable tr').forEach(tr => tr.classList.remove('row-match'));
+            let tramoMasCercano = null;
+            tiers.forEach(t => { if (semillas >= t.semillas) tramoMasCercano = t.semillas; });
+            if (tramoMasCercano) {
+                const row = document.querySelector('#paymentTable tr[data-semillas="' + tramoMasCercano + '"]');
+                if (row) row.classList.add('row-match');
+            }
+
+            document.getElementById('calcResult').style.display = 'block';
+            calcBtn.disabled = false;
+            calcBtn.textContent = 'Calcular remuneración';
+        });
+    </script>
 
 </body>
 </html>
