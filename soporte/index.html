@@ -13,59 +13,31 @@
     <link rel="stylesheet" href="https://suitsagency.lat/styles.css">
 
     <style>
-        /* Estilos específicos de esta página (Soporte) */
         .container { max-width: 650px; margin: 0 auto; padding: 20px; }
         .main-title { text-align: center; font-size: 1.8rem; margin-bottom: 5px; }
         .subtitle { text-align: center; color: var(--accent-blue); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 25px; }
 
-        /* Nav rápida por categoría (ancla) */
         .quick-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 30px; }
         .quick-nav a {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--silver);
-            text-decoration: none;
-            border: 1px solid var(--glass-border);
-            padding: 7px 14px;
-            border-radius: 20px;
-            transition: 0.3s;
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--silver);
+            text-decoration: none; border: 1px solid var(--glass-border); padding: 7px 14px;
+            border-radius: 20px; transition: 0.3s;
         }
         .quick-nav a:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
 
-        /* Banner de tips positivo: resumen rápido antes de entrar al detalle */
         .tip-banner {
             background: linear-gradient(135deg, rgba(0,232,255,0.08), rgba(158,0,255,0.06));
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 22px 20px;
-            margin-bottom: 35px;
+            border: 1px solid var(--glass-border); border-radius: 16px; padding: 22px 20px; margin-bottom: 35px;
         }
-        .tip-banner h3 {
-            margin: 0 0 14px;
-            font-size: 1rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .tip-banner h3 { margin: 0 0 14px; font-size: 1rem; color: #fff; display: flex; align-items: center; gap: 10px; }
         .tip-banner h3 i { color: var(--accent-blue); font-size: 1.1rem; }
         .tip-banner ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
         .tip-banner li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: var(--silver); line-height: 1.4; }
         .tip-banner li i { color: var(--accent-blue); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
 
-        /* Encabezados de categoría */
         .faq-category {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 34px 0 12px;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            font-weight: 700;
-            scroll-margin-top: 115px;
+            display: flex; align-items: center; gap: 10px; margin: 34px 0 12px; color: var(--accent-blue);
+            text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; font-weight: 700; scroll-margin-top: 115px;
         }
         .faq-category:first-of-type { margin-top: 0; }
         .faq-category i { font-size: 0.9rem; }
@@ -82,85 +54,38 @@
         .faq-answer-content strong { color: #ddd; }
         .faq-answer-content a { color: var(--accent-blue); }
         .faq-tip {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            background: rgba(0,232,255,0.06);
-            border-left: 2px solid var(--accent-blue);
-            padding: 10px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            color: var(--silver) !important;
+            display: flex; align-items: flex-start; gap: 8px; background: rgba(0,232,255,0.06);
+            border-left: 2px solid var(--accent-blue); padding: 10px 12px; border-radius: 6px;
+            font-size: 0.8rem; color: var(--silver) !important;
         }
         .faq-tip i { color: var(--accent-blue); margin-top: 2px; flex-shrink: 0; }
         .faq-item.open { border-color: var(--accent-blue); }
         .faq-item.open .faq-answer { max-height: 900px; }
         .faq-item.open .faq-question i { transform: rotate(180deg); color: var(--accent-blue); }
 
-        /* 10 Mandamientos */
         .mandamientos { margin-top: 45px; }
-        .mandamientos h2 {
-            text-align: center;
-            font-family: var(--font-display);
-            font-size: 1.9rem;
-            letter-spacing: 2px;
-            margin: 0 0 25px;
-            color: #fff;
-        }
+        .mandamientos h2 { text-align: center; font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 2px; margin: 0 0 25px; color: #fff; }
         .mandamiento-grid { display: flex; flex-direction: column; gap: 12px; }
         .mandamiento-item {
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 16px 18px;
+            display: flex; gap: 14px; align-items: flex-start; background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border); border-radius: 12px; padding: 16px 18px;
         }
         .mandamiento-number {
-            background: var(--accent-blue);
-            color: #000;
-            width: 28px; height: 28px;
-            min-width: 28px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-weight: bold;
-            font-size: 0.8rem;
+            background: var(--accent-blue); color: #000; width: 28px; height: 28px; min-width: 28px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 0.8rem;
         }
         .mandamiento-item h4 { margin: 0 0 4px; font-size: 0.9rem; color: #fff; }
         .mandamiento-item p { margin: 0; font-size: 0.8rem; color: var(--silver); line-height: 1.4; }
-        .mandamiento-quote {
-            text-align: center;
-            font-style: italic;
-            color: var(--silver);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            max-width: 480px;
-            margin: 30px auto 0;
-        }
+        .mandamiento-quote { text-align: center; font-style: italic; color: var(--silver); font-size: 0.9rem; line-height: 1.6; max-width: 480px; margin: 30px auto 0; }
 
-        /* CTA final */
         .support-cta {
-            margin-top: 35px;
-            text-align: center;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 25px 20px;
+            margin-top: 35px; text-align: center; background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px 20px;
         }
         .support-cta p { margin: 0 0 16px; font-size: 0.85rem; color: var(--silver); }
         .support-cta .action-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #25d366;
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.85rem;
-            transition: 0.3s;
+            display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff;
+            text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; transition: 0.3s;
         }
         .support-cta .action-btn:hover { transform: translateY(-2px); opacity: 0.9; }
     </style>
@@ -235,9 +160,7 @@
 
             <div class="faq-category" id="cat-horarios"><i class="fa-solid fa-clock"></i> Horarios y transmisión</div>
 
-            <div class="faq-item">
-                <div class="faq-question"><span>¿Cuántas horas debo transmitir al mes?</span><i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer">
+            <div class="faq-item"><div class="faq-answer">
                     <div class="faq-answer-content">
                         <p>La meta mensual es de <strong>44 horas de transmisión válidas</strong>.</p>
                         <p><strong>¿Qué es una hora válida?</strong> Aquella en la que transmitís un mínimo de 30 minutos seguidos con cámara encendida.</p>
@@ -346,4 +269,138 @@
             </div>
 
             <div class="faq-item">
-                <div class="faq-question"><span>¿Qué pasa si un mes no cumplo la meta de 
+                <div class="faq-question"><span>¿Qué pasa si un mes no cumplo la meta de horas o semillas?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Depende de qué meta no se cumpla:</p>
+                        <ul>
+                            <li><strong>Llegaste a las semillas pero no a las 44 horas:</strong> con 20-43 horas cobrás el 50%; con menos de 20 horas, $0 USD. En ambos casos podés retirar lo ya acumulado en tu monedero.</li>
+                            <li><strong>Llegaste a las horas pero no a las 2,000 semillas:</strong> no hay remuneración económica ese mes.</li>
+                            <li><strong>No cumpliste ninguna de las dos:</strong> no hay pago, pero tampoco penalización adicional ni riesgo de expulsión por un mes flojo.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cómo puedo aumentar mis ingresos como emisor?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <ul>
+                            <li><strong>Constancia y horarios fijos:</strong> transmitir siempre a la misma hora — el algoritmo premia la regularidad.</li>
+                            <li><strong>Interacción genuina:</strong> saludá a cada persona, respondé comentarios, agradecé los regalos en vivo.</li>
+                            <li><strong>Contenido variado:</strong> mostrá tu personalidad y talentos, hacé dinámicas o retos, usá títulos atractivos.</li>
+                            <li><strong>Eventos y colaboraciones:</strong> participá en los eventos de la agencia (suelen tener premios en semillas) y hacé PK o retos amistosos con otros emisores.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category" id="cat-reglas"><i class="fa-solid fa-shield-halved"></i> Reglas y contenido</div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué tipo de contenido está permitido?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <ul>
+                            <li>Conversación y charla en vivo (just chatting).</li>
+                            <li>Música, canto, baile y talentos artísticos.</li>
+                            <li>Lifestyle: cocina, maquillaje, moda, fitness.</li>
+                            <li>Gaming y reacciones a videos o eventos.</li>
+                            <li>Tutoriales y educación.</li>
+                            <li>Humor, memes y entretenimiento general.</li>
+                        </ul>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Regla de oro: si podrías mostrarle tu contenido a un familiar sin incomodidad, probablemente está permitido.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué contenido puede causar sanciones o el cierre de mi cuenta?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Bigo Live modera de forma estricta. Está prohibido de forma absoluta:</p>
+                        <ul>
+                            <li>Contenido sexual o desnudez.</li>
+                            <li>Violencia, armas o amenazas.</li>
+                            <li>Drogas o sustancias ilegales.</li>
+                            <li>Discriminación o contenido de odio.</li>
+                            <li>Cualquier contenido relacionado con menores de edad.</li>
+                            <li>Fraude, estafas o esquemas piramidales.</li>
+                            <li>Juegos de azar, ruletas o casinos.</li>
+                            <li>Promoción de plataformas competidoras.</li>
+                        </ul>
+                        <p>⚠️ Las infracciones graves pueden derivar en baneo permanente de tu cuenta, bloqueo de IP y dispositivo, y pérdida de todas las semillas acumuladas. Tu cuenta es tu fuente de ingresos — cuidala.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category" id="cat-beneficios"><i class="fa-solid fa-gem"></i> Beneficios de Suits Agency</div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué beneficios obtengo al formar parte de Suits Agency?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <ul>
+                            <li><strong>Soporte personalizado:</strong> atención directa por WhatsApp y asistencia con reclamos ante Bigo Live.</li>
+                            <li><strong>Capacitación y crecimiento:</strong> guías de contenido, estrategias y acceso a un grupo exclusivo de emisores.</li>
+                            <li><strong>Eventos de visibilidad:</strong> exposición frente a nuevas audiencias y colaboraciones con otros emisores.</li>
+                            <li><strong>Transparencia total:</strong> reporte donde ves tus horas y semillas acumuladas.</li>
+                            <li><strong>Sin comisiones ocultas:</strong> todo lo que generás con tus semillas es tuyo.</li>
+                        </ul>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Los emisores oficiales de agencias suelen crecer entre 30% y 50% más rápido que los independientes. Ojo: sin firma del acuerdo, no se pueden retirar las semillas.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿La agencia cobra alguna comisión o cuota?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>No. Suits Agency no cobra comisión, cuota de inscripción ni costo mensual.</p>
+                        <p>Bigo Live paga directamente a las agencias oficiales por gestionar y apoyar a sus emisores — ese pago sale de Bigo Live, no de tus ganancias. Vos recibís el 100% de lo que generás con tus semillas.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="mandamientos">
+            <h2>Los 10 Mandamientos del Emisor Exitoso</h2>
+            <div class="mandamiento-grid">
+                <div class="mandamiento-item"><div class="mandamiento-number">1</div><div><h4>Serás constante antes que perfecto</h4><p>El éxito no llega por transmitir muchas horas un solo día, sino por sostener una rutina. La disciplina construye audiencia fiel.</p></div></div>
+                <div class="mandamiento-item"><div class="mandamiento-number">2</div><div><h4>Respetarás tu horario de transmisión</h4><p>Tu audiencia debe saber cuándo encontrarte. Transmitir en horarios similares crea hábito y mejora tu crecimiento.</p></div></div>
+                <div class="mandamiento-item"><div class="mandamiento-number">3</div><div><h4>Cuidarás tu imagen y presentación</h4><p>Buena iluminación, un espacio ordenado y energía positiva mejoran la experiencia de tus espectadores.</p></div></div>
+                <div class="mandamiento-item"><div class="mandamiento-number">4</div><div><h4>Interactuarás con tu audiencia</h4><p>No solo transmitas: conversá, saludá y respondé comentarios para crear una conexión real.</p></div></div>
+                <div class="mandamiento-item"><div class="mandamiento-number">5</div><div><h4>Crearás comunidad, no solo seguidores</h4><p>Los grandes emisores construyen relaciones. Un seguidor se vuelve fan cuando se siente valorado.</p></div></div>
+                <div class="mandamiento-item"><div class="mandamiento-number">6</div><div><h4>Mejorarás cada día</h4><p>Revisá qué funcionó, qué horarios dieron mejores resultados y qué contenido generó más interacción.</p></div></div>
+                <div class="mandamiento-item"><div class="mandamiento-number">7</div><div><h4>Cumplirás tus metas de actividad</h4><p>Organizá tus horas y tus días válidos con planificación para alcanzar tus objetivos mensuales.</p></div></div>
+                <div class="mandamiento-item"><div class="mandamiento-number">8</div><div><h4>Mantendrás una actitud positiva</h4><p>Habrá días de poca audiencia. Un emisor exitoso no abandona por un mal día: aprende y continúa.</p></div></div>
+                <div class="mandamiento-item"><div class="mandamiento-number">9</div><div><h4>Respetarás las reglas de la plataforma</h4><p>Evitá sanciones cuidando tu contenido y comportamiento según las normas de Bigo Live y la agencia.</p></div></div>
+                <div class="mandamiento-item"><div class="mandamiento-number">10</div><div><h4>Trabajarás como un profesional</h4><p>Responsabilidad, compromiso y mentalidad profesional son la diferencia entre un principiante y un referente.</p></div></div>
+            </div>
+            <p class="mandamiento-quote">"El éxito en el streaming no depende de la suerte; depende de la constancia, la conexión con tu audiencia y la decisión de mejorar cada día."</p>
+        </section>
+
+        <div class="support-cta">
+            <p>¿Tenés una duda que no está acá? Escribinos y te respondemos directo.</p>
+            <a href="https://wa.me/595982678695" class="action-btn"><i class="fa-brands fa-whatsapp"></i> HABLAR CON SOPORTE</a>
+        </div>
+
+        <footer>&copy; 2026 Suits Agency | Bigo Live Official</footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                document.querySelectorAll('.faq-item').forEach(el => {
+                    if(el !== item) el.classList.remove('open');
+                });
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>
+                <div class="faq-question"><span>¿Cuántas horas debo transmitir al mes?</span><i class="fa-solid fa-chevron-down"></i></div>
