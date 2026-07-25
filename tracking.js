@@ -7,7 +7,7 @@
    se muestran en la consola del navegador para que puedas probar.
    ============================================================ */
 
-var SUITS_GA4   = 'PONER_ID_GA4';    // se ve asi: G-XXXXXXXXXX
+var SUITS_GA4   = 'G-9FBFBXCFFH';    // se ve asi: G-XXXXXXXXXX
 var SUITS_META  = 'PONER_ID_META';   // se ve asi: 1234567890123456
 
 /* ------------------------------------------------------------
