@@ -762,4 +762,238 @@ tabla de remuneración.
 
 <div class="tip-slide">
 <i class="fa-solid fa-gift"></i>
-<p><strong>Tip:</strong> Agradecé cada <span class="kw cy">regalo</span> en vivo y nombrá a quien lo envía. Es la forma más simple de generar 
+<p><strong>Tip:</strong> Agradecé cada <span class="kw cy">regalo</span> en vivo y nombrá a quien lo envía. Es la forma más simple de generar <span class="kw">lealtad</span>.</p>
+</div>
+
+</div>
+</section>
+
+<section class="countries-section">
+
+
+<h2>
+PRESENCIA LATINOAMERICANA
+</h2>
+
+
+<p>
+Creadores conectados desde diferentes países
+formando parte del ecosistema Suits Agency.
+</p>
+
+
+
+<div class="countries-grid">
+
+
+<div class="country-item">
+<span aria-hidden="true">🇵🇾</span> Paraguay
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇦🇷</span> Argentina
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇨🇱</span> Chile
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇨🇴</span> Colombia
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇲🇽</span> México
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇵🇪</span> Perú
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇻🇪</span> Venezuela
+</div>
+
+
+<div class="country-item highlight">
++24 Países LATAM
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section class="social-section">
+
+
+<h4>
+SÍGUENOS
+</h4>
+
+
+
+<div class="social-icons">
+
+
+<a href="https://instagram.com/suitsagency.lat"
+target="_blank"
+class="social-link">
+
+<i class="fa-brands fa-instagram"></i>
+
+</a>
+
+
+
+<a href="https://tiktok.com/@suitsagency.lat"
+target="_blank"
+class="social-link">
+
+<i class="fa-brands fa-tiktok"></i>
+
+</a>
+
+
+
+<a href="https://wa.me/595982678695"
+target="_blank"
+class="social-link">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+
+
+</div>
+
+
+</section>
+
+
+
+<footer>
+
+© 2026 Suits Agency |
+Agencia Oficial Bigo Live.
+
+</footer><script>
+
+
+// ============================
+// CARRUSEL DE TIPS
+// ============================
+
+
+const slides = document.querySelectorAll('.tip-slide');
+
+let currentSlide = 0;
+
+
+if(slides.length > 0){
+
+setInterval(()=>{
+
+
+slides[currentSlide].classList.remove('active');
+
+
+currentSlide = (currentSlide + 1) % slides.length;
+
+
+slides[currentSlide].classList.add('active');
+
+
+},6500);
+
+
+}
+
+
+</script>
+
+
+
+<script>
+/* Calculadora del hero.
+   Regla oficial: máx 2 horas válidas por día; 44 h = pago completo,
+   20-43 h = mitad, menos de 20 h = sin pago.
+   Monedero = semillas / 210 (redondeado). */
+(function () {
+  var hS = document.getElementById('simH');
+  if (!hS) return;
+  var dS = document.getElementById('simD'),
+      hV = document.getElementById('simHv'),
+      dV = document.getElementById('simDv'),
+      hor = document.getElementById('simHoras'),
+      bar = document.getElementById('simBar'),
+      est = document.getElementById('simStatus'),
+      amt = document.getElementById('simAmount'),
+      per = document.getElementById('simPer'),
+      goals = document.getElementById('simGoals');
+
+  var meta = 30000, pago = 211;
+
+  function calc() {
+    var h = parseFloat(hS.value), d = parseInt(dS.value, 10);
+    hV.textContent = (h === 1 ? '1 h' : h + ' h');
+    dV.textContent = d + (d === 1 ? ' día' : ' días');
+
+    var mes = Math.round(h * d * 4.33);
+    hor.textContent = mes + (mes === 1 ? ' hora al mes' : ' horas al mes');
+    bar.style.width = Math.min(mes / 44 * 100, 100) + '%';
+
+    var factor, msg;
+    if (mes >= 44) {
+      factor = 1;
+      msg = '<b>Llegás a la meta.</b> Con estas horas cobrás el 100%.';
+    } else if (mes >= 20) {
+      factor = 0.5;
+      var faltan = 44 - mes;
+      msg = 'Te faltan <b>' + faltan + ' h</b> para cobrar el 100%. Así cobrás la mitad.';
+    } else {
+      factor = 0;
+      msg = 'Con menos de 20 horas no hay pago. Sumá días o alargá tus transmisiones.';
+    }
+    est.innerHTML = msg;
+
+    var total = Math.round((Math.round(meta / 210) + pago) * factor);
+    amt.textContent = '$' + total.toLocaleString('es-AR');
+    amt.className = 'amount' + (total === 0 ? ' zero' : '');
+    per.textContent = total === 0 ? 'no calificás este mes' : 'por mes';
+  }
+
+  hS.addEventListener('input', calc);
+  dS.addEventListener('input', calc);
+
+  goals.addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!b) return;
+    goals.querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); });
+    b.classList.add('on');
+    meta = parseInt(b.dataset.s, 10);
+    pago = parseInt(b.dataset.p, 10);
+    calc();
+  });
+
+  calc();
+})();
+</script>
+
+</body>
+
+</html>
