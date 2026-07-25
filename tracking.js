@@ -8,7 +8,7 @@
    ============================================================ */
 
 var SUITS_GA4   = 'G-9FBFBXCFFH';    // se ve asi: G-XXXXXXXXXX
-var SUITS_META  = 'PONER_ID_META';   // se ve asi: 1234567890123456
+var SUITS_META  = '1770598540784117';   // se ve asi: 1234567890123456
 
 /* ------------------------------------------------------------
    De aca para abajo no hace falta tocar nada.
