@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remuneración Oficial | Suits Agency</title>
     <meta name="description" content="Calculá tu remuneración estimada como emisor de Bigo Live con Suits Agency y consultá la tabla oficial completa de pagos en tu moneda local.">
     <link rel="canonical" href="https://suitsagency.lat/pagos/">
@@ -37,7 +37,7 @@
         .container { width: 100%; max-width: 900px; padding: 20px 10px; box-sizing: border-box; }
 
         header.table-header { text-align: center; margin-bottom: 25px; }
-        header.table-header h2 {
+        header.table-header h1 {
             font-size: 2.0rem;
             background: linear-gradient(to bottom, #ffffff, #aaaaaa);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -152,7 +152,7 @@
         .table-scroll-note { text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.35); margin: 10px 0 0; }
 
         @media (max-width: 480px) {
-            header.table-header h2 { font-size: 1.6rem; }
+            header.table-header h1 { font-size: 1.6rem; }
             table { font-size: 0.72rem; }
             th { font-size: 0.55rem; padding: 10px 4px; }
             td { padding: 8px 4px; }
@@ -160,13 +160,38 @@
     </style>
 </head>
 <body>
-    <script src="https://suitsagency.lat/include.js" defer></script>
+    <div class="overlay-bg" id="overlay"></div>
+
+<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
+
+<header class="main-header">
+<a href="https://suitsagency.lat/" class="header-logo">
+<img src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+<div class="logo-text-group">
+<div class="logo-title">SUITS AGENCY</div>
+<span class="leyenda">Agencia oficial de Bigo Live</span>
+</div>
+</a>
+<div class="menu-toggle" id="menuToggle" role="button" tabindex="0" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+<i class="fa-solid fa-bars"></i>
+</div>
+<nav class="header-nav" id="mainNav" aria-label="Navegacion principal">
+<a href="https://suitsagency.lat/" class="nav-link" data-page="inicio"><i class="fa-solid fa-house"></i> Inicio</a>
+<a href="https://suitsagency.lat/academia/" class="nav-link" data-page="academia"><i class="fa-solid fa-rocket"></i> Academia</a>
+<a href="https://suitsagency.lat/pagos/" class="nav-link" data-page="pagos"><i class="fa-solid fa-gem"></i> Pagos</a>
+<a href="https://suitsagency.lat/registro/" class="nav-link" data-page="registro"><i class="fa-solid fa-user-plus"></i> Postular</a>
+<a href="https://suitsagency.lat/soporte/" class="nav-link" data-page="soporte"><i class="fa-solid fa-headset"></i> Soporte</a>
+</nav>
+</header>
+
+<script src="https://suitsagency.lat/include.js" defer></script>
+
 
     <div class="main-content">
         <div class="container">
 
             <header class="table-header">
-                <h2>Tabla de Remuneración</h2>
+                <h1>Tabla de Remuneración</h1>
                 <div class="meta-info">44 HORAS MENSUALES | OFICIAL BIGO LIVE</div>
             </header>
 
