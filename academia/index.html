@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUITS ACADEMY</title>
+
+    <meta name="description" content="Aprendé a maximizar tu rendimiento como emisor de Bigo Live con las guías en video de Suits Agency: pagos, live data y primeros pasos.">
+    <link rel="canonical" href="https://suitsagency.lat/academia/">
+
+    <!-- Open Graph (WhatsApp, Instagram, Facebook) -->
+    <meta property="og:title" content="Suits Academy | Suits Agency">
+    <meta property="og:description" content="Guías en video para crecer como emisor oficial de Bigo Live: cómo paga la plataforma, cómo revisar tu Live Data y tu primera transmisión.">
+    <meta property="og:image" content="https://suitsagency.lat/og-image.png">
+    <meta property="og:url" content="https://suitsagency.lat/academia/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_LA">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Suits Academy | Suits Agency">
+    <meta name="twitter:description" content="Guías en video para crecer como emisor oficial de Bigo Live.">
+    <meta name="twitter:image" content="https://suitsagency.lat/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://suitsagency.lat/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://suitsagency.lat/styles.css">
+
+    <style>
+        /* Estilos específicos de esta página (Academia) */
+        .container { width: 92%; max-width: 450px; margin: 0 auto; position: relative; z-index: 10; }
+
+        header.content-title h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            margin-top: 0;
+        }
+
+        #video-wrapper {
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 25px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('miniatura.png');
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-placeholder i {
+            font-size: 3.5rem;
+            color: var(--accent-blue);
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
+        }
+
+        .ratio-vertical { aspect-ratio: 9 / 16; max-width: 300px; margin-left: auto; margin-right: auto; }
+        .ratio-horizontal { aspect-ratio: 16 / 9; }
+
+        iframe { width: 100%; height: 100%; border: none; background: #000; }
+
+        .video-info { padding: 15px; background: rgba(255,255,255,0.03); border-top: 1px solid var(--glass-border); text-align: center; }
+        #video-title { margin: 0; font-size: 1rem; color: var(--accent-blue); font-weight: 600; }
+
+        .video-list { display: flex; flex-direction: column; gap: 12px; }
+
+        .video-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 18px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .video-item:active { transform: scale(0.96); background: rgba(0, 212, 255, 0.1); border-color: var(--accent-blue); }
+        .video-item i { color: var(--accent-blue); font-size: 1.2rem; width: 25px; text-align: center; }
+        .video-item div span { display: block; font-size: 0.95rem; font-weight: 500; }
+        .video-item div small { color: var(--silver); font-size: 0.75rem; opacity: 0.6; }
+    </style>
+</head>
+<body>
+    <div class="overlay-bg" id="overlay"></div>
+
+<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
+
+<header class="main-header">
+<a href="https://suitsagency.lat/" class="header-logo">
+<img src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+<div class="logo-text-group">
+<div class="logo-title">SUITS AGENCY</div>
+<span class="leyenda">Agencia oficial de Bigo Live</span>
+</div>
+</a>
+<div class="menu-toggle" id="menuToggle" role="button" tabindex="0" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+<i class="fa-solid fa-bars"></i>
+</div>
+<nav class="header-nav" id="mainNav" aria-label="Navegacion principal">
+<a href="https://suitsagency.lat/" class="nav-link" data-page="inicio"><i class="fa-solid fa-house"></i> Inicio</a>
+<a href="https://suitsagency.lat/academia/" class="nav-link" data-page="academia"><i class="fa-solid fa-rocket"></i> Academia</a>
+<a href="https://suitsagency.lat/pagos/" class="nav-link" data-page="pagos"><i class="fa-solid fa-gem"></i> Pagos</a>
+<a href="https://suitsagency.lat/registro/" class="nav-link" data-page="registro"><i class="fa-solid fa-user-plus"></i> Postular</a>
+<a href="https://suitsagency.lat/soporte/" class="nav-link" data-page="soporte"><i class="fa-solid fa-headset"></i> Soporte</a>
+</nav>
+</header>
+
+<script src="https://suitsagency.lat/include.js" defer></script>
+
+
+    <div class="container">
+
+        <header class="content-title">
+            <h1>SUITS ACADEMY</h1>
+        </header>
+
+        <div id="video-wrapper" class="ratio-vertical">
+            <div id="thumb-overlay" class="video-placeholder" onclick="startFirstVideo()">
+                <i class="fas fa-play-circle"></i>
+            </div>
+
+            <iframe id="main-video" 
+                    src="https://www.youtube.com/embed/5qklulnr12c?rel=0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+            <div class="video-info">
+                <h3 id="video-title">Cómo Paga Bigo Live</h3>
+            </div>
+        </div>
+
+        <div class="video-list">
+            
+            <div class="video-item" onclick="changeVideo('n-v2Q1TztQA', 'Cómo revisar el Live Data', 'v', true)">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    <span>Cómo revisar el Live Data</span>
+                    <small>YouTube Shorts - Vertical</small>
+                </div>
+            </div>
+
+            <div class="video-item" onclick="changeVideo('5qklulnr12c', 'Cómo Paga Bigo Live', 'v', true)">
+                <i class="fas fa-play-circle"></i>
+                <div>
+                    <span>Cómo Paga Bigo Live</span>
+                </div>
+            </div>
+
+            <div class="video-item" onclick="changeVideo('I6VhuzfdhXg', 'Explicación de la tabla de pagos', 'h', true)">
+                <i class="fas fa-play-circle"></i>
+                <div>
+                    <span>Explicación de la Tabla de pagos</span>
+                    <small>YouTube - Horizontal</small>
+                </div>
+            </div>
+
+            <div class="video-item" onclick="changeVideo('JcRjAZGhqOg', 'Tu primera trasmisión', 'v', true)">
+                <i class="fas fa-video"></i>
+                <div>
+                    <span>Primera trasmisión</span>
+                    <small>Ver Video tutorial</small>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 SUITS AGENCY | AGENCIA OFICIAL
+        </footer>
+    </div>
+
+    <script>
+        // Funciones del Reproductor (el menú/header ya lo maneja include.js)
+        function startFirstVideo() {
+            const overlay = document.getElementById('thumb-overlay');
+            const iframe = document.getElementById('main-video');
+            overlay.style.display = 'none';
+            iframe.src += "&autoplay=1";
+        }
+
+        function changeVideo(source, title, orientation, isYouTube) {
+            const wrapper = document.getElementById('video-wrapper');
+            const titleElement = document.getElementById('video-title');
+            const overlay = document.getElementById('thumb-overlay');
+            if(overlay) overlay.style.display = 'none';
+
+            if(orientation === 'v') {
+                wrapper.className = 'ratio-vertical';
+            } else {
+                wrapper.className = 'ratio-horizontal';
+            }
+
+            if (isYouTube) {
+                wrapper.innerHTML = `
+                    <iframe id="main-video" 
+                            src="https://www.youtube.com/embed/${source}?autoplay=1&rel=0" 
+                            allow="autoplay; encrypted-media" 
+                            allowfullscreen>
+                    </iframe>
+                    <div class="video-info"><h3 id="video-title">${title}</h3></div>`;
+            } else {
+                wrapper.innerHTML = `
+                    <video id="main-video" controls autoplay>
+                        <source src="${source}" type="video/mp4">
+                    </video>
+                    <div class="video-info"><h3 id="video-title">${title}</h3></div>`;
+            }
+        }
+    </script>
+
+</body>
+</html>
