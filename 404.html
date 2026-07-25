@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada | Suits Agency</title>
+    <meta name="description" content="La página que buscás no existe. Volvé al inicio de Suits Agency, agencia oficial de Bigo Live en Latinoamérica.">
+    <meta name="robots" content="noindex">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://suitsagency.lat/styles.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://suitsagency.lat/favicon.png">
+
+    <style>
+        .error-wrap {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 60px 24px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        .error-code {
+            font-family: var(--font-display);
+            font-size: clamp(5rem, 22vw, 9rem);
+            line-height: 1;
+            margin: 0;
+            letter-spacing: 4px;
+            color: var(--accent-violet);
+            text-shadow:
+                0 0 12px rgba(158, 0, 255, .5),
+                0 0 30px rgba(158, 0, 255, .25);
+        }
+        .error-title {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            letter-spacing: 2px;
+            margin: 10px 0 14px;
+            color: #fff;
+        }
+        .error-text {
+            color: var(--silver);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 auto 32px;
+            max-width: 420px;
+        }
+        .error-cta {
+            display: inline-block;
+            padding: 14px 36px;
+            border: 2px solid var(--accent-violet);
+            background: linear-gradient(90deg, var(--accent-violet), #c04bff);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .error-cta:hover { box-shadow: 0 0 25px rgba(158, 0, 255, .5); }
+
+        .error-links {
+            margin-top: 40px;
+            padding-top: 26px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .error-links p {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-blue);
+            margin: 0 0 16px;
+        }
+        .error-links-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .error-links-grid a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: var(--silver);
+            text-decoration: none;
+            border: 1px solid var(--glass-border);
+            padding: 10px 16px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .error-links-grid a:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+        .error-links-grid a i { font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<div class="overlay-bg" id="overlay"></div>
+
+<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
+
+<header class="main-header">
+<a href="https://suitsagency.lat/" class="header-logo">
+<img src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+<div class="logo-text-group">
+<div class="logo-title">SUITS AGENCY</div>
+<span class="leyenda">Agencia oficial de Bigo Live</span>
+</div>
+</a>
+<div class="menu-toggle" id="menuToggle" role="button" tabindex="0" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+<i class="fa-solid fa-bars"></i>
+</div>
+<nav class="header-nav" id="mainNav" aria-label="Navegacion principal">
+<a href="https://suitsagency.lat/" class="nav-link" data-page="inicio"><i class="fa-solid fa-house"></i> Inicio</a>
+<a href="https://suitsagency.lat/academia/" class="nav-link" data-page="academia"><i class="fa-solid fa-rocket"></i> Academia</a>
+<a href="https://suitsagency.lat/pagos/" class="nav-link" data-page="pagos"><i class="fa-solid fa-gem"></i> Pagos</a>
+<a href="https://suitsagency.lat/registro/" class="nav-link" data-page="registro"><i class="fa-solid fa-user-plus"></i> Postular</a>
+<a href="https://suitsagency.lat/soporte/" class="nav-link" data-page="soporte"><i class="fa-solid fa-headset"></i> Soporte</a>
+</nav>
+</header>
+
+<script src="https://suitsagency.lat/include.js" defer></script>
+
+<main class="error-wrap">
+    <p class="error-code">404</p>
+    <h1 class="error-title">Esta página no existe</h1>
+    <p class="error-text">
+        El enlace que seguiste puede estar roto o la página fue movida.
+        Pero tu camino como creador sigue disponible.
+    </p>
+
+    <a href="https://suitsagency.lat/" class="error-cta">Volver al inicio</a>
+
+    <div class="error-links">
+        <p>O ir directo a</p>
+        <div class="error-links-grid">
+            <a href="https://suitsagency.lat/registro/"><i class="fa-solid fa-user-plus"></i> Postular</a>
+            <a href="https://suitsagency.lat/pagos/"><i class="fa-solid fa-gem"></i> Pagos</a>
+            <a href="https://suitsagency.lat/academia/"><i class="fa-solid fa-rocket"></i> Academia</a>
+            <a href="https://suitsagency.lat/soporte/"><i class="fa-solid fa-headset"></i> Soporte</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    &copy; 2026 Suits Agency | Agencia Oficial Bigo Live.
+</footer>
+
+</body>
+</html>
