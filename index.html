@@ -182,6 +182,199 @@
     overflow:hidden;
     font-weight: 800;
 }
+
+/* ================================
+   SECCION: NUESTROS EMISORES
+   Prueba social. Cada tarjeta imita una sala de
+   transmision: mismo lenguaje visual que ve el
+   emisor dentro de la app.
+================================ */
+.emisores-section {
+    padding: 40px 6% 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.emisores-section h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    color: #fff;
+    margin: 0 0 8px;
+}
+
+.emisores-section .section-sub {
+    max-width: 560px;
+    margin: 0 auto 32px;
+    color: var(--silver);
+    font-size: .9rem;
+    line-height: 1.6;
+}
+
+.emisores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+/* La tarjeta imita una sala de transmisión: mismo lenguaje visual
+   que ve el emisor dentro de la app. */
+.emisor-tile {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    background:
+        radial-gradient(120% 80% at 50% 100%, rgba(158,0,255,.20), transparent 60%),
+        linear-gradient(180deg, #0c0c0c, #060606);
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    text-align: left;
+}
+
+.emisor-tile:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-violet);
+    box-shadow: 0 0 30px rgba(158,0,255,.20);
+}
+
+/* Variante cian para alternar el fondo y que la grilla no sea plana */
+.emisor-tile.cy {
+    background:
+        radial-gradient(120% 80% at 50% 100%, rgba(0,232,255,.16), transparent 60%),
+        linear-gradient(180deg, #0c0c0c, #060606);
+}
+.emisor-tile.cy:hover {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 30px rgba(0,232,255,.18);
+}
+
+.emisor-foto {
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    height: 88%;
+    width: auto;
+    max-width: 118%;
+    object-fit: contain;
+    object-position: bottom;
+}
+
+/* Degradado para que el texto se lea sobre cualquier foto */
+.emisor-tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5,5,5,.55) 0%, transparent 28%, transparent 45%, rgba(5,5,5,.92) 88%);
+    pointer-events: none;
+}
+
+.emisor-top {
+    position: absolute;
+    top: 10px; left: 10px; right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    z-index: 3;
+}
+
+.emisor-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(5,5,5,.72);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(6px);
+    padding: 4px 9px;
+    border-radius: 20px;
+    font-size: .55rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--silver);
+}
+
+.emisor-badge .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    box-shadow: 0 0 8px var(--accent-blue);
+    animation: dot-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: .35; }
+}
+
+/* Nivel: el rombo es el mismo indicador que usa la app */
+.emisor-nivel {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(158,0,255,.18);
+    border: 1px solid rgba(158,0,255,.5);
+    color: #fff;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: .6rem;
+    font-weight: 800;
+}
+.emisor-nivel i { font-size: .5rem; color: var(--accent-violet); }
+
+.emisor-info {
+    position: absolute;
+    left: 14px; right: 14px; bottom: 12px;
+    z-index: 3;
+}
+
+.emisor-nombre {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.emisor-nombre .flag { font-size: .85rem; }
+
+.emisor-frase {
+    margin: 7px 0 9px;
+    font-size: .74rem;
+    line-height: 1.45;
+    color: var(--silver);
+}
+
+.emisor-stats {
+    display: flex;
+    gap: 12px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,.10);
+    font-size: .6rem;
+    color: rgba(255,255,255,.6);
+}
+.emisor-stats span { display: inline-flex; align-items: center; gap: 5px; }
+.emisor-stats i { color: var(--accent-blue); font-size: .6rem; }
+
+@media (max-width: 600px) {
+    .emisores-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .emisor-nombre { font-size: 1.1rem; }
+    .emisor-frase  { font-size: .68rem; }
+    .emisores-section h2 { font-size: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .emisor-tile { transition: none; }
+    .emisor-tile:hover { transform: none; }
+    .emisor-badge .dot { animation: none; }
+}
 </style>
 
 <!-- Datos estructurados: ayudan a Google a mostrar la ficha de la agencia -->
@@ -511,6 +704,126 @@ tabla de remuneración.
 
 
 
+
+
+
+
+<section class="emisores-section">
+
+    <h2>NUESTROS EMISORES</h2>
+
+    <p class="section-sub">
+        Gente que empezó igual que vos: con un celular y ganas de probar.
+        Hoy transmiten desde toda Latinoamérica.
+    </p>
+
+    <div class="emisores-grid">
+
+        <!-- Emisor 1 -->
+        <article class="emisor-tile">
+            <img src="https://suitsagency.lat/emisores/emisor-1.webp" alt="Emisor de Suits Agency" class="emisor-foto" loading="lazy">
+            <div class="emisor-top">
+                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
+                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 28</span>
+            </div>
+            <div class="emisor-info">
+                <h3 class="emisor-nombre">Mateo <span class="flag">🇦🇷</span></h3>
+                <p class="emisor-frase">Arranqué transmitiendo dos horas después del trabajo. Al tercer mes ya cobraba la meta completa.</p>
+                <div class="emisor-stats">
+                    <span><i class="fa-solid fa-clock"></i> 62 h/mes</span>
+                    <span><i class="fa-solid fa-calendar"></i> 8 meses</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Emisor 2 -->
+        <article class="emisor-tile cy">
+            <img src="https://suitsagency.lat/emisores/emisor-2.webp" alt="Emisora de Suits Agency" class="emisor-foto" loading="lazy">
+            <div class="emisor-top">
+                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
+                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 41</span>
+            </div>
+            <div class="emisor-info">
+                <h3 class="emisor-nombre">Valentina <span class="flag">🇨🇴</span></h3>
+                <p class="emisor-frase">No tenía seguidores en ningún lado. Lo que cambió todo fue transmitir siempre a la misma hora.</p>
+                <div class="emisor-stats">
+                    <span><i class="fa-solid fa-clock"></i> 88 h/mes</span>
+                    <span><i class="fa-solid fa-calendar"></i> 1 año</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Emisor 3 -->
+        <article class="emisor-tile">
+            <img src="https://suitsagency.lat/emisores/emisor-3.webp" alt="Emisor de Suits Agency" class="emisor-foto" loading="lazy">
+            <div class="emisor-top">
+                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
+                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 34</span>
+            </div>
+            <div class="emisor-info">
+                <h3 class="emisor-nombre">Nico <span class="flag">🇲🇽</span></h3>
+                <p class="emisor-frase">Venía de TikTok y pensé que era lo mismo. Acá el chat es todo: si no nombrás a la gente, se va.</p>
+                <div class="emisor-stats">
+                    <span><i class="fa-solid fa-clock"></i> 51 h/mes</span>
+                    <span><i class="fa-solid fa-calendar"></i> 6 meses</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Emisor 4 -->
+        <article class="emisor-tile cy">
+            <img src="https://suitsagency.lat/emisores/emisor-4.webp" alt="Emisora de Suits Agency" class="emisor-foto" loading="lazy">
+            <div class="emisor-top">
+                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
+                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 37</span>
+            </div>
+            <div class="emisor-info">
+                <h3 class="emisor-nombre">Cami <span class="flag">🇵🇾</span></h3>
+                <p class="emisor-frase">Lo que más me sorprendió fue cobrar en dólares el primer mes, aunque fuera proporcional.</p>
+                <div class="emisor-stats">
+                    <span><i class="fa-solid fa-clock"></i> 44 h/mes</span>
+                    <span><i class="fa-solid fa-calendar"></i> 4 meses</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Emisor 5 -->
+        <article class="emisor-tile">
+            <img src="https://suitsagency.lat/emisores/emisor-5.webp" alt="Emisor de Suits Agency" class="emisor-foto" loading="lazy">
+            <div class="emisor-top">
+                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
+                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 22</span>
+            </div>
+            <div class="emisor-info">
+                <h3 class="emisor-nombre">Tomi <span class="flag">🇨🇱</span></h3>
+                <p class="emisor-frase">Me daba vergüenza mostrar la cara. Empecé jugando y ahora hablo dos horas sin darme cuenta.</p>
+                <div class="emisor-stats">
+                    <span><i class="fa-solid fa-clock"></i> 39 h/mes</span>
+                    <span><i class="fa-solid fa-calendar"></i> 3 meses</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Emisor 6 -->
+        <article class="emisor-tile cy">
+            <img src="https://suitsagency.lat/emisores/emisor-6.webp" alt="Emisor de Suits Agency" class="emisor-foto" loading="lazy">
+            <div class="emisor-top">
+                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
+                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 30</span>
+            </div>
+            <div class="emisor-info">
+                <h3 class="emisor-nombre">Dani <span class="flag">🇵🇪</span></h3>
+                <p class="emisor-frase">El soporte de la agencia me sacó de dudas el mismo día. No tuve que adivinar nada.</p>
+                <div class="emisor-stats">
+                    <span><i class="fa-solid fa-clock"></i> 47 h/mes</span>
+                    <span><i class="fa-solid fa-calendar"></i> 5 meses</span>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+</section>
 
 
 
