@@ -51,16 +51,6 @@
     --accent-violet: #9e00ff;
 }
 
-/* Fondo: reemplaza el logo como marca de agua
-   por la imagen de pulso/latido violeta */
-body::before {
-    background-image: url('https://suitsagency.lat/Background.png');
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    opacity: 0.22;
-}
-
 .hero-brand {
     max-width: 850px;
     margin: 45px auto 45px;
@@ -163,14 +153,9 @@ body::before {
     transition: .3s;
 }
 
-.nav-card:hover {
-    transform:translateY(-12px);
-    border-color: var(--accent-violet);
-    box-shadow:
-    0 0 30px rgba(158,0,255,.18);
-}
-
-.nav-card:hover i { color: var(--accent-violet); }
+/* Ligera variación del hover respecto a styles.css: acá el "salto"
+   es un poco mayor (-12px vs -10px) porque son las tarjetas hero */
+.nav-card:hover { transform: translateY(-12px); }
 
 .why-suits h2 {
     font-family:var(--font-display);
@@ -189,38 +174,13 @@ body::before {
     margin-bottom:20px;
 }
 
-.country-item { transition:.3s; }
-
-.country-item:hover {
-    color: var(--accent-violet);
-    border-color: var(--accent-violet);
-    transform:translateY(-3px);
-}
-
-/* Badge "+24 Países" destacado en violeta para que resalte
-   como el dato más "vendedor" de la sección */
-.country-item.highlight {
-    background: rgba(158,0,255,0.1);
-    border-color: var(--accent-violet);
-    color: var(--accent-violet);
-    font-weight: 800;
-}
-
 /* Botón CTA principal: sólido en violeta en vez de outline cian.
    Es el único botón "lleno" de la página — máxima jerarquía visual.
    Texto en blanco (no negro) porque el violeta es un color oscuro/saturado. */
 .cta-main {
-    background: linear-gradient(90deg, var(--accent-violet), #c04bff);
-    border: 2px solid var(--accent-violet);
-    color: #fff;
     position:relative;
     overflow:hidden;
     font-weight: 800;
-}
-
-.cta-main:hover {
-    box-shadow: 0 0 25px rgba(158,0,255,.5);
-    color:#fff;
 }
 </style>
 
@@ -229,7 +189,7 @@ body::before {
 
 <body>
 
-<script src="https://suitsagency.lat/include.js"></script>
+<script src="https://suitsagency.lat/include.js" defer></script>
 
 
 <div class="news-ticker">
