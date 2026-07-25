@@ -184,19 +184,20 @@
 }
 
 /* ================================
-   SECCION: NUESTROS EMISORES
-   Prueba social. Cada tarjeta imita una sala de
-   transmision: mismo lenguaje visual que ve el
-   emisor dentro de la app.
+   SECCION: HISTORIAS REALES
+   Carrusel coverflow. La tarjeta central manda,
+   las laterales giran y se atenuan. Cada tarjeta
+   imita una sala de transmision de la app.
 ================================ */
-.emisores-section {
-    padding: 40px 6% 20px;
+.reel-section {
+    padding: 50px 0 30px;
     text-align: center;
     position: relative;
     z-index: 1;
+    overflow: hidden;
 }
 
-.emisores-section h2 {
+.reel-section h2 {
     font-family: var(--font-display);
     font-size: 2.5rem;
     letter-spacing: 4px;
@@ -204,75 +205,86 @@
     margin: 0 0 8px;
 }
 
-.emisores-section .section-sub {
-    max-width: 560px;
-    margin: 0 auto 32px;
+.reel-sub {
+    max-width: 520px;
+    margin: 0 auto 34px;
+    padding: 0 6%;
     color: var(--silver);
     font-size: .9rem;
     line-height: 1.6;
 }
 
-.emisores-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 16px;
-    max-width: 1080px;
-    margin: 0 auto;
+/* El escenario: perspectiva para que las tarjetas laterales giren */
+.reel-stage {
+    position: relative;
+    height: 440px;
+    perspective: 1400px;
+    margin-bottom: 22px;
 }
 
-/* La tarjeta imita una sala de transmisión: mismo lenguaje visual
-   que ve el emisor dentro de la app. */
-.emisor-tile {
+.reel-track {
     position: relative;
-    aspect-ratio: 3 / 4;
-    border-radius: 16px;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.reel-card {
+    position: absolute;
+    top: 0; left: 50%;
+    width: 248px;
+    height: 100%;
+    margin-left: -124px;
+    border-radius: 18px;
     overflow: hidden;
     border: 1px solid var(--glass-border);
     background:
-        radial-gradient(120% 80% at 50% 100%, rgba(158,0,255,.20), transparent 60%),
-        linear-gradient(180deg, #0c0c0c, #060606);
-    transition: transform .3s, border-color .3s, box-shadow .3s;
+        radial-gradient(120% 80% at 50% 100%, rgba(158,0,255,.22), transparent 60%),
+        linear-gradient(180deg, #0d0d0d, #060606);
+    cursor: pointer;
+    transition: transform .55s cubic-bezier(.22,.61,.36,1), opacity .55s, border-color .3s, box-shadow .3s;
+    will-change: transform;
     text-align: left;
+    padding: 0;
 }
 
-.emisor-tile:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent-violet);
-    box-shadow: 0 0 30px rgba(158,0,255,.20);
-}
-
-/* Variante cian para alternar el fondo y que la grilla no sea plana */
-.emisor-tile.cy {
+.reel-card.cy {
     background:
-        radial-gradient(120% 80% at 50% 100%, rgba(0,232,255,.16), transparent 60%),
-        linear-gradient(180deg, #0c0c0c, #060606);
-}
-.emisor-tile.cy:hover {
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 30px rgba(0,232,255,.18);
+        radial-gradient(120% 80% at 50% 100%, rgba(0,232,255,.18), transparent 60%),
+        linear-gradient(180deg, #0d0d0d, #060606);
 }
 
-.emisor-foto {
+/* Posiciones: la central manda, las laterales acompañan */
+.reel-card[data-pos="0"]  { transform: translateX(0)     scale(1)   rotateY(0);      opacity: 1;   z-index: 5; border-color: var(--accent-violet); box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(158,0,255,.22); }
+.reel-card.cy[data-pos="0"] { border-color: var(--accent-blue); box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(0,232,255,.20); }
+
+.reel-card[data-pos="1"]  { transform: translateX(72%)  scale(.80) rotateY(-22deg);  opacity: .45; z-index: 4; }
+.reel-card[data-pos="-1"] { transform: translateX(-72%) scale(.80) rotateY(22deg);   opacity: .45; z-index: 4; }
+.reel-card[data-pos="2"]  { transform: translateX(122%) scale(.64) rotateY(-28deg);  opacity: .18; z-index: 3; }
+.reel-card[data-pos="-2"] { transform: translateX(-122%) scale(.64) rotateY(28deg);  opacity: .18; z-index: 3; }
+.reel-card[data-pos="far"]{ transform: translateX(0)     scale(.5); opacity: 0; pointer-events: none; z-index: 1; }
+
+.reel-foto {
     position: absolute;
     bottom: 0; left: 50%;
     transform: translateX(-50%);
-    height: 88%;
+    height: 86%;
     width: auto;
-    max-width: 118%;
+    max-width: 120%;
     object-fit: contain;
     object-position: bottom;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
-/* Degradado para que el texto se lea sobre cualquier foto */
-.emisor-tile::after {
+.reel-card::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(5,5,5,.55) 0%, transparent 28%, transparent 45%, rgba(5,5,5,.92) 88%);
+    background: linear-gradient(180deg, rgba(5,5,5,.6) 0%, transparent 26%, transparent 42%, rgba(5,5,5,.94) 88%);
     pointer-events: none;
 }
 
-.emisor-top {
+.reel-top {
     position: absolute;
     top: 10px; left: 10px; right: 10px;
     display: flex;
@@ -282,7 +294,7 @@
     z-index: 3;
 }
 
-.emisor-badge {
+.reel-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -291,50 +303,73 @@
     backdrop-filter: blur(6px);
     padding: 4px 9px;
     border-radius: 20px;
-    font-size: .55rem;
+    font-size: .52rem;
     font-weight: 700;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     color: var(--silver);
 }
 
-.emisor-badge .dot {
+.reel-badge .dot {
     width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--accent-blue);
     box-shadow: 0 0 8px var(--accent-blue);
-    animation: dot-pulse 2.4s ease-in-out infinite;
+    animation: reel-dot 2.4s ease-in-out infinite;
 }
 
-@keyframes dot-pulse {
-    0%, 100% { opacity: 1; }
-    50%      { opacity: .35; }
-}
+@keyframes reel-dot { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
 
-/* Nivel: el rombo es el mismo indicador que usa la app */
-.emisor-nivel {
+.reel-nivel {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    background: rgba(158,0,255,.18);
+    background: rgba(158,0,255,.2);
     border: 1px solid rgba(158,0,255,.5);
     color: #fff;
     padding: 3px 9px;
     border-radius: 20px;
-    font-size: .6rem;
+    font-size: .58rem;
     font-weight: 800;
 }
-.emisor-nivel i { font-size: .5rem; color: var(--accent-violet); }
+.reel-nivel i { font-size: .48rem; color: var(--accent-violet); }
 
-.emisor-info {
+/* Botón de play: solo se ve en la tarjeta central */
+.reel-play {
     position: absolute;
-    left: 14px; right: 14px; bottom: 12px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.85);
+    background: rgba(5,5,5,.35);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    opacity: 0;
+    transition: opacity .4s, transform .3s, background .3s;
+    pointer-events: none;
+}
+.reel-card[data-pos="0"] .reel-play { opacity: 1; }
+.reel-card[data-pos="0"]:hover .reel-play {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: rgba(158,0,255,.55);
+}
+.reel-play i { margin-left: 3px; }
+
+.reel-info {
+    position: absolute;
+    left: 14px; right: 14px; bottom: 13px;
     z-index: 3;
 }
 
-.emisor-nombre {
+.reel-nombre {
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     letter-spacing: 1.5px;
     color: #fff;
     margin: 0;
@@ -343,37 +378,127 @@
     align-items: center;
     gap: 7px;
 }
-.emisor-nombre .flag { font-size: .85rem; }
+.reel-nombre .flag { font-size: .85rem; }
 
-.emisor-frase {
+.reel-frase {
     margin: 7px 0 9px;
     font-size: .74rem;
     line-height: 1.45;
     color: var(--silver);
 }
 
-.emisor-stats {
+.reel-stats {
     display: flex;
     gap: 12px;
     padding-top: 8px;
-    border-top: 1px solid rgba(255,255,255,.10);
-    font-size: .6rem;
+    border-top: 1px solid rgba(255,255,255,.1);
+    font-size: .58rem;
     color: rgba(255,255,255,.6);
 }
-.emisor-stats span { display: inline-flex; align-items: center; gap: 5px; }
-.emisor-stats i { color: var(--accent-blue); font-size: .6rem; }
+.reel-stats span { display: inline-flex; align-items: center; gap: 5px; }
+.reel-stats i { color: var(--accent-blue); font-size: .58rem; }
+
+/* Controles */
+.reel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.reel-arrow {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: rgba(255,255,255,.05);
+    color: var(--accent-blue);
+    font-size: .9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    flex-shrink: 0;
+}
+.reel-arrow:hover { border-color: var(--accent-blue); background: rgba(0,232,255,.1); }
+.reel-arrow:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
+
+.reel-dots { display: flex; gap: 7px; }
+
+.reel-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255,255,255,.22);
+    cursor: pointer;
+    transition: .3s;
+}
+.reel-dot.on {
+    background: var(--accent-violet);
+    box-shadow: 0 0 10px rgba(158,0,255,.7);
+    width: 20px;
+    border-radius: 4px;
+}
+.reel-dot:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
+
+/* Reproductor */
+.reel-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.94);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10050;
+    padding: 20px;
+}
+.reel-modal.open { display: flex; }
+
+.reel-modal-inner {
+    position: relative;
+    width: min(340px, 92vw);
+    aspect-ratio: 9 / 16;
+    max-height: 84vh;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--accent-violet);
+    box-shadow: 0 0 50px rgba(158,0,255,.3);
+    background: #000;
+}
+.reel-modal-inner iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+.reel-close {
+    position: absolute;
+    top: -46px; right: 0;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.reel-close:hover { border-color: var(--accent-violet); background: rgba(158,0,255,.25); }
 
 @media (max-width: 600px) {
-    .emisores-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .emisor-nombre { font-size: 1.1rem; }
-    .emisor-frase  { font-size: .68rem; }
-    .emisores-section h2 { font-size: 2rem; }
+    .reel-section h2 { font-size: 2rem; }
+    .reel-stage { height: 390px; }
+    .reel-card { width: 210px; margin-left: -105px; }
+    .reel-card[data-pos="1"]  { transform: translateX(64%)  scale(.76) rotateY(-20deg); }
+    .reel-card[data-pos="-1"] { transform: translateX(-64%) scale(.76) rotateY(20deg); }
+    .reel-card[data-pos="2"], .reel-card[data-pos="-2"] { opacity: 0; pointer-events: none; }
+    .reel-nombre { font-size: 1.2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .emisor-tile { transition: none; }
-    .emisor-tile:hover { transform: none; }
-    .emisor-badge .dot { animation: none; }
+    .reel-card { transition: opacity .2s; }
+    .reel-badge .dot { animation: none; }
+    .reel-play { transition: none; }
 }
 </style>
 
@@ -708,122 +833,138 @@ tabla de remuneración.
 
 
 
-<section class="emisores-section">
+<section class="reel-section">
 
-    <h2>NUESTROS EMISORES</h2>
+    <h2>HISTORIAS REALES</h2>
 
-    <p class="section-sub">
-        Gente que empezó igual que vos: con un celular y ganas de probar.
-        Hoy transmiten desde toda Latinoamérica.
+    <p class="reel-sub">
+        Emisores contando cómo fue empezar. Tocá para ver el video.
     </p>
 
-    <div class="emisores-grid">
+    <div class="reel-stage">
+        <div class="reel-track" id="reelTrack">
 
-        <!-- Emisor 1 -->
-        <article class="emisor-tile">
-            <img src="https://suitsagency.lat/emisores/emisor-1.webp" alt="Emisor de Suits Agency" class="emisor-foto" loading="lazy">
-            <div class="emisor-top">
-                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
-                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 28</span>
-            </div>
-            <div class="emisor-info">
-                <h3 class="emisor-nombre">Mateo <span class="flag">🇦🇷</span></h3>
-                <p class="emisor-frase">Arranqué transmitiendo dos horas después del trabajo. Al tercer mes ya cobraba la meta completa.</p>
-                <div class="emisor-stats">
-                    <span><i class="fa-solid fa-clock"></i> 62 h/mes</span>
-                    <span><i class="fa-solid fa-calendar"></i> 8 meses</span>
+            <!-- data-yt = ID del video de YouTube -->
+            <article class="reel-card" data-yt="5qklulnr12c">
+                <img src="https://suitsagency.lat/emisores/emisor-1.webp" alt="Mateo, emisor de Suits Agency" class="reel-foto" loading="lazy">
+                <div class="reel-top">
+                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                    <span class="reel-nivel"><i class="fa-solid fa-gem"></i> 28</span>
                 </div>
-            </div>
-        </article>
-
-        <!-- Emisor 2 -->
-        <article class="emisor-tile cy">
-            <img src="https://suitsagency.lat/emisores/emisor-2.webp" alt="Emisora de Suits Agency" class="emisor-foto" loading="lazy">
-            <div class="emisor-top">
-                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
-                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 41</span>
-            </div>
-            <div class="emisor-info">
-                <h3 class="emisor-nombre">Valentina <span class="flag">🇨🇴</span></h3>
-                <p class="emisor-frase">No tenía seguidores en ningún lado. Lo que cambió todo fue transmitir siempre a la misma hora.</p>
-                <div class="emisor-stats">
-                    <span><i class="fa-solid fa-clock"></i> 88 h/mes</span>
-                    <span><i class="fa-solid fa-calendar"></i> 1 año</span>
+                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
+                <div class="reel-info">
+                    <h3 class="reel-nombre">Mateo <span class="flag">🇦🇷</span></h3>
+                    <p class="reel-frase">Arranqué transmitiendo dos horas después del trabajo. Al tercer mes ya cobraba la meta completa.</p>
+                    <div class="reel-stats">
+                        <span><i class="fa-solid fa-clock"></i> 62 h/mes</span>
+                        <span><i class="fa-solid fa-calendar"></i> 8 meses</span>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
 
-        <!-- Emisor 3 -->
-        <article class="emisor-tile">
-            <img src="https://suitsagency.lat/emisores/emisor-3.webp" alt="Emisor de Suits Agency" class="emisor-foto" loading="lazy">
-            <div class="emisor-top">
-                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
-                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 34</span>
-            </div>
-            <div class="emisor-info">
-                <h3 class="emisor-nombre">Nico <span class="flag">🇲🇽</span></h3>
-                <p class="emisor-frase">Venía de TikTok y pensé que era lo mismo. Acá el chat es todo: si no nombrás a la gente, se va.</p>
-                <div class="emisor-stats">
-                    <span><i class="fa-solid fa-clock"></i> 51 h/mes</span>
-                    <span><i class="fa-solid fa-calendar"></i> 6 meses</span>
+            <article class="reel-card cy" data-yt="n-v2Q1TztQA">
+                <img src="https://suitsagency.lat/emisores/emisor-2.webp" alt="Valentina, emisora de Suits Agency" class="reel-foto" loading="lazy">
+                <div class="reel-top">
+                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                    <span class="reel-nivel"><i class="fa-solid fa-gem"></i> 41</span>
                 </div>
-            </div>
-        </article>
-
-        <!-- Emisor 4 -->
-        <article class="emisor-tile cy">
-            <img src="https://suitsagency.lat/emisores/emisor-4.webp" alt="Emisora de Suits Agency" class="emisor-foto" loading="lazy">
-            <div class="emisor-top">
-                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
-                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 37</span>
-            </div>
-            <div class="emisor-info">
-                <h3 class="emisor-nombre">Cami <span class="flag">🇵🇾</span></h3>
-                <p class="emisor-frase">Lo que más me sorprendió fue cobrar en dólares el primer mes, aunque fuera proporcional.</p>
-                <div class="emisor-stats">
-                    <span><i class="fa-solid fa-clock"></i> 44 h/mes</span>
-                    <span><i class="fa-solid fa-calendar"></i> 4 meses</span>
+                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
+                <div class="reel-info">
+                    <h3 class="reel-nombre">Valentina <span class="flag">🇨🇴</span></h3>
+                    <p class="reel-frase">No tenía seguidores en ningún lado. Lo que cambió todo fue transmitir siempre a la misma hora.</p>
+                    <div class="reel-stats">
+                        <span><i class="fa-solid fa-clock"></i> 88 h/mes</span>
+                        <span><i class="fa-solid fa-calendar"></i> 1 año</span>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
 
-        <!-- Emisor 5 -->
-        <article class="emisor-tile">
-            <img src="https://suitsagency.lat/emisores/emisor-5.webp" alt="Emisor de Suits Agency" class="emisor-foto" loading="lazy">
-            <div class="emisor-top">
-                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
-                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 22</span>
-            </div>
-            <div class="emisor-info">
-                <h3 class="emisor-nombre">Tomi <span class="flag">🇨🇱</span></h3>
-                <p class="emisor-frase">Me daba vergüenza mostrar la cara. Empecé jugando y ahora hablo dos horas sin darme cuenta.</p>
-                <div class="emisor-stats">
-                    <span><i class="fa-solid fa-clock"></i> 39 h/mes</span>
-                    <span><i class="fa-solid fa-calendar"></i> 3 meses</span>
+            <article class="reel-card" data-yt="JcRjAZGhqOg">
+                <img src="https://suitsagency.lat/emisores/emisor-3.webp" alt="Nico, emisor de Suits Agency" class="reel-foto" loading="lazy">
+                <div class="reel-top">
+                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                    <span class="reel-nivel"><i class="fa-solid fa-gem"></i> 34</span>
                 </div>
-            </div>
-        </article>
-
-        <!-- Emisor 6 -->
-        <article class="emisor-tile cy">
-            <img src="https://suitsagency.lat/emisores/emisor-6.webp" alt="Emisor de Suits Agency" class="emisor-foto" loading="lazy">
-            <div class="emisor-top">
-                <span class="emisor-badge"><span class="dot"></span> Emisor oficial</span>
-                <span class="emisor-nivel"><i class="fa-solid fa-gem"></i> 30</span>
-            </div>
-            <div class="emisor-info">
-                <h3 class="emisor-nombre">Dani <span class="flag">🇵🇪</span></h3>
-                <p class="emisor-frase">El soporte de la agencia me sacó de dudas el mismo día. No tuve que adivinar nada.</p>
-                <div class="emisor-stats">
-                    <span><i class="fa-solid fa-clock"></i> 47 h/mes</span>
-                    <span><i class="fa-solid fa-calendar"></i> 5 meses</span>
+                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
+                <div class="reel-info">
+                    <h3 class="reel-nombre">Nico <span class="flag">🇲🇽</span></h3>
+                    <p class="reel-frase">Venía de TikTok y pensé que era lo mismo. Acá el chat es todo: si no nombrás a la gente, se va.</p>
+                    <div class="reel-stats">
+                        <span><i class="fa-solid fa-clock"></i> 51 h/mes</span>
+                        <span><i class="fa-solid fa-calendar"></i> 6 meses</span>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
 
+            <article class="reel-card cy" data-yt="I6VhuzfdhXg">
+                <img src="https://suitsagency.lat/emisores/emisor-4.webp" alt="Cami, emisora de Suits Agency" class="reel-foto" loading="lazy">
+                <div class="reel-top">
+                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                    <span class="reel-nivel"><i class="fa-solid fa-gem"></i> 37</span>
+                </div>
+                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
+                <div class="reel-info">
+                    <h3 class="reel-nombre">Cami <span class="flag">🇵🇾</span></h3>
+                    <p class="reel-frase">Lo que más me sorprendió fue cobrar en dólares el primer mes, aunque fuera proporcional.</p>
+                    <div class="reel-stats">
+                        <span><i class="fa-solid fa-clock"></i> 44 h/mes</span>
+                        <span><i class="fa-solid fa-calendar"></i> 4 meses</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="reel-card" data-yt="5qklulnr12c">
+                <img src="https://suitsagency.lat/emisores/emisor-5.webp" alt="Tomi, emisor de Suits Agency" class="reel-foto" loading="lazy">
+                <div class="reel-top">
+                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                    <span class="reel-nivel"><i class="fa-solid fa-gem"></i> 22</span>
+                </div>
+                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
+                <div class="reel-info">
+                    <h3 class="reel-nombre">Tomi <span class="flag">🇨🇱</span></h3>
+                    <p class="reel-frase">Me daba vergüenza mostrar la cara. Empecé jugando y ahora hablo dos horas sin darme cuenta.</p>
+                    <div class="reel-stats">
+                        <span><i class="fa-solid fa-clock"></i> 39 h/mes</span>
+                        <span><i class="fa-solid fa-calendar"></i> 3 meses</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="reel-card cy" data-yt="n-v2Q1TztQA">
+                <img src="https://suitsagency.lat/emisores/emisor-6.webp" alt="Dani, emisor de Suits Agency" class="reel-foto" loading="lazy">
+                <div class="reel-top">
+                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                    <span class="reel-nivel"><i class="fa-solid fa-gem"></i> 30</span>
+                </div>
+                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
+                <div class="reel-info">
+                    <h3 class="reel-nombre">Dani <span class="flag">🇵🇪</span></h3>
+                    <p class="reel-frase">El soporte de la agencia me sacó de dudas el mismo día. No tuve que adivinar nada.</p>
+                    <div class="reel-stats">
+                        <span><i class="fa-solid fa-clock"></i> 47 h/mes</span>
+                        <span><i class="fa-solid fa-calendar"></i> 5 meses</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <div class="reel-controls">
+        <button class="reel-arrow" id="reelPrev" aria-label="Historia anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="reel-dots" id="reelDots"></div>
+        <button class="reel-arrow" id="reelNext" aria-label="Historia siguiente"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
 
 </section>
+
+<!-- Reproductor -->
+<div class="reel-modal" id="reelModal" role="dialog" aria-modal="true" aria-label="Reproductor de video">
+    <div class="reel-modal-inner">
+        <button class="reel-close" id="reelClose" aria-label="Cerrar video"><i class="fa-solid fa-xmark"></i></button>
+        <div id="reelFrame"></div>
+    </div>
+</div>
 
 
 
@@ -984,6 +1125,93 @@ slides[currentSlide].classList.add('active');
 }
 
 
+</script>
+
+
+
+<script>
+// Carrusel de historias. Va dentro de una funcion propia para no chocar
+// con las variables del carrusel de tips que ya existe en esta pagina.
+(function () {
+    const track = document.getElementById('reelTrack');
+    if (!track) return;
+
+    const cards  = Array.from(track.querySelectorAll('.reel-card'));
+    const dotsEl = document.getElementById('reelDots');
+    const modal  = document.getElementById('reelModal');
+    const frame  = document.getElementById('reelFrame');
+    let index = Math.floor(cards.length / 2);
+
+    // Puntos de navegacion
+    cards.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'reel-dot';
+        d.setAttribute('aria-label', 'Ver historia ' + (i + 1));
+        d.addEventListener('click', () => go(i));
+        dotsEl.appendChild(d);
+    });
+    const dots = Array.from(dotsEl.children);
+
+    function render() {
+        cards.forEach((card, i) => {
+            let off = i - index;
+            // Ciclo: la lista se comporta como un anillo
+            const half = Math.floor(cards.length / 2);
+            if (off >  half) off -= cards.length;
+            if (off < -half) off += cards.length;
+
+            card.dataset.pos = Math.abs(off) <= 2 ? String(off) : 'far';
+            card.setAttribute('aria-hidden', off === 0 ? 'false' : 'true');
+        });
+        dots.forEach((d, i) => d.classList.toggle('on', i === index));
+    }
+
+    function go(i) {
+        index = (i + cards.length) % cards.length;
+        render();
+    }
+
+    document.getElementById('reelPrev').addEventListener('click', () => go(index - 1));
+    document.getElementById('reelNext').addEventListener('click', () => go(index + 1));
+
+    // Tocar una tarjeta lateral la trae al centro; la central abre el video
+    cards.forEach((card, i) => {
+        card.addEventListener('click', () => {
+            if (i !== index) { go(i); return; }
+            const id = card.dataset.yt;
+            if (!id) return;
+            frame.innerHTML =
+                '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" ' +
+                'allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function closeModal() {
+        modal.classList.remove('open');
+        frame.innerHTML = '';
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('reelClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // Deslizar en pantalla tactil
+    let x0 = null;
+    track.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 45) go(index + (dx < 0 ? 1 : -1));
+        x0 = null;
+    }, { passive: true });
+
+    render();
+})();
 </script>
 
 
