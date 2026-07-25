@@ -129,13 +129,22 @@
             backdrop-filter: blur(15px); overflow-x: auto; box-shadow: 0 15px 30px rgba(0,0,0,0.5);
             margin-top: 10px; width: 100%; -webkit-overflow-scrolling: touch;
         }
-        table { width: max-content; min-width: 100%; margin: 0 auto; border-collapse: collapse; text-align: center; font-size: 0.82rem; }
+        table {
+            width: max-content; min-width: 100%; margin: 0 auto; border-collapse: collapse;
+            font-size: 0.82rem; font-variant-numeric: tabular-nums;
+        }
         th {
-            background: rgba(0, 212, 255, 0.1); color: var(--accent-blue); padding: 12px 6px;
+            background: rgba(0, 212, 255, 0.1); color: var(--accent-blue); padding: 12px 14px;
             text-transform: uppercase; font-weight: bold; font-size: 0.65rem; letter-spacing: 1px;
             border-bottom: 1px solid var(--glass-border); white-space: nowrap; position: sticky; top: 0;
+            text-align: right;
         }
-        td { padding: 10px 6px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); color: var(--silver); transition: background 0.4s; }
+        th:first-child { text-align: left; }
+        td {
+            padding: 10px 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--silver); transition: background 0.4s; text-align: right;
+        }
+        td:first-child { text-align: left; }
         td.nivel-cell { color: var(--accent-blue); font-weight: 700; font-size: 0.75rem; }
         .total-usd { color: var(--fuchsia); font-weight: bold; text-shadow: 0 0 8px rgba(255, 0, 255, 0.2); font-size: 0.9rem; }
         tr.row-match td { background: rgba(0, 232, 255, 0.08); }
@@ -193,6 +202,7 @@
                 <div id="calcResult" class="calc-result" style="display:none;">
                     <div class="calc-row" id="calcNivelRow" style="display:none;"><span>Nivel alcanzado</span><span id="calcNivel">—</span></div>
                     <div class="calc-row"><span>Monedero</span><span id="calcMonedero">$0</span></div>
+                    <p class="calc-note" style="margin-top:-6px;">Estimado según tus semillas ÷ 210. Tu monedero real puede variar: solo las semillas de usuarios cuentan para la meta, y podés tener semillas de eventos o haber gastado parte de las tuyas.</p>
                     <div class="calc-row"><span>Remuneración</span><span id="calcRemuneracion">$0</span></div>
                     <div class="calc-row calc-total"><span>Ganancia total (USD)</span><span id="calcTotal">$0</span></div>
                     <div class="calc-row calc-converted" id="calcConvertedRow" style="display:none;"><span id="calcConvertedLabel">Equivalente</span><span id="calcConvertido">—</span></div>
@@ -311,144 +321,4 @@
             AED: "Dírham de EAU", SAR: "Riyal saudí", EGP: "Libra egipcia", NGN: "Naira nigeriana",
             VND: "Dong vietnamita", IDR: "Rupia indonesia", PHP: "Peso filipino", MYR: "Ringgit malayo",
             PKR: "Rupia pakistaní", BDT: "Taka bangladesí", LKR: "Rupia de Sri Lanka",
-            JMD: "Dólar jamaiquino", TTD: "Dólar de Trinidad y Tobago", BBD: "Dólar de Barbados",
-            BSD: "Dólar bahameño", KYD: "Dólar de Islas Caimán", XCD: "Dólar del Caribe Oriental"
-        };let ratesCache = null;
-        async function obtenerTasas() {
-            if (ratesCache) return ratesCache;
-            try {
-                const res = await fetch('https://open.er-api.com/v6/latest/USD');
-                const data = await res.json();
-                if (data && data.rates) { ratesCache = data.rates; return ratesCache; }
-            } catch (err) { /* sin conexión o falla de API */ }
-            return null;
-        }
-
-        let selectedCurrency = 'USD';
-        const searchInput = document.getElementById('calcMonedaSearch');
-        const optionsBox = document.getElementById('calcMonedaOptions');
-
-        function renderOptions(filter) {
-            const f = (filter || '').toLowerCase().trim();
-            const entries = Object.entries(currencyNames);
-            const matches = entries.filter(([code, name]) =>
-                code.toLowerCase().includes(f) || name.toLowerCase().includes(f)
-            ).slice(0, 8);
-
-            if (matches.length === 0) { optionsBox.classList.remove('open'); return; }
-
-            optionsBox.innerHTML = matches.map(([code, name]) =>
-                `<div class="currency-opt" data-code="${code}">${name} <small>(${code})</small></div>`
-            ).join('');
-            optionsBox.classList.add('open');
-
-            optionsBox.querySelectorAll('.currency-opt').forEach(opt => {
-                opt.addEventListener('click', () => {
-                    const code = opt.dataset.code;
-                    selectedCurrency = code;
-                    searchInput.value = currencyNames[code] + ' (' + code + ')';
-                    optionsBox.classList.remove('open');
-                });
-            });
-        }
-
-        searchInput.addEventListener('focus', () => renderOptions(searchInput.value.includes('(') ? '' : searchInput.value));
-        searchInput.addEventListener('input', () => renderOptions(searchInput.value));
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.currency-select')) optionsBox.classList.remove('open');
-        });
-
-        // ============================================
-        // Cálculo principal
-        // ============================================
-        const calcBtn = document.getElementById('calcBtn');
-        calcBtn.addEventListener('click', async () => {
-            const semillas = parseFloat(document.getElementById('calcSemillas').value) || 0;
-            const horas = parseFloat(document.getElementById('calcHoras').value) || 0;
-            const primerMes = document.getElementById('calcPrimerMes').checked;
-
-            calcBtn.disabled = true;
-            calcBtn.textContent = 'Calculando...';
-
-            const tramo = calcularTramo(semillas);
-
-            let factor;
-            if (primerMes) {
-                // Pago proporcional: horas transmitidas / 44, sin piso de 20h
-                factor = Math.min(horas / 44, 1);
-            } else {
-                // Sistema estándar: escalón por horas (no proporcional)
-                if (horas >= 44) factor = 1;
-                else if (horas >= 20) factor = 0.5;
-                else factor = 0;
-            }
-
-            const monedero = tramo.monedero * factor;
-            const remuneracion = tramo.remuneracion * factor;
-            const total = tramo.total * factor;
-
-            document.getElementById('calcMonedero').textContent = fmtUSD(monedero);
-            document.getElementById('calcRemuneracion').textContent = fmtUSD(remuneracion);
-            document.getElementById('calcTotal').textContent = fmtUSD(total);
-
-            const nivelRow = document.getElementById('calcNivelRow');
-            if (tramo.califica) {
-                document.getElementById('calcNivel').textContent = tramo.nivel + ' (' + tramo.semillas.toLocaleString('es-AR') + ' semillas)';
-                nivelRow.style.display = 'flex';
-            } else {
-                nivelRow.style.display = 'none';
-            }
-
-            document.getElementById('calcPrimerMesBadge').style.display = primerMes ? 'block' : 'none';
-
-            // Advertencias
-            const warningEl = document.getElementById('calcWarning');
-            warningEl.innerHTML = '';
-            if (!tramo.califica) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Con menos de 2,000 semillas no calificás a remuneración económica este mes.</div>';
-            } else if (tramo.masAllaDelMaximo) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-circle-info"></i> Superaste el nivel más alto de la tabla oficial (s18). Se calculó con el tope de s18 — consultá con tu agente para tu caso puntual.</div>';
-            } else if (!primerMes && horas < 20 && semillas >= tiers[0].semillas) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Con menos de 20 horas transmitidas, la remuneración de este mes es $0 USD.</div>';
-            } else if (!primerMes && horas < 44 && horas >= 20) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Entre 20 y 43 horas cobrás el 50% del nivel ' + tramo.nivel + '. Llegá a 44 horas para cobrar el 100%.</div>';
-            } else if (primerMes && horas < 44) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-seedling"></i> Como es tu primer mes, se te paga proporcional a tus horas reales — no aplica el mínimo de 20h de los meses siguientes.</div>';
-            }
-
-            // Conversión de moneda
-            const convertedRow = document.getElementById('calcConvertedRow');
-            const noteEl = document.getElementById('calcNote');
-            if (selectedCurrency === 'USD') {
-                convertedRow.style.display = 'none';
-                noteEl.textContent = 'Cálculo estimado según la tabla oficial vigente. La remuneración final la valida Bigo Live.';
-            } else {
-                const tasas = await obtenerTasas();
-                const tasa = tasas ? tasas[selectedCurrency] : null;
-                if (tasa) {
-                    const convertido = total * tasa;
-                    document.getElementById('calcConvertedLabel').textContent = 'Equivalente en ' + selectedCurrency;
-                    document.getElementById('calcConvertido').textContent = convertido.toLocaleString('es-AR', { maximumFractionDigits: 0 }) + ' ' + selectedCurrency;
-                    convertedRow.style.display = 'flex';
-                    noteEl.textContent = 'Cálculo estimado según la tabla oficial. Tasa de cambio referencial en tiempo real — puede variar al momento del pago.';
-                } else {
-                    convertedRow.style.display = 'none';
-                    noteEl.textContent = 'Cálculo estimado según la tabla oficial. No se pudo obtener la tasa de cambio ahora mismo — probá de nuevo en unos segundos.';
-                }
-            }
-
-            // Resalta la fila de la tabla que corresponde al nivel alcanzado
-            document.querySelectorAll('#paymentTable tr[data-semillas]').forEach(tr => tr.classList.remove('row-match'));
-            if (tramo.califica) {
-                const row = document.querySelector('#paymentTable tr[data-semillas="' + tramo.semillas + '"]');
-                if (row) row.classList.add('row-match');
-            }
-
-            document.getElementById('calcResult').style.display = 'block';
-            calcBtn.disabled = false;
-            calcBtn.textContent = 'Calcular remuneración';
-        });
-    </script>
-
-</body>
-</html>
+            JMD: "Dólar ja
