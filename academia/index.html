@@ -105,7 +105,92 @@
         .video-item i { color: var(--accent-blue); font-size: 1.2rem; width: 25px; text-align: center; }
         .video-item div span { display: block; font-size: 0.95rem; font-weight: 500; }
         .video-item div small { color: var(--silver); font-size: 0.75rem; opacity: 0.6; }
-    </style>
+    
+
+
+/* ---- Los 10 Mandamientos: carrusel deslizable ----
+   Usa scroll-snap nativo, asi el swipe en celular funciona
+   aunque el JS falle. Las flechas y los puntos son un extra. */
+.mandamientos { margin-top: 55px; }
+.mandamientos h2 { text-align: center; font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 2px; margin: 0 0 6px; color: #fff; }
+.mand-sub { text-align: center; font-size: .82rem; color: rgba(224,224,224,.45); margin: 0 0 22px; }
+
+.mand-track {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 2px 14px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.mand-track::-webkit-scrollbar { display: none; }
+
+.mand-card {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    box-sizing: border-box;
+    min-height: 190px;
+    padding: 26px 24px 28px;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255,255,255,.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mand-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--accent-violet);
+    opacity: .55;
+    margin-bottom: 10px;
+}
+
+.mand-card h4 { margin: 0 0 10px; font-size: 1.05rem; color: #fff; line-height: 1.35; }
+.mand-card p { margin: 0; font-size: .88rem; color: var(--silver); line-height: 1.65; opacity: .85; }
+
+/* Palabras clave: cian para la idea principal, blanco para la
+   consecuencia. Sin lila: en bloques de texto largo cansaba la lectura. */
+.mand-card .kw { color: var(--accent-blue); font-weight: 800; }
+.mand-card .kw.cy { color: #fff; font-weight: 700; }
+
+.mand-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 4px; }
+
+.mand-arrow {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: rgba(255,255,255,.04);
+    color: var(--silver);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color .2s, color .2s;
+}
+.mand-arrow:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+.mand-arrow:disabled { opacity: .25; cursor: default; }
+
+.mand-dots { display: flex; gap: 7px; }
+.mand-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    border: 0; padding: 0;
+    background: rgba(255,255,255,.2);
+    cursor: pointer;
+    transition: background .25s, transform .25s;
+}
+.mand-dot.active { background: var(--accent-blue); transform: scale(1.35); }
+
+.mandamiento-quote { text-align: center; font-style: italic; color: var(--silver); font-size: .9rem; line-height: 1.6; max-width: 480px; margin: 26px auto 0; opacity: .7; }
+
+@media (min-width: 700px) {
+    .mand-card { flex-basis: 48%; }
+}
+</style>
 </head>
 <body>
     <div class="overlay-bg" id="overlay"></div>
@@ -191,6 +276,72 @@
             </div>
         </div>
 
+        <section class="mandamientos">
+            <h2>Los 10 Mandamientos del Emisor Exitoso</h2>
+            <p class="mand-sub">Deslizá para verlos todos</p>
+
+            <div class="mand-track" id="mandTrack">
+                <article class="mand-card">
+                    <span class="mand-num">01</span>
+                    <h4>Serás constante antes que perfecto</h4>
+                    <p>El éxito no llega por transmitir muchas horas un solo día, sino por <span class="kw">sostener una rutina</span>. La <span class="kw cy">disciplina</span> construye audiencia fiel.</p>
+                </article>
+                <article class="mand-card">
+                    <span class="mand-num">02</span>
+                    <h4>Respetarás tu horario de transmisión</h4>
+                    <p>Tu audiencia debe saber cuándo encontrarte. Transmitir en <span class="kw">horarios similares</span> crea <span class="kw cy">hábito</span> y mejora tu crecimiento.</p>
+                </article>
+                <article class="mand-card">
+                    <span class="mand-num">03</span>
+                    <h4>Cuidarás tu imagen y presentación</h4>
+                    <p><span class="kw">Buena iluminación</span>, un espacio ordenado y <span class="kw cy">energía positiva</span> mejoran la experiencia de tus espectadores.</p>
+                </article>
+                <article class="mand-card">
+                    <span class="mand-num">04</span>
+                    <h4>Interactuarás con tu audiencia</h4>
+                    <p>No solo transmitas: <span class="kw">conversá, saludá y respondé comentarios</span> para crear una <span class="kw cy">conexión real</span>.</p>
+                </article>
+                <article class="mand-card">
+                    <span class="mand-num">05</span>
+                    <h4>Crearás comunidad, no solo seguidores</h4>
+                    <p>Los grandes emisores <span class="kw">construyen relaciones</span>. Un seguidor se vuelve fan cuando se siente <span class="kw cy">valorado</span>.</p>
+                </article>
+                <article class="mand-card">
+                    <span class="mand-num">06</span>
+                    <h4>Mejorarás cada día</h4>
+                    <p>Revisá <span class="kw">qué funcionó</span>, qué horarios dieron mejores resultados y qué contenido generó <span class="kw cy">más interacción</span>.</p>
+                </article>
+                <article class="mand-card">
+                    <span class="mand-num">07</span>
+                    <h4>Cumplirás tus metas de actividad</h4>
+                    <p>Organizá tus horas y tus <span class="kw">días válidos</span> con planificación para alcanzar tus <span class="kw cy">objetivos mensuales</span>.</p>
+                </article>
+                <article class="mand-card">
+                    <span class="mand-num">08</span>
+                    <h4>Mantendrás una actitud positiva</h4>
+                    <p>Habrá días de poca audiencia. Un emisor exitoso <span class="kw">no abandona</span> por un mal día: <span class="kw cy">aprende y continúa</span>.</p>
+                </article>
+                <article class="mand-card">
+                    <span class="mand-num">09</span>
+                    <h4>Respetarás las reglas de la plataforma</h4>
+                    <p><span class="kw">Evitá sanciones</span> cuidando tu contenido y comportamiento según las <span class="kw cy">normas de Bigo Live</span> y la agencia.</p>
+                </article>
+                <article class="mand-card">
+                    <span class="mand-num">10</span>
+                    <h4>Trabajarás como un profesional</h4>
+                    <p>Responsabilidad, compromiso y <span class="kw">mentalidad profesional</span> son la diferencia entre un principiante y un <span class="kw cy">referente</span>.</p>
+                </article>
+            </div>
+
+            <div class="mand-controls">
+                <button class="mand-arrow" id="mandPrev" aria-label="Mandamiento anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="mand-dots" id="mandDots"></div>
+                <button class="mand-arrow" id="mandNext" aria-label="Mandamiento siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <p class="mandamiento-quote">"El éxito en el streaming no depende de la suerte; depende de la constancia, la conexión con tu audiencia y la decisión de mejorar cada día."</p>
+        </section>
+
         <footer>
             &copy; 2026 SUITS AGENCY | AGENCIA OFICIAL | <a href="https://suitsagency.lat/privacidad/" class="footer-link">Privacidad</a>
 </footer>
@@ -235,5 +386,57 @@
         }
     </script>
 
+
+<script>
+/* Carrusel de los 10 Mandamientos.
+   El deslizamiento lo hace el navegador (scroll-snap). Esto solo
+   agrega flechas, puntos y el resaltado del punto activo. */
+(function () {
+    const track = document.getElementById('mandTrack');
+    if (!track) return;
+
+    const cards = Array.from(track.querySelectorAll('.mand-card'));
+    const dots  = document.getElementById('mandDots');
+    const prev  = document.getElementById('mandPrev');
+    const next  = document.getElementById('mandNext');
+
+    cards.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'mand-dot' + (i === 0 ? ' active' : '');
+        b.setAttribute('aria-label', 'Mandamiento ' + (i + 1));
+        b.addEventListener('click', () => irA(i));
+        dots.appendChild(b);
+    });
+
+    function irA(i) {
+        const c = cards[Math.max(0, Math.min(i, cards.length - 1))];
+        track.scrollTo({ left: c.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    }
+
+    function actual() {
+        const centro = track.scrollLeft + track.clientWidth / 2;
+        let mejor = 0, dist = Infinity;
+        cards.forEach((c, i) => {
+            const d = Math.abs((c.offsetLeft - track.offsetLeft) + c.clientWidth / 2 - centro);
+            if (d < dist) { dist = d; mejor = i; }
+        });
+        return mejor;
+    }
+
+    function pintar() {
+        const i = actual();
+        dots.querySelectorAll('.mand-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+        prev.disabled = i === 0;
+        next.disabled = i === cards.length - 1;
+    }
+
+    prev.addEventListener('click', () => irA(actual() - 1));
+    next.addEventListener('click', () => irA(actual() + 1));
+
+    let t;
+    track.addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(pintar, 80); });
+    pintar();
+})();
+</script>
 </body>
 </html>
