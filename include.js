@@ -67,6 +67,34 @@
     });
 
     navLinks.forEach(link => link.addEventListener('click', cerrar));
+
+    botonWhatsapp();
+  }
+
+  // ============================================
+  // Boton flotante de WhatsApp
+  //
+  // Se inyecta por JS para no repetirlo en las 6 paginas. No es
+  // contenido indexable (el numero ya esta en el HTML de /registro/
+  // y en las redes de la home), asi que no perdemos nada en SEO.
+  // El clic lo mide tracking.js solo: la regla de wa.me ya existe.
+  //
+  // Para cambiar el numero o el texto, tocar aca abajo.
+  // ============================================
+  const WHATSAPP_NUM  = '595982678695';
+  const WHATSAPP_MSG  = 'Hola! Quiero informacion para ser emisor de Bigo Live con Suits Agency.';
+
+  function botonWhatsapp() {
+    if (document.querySelector('.wa-float')) return;
+
+    const a = document.createElement('a');
+    a.className = 'wa-float';
+    a.href = 'https://wa.me/' + WHATSAPP_NUM + '?text=' + encodeURIComponent(WHATSAPP_MSG);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.setAttribute('aria-label', 'Escribinos por WhatsApp');
+    a.innerHTML = '<i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>Escribinos</span>';
+    document.body.appendChild(a);
   }
 
   if (document.readyState === 'loading') {

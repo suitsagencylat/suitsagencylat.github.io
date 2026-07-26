@@ -307,3 +307,258 @@ footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-s
     .slider-container { width: 70%; max-width: 240px; }
     .social-section h4 { font-size: 2.5rem; }
 }
+
+/* ================================================================
+   AJUSTES DE CONVERSION
+   Botón flotante de WhatsApp, bloque anti-objeción y CTA de cierre.
+   Todo vive acá para que las 6 páginas lo compartan.
+   ================================================================ */
+
+/* ---- Botón flotante de WhatsApp (lo inyecta include.js) ----
+   Va abajo a la IZQUIERDA para no chocar con el Bigo Dino. */
+.wa-float {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px 12px 14px;
+    border-radius: 999px;
+    background: #25d366;
+    color: #06210f;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-weight: 700;
+    font-size: .9rem;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .45);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.wa-float i { font-size: 1.35rem; }
+.wa-float:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(37, 211, 102, .35); color: #06210f; }
+.wa-float:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* En pantallas chicas se reduce a un círculo: ocupa menos y no tapa contenido */
+@media (max-width: 620px) {
+    .wa-float { padding: 0; width: 54px; height: 54px; justify-content: center; left: 14px; bottom: 14px; }
+    .wa-float span { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wa-float { transition: none; }
+    .wa-float:hover { transform: none; }
+}
+
+/* ---- Bloque anti-objeción ("¿esto es real?") ---- */
+.objeciones {
+    width: 92%;
+    max-width: 980px;
+    margin: 70px auto;
+    position: relative;
+    z-index: 1;
+}
+
+.objeciones h2 {
+    font-family: var(--font-display, 'Bebas Neue', sans-serif);
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.objeciones .obj-sub {
+    text-align: center;
+    color: rgba(224, 224, 224, .6);
+    font-size: .95rem;
+    margin: 0 auto 34px;
+    max-width: 560px;
+}
+
+.obj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.obj-item {
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 22px 22px 24px;
+}
+
+.obj-item h3 {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 10px;
+    font-size: 1.02rem;
+    line-height: 1.4;
+    color: #fff;
+}
+
+.obj-item h3 i { color: var(--accent-blue); font-size: 1.05rem; margin-top: 3px; flex-shrink: 0; }
+.obj-item p { margin: 0; color: var(--silver); font-size: .93rem; line-height: 1.65; opacity: .85; }
+.obj-item strong { color: var(--accent-blue); }
+
+/* ---- CTA de cierre (va al final de cada página) ---- */
+.cta-cierre {
+    width: 92%;
+    max-width: 720px;
+    margin: 70px auto 40px;
+    text-align: center;
+    padding: 40px 26px;
+    border-radius: 20px;
+    border: 1px solid rgba(158, 0, 255, .3);
+    background:
+        radial-gradient(120% 140% at 50% 0%, rgba(158, 0, 255, .13), transparent 65%),
+        rgba(255, 255, 255, .02);
+    position: relative;
+    z-index: 1;
+}
+
+.cta-cierre h2 {
+    font-family: var(--font-display, 'Bebas Neue', sans-serif);
+    font-size: clamp(1.9rem, 5.5vw, 2.8rem);
+    letter-spacing: 1px;
+    margin: 0 0 12px;
+}
+
+.cta-cierre > p {
+    color: var(--silver);
+    opacity: .8;
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto 26px;
+}
+
+.cta-cierre .cta-main { display: inline-block; }
+
+/* Línea de "fricción cero" bajo el botón: mata las objeciones de costo */
+.cta-nota {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 20px;
+    margin-top: 20px;
+    font-size: .82rem;
+    color: rgba(224, 224, 224, .55);
+}
+
+.cta-nota span { display: inline-flex; align-items: center; gap: 6px; }
+.cta-nota i { color: var(--accent-blue); font-size: .8rem; }
+
+/* Link secundario a WhatsApp: nunca es botón sólido, para no competir
+   con el CTA principal (regla de marca: un solo botón sólido por página) */
+.cta-alt {
+    display: inline-block;
+    margin-top: 18px;
+    color: rgba(224, 224, 224, .75);
+    font-size: .92rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .15);
+    padding-bottom: 2px;
+}
+
+.cta-alt i { color: #25d366; margin-right: 6px; }
+.cta-alt:hover { color: #fff; border-color: #25d366; }
+
+/* ================================================================
+   FORMULARIO DE CAPTACION (vive en /registro/)
+   ================================================================ */
+.form-card {
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid rgba(0, 232, 255, .25);
+    border-radius: 18px;
+    padding: 28px 24px 30px;
+    margin: 34px 0 10px;
+}
+
+.form-card h3 { margin: 0 0 8px; font-size: 1.15rem; color: #fff; }
+.form-card h3 i { color: var(--accent-blue); margin-right: 8px; }
+.form-sub { margin: 0 0 22px; font-size: .88rem; color: var(--silver); opacity: .75; line-height: 1.6; }
+
+.form-field { margin-bottom: 16px; text-align: left; }
+.form-row { display: flex; gap: 14px; }
+.form-row .form-field { flex: 1; }
+
+.form-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: .78rem;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: rgba(224, 224, 224, .6);
+}
+
+.form-field input,
+.form-field select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, .35);
+    color: #fff;
+    font-family: inherit;
+    font-size: .95rem;
+    transition: border-color .2s ease;
+}
+
+.form-field input::placeholder { color: rgba(255, 255, 255, .25); }
+.form-field input:focus,
+.form-field select:focus { outline: none; border-color: var(--accent-blue); }
+.form-field select option { background: #101010; }
+
+/* Campo trampa para bots: invisible para personas, no para scripts */
+.hp-field { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+
+.form-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 15px;
+    border: 2px solid var(--accent-violet);
+    border-radius: 50px;
+    background: linear-gradient(90deg, var(--accent-violet), #c04bff);
+    color: #fff;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: .92rem;
+    cursor: pointer;
+    transition: box-shadow .3s ease;
+}
+
+.form-btn:hover { box-shadow: 0 0 25px rgba(158, 0, 255, .5); }
+.form-btn:disabled { opacity: .6; cursor: default; box-shadow: none; }
+
+.form-legal { margin: 16px 0 0; font-size: .72rem; line-height: 1.6; color: rgba(224, 224, 224, .4); }
+.form-legal a { color: rgba(0, 232, 255, .7); }
+
+.form-ok { text-align: center; padding: 14px 0 4px; }
+.form-ok i { font-size: 2.6rem; color: #25d366; margin-bottom: 12px; }
+.form-ok h4 { margin: 0 0 8px; font-size: 1.1rem; color: #fff; }
+.form-ok p { margin: 0; font-size: .9rem; color: var(--silver); opacity: .8; line-height: 1.6; }
+
+.form-error {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 90, 90, .35);
+    background: rgba(255, 90, 90, .08);
+    color: #ffb3b3;
+    font-size: .85rem;
+    line-height: 1.5;
+}
+
+.form-error a { color: #fff; }
+
+@media (max-width: 480px) {
+    .form-row { flex-direction: column; gap: 0; }
+}
+
+.footer-link { color: rgba(0, 232, 255, .55); text-decoration: none; }
+.footer-link:hover { color: var(--accent-blue); }

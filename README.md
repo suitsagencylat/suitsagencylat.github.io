@@ -13,6 +13,7 @@ Publicado con GitHub Pages en https://suitsagency.lat
 /pagos/              Tabla de remuneración + calculadora
 /registro/           Pasos para postularse
 /soporte/            Preguntas frecuentes y reglamento
+/privacidad/         Política de privacidad (requisito para anunciar con pixel)
 404.html             Página de error con marca
 ```
 
@@ -72,3 +73,38 @@ La tabla de niveles y remuneraciones sale del documento oficial de Bigo Live LAT
 Están optimizadas al tamaño real en que se muestran. Antes de subir una imagen
 nueva, redimensionala: no subas originales de cámara o de 1000px+ para elementos
 que se ven a 100px.
+
+---
+
+## Elementos de conversión
+
+| Elemento | Dónde vive | Aparece en |
+|---|---|---|
+| Botón flotante de WhatsApp | `include.js` (`botonWhatsapp`) | Las 6 páginas |
+| Bloque anti-objeción "¿Esto es real?" | `index.html` | Inicio |
+| CTA de cierre (`.cta-cierre`) | HTML de cada página | Inicio, Pagos, Soporte |
+| Línea de fricción cero (`.cta-nota`) | HTML de cada página | Inicio, Pagos, Registro, Soporte |
+| Estilos de todo lo anterior | `styles.css` (bloque final) | Compartido |
+
+**Para cambiar el número de WhatsApp** hay que tocarlo en `include.js` (constante
+`WHATSAPP_NUM`) **y** en los links que están escritos dentro del HTML.
+
+Los clics a WhatsApp, a `/registro/` y a Bigo ya los mide `tracking.js` solo:
+detecta la conversión por el destino del link, no hace falta marcar cada botón.
+
+
+---
+
+## Formulario de captación
+
+Vive en `/registro/`. Los envíos los procesa **Formspree** y te llegan por email.
+
+**Para activarlo:** creá un formulario gratis en formspree.io, copiá el ID que te dan
+y pegalo en `registro/index.html`, en la constante `FORMSPREE` del script del final.
+Mientras diga `PONER_ID`, el formulario valida y muestra el mensaje de éxito pero no
+envía nada — sirve para probar el diseño.
+
+El plan gratis acepta 50 envíos por mes y guarda el historial 30 días. Conviene
+exportar los contactos a una planilla propia antes de que se borren.
+
+El envío exitoso dispara el evento `lead_formulario` (GA4) / `Lead` (Meta).

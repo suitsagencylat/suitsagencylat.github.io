@@ -501,6 +501,42 @@
     .reel-badge .dot { animation: none; }
     .reel-play { transition: none; }
 }
+
+/* ---- Insignia de agencia oficial en el hero ----
+   Antes solo estaba en letra chica bajo el logo. Es la credencial
+   mas fuerte que tenemos: va arriba de todo. */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 232, 255, .35);
+    background: rgba(0, 232, 255, .07);
+    color: var(--accent-blue);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+.hero-badge i { font-size: .85rem; }
+
+/* ---- Tips: bajaron debajo de los clips ----
+   Son consejos para alguien que YA es emisor. El visitante frio
+   necesita ver primero la prueba (los clips), no el manual. */
+.tips-section { margin: 60px auto 0; position: relative; z-index: 1; }
+
+.tips-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 0 0 6px;
+    color: rgba(224, 224, 224, .85);
+}
+
 </style>
 
 <!-- Datos estructurados: ayudan a Google a mostrar la ficha de la agencia -->
@@ -595,6 +631,7 @@
 
 <div class="hero-brand">
 
+<span class="hero-badge"><i class="fa-solid fa-circle-check"></i> Agencia oficial de Bigo Live</span>
 
 <h1>
 
@@ -606,8 +643,6 @@ EL NEGOCIO DE<br>
 
 
 <p>
-
-Agencia oficial de Bigo Live.<br>
 
 Impulsamos talentos en Latinoamérica
 para convertir su presencia digital
@@ -625,6 +660,16 @@ POSTULAR AHORA
 
 </a>
 
+<div class="cta-nota">
+<span><i class="fa-solid fa-check"></i> Postular es gratis</span>
+<span><i class="fa-solid fa-check"></i> Sin comisiones de la agencia</span>
+<span><i class="fa-solid fa-check"></i> Desde el celular</span>
+</div>
+
+<a href="https://wa.me/595982678695?text=Hola!%20Quiero%20informacion%20para%20ser%20emisor%20de%20Bigo%20Live%20con%20Suits%20Agency." class="cta-alt" target="_blank" rel="noopener">
+<i class="fa-brands fa-whatsapp"></i> o preguntanos por WhatsApp
+</a>
+
 </div>
 
 
@@ -633,44 +678,6 @@ POSTULAR AHORA
 
 
 
-<div class="tips-carousel">
-
-<div class="tip-slide active">
-<i class="fa-solid fa-lightbulb"></i>
-<p><strong>Tip:</strong> Transmití siempre a la <span class="kw">misma hora</span>. La <span class="kw">constancia</span> hace que tu audiencia vuelva.</p>
-</div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-comments"></i>
-<p><strong>Tip:</strong> <span class="kw">Interactuá con el chat</span> todo el tiempo. Nombrar a tu audiencia genera <span class="kw cy">fidelidad</span>.</p>
-</div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-chart-line"></i>
-<p><strong>Tip:</strong> Revisá tus <span class="kw cy">estadísticas</span> cada semana para saber qué contenido <span class="kw">funciona mejor</span>.</p>
-</div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-clock"></i>
-<p><strong>Tip:</strong> Empezá con <span class="kw">sesiones cortas</span> y andá subiendo la duración. Es mejor <span class="kw cy">calidad</span> que cantidad de horas.</p>
-</div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-video"></i>
-<p><strong>Tip:</strong> Cuidá el <span class="kw cy">audio y la luz</span> antes que cualquier otra cosa. La <span class="kw">calidad técnica</span> retiene más audiencia que los filtros.</p>
-</div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-users"></i>
-<p><strong>Tip:</strong> Invitá a tus <span class="kw">seguidores de otras redes</span> a tu primer live. Los primeros minutos definen el <span class="kw cy">alcance</span> del stream.</p>
-</div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-gift"></i>
-<p><strong>Tip:</strong> Agradecé cada <span class="kw cy">regalo</span> en vivo y nombrá a quien lo envía. Es la forma más simple de generar <span class="kw">lealtad</span>.</p>
-</div>
-
-</div>
 
 
 </section>
@@ -766,7 +773,7 @@ POSTULAR AHORA
                 <div class="reel-play"><i class="fa-solid fa-play"></i></div>
                 <div class="reel-info">
                     <h3 class="reel-nombre">Tomi <span class="flag">🇨🇱</span></h3>
-                    <p class="reel-frase">Primer PK ganado sin mostrar la cara.</p>
+                    <p class="reel-frase">Su primer PK ganado.</p>
                 </div>
             </article>
 
@@ -808,6 +815,47 @@ POSTULAR AHORA
 </section>
 
 
+<section class="tips-section">
+<h2 class="tips-title">CONSEJOS PARA TU PRIMER MES</h2>
+<div class="tips-carousel">
+
+<div class="tip-slide active">
+<i class="fa-solid fa-lightbulb"></i>
+<p><strong>Tip:</strong> Transmití siempre a la <span class="kw">misma hora</span>. La <span class="kw">constancia</span> hace que tu audiencia vuelva.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-comments"></i>
+<p><strong>Tip:</strong> <span class="kw">Interactuá con el chat</span> todo el tiempo. Nombrar a tu audiencia genera <span class="kw cy">fidelidad</span>.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-chart-line"></i>
+<p><strong>Tip:</strong> Revisá tus <span class="kw cy">estadísticas</span> cada semana para saber qué contenido <span class="kw">funciona mejor</span>.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-clock"></i>
+<p><strong>Tip:</strong> Empezá con <span class="kw">sesiones cortas</span> y andá subiendo la duración. Es mejor <span class="kw cy">calidad</span> que cantidad de horas.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-video"></i>
+<p><strong>Tip:</strong> Cuidá el <span class="kw cy">audio y la luz</span> antes que cualquier otra cosa. La <span class="kw">calidad técnica</span> retiene más audiencia que los filtros.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-users"></i>
+<p><strong>Tip:</strong> Invitá a tus <span class="kw">seguidores de otras redes</span> a tu primer live. Los primeros minutos definen el <span class="kw cy">alcance</span> del stream.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-gift"></i>
+<p><strong>Tip:</strong> Agradecé cada <span class="kw cy">regalo</span> en vivo y nombrá a quien lo envía. Es la forma más simple de generar <span class="kw">lealtad</span>.</p>
+</div>
+
+</div>
+</section>
 
 
 <section class="nav-grid">
@@ -1041,6 +1089,52 @@ formando parte del ecosistema Suits Agency.
 
 
 
+<section class="objeciones">
+<h2>¿ESTO ES REAL?</h2>
+<p class="obj-sub">
+Las cuatro preguntas que nos hacen antes de postular, respondidas sin vueltas.
+</p>
+<div class="obj-grid">
+
+<div class="obj-item">
+<h3><i class="fa-solid fa-circle-question"></i> ¿Tengo que pagar algo para entrar?</h3>
+<p>No. <strong>Nunca</strong> vas a pagar nada, ni al entrar ni después. Si alguien te pide dinero a nombre de Suits Agency, no somos nosotros: escribinos y lo verificamos.</p>
+</div>
+
+<div class="obj-item">
+<h3><i class="fa-solid fa-circle-question"></i> ¿La agencia se queda con parte de lo que gano?</h3>
+<p>No. Bigo Live te paga <strong>directo a vos</strong> según la tabla oficial de remuneración. Podés ver los números exactos en la <a href="https://suitsagency.lat/pagos/">calculadora de pagos</a>.</p>
+</div>
+
+<div class="obj-item">
+<h3><i class="fa-solid fa-circle-question"></i> ¿Necesito seguidores o experiencia?</h3>
+<p>No. La mayoría empieza <strong>desde cero</strong>. Lo único que hace falta es un celular con cámara, internet estable y ser mayor de 18.</p>
+</div>
+
+<div class="obj-item">
+<h3><i class="fa-solid fa-circle-question"></i> ¿Me obligan a mostrar la cara o a cumplir un horario fijo?</h3>
+<p>Horario fijo no: elegís vos cuándo transmitir, la meta son <strong>44 horas mensuales</strong> repartidas como quieras. La cara sí: Bigo se basa en la conexión personal, y las salas de audio, video pregrabado o avatar <strong>no suman horas ni semillas</strong>.</p>
+</div>
+
+</div>
+</section>
+
+<section class="cta-cierre">
+<h2>EMPEZÁ ESTA SEMANA</h2>
+<p>
+La aprobación tarda entre 24 y 72 horas. Cuanto antes postules, antes empiezan a contar tus horas del mes.
+</p>
+<a href="https://suitsagency.lat/registro/" class="cta-main">POSTULAR AHORA</a>
+<div class="cta-nota">
+<span><i class="fa-solid fa-check"></i> Respuesta en menos de 24 h</span>
+<span><i class="fa-solid fa-check"></i> Sin costo</span>
+</div>
+<br>
+<a href="https://wa.me/595982678695?text=Hola!%20Tengo%20una%20duda%20antes%20de%20postular%20a%20Suits%20Agency." class="cta-alt" target="_blank" rel="noopener">
+<i class="fa-brands fa-whatsapp"></i> Tengo una duda antes de postular
+</a>
+</section>
+
 <section class="social-section">
 
 
@@ -1093,8 +1187,7 @@ class="social-link">
 <footer>
 
 © 2026 Suits Agency |
-Agencia Oficial Bigo Live.
-
+Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class="footer-link">Privacidad</a>
 </footer><script>
 
 
