@@ -312,6 +312,34 @@
             font-size: .86rem; line-height: 1.65; opacity: 1;
         }
         .bloque .clave i { color: var(--accent-blue); margin-right: 6px; }
+
+        /* Medios de cobro: las cuatro marcas en una sola linea,
+           y la opcion abierta de cripto centrada debajo. */
+        .metodos {
+            list-style: none; padding: 0; margin: 0 0 14px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px;
+        }
+        .metodos li {
+            padding: 9px 6px; border-radius: 999px; text-align: center;
+            border: 1px solid rgba(0, 232, 255, .25);
+            background: rgba(0, 232, 255, .05);
+            font-size: .78rem; font-weight: 600; color: #fff;
+            white-space: nowrap;
+        }
+        .metodos .metodo-extra {
+            grid-column: 1 / -1;
+            justify-self: center;
+            padding-left: 18px; padding-right: 18px;
+            white-space: normal;
+            border-color: rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .03);
+            color: rgba(255, 255, 255, .7);
+            font-weight: 400;
+        }
+
+        @media (max-width: 380px) {
+            .metodos li { font-size: .68rem; padding: 8px 3px; }
+        }
 </style>
 </head>
 <body>
@@ -433,12 +461,12 @@
         <section class="reglas-pago">
 
             <article class="bloque">
-                <h3><i class="fa-solid fa-list-check"></i> Para cobrar hay que cumplir las dos metas</h3>
+                <h3><i class="fa-solid fa-list-check"></i> Para cobrar se deben cumplir dos requisitos</h3>
                 <p>Cada mes necesitás tu meta de semillas <strong>y</strong> las horas válidas de transmisión.</p>
                 <ul class="escala">
-                    <li><span class="e-ok">44 horas o más</span> cobrás la remuneración completa</li>
-                    <li><span class="e-med">Entre 20 y 43 horas</span> cobrás la mitad</li>
-                    <li><span class="e-no">Menos de 20 horas</span> no hay remuneración ese mes</li>
+                    <li><span class="e-ok">Con 44 horas o más</span> cobrás la remuneración completa</li>
+                    <li><span class="e-med">Con 20 a 43 horas</span> cobrás la mitad</li>
+                    <li><span class="e-no">Con menos de 20 horas</span> no hay remuneración ese mes</li>
                 </ul>
                 <p class="ej">Con 30.000 semillas y 43 horas cobrás la mitad. Con esas mismas semillas y 19 horas, no cobrás.</p>
                 <p class="buena">Las semillas de tu monedero son tuyas igual: podés retirarlas aunque no llegues a las horas.</p>
@@ -449,28 +477,25 @@
                 <h3><i class="fa-solid fa-seedling"></i> ¿Recién empezás? Tu primer mes es distinto</h3>
                 <p>Si entrás a mitad de mes y no llegás a las 44 horas, no te preocupes: Bigo te paga <strong>proporcional</strong>.</p>
 
-                <p class="sub"><strong>¿Qué quiere decir proporcional?</strong> Que cobrás el mismo porcentaje de horas que hiciste.</p>
-
-                <ul class="porcentajes">
-                    <li><b>22 horas</b><span>50%</span></li>
-                    <li><b>29 horas</b><span>66%</span></li>
-                    <li><b>36 horas</b><span>82%</span></li>
-                    <li><b>44 horas</b><span>100%</span></li>
-                </ul>
+                <p class="sub"><strong>¿Qué quiere decir proporcional?</strong> Que cobrás el mismo porcentaje de horas que hiciste. Las 44 horas son el 100% del mes: con 22 horas cobrás el 50%, con 29 horas el 66% y con 36 horas el 82%.</p>
 
                 <p class="ej">Si tu meta paga 74 dólares y hiciste 22 horas, cobrás 37.</p>
                 <p class="buena">Podés usar la calculadora de arriba: marcá <strong>"Es mi primer mes como emisor"</strong> y te calcula el porcentaje sola.</p>
             </article>
 
             <article class="bloque">
-                <h3><i class="fa-solid fa-wallet"></i> Cómo retirás lo que juntaste</h3>
-                <ul class="datos">
-                    <li><b>210 semillas</b> equivalen a 1 dólar.</li>
-                    <li>El <b>retiro mínimo</b> es de 6.700 semillas, unos 32 dólares.</li>
-                    <li>Podés retirar <b>cada 7 días</b>.</li>
-                    <li>Gastar o retirar semillas de tu monedero <b>no afecta tu meta</b>: una vez que las recibiste ya quedaron registradas en el live data.</li>
+                <h3><i class="fa-solid fa-wallet"></i> Dónde cobrás</h3>
+                <p>Tu dinero sale de Bigo Live hacia el medio que elijas:</p>
+
+                <ul class="metodos">
+                    <li>dLocal</li>
+                    <li>PayPal</li>
+                    <li>Payoneer</li>
+                    <li>Binance</li>
+                    <li class="metodo-extra">Cualquier billetera de criptomonedas</li>
                 </ul>
-                <p class="aviso"><i class="fa-solid fa-triangle-exclamation"></i> <strong>No canjees semillas por diamantes.</strong> Es irreversible y perdés el valor de retiro.</p>
+
+                <p class="buena">Los pasos exactos para hacer tu retiro te los damos directo cuando firmás con la agencia.</p>
             </article>
 
         </section>
