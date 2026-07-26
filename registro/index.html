@@ -139,6 +139,12 @@
                 <h1>Pasos para Unirte</h1>
             </header>
 
+            <div class="cta-nota" style="margin: 0 0 26px;">
+                <span><i class="fa-solid fa-check"></i> Toma 3 minutos</span>
+                <span><i class="fa-solid fa-check"></i> No se paga nada</span>
+                <span><i class="fa-solid fa-check"></i> Respuesta en 24-72 h</span>
+            </div>
+
             <div class="step-card">
                 <div class="step-number">1</div>
                 <h3>Descarga Bigo Live</h3>
@@ -170,11 +176,148 @@
 
         </div>
 
+            <div class="form-card">
+                <h3><i class="fa-solid fa-paper-plane"></i> ¿Preferís que te escribamos nosotros?</h3>
+                <p class="form-sub">
+                    Dejanos tus datos y te contactamos por WhatsApp para darte el enlace de invitación.
+                    Toma menos de un minuto.
+                </p>
+
+                <form id="leadForm" novalidate>
+                    <div class="form-field">
+                        <label for="fNombre">Nombre</label>
+                        <input type="text" id="fNombre" name="nombre" required autocomplete="given-name" placeholder="Como querés que te llamemos">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="fPais">País</label>
+                            <select id="fPais" name="pais" required>
+                                <option value="">Elegí tu país</option>
+                                <option>Paraguay</option>
+                                <option>Argentina</option>
+                                <option>Chile</option>
+                                <option>Colombia</option>
+                                <option>México</option>
+                                <option>Perú</option>
+                                <option>Venezuela</option>
+                                <option>Otro país de LATAM</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="fEdad">Edad</label>
+                            <input type="number" id="fEdad" name="edad" min="18" max="99" required placeholder="18+">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="fWhatsapp">WhatsApp (con código de país)</label>
+                        <input type="tel" id="fWhatsapp" name="whatsapp" required autocomplete="tel" placeholder="+595 981 000000">
+                    </div>
+
+                    <!-- Trampa para bots: si viene llena, no se envia -->
+                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field">
+
+                    <button type="submit" id="leadBtn" class="form-btn">QUIERO QUE ME CONTACTEN</button>
+
+                    <p class="form-legal">
+                        Solo usamos tus datos para contactarte sobre la agencia.
+                        Podés pedir que los borremos cuando quieras.
+                        <a href="https://suitsagency.lat/privacidad/">Ver privacidad</a>.
+                    </p>
+                </form>
+
+                <div id="leadOk" class="form-ok" hidden>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <h4>Listo, recibimos tus datos</h4>
+                    <p>Te escribimos por WhatsApp dentro de las próximas 24 horas. Mientras tanto, ya podés descargar la app y crear tu cuenta.</p>
+                </div>
+
+                <div id="leadError" class="form-error" hidden>
+                    No pudimos enviar el formulario. Escribinos directo por
+                    <a href="https://wa.me/595982678695" target="_blank" rel="noopener">WhatsApp</a>.
+                </div>
+            </div>
+
         <footer>
-            &copy; 2026 Suits Agency | Registro Oficial.
-        </footer>
+            &copy; 2026 Suits Agency | Registro Oficial. | <a href="https://suitsagency.lat/privacidad/" class="footer-link">Privacidad</a>
+</footer>
     </div>
 
+
+<script>
+/* ============================================================
+   FORMULARIO DE CONTACTO — Suits Agency
+
+   PASO UNICO: crea un formulario gratis en formspree.io, copia
+   el ID que te dan y pegalo aca abajo reemplazando PONER_ID.
+   Queda asi:  const FORMSPREE = 'https://formspree.io/f/xayzbwqd';
+
+   Mientras diga PONER_ID, el formulario valida y muestra el
+   mensaje de exito pero NO envia nada (sirve para probar).
+   Los envios te llegan al mail con el que creaste el formulario.
+   ============================================================ */
+const FORMSPREE = 'https://formspree.io/f/PONER_ID';
+
+(function () {
+    const form  = document.getElementById('leadForm');
+    if (!form) return;
+
+    const btn   = document.getElementById('leadBtn');
+    const ok    = document.getElementById('leadOk');
+    const error = document.getElementById('leadError');
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        error.hidden = true;
+
+        // Validacion propia: mensajes en español y sin recargar
+        const edad = parseInt(form.edad.value, 10);
+        if (!form.nombre.value.trim() || !form.pais.value || !form.whatsapp.value.trim()) {
+            error.hidden = false;
+            error.textContent = 'Completá todos los campos para que podamos contactarte.';
+            return;
+        }
+        if (!edad || edad < 18) {
+            error.hidden = false;
+            error.textContent = 'Para ser emisor oficial hay que tener 18 años o más.';
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'ENVIANDO...';
+
+        const datos = new FormData(form);
+        datos.append('_subject', 'Nuevo postulante — Suits Agency');
+
+        try {
+            if (FORMSPREE.indexOf('PONER_ID') === -1) {
+                const r = await fetch(FORMSPREE, {
+                    method: 'POST',
+                    body: datos,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (!r.ok) throw new Error('respuesta ' + r.status);
+            }
+
+            form.hidden = true;
+            ok.hidden = false;
+            ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Conversion: se mide igual que un contacto por WhatsApp
+            if (window.suitsEvento) {
+                window.suitsEvento('lead_formulario', 'Lead', { pais: form.pais.value });
+            }
+        } catch (err) {
+            error.hidden = false;
+            error.innerHTML = 'No pudimos enviar el formulario. Escribinos directo por <a href="https://wa.me/595982678695" target="_blank" rel="noopener">WhatsApp</a>.';
+            btn.disabled = false;
+            btn.textContent = 'QUIERO QUE ME CONTACTEN';
+        }
+    });
+})();
+</script>
 </body>
 </html>
 
