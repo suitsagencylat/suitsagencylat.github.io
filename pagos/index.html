@@ -35,15 +35,24 @@
 
         .container { width: 100%; max-width: 900px; padding: 20px 10px; box-sizing: border-box; }
 
-        header.table-header { text-align: center; margin-bottom: 25px; }
-        header.table-header h1 {
-            font-size: 2.0rem;
-            background: linear-gradient(to bottom, #ffffff, #aaaaaa);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin: 0; text-transform: uppercase; letter-spacing: 1px;
-            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3));
+        /* Gancho de la pagina: la pregunta que trae a la gente aca.
+           El titulo "Tabla de Remuneracion" vive ahora solo sobre la tabla. */
+        .pagos-gancho { text-align: center; margin-bottom: 26px; }
+        .pagos-gancho h1 {
+            margin: 0;
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 7vw, 3rem);
+            line-height: 1;
+            letter-spacing: 1px;
+            color: #fff;
         }
-        .meta-info { color: var(--accent-blue); font-weight: bold; letter-spacing: 2px; margin-top: 5px; font-size: 0.8rem; }
+        .pagos-gancho p {
+            max-width: 460px;
+            margin: 14px auto 0;
+            font-size: .92rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .65);
+        }
 
         /* Calculadora */
         .calc-card {
@@ -123,40 +132,187 @@
         }
         .calc-cta:hover { background: rgba(0,232,255,0.15); }
 
+        /* ================================================
+           TABLA DE REMUNERACION
+           Misma estructura que la pieza grafica de la agencia
+           (columna del "+" en el medio, sello de 44 horas),
+           pero en la paleta del sitio: cian y lila sobre negro.
+           ================================================ */
+        .tabla-oficial { margin-top: 34px; }
+
+        .tabla-cab {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 14px; margin-bottom: 14px;
+        }
+        .tabla-cab h2 {
+            margin: 0; font-family: var(--font-display);
+            font-size: 1.7rem; letter-spacing: 1px; color: #fff; line-height: 1;
+        }
+        .tabla-cab p { margin: 4px 0 0; font-size: .68rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-blue); }
+
+        .sello-horas {
+            flex-shrink: 0; text-align: center; line-height: 1;
+            padding: 9px 15px; border-radius: 12px;
+            border: 1px solid rgba(158, 0, 255, .4);
+            background: rgba(158, 0, 255, .1);
+            color: #c98bff;
+            font-size: .58rem; text-transform: uppercase; letter-spacing: 2px;
+        }
+        .sello-horas b { display: block; font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 1px; color: #fff; }
+
         .table-wrapper {
-            background: rgba(10, 10, 10, 0.8); border-radius: 12px; border: 1px solid var(--glass-border);
-            backdrop-filter: blur(15px); overflow-x: auto; box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            margin-top: 10px; width: 100%; -webkit-overflow-scrolling: touch;
+            background: rgba(8, 8, 10, .75);
+            border: 1px solid rgba(0, 232, 255, .18);
+            border-radius: 14px;
+            overflow-x: auto; -webkit-overflow-scrolling: touch;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, .55);
+            backdrop-filter: blur(12px);
         }
-        table {
-            width: max-content; min-width: 100%; margin: 0 auto; border-collapse: collapse;
-            font-size: 0.82rem; font-variant-numeric: tabular-nums;
+
+        #paymentTable {
+            width: 100%; min-width: 320px; border-collapse: collapse;
+            font-variant-numeric: tabular-nums; text-align: center;
         }
-        th {
-            background: rgba(0, 212, 255, 0.1); color: var(--accent-blue); padding: 12px 14px;
-            text-transform: uppercase; font-weight: bold; font-size: 0.65rem; letter-spacing: 1px;
-            border-bottom: 1px solid var(--glass-border); white-space: nowrap; position: sticky; top: 0;
-            text-align: right;
+
+        #paymentTable th {
+            padding: 14px 8px;
+            font-size: .58rem; font-weight: 700; line-height: 1.35;
+            text-transform: uppercase; letter-spacing: .6px;
+            color: var(--accent-blue);
+            background: rgba(0, 232, 255, .06);
+            border-bottom: 1px solid rgba(0, 232, 255, .25);
+            white-space: nowrap;
         }
-        th:first-child { text-align: left; }
-        td {
-            padding: 10px 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            color: var(--silver); transition: background 0.4s; text-align: right;
+        #paymentTable th.col-total { color: #fff; background: rgba(158, 0, 255, .12); }
+
+        #paymentTable td {
+            padding: 15px 8px;
+            font-size: .84rem; color: var(--silver);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
         }
-        td:first-child { text-align: left; }
-        td.nivel-cell { color: var(--accent-blue); font-weight: 700; font-size: 0.75rem; }
-        .total-usd { color: var(--fuchsia); font-weight: bold; text-shadow: 0 0 8px rgba(255, 0, 255, 0.2); font-size: 0.9rem; }
-        tr.row-match td { background: rgba(0, 232, 255, 0.08); }
-        tr.row-match td:first-child { border-left: 2px solid var(--accent-blue); }
-        .table-scroll-note { text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.35); margin: 10px 0 0; }
+        #paymentTable tr:last-child td { border-bottom: 0; }
+
+        /* Primera columna: la meta, siempre visible al deslizar */
+        #paymentTable th:first-child, #paymentTable td:first-child {
+            position: sticky; left: 0; z-index: 2;
+            background: #0a0a0c; font-weight: 700; color: #fff;
+        }
+        #paymentTable th:first-child { z-index: 3; background: #08181b; }
+
+        /* La columna del "+" es el argumento de las dos vias hecho simbolo */
+        .col-mas { width: 22px; color: var(--accent-violet) !important; background: transparent !important; }
+        #paymentTable td.mas { color: var(--accent-violet); font-weight: 700; padding-left: 0; padding-right: 0; }
+
+        #paymentTable td.total-usd { color: var(--accent-blue); font-weight: 700; font-size: .92rem; }
+
+        #paymentTable tbody tr { transition: background .2s; }
+        #paymentTable tbody tr:hover { background: rgba(255, 255, 255, .025); }
+        #paymentTable tbody tr:hover td:first-child { background: #101014; }
+
+        #paymentTable tr.row-match td { background: rgba(0, 232, 255, .09); }
+        #paymentTable tr.row-match td:first-child { background: #06222a; color: var(--accent-blue); }
+        #paymentTable tr.oculto { display: none; }
+
+        .ver-mas {
+            display: block; margin: 16px auto 0; padding: 12px 26px;
+            border-radius: 50px; border: 1px solid rgba(0, 232, 255, .35);
+            background: rgba(0, 232, 255, .06); color: var(--accent-blue);
+            font-family: inherit; font-size: .8rem; font-weight: 700; letter-spacing: .5px;
+            cursor: pointer; transition: background .2s, border-color .2s;
+        }
+        .ver-mas:hover { background: rgba(0, 232, 255, .12); border-color: var(--accent-blue); }
+        .niveles-nota { text-align: center; font-size: .7rem; color: rgba(255, 255, 255, .35); margin: 12px 0 0; line-height: 1.5; }
+
+        @media (max-width: 430px) {
+            .tabla-cab h2 { font-size: 1.4rem; }
+            #paymentTable th { font-size: .52rem; padding: 12px 4px; }
+            #paymentTable td { font-size: .76rem; padding: 13px 4px; }
+            #paymentTable td.total-usd { font-size: .82rem; }
+        }
 
         @media (max-width: 480px) {
-            header.table-header h1 { font-size: 1.6rem; }
-            table { font-size: 0.72rem; }
-            th { font-size: 0.55rem; padding: 10px 4px; }
-            td { padding: 8px 4px; }
         }
-    </style>
+    
+        /* ================================================
+           BLOQUES DE REGLAS (debajo de la tabla)
+           ================================================ */
+        .reglas-pago { margin-top: 34px; display: flex; flex-direction: column; gap: 16px; }
+
+        .bloque {
+            text-align: left;
+            padding: 22px 20px 24px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, .025);
+        }
+        .bloque.destacado {
+            border-color: rgba(0, 232, 255, .3);
+            background:
+                radial-gradient(120% 120% at 0% 0%, rgba(0, 232, 255, .08), transparent 60%),
+                rgba(255, 255, 255, .025);
+        }
+        .bloque h3 { margin: 0 0 12px; font-size: 1.02rem; color: #fff; line-height: 1.4; }
+        .bloque h3 i { color: var(--accent-blue); margin-right: 8px; }
+        .bloque.destacado h3 i { color: var(--accent-blue); }
+        .bloque p { margin: 0 0 12px; font-size: .88rem; line-height: 1.65; color: var(--silver); opacity: .85; }
+        .bloque p:last-child { margin-bottom: 0; }
+        .bloque strong { color: #fff; }
+        .bloque .sub { margin-top: 16px; }
+
+        /* Escala de horas: el verdicto primero, la explicacion despues */
+        .escala { list-style: none; padding: 0; margin: 0 0 14px; }
+        .escala li {
+            display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px;
+            padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, .06);
+            font-size: .86rem; color: var(--silver); opacity: .85;
+        }
+        .escala li:last-child { border-bottom: 0; }
+        .escala span { font-weight: 700; }
+        .escala .e-ok  { color: var(--accent-blue); }
+        .escala .e-med { color: #c98bff; }
+        .escala .e-no  { color: rgba(255, 255, 255, .4); }
+
+        /* Porcentajes del primer mes */
+        .porcentajes { list-style: none; padding: 0; margin: 0 0 14px; display: flex; gap: 8px; }
+        .porcentajes li {
+            flex: 1; text-align: center; padding: 11px 4px; border-radius: 10px;
+            background: rgba(0, 0, 0, .3); border: 1px solid rgba(0, 232, 255, .15);
+        }
+        .porcentajes b { display: block; font-size: .72rem; color: rgba(255, 255, 255, .55); font-weight: 600; margin-bottom: 4px; }
+        .porcentajes span { font-family: var(--font-display); font-size: 1.25rem; color: var(--accent-blue); letter-spacing: 1px; }
+
+        .datos { list-style: none; padding: 0; margin: 0 0 14px; }
+        .datos li {
+            position: relative; padding: 0 0 10px 18px;
+            font-size: .88rem; line-height: 1.6; color: var(--silver); opacity: .85;
+        }
+        .datos li::before { content: "·"; position: absolute; left: 4px; color: var(--accent-blue); font-weight: 700; }
+        .datos b { color: #fff; }
+
+        .bloque .ej { font-size: .82rem; opacity: .65; font-style: italic; }
+        .bloque .buena { font-size: .82rem; color: var(--accent-blue); opacity: .9; }
+
+        .bloque .aviso {
+            margin: 0; padding: 12px 14px; border-radius: 10px;
+            background: rgba(158, 0, 255, .1); border: 1px solid rgba(158, 0, 255, .3);
+            font-size: .84rem; color: var(--silver); opacity: 1;
+        }
+        .bloque .aviso i { color: #c98bff; margin-right: 6px; }
+
+        @media (max-width: 430px) {
+            .porcentajes { flex-wrap: wrap; }
+            .porcentajes li { flex: 0 0 calc(50% - 4px); }
+        }
+
+        /* Argumento central: las horas son el recurso que no se recupera */
+        .bloque .clave {
+            margin: 14px 0 0; padding: 14px 16px; border-radius: 12px;
+            background: rgba(0, 232, 255, .07);
+            border: 1px solid rgba(0, 232, 255, .28);
+            font-size: .86rem; line-height: 1.65; opacity: 1;
+        }
+        .bloque .clave i { color: var(--accent-blue); margin-right: 6px; }
+</style>
 </head>
 <body>
     <div class="overlay-bg" id="overlay"></div>
@@ -190,9 +346,13 @@
     <div class="main-content">
         <div class="container">
 
-            <header class="table-header">
-                <h1>Tabla de Remuneración</h1>
-                <div class="meta-info">44 HORAS MENSUALES | OFICIAL BIGO LIVE</div>
+            <header class="pagos-gancho">
+                <h1>¿Cuánto se gana en Bigo&nbsp;Live?</h1>
+                <p>
+                    Depende de vos, y acá están los números para saberlo.
+                    Poné tus horas y tus semillas en la calculadora
+                    y mirá cuánto sería tu mes.
+                </p>
             </header>
 
             <div class="calc-card">
@@ -212,7 +372,7 @@
                     <input type="checkbox" id="calcPrimerMes">
                     <div>
                         <span class="t-title">Es mi primer mes como emisor</span>
-                        <span class="t-sub">Se paga proporcional: (horas transmitidas ÷ 44) — sin el mínimo de 20h</span>
+                        <span class="t-sub">Se paga proporcional a las horas que transmitas</span>
                     </div>
                 </label>
 
@@ -225,7 +385,7 @@
                 <button id="calcBtn" class="calc-btn">Calcular remuneración</button>
 
                 <div id="calcResult" class="calc-result" style="display:none;">
-                    <div class="calc-row" id="calcNivelRow" style="display:none;"><span>Nivel alcanzado</span><span id="calcNivel">—</span></div>
+                    <div class="calc-row" id="calcNivelRow" style="display:none;"><span>Meta alcanzada</span><span id="calcNivel">—</span></div>
                     <div class="calc-row"><span>Monedero</span><span id="calcMonedero">$0</span></div>
                     <p class="calc-note" style="margin-top:-6px;">Estimado según tus semillas ÷ 210. Tu monedero real puede variar: solo las semillas de usuarios cuentan para la meta, y podés tener semillas de eventos o haber gastado parte de las tuyas.</p>
                     <div class="calc-row"><span>Remuneración</span><span id="calcRemuneracion">$0</span></div>
@@ -238,22 +398,82 @@
                 </div>
             </div>
 
-            <div class="table-wrapper">
-                <table id="paymentTable">
-                    <thead>
-                        <tr>
-                            <th>META <br>(SEMILLAS)</th>
-                            <th>MONEDERO <br>USD</th>
-                            <th>REMUNERACIÓN <br>USD</th>
-                            <th>GANANCIA <br>TOTAL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="paymentTableBody"></tbody>
-                </table>
-            </div>
-            <p class="table-scroll-note">Deslizá para ver la tabla completa — 24 niveles, hasta 15,000,000 de semillas.</p>
+            <section class="tabla-oficial">
+
+                <div class="tabla-cab">
+                    <div>
+                        <h2>Tabla de Remuneración</h2>
+                        <p>Oficial de Bigo Live</p>
+                    </div>
+                    <span class="sello-horas"><b>44</b> horas</span>
+                </div>
+
+                <div class="table-wrapper">
+                    <table id="paymentTable">
+                        <thead>
+                            <tr>
+                                <th>Meta mensual<br>de semillas</th>
+                                <th>Valor en<br>monedero USD</th>
+                                <th class="col-mas" aria-hidden="true">+</th>
+                                <th>Remuneración<br>Bigo Live USD</th>
+                                <th class="col-total">Ganancia<br>total USD</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentTableBody"></tbody>
+                    </table>
+                </div>
+
+                <button class="ver-mas" id="verMas">Ver la tabla completa</button>
+                <p class="niveles-nota">Las dos columnas se suman: lo que junta tu monedero más lo que paga la meta.</p>
+
+            </section>
 
         </div>
+
+        <section class="reglas-pago">
+
+            <article class="bloque">
+                <h3><i class="fa-solid fa-list-check"></i> Para cobrar hay que cumplir las dos metas</h3>
+                <p>Cada mes necesitás tu meta de semillas <strong>y</strong> las horas válidas de transmisión.</p>
+                <ul class="escala">
+                    <li><span class="e-ok">44 horas o más</span> cobrás la remuneración completa</li>
+                    <li><span class="e-med">Entre 20 y 43 horas</span> cobrás la mitad</li>
+                    <li><span class="e-no">Menos de 20 horas</span> no hay remuneración ese mes</li>
+                </ul>
+                <p class="ej">Con 30.000 semillas y 43 horas cobrás la mitad. Con esas mismas semillas y 19 horas, no cobrás.</p>
+                <p class="buena">Las semillas de tu monedero son tuyas igual: podés retirarlas aunque no llegues a las horas.</p>
+                <p class="clave"><i class="fa-solid fa-clock"></i> <strong>Las horas no se recuperan.</strong> Las semillas pueden llegar en cualquier momento del mes: un solo regalo grande te acerca a la meta. Una hora que no transmitiste, en cambio, no la recuperás nunca. Es la parte que depende solo de vos, y por eso es la que hay que cuidar.</p>
+            </article>
+
+            <article class="bloque destacado">
+                <h3><i class="fa-solid fa-seedling"></i> ¿Recién empezás? Tu primer mes es distinto</h3>
+                <p>Si entrás a mitad de mes y no llegás a las 44 horas, no te preocupes: Bigo te paga <strong>proporcional</strong>.</p>
+
+                <p class="sub"><strong>¿Qué quiere decir proporcional?</strong> Que cobrás el mismo porcentaje de horas que hiciste.</p>
+
+                <ul class="porcentajes">
+                    <li><b>22 horas</b><span>50%</span></li>
+                    <li><b>29 horas</b><span>66%</span></li>
+                    <li><b>36 horas</b><span>82%</span></li>
+                    <li><b>44 horas</b><span>100%</span></li>
+                </ul>
+
+                <p class="ej">Si tu meta paga 74 dólares y hiciste 22 horas, cobrás 37.</p>
+                <p class="buena">Podés usar la calculadora de arriba: marcá <strong>"Es mi primer mes como emisor"</strong> y te calcula el porcentaje sola.</p>
+            </article>
+
+            <article class="bloque">
+                <h3><i class="fa-solid fa-wallet"></i> Cómo retirás lo que juntaste</h3>
+                <ul class="datos">
+                    <li><b>210 semillas</b> equivalen a 1 dólar.</li>
+                    <li>El <b>retiro mínimo</b> es de 6.700 semillas, unos 32 dólares.</li>
+                    <li>Podés retirar <b>cada 7 días</b>.</li>
+                    <li>Gastar o retirar semillas de tu monedero <b>no afecta tu meta</b>: una vez que las recibiste ya quedaron registradas en el live data.</li>
+                </ul>
+                <p class="aviso"><i class="fa-solid fa-triangle-exclamation"></i> <strong>No canjees semillas por diamantes.</strong> Es irreversible y perdés el valor de retiro.</p>
+            </article>
+
+        </section>
 
         <section class="cta-cierre">
             <h2>ESOS NÚMEROS SON TUYOS</h2>
@@ -310,17 +530,27 @@
             { nivel: "s18", semillas: 15000000, monedero: 71429, remuneracion: 108800, total: 180229 }
         ];
 
-        // Pinta la tabla completa en el DOM
+        // Pinta la tabla. Los 12 primeros niveles se ven de entrada;
+        // el resto aparece con el boton.
         const tbody = document.getElementById('paymentTableBody');
-        tiers.forEach(t => {
+        const VISIBLES = 12;
+
+        tiers.forEach((t, i) => {
             const tr = document.createElement('tr');
             tr.dataset.semillas = t.semillas;
+            if (i >= VISIBLES) tr.classList.add('oculto');
             tr.innerHTML = `
                 <td>${t.semillas.toLocaleString('es-AR')}</td>
                 <td>${t.monedero.toLocaleString('es-AR')}</td>
+                <td class="mas">+</td>
                 <td>${t.remuneracion.toLocaleString('es-AR')}</td>
                 <td class="total-usd">${t.total.toLocaleString('es-AR')}</td>`;
             tbody.appendChild(tr);
+        });
+
+        document.getElementById('verMas').addEventListener('click', function () {
+            tbody.querySelectorAll('tr.oculto').forEach(tr => tr.classList.remove('oculto'));
+            this.remove();
         });
 
         // ============================================
@@ -445,7 +675,7 @@
 
             const nivelRow = document.getElementById('calcNivelRow');
             if (tramo.califica) {
-                document.getElementById('calcNivel').textContent = tramo.nivel + ' (' + tramo.semillas.toLocaleString('es-AR') + ' semillas)';
+                document.getElementById('calcNivel').textContent = tramo.semillas.toLocaleString('es-AR') + ' semillas';
                 nivelRow.style.display = 'flex';
             } else {
                 nivelRow.style.display = 'none';
@@ -459,11 +689,11 @@
             if (!tramo.califica) {
                 warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Con menos de 2,000 semillas no calificás a remuneración económica este mes.</div>';
             } else if (tramo.masAllaDelMaximo) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-circle-info"></i> Superaste el nivel más alto de la tabla oficial (s18). Se calculó con el tope de s18 — consultá con tu agente para tu caso puntual.</div>';
+                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-circle-info"></i> Superaste la meta más alta de la tabla oficial. Se calculó con ese tope — consultá con tu agente para tu caso puntual.</div>';
             } else if (!primerMes && horas < 20 && semillas >= tiers[0].semillas) {
                 warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Con menos de 20 horas transmitidas, la remuneración de este mes es $0 USD.</div>';
             } else if (!primerMes && horas < 44 && horas >= 20) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Entre 20 y 43 horas cobrás el 50% del nivel ' + tramo.nivel + '. Llegá a 44 horas para cobrar el 100%.</div>';
+                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Entre 20 y 43 horas cobrás el 50% de tu meta. Llegá a 44 horas para cobrar el 100%.</div>';
             } else if (primerMes && horas < 44) {
                 warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-seedling"></i> Como es tu primer mes, se te paga proporcional a tus horas reales — no aplica el mínimo de 20h de los meses siguientes.</div>';
             }
@@ -493,7 +723,14 @@
             document.querySelectorAll('#paymentTable tr[data-semillas]').forEach(tr => tr.classList.remove('row-match'));
             if (tramo.califica) {
                 const row = document.querySelector('#paymentTable tr[data-semillas="' + tramo.semillas + '"]');
-                if (row) row.classList.add('row-match');
+                if (row) {
+                    row.classList.add('row-match');
+                    // Si el nivel esta escondido, se abre la tabla completa
+                    if (row.classList.contains('oculto')) {
+                        const btn = document.getElementById('verMas');
+                        if (btn) btn.click();
+                    }
+                }
             }
 
             document.getElementById('calcResult').style.display = 'block';
