@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUITS ACADEMY</title>
-
-    <meta name="description" content="Aprendé a maximizar tu rendimiento como emisor de Bigo Live con las guías en video de Suits Agency: pagos, live data y primeros pasos.">
-    <link rel="canonical" href="https://suitsagency.lat/academia/">
+    <title>Soporte | Suits Agency</title>
+    <meta name="description" content="Todo lo que necesitás saber para ser emisor oficial de Bigo Live con Suits Agency: requisitos, horarios, pagos y beneficios.">
+    <link rel="canonical" href="https://suitsagency.lat/soporte/">
 
     <!-- Open Graph (WhatsApp, Instagram, Facebook) -->
-    <meta property="og:title" content="Suits Academy | Suits Agency">
-    <meta property="og:description" content="Guías en video para crecer como emisor oficial de Bigo Live: cómo paga la plataforma, cómo revisar tu Live Data y tu primera transmisión.">
+    <meta property="og:title" content="Centro de Soporte | Suits Agency">
+    <meta property="og:description" content="Requisitos, horarios, pagos, reglas y beneficios para emisores oficiales de Bigo Live con Suits Agency.">
     <meta property="og:image" content="https://suitsagency.lat/og-image.png">
-    <meta property="og:url" content="https://suitsagency.lat/academia/">
+    <meta property="og:url" content="https://suitsagency.lat/soporte/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_LA">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Suits Academy | Suits Agency">
-    <meta name="twitter:description" content="Guías en video para crecer como emisor oficial de Bigo Live.">
+    <meta name="twitter:title" content="Centro de Soporte | Suits Agency">
+    <meta name="twitter:description" content="Requisitos, horarios, pagos, reglas y beneficios para emisores de Bigo Live.">
     <meta name="twitter:image" content="https://suitsagency.lat/og-image.png">
 
     <!-- Favicon -->
@@ -32,165 +31,247 @@
     <link rel="stylesheet" href="https://suitsagency.lat/styles.css">
 
     <style>
-        /* Estilos específicos de esta página (Academia) */
-        .container { width: 92%; max-width: 450px; margin: 0 auto; position: relative; z-index: 10; }
+        .container { max-width: 650px; margin: 0 auto; padding: 20px; }
+        .main-title { text-align: center; font-size: 1.8rem; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--accent-blue); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 25px; }
 
-        header.content-title h1 {
-            font-size: 1.8rem;
-            text-align: center;
-            background: linear-gradient(to bottom, #ffffff, #888888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            margin-top: 0;
+        .quick-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 30px; }
+        .quick-nav a {
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--silver);
+            text-decoration: none; border: 1px solid var(--glass-border); padding: 7px 14px;
+            border-radius: 20px; transition: 0.3s;
+        }
+        .quick-nav a:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
+
+        .tip-banner {
+            background: linear-gradient(135deg, rgba(0,232,255,0.08), rgba(158,0,255,0.06));
+            border: 1px solid var(--glass-border); border-radius: 16px; padding: 22px 20px; margin-bottom: 35px;
+        }
+        .tip-banner h3 { margin: 0 0 14px; font-size: 1rem; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .tip-banner h3 i { color: var(--accent-blue); font-size: 1.1rem; }
+        .tip-banner ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .tip-banner li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: var(--silver); line-height: 1.4; }
+        .tip-banner li i { color: var(--accent-blue); font-size: 0.8rem; margin-top: 3px; flex-shrink: 0; }
+
+        .faq-category {
+            display: flex; align-items: center; gap: 10px; margin: 34px 0 12px; color: var(--accent-blue);
+            text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; font-weight: 700; scroll-margin-top: 115px;
+        }
+        .faq-category:first-of-type { margin-top: 0; }
+        .faq-category i { font-size: 0.9rem; }
+
+        .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); border-radius: 12px; margin-bottom: 10px; transition: 0.3s; }
+        .faq-question { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 0.9rem; font-weight: 500; }
+        .faq-question i { flex-shrink: 0; transition: 0.3s; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: rgba(255,255,255,0.01); }
+        .faq-answer-content { padding: 0 20px 20px; color: #aaa; line-height: 1.55; font-size: 0.85rem; }
+        .faq-answer-content p { margin: 0 0 10px; }
+        .faq-answer-content p:last-child { margin-bottom: 0; }
+        .faq-answer-content ul { margin: 0 0 10px; padding-left: 18px; }
+        .faq-answer-content li { margin-bottom: 5px; }
+        .faq-answer-content strong { color: #ddd; }
+        .faq-answer-content a { color: var(--accent-blue); }
+        .faq-tip {
+            display: flex; align-items: flex-start; gap: 8px; background: rgba(0,232,255,0.06);
+            border-left: 2px solid var(--accent-blue); padding: 10px 12px; border-radius: 6px;
+            font-size: 0.8rem; color: var(--silver) !important;
+        }
+        .faq-tip i { color: var(--accent-blue); margin-top: 2px; flex-shrink: 0; }
+        .faq-item.open { border-color: var(--accent-blue); }
+        .faq-item.open .faq-answer { max-height: 900px; }
+        .faq-item.open .faq-question i { transform: rotate(180deg); color: var(--accent-blue); }
+
+            display: flex; gap: 14px; align-items: flex-start; background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border); border-radius: 12px; padding: 16px 18px;
+        }
+            background: var(--accent-blue); color: #000; width: 28px; height: 28px; min-width: 28px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 0.8rem;
         }
 
-        #video-wrapper {
-            background: #000;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            margin-bottom: 25px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            position: relative;
+        .support-cta {
+            margin-top: 35px; text-align: center; background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px 20px;
         }
-
-        .video-placeholder {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('miniatura.png');
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .support-cta p { margin: 0 0 16px; font-size: 0.85rem; color: var(--silver); }
+        .support-cta .action-btn {
+            display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff;
+            text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; transition: 0.3s;
         }
-
-        .video-placeholder i {
-            font-size: 3.5rem;
-            color: var(--accent-blue);
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
-        }
-
-        .ratio-vertical { aspect-ratio: 9 / 16; max-width: 300px; margin-left: auto; margin-right: auto; }
-        .ratio-horizontal { aspect-ratio: 16 / 9; }
-
-        iframe { width: 100%; height: 100%; border: none; background: #000; }
-
-        .video-info { padding: 15px; background: rgba(255,255,255,0.03); border-top: 1px solid var(--glass-border); text-align: center; }
-        #video-title { margin: 0; font-size: 1rem; color: var(--accent-blue); font-weight: 600; }
-
-        .video-list { display: flex; flex-direction: column; gap: 12px; }
-
-        .video-item {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            padding: 18px;
-            border-radius: 15px;
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .video-item:active { transform: scale(0.96); background: rgba(0, 212, 255, 0.1); border-color: var(--accent-blue); }
-        .video-item i { color: var(--accent-blue); font-size: 1.2rem; width: 25px; text-align: center; }
-        .video-item div span { display: block; font-size: 0.95rem; font-weight: 500; }
-        .video-item div small { color: var(--silver); font-size: 0.75rem; opacity: 0.6; }
+        .support-cta .action-btn:hover { transform: translateY(-2px); opacity: 0.9; }
     
-
-
-/* ---- Los 10 Mandamientos: carrusel deslizable ----
-   Usa scroll-snap nativo, asi el swipe en celular funciona
-   aunque el JS falle. Las flechas y los puntos son un extra. */
-.mandamientos { margin-top: 55px; }
-.mandamientos h2 { text-align: center; font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 2px; margin: 0 0 6px; color: #fff; }
-.mand-sub { text-align: center; font-size: .82rem; color: rgba(224,224,224,.45); margin: 0 0 22px; }
-
-.mand-track {
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding: 4px 2px 14px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-}
-.mand-track::-webkit-scrollbar { display: none; }
-
-.mand-card {
-    flex: 0 0 100%;
-    scroll-snap-align: center;
-    box-sizing: border-box;
-    min-height: 190px;
-    padding: 26px 24px 28px;
-    border-radius: 16px;
-    border: 1px solid var(--glass-border);
-    background: rgba(255,255,255,.03);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.mand-num {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 2.6rem;
-    line-height: 1;
-    color: var(--accent-violet);
-    opacity: .55;
-    margin-bottom: 10px;
-}
-
-.mand-card h4 { margin: 0 0 10px; font-size: 1.05rem; color: #fff; line-height: 1.35; }
-.mand-card p { margin: 0; font-size: .88rem; color: var(--silver); line-height: 1.65; opacity: .85; }
-
-/* Palabras clave: cian para la idea principal, blanco para la
-   consecuencia. Sin lila: en bloques de texto largo cansaba la lectura. */
-.mand-card .kw { color: var(--accent-blue); font-weight: 800; }
-.mand-card .kw.cy { color: #fff; font-weight: 700; }
-
-.mand-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 4px; }
-
-.mand-arrow {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    border: 1px solid var(--glass-border);
-    background: rgba(255,255,255,.04);
-    color: var(--silver);
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: border-color .2s, color .2s;
-}
-.mand-arrow:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
-.mand-arrow:disabled { opacity: .25; cursor: default; }
-
-.mand-dots { display: flex; gap: 7px; }
-.mand-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    border: 0; padding: 0;
-    background: rgba(255,255,255,.2);
-    cursor: pointer;
-    transition: background .25s, transform .25s;
-}
-.mand-dot.active { background: var(--accent-blue); transform: scale(1.35); }
-
-.mandamiento-quote { text-align: center; font-style: italic; color: var(--silver); font-size: .9rem; line-height: 1.6; max-width: 480px; margin: 26px auto 0; opacity: .7; }
-
-@media (min-width: 700px) {
-    .mand-card { flex-basis: 48%; }
-}
+        /* ---- Bloque de seguridad de la cuenta ---- */
+        .seguridad { margin-top: 45px; }
+        .seguridad h2 {
+            text-align: center; font-family: var(--font-display);
+            font-size: 1.7rem; letter-spacing: 2px; margin: 0 0 6px; color: #fff;
+        }
+        .seguridad h2 i { color: #c98bff; margin-right: 8px; font-size: 1.4rem; }
+        .seg-sub { text-align: center; font-size: .8rem; color: rgba(224, 224, 224, .45); margin: 0 0 20px; }
+        .seg-item {
+            text-align: left; padding: 18px 20px; margin-bottom: 10px;
+            border-radius: 14px;
+            border: 1px solid rgba(158, 0, 255, .28);
+            background: rgba(158, 0, 255, .06);
+        }
+        .seg-item h4 { margin: 0 0 6px; font-size: .95rem; color: #fff; }
+        .seg-item p { margin: 0; font-size: .85rem; line-height: 1.65; color: var(--silver); opacity: .82; }
 </style>
+    <!-- Datos estructurados FAQ: Google retiró los resultados enriquecidos de
+         FAQ en mayo de 2026, pero el marcado sigue siendo válido y ayuda a
+         buscadores y sistemas de IA a entender el contenido de esta página. -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuáles son los requisitos para ser emisor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Edad mínima: 18 años o más. Residencia: vivir en un país de Latinoamérica. Disponibilidad: tiempo para transmitir con regularidad. Equipo: celular con cámara funcional y conexión a internet estable (WiFi o datos móviles)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito una cantidad mínima de seguidores?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Muchos de nuestros emisores más exitosos empezaron desde cero. Suits Agency te acompaña con: Capacitación inicial sobre la app y cómo atraer audiencia. Consejos de crecimiento y estrategia de contenido. Soporte continuo para dudas técnicas o de la plataforma. Eventos de visibilidad gestionados por la agencia (en general, 2 por mes). Guía paso a paso para hacer tus retiros."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tarda la aprobación de mi solicitud?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Entre 24 y 72 horas hábiles desde que aceptás el enlace de invitación. Una vez que Bigo Live aprueba tu solicitud, ya sos emisor oficial: las horas y semillas que acumules empiezan a sumar de inmediato. La firma digital del acuerdo de emisor oficial se hace después de esa aprobación, y es la que te habilita a realizar retiros. Al quedar aprobado, recibís un mensaje de bienvenida con tu credencial de emisor (insignia dorada en tu perfil)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántas horas debo transmitir al mes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La meta mensual es de 44 horas de transmisión válidas. ¿Qué es una hora válida? Aquella en la que transmitís un mínimo de 30 minutos seguidos con cámara encendida. ¿Hay límite diario? Sí, el sistema solo suma hasta 2 horas válidas por día. El tiempo extra ese mismo día no cuenta para la meta mensual. Con 2 horas por día necesitás 22 días válidos para llegar a 44 horas. Planificá tu calendario para no dejar todo para el final del mes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo elegir mi propio horario para transmitir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, total libertad. No hay horarios obligatorios impuestos por la agencia. Aun así, te recomendamos: Ser constante: transmitir siempre a las mismas horas ayuda a que tu audiencia te encuentre y a que el algoritmo te posicione mejor. Horario pico: generalmente entre las 19:00 y 23:00 (hora local) hay más usuarios activos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Las 2 horas diarias deben ser continuas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No necesariamente. Podés repartirlas, por ejemplo, en dos sesiones de 1 hora cada una."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es obligatorio transmitir todos los días?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No es obligatorio, pero sí muy recomendable para mantener tu audiencia activa y mejorar tu posicionamiento en el algoritmo. Con 2 horas diarias, necesitás 22 días para completar las 44 horas mensuales. Con 1 hora diaria, necesitarías 44 días — no entra en un mes de 30-31 días. Si no podés todos los días, intentá al menos 5-6 días por semana. La constancia vale más que las sesiones largas esporádicas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué equipo necesito para empezar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Esencial: celular con cámara funcional, conexión estable a internet y un espacio con buena iluminación (la luz natural de una ventana alcanza). Recomendado, a medida que crecés: aro de luz o lámpara frontal, trípode o soporte para el celular, fondo ordenado. Muchos emisores exitosos empezaron solo con su celular y una ventana. El contenido y la interacción importan más que el equipo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Debo mostrar mi rostro durante las transmisiones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Bigo Live es una plataforma centrada en la conexión personal entre emisor y audiencia. Mostrar tu rostro suele traducirse en más confianza, más interacciones y regalos, y un crecimiento más rápido. Los modos de sala de audio, video pregrabado o avatar virtual no computan horas ni semillas para las metas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué son las semillas y cómo influyen en mi pago?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las semillas son la moneda virtual de Bigo Live. Los espectadores compran diamantes con dinero real y te los envían como regalos durante tus transmisiones; esos regalos se reflejan en semillas. Cada semilla tiene un valor en dólares (aproximadamente 210 semillas = 1 USD). Acumulás semillas durante todo el mes calendario en tu monedero, canjeable en dólares. Al cierre del mes, si cumpliste la meta de semillas y de horas, recibís una remuneración extra. Meta mínima: 2,000 semillas mensuales (Nivel e) para calificar a remuneración. Sin esa meta, no hay pago ese mes aunque hayas cumplido las horas. Interactuá con tu audiencia, agradecé los regalos en vivo y creá contenido entretenido — las semillas nacen de la conexión genuina con tus espectadores."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se calculan mis ingresos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tus ingresos dependen de tres factores: Semillas acumuladas: la meta más baja es 2,000; hay metas superiores con pagos mayores. Podés ver la tabla de remuneración completa acá. Horas cumplidas: 44 horas o más paga el 100% de tu meta; entre 20 y 43 horas paga el 50%; menos de 20 horas paga $0 USD. Primer mes: si sos nuevo y no llegás a 44 horas, se te paga proporcional (Horas reales ÷ 44 × remuneración total). Ejemplo: con 22 horas cobrás el 50% de tu meta de semillas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuándo y cómo recibo mi pago?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Frecuencia: mensual, por el mes calendario completo (del 1 al último día). La remuneración llega a tu monedero de Bigo Live alrededor del día 5 del mes siguiente, en forma de semillas equivalentes a tu ganancia. Retiro: una vez acreditada la remuneración, podés retirar desde tu monedero con el método disponible en tu país: PayPal, Payoneer, Dlocal o Binance. Antes de tu primer retiro, pedile a tu agente encargado la guía paso a paso para evitar inconvenientes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si un mes no cumplo la meta de horas o semillas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depende de qué meta no se cumpla: Llegaste a las semillas pero no a las 44 horas: con 20-43 horas cobrás el 50%; con menos de 20 horas, $0 USD. En ambos casos podés retirar lo ya acumulado en tu monedero. Llegaste a las horas pero no a las 2,000 semillas: no hay remuneración económica ese mes. No cumpliste ninguna de las dos: no hay pago, pero tampoco penalización adicional ni riesgo de expulsión por un mes flojo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo puedo aumentar mis ingresos como emisor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Constancia y horarios fijos: transmitir siempre a la misma hora — el algoritmo premia la regularidad. Interacción genuina: saludá a cada persona, respondé comentarios, agradecé los regalos en vivo. Contenido variado: mostrá tu personalidad y talentos, hacé dinámicas o retos, usá títulos atractivos. Eventos y colaboraciones: participá en los eventos de la agencia (suelen tener premios en semillas) y hacé PK o retos amistosos con otros emisores."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué tipo de contenido está permitido?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Conversación y charla en vivo (just chatting). Música, canto, baile y talentos artísticos. Lifestyle: cocina, maquillaje, moda, fitness. Gaming y reacciones a videos o eventos. Tutoriales y educación. Humor, memes y entretenimiento general. Regla de oro: si podrías mostrarle tu contenido a un familiar sin incomodidad, probablemente está permitido."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué contenido puede causar sanciones o el cierre de mi cuenta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bigo Live modera de forma estricta. Está prohibido de forma absoluta: Contenido sexual o desnudez. Violencia, armas o amenazas. Drogas o sustancias ilegales. Discriminación o contenido de odio. Cualquier contenido relacionado con menores de edad. Fraude, estafas o esquemas piramidales. Juegos de azar, ruletas o casinos. Promoción de plataformas competidoras. ⚠️ Las infracciones graves pueden derivar en baneo permanente de tu cuenta, bloqueo de IP y dispositivo, y pérdida de todas las semillas acumuladas. Tu cuenta es tu fuente de ingresos — cuidala."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué beneficios obtengo al formar parte de Suits Agency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Soporte personalizado: atención directa por WhatsApp y asistencia con reclamos ante Bigo Live. Capacitación y crecimiento: guías de contenido, estrategias y acceso a un grupo exclusivo de emisores. Eventos de visibilidad: exposición frente a nuevas audiencias y colaboraciones con otros emisores. Transparencia total: reporte donde ves tus horas y semillas acumuladas. Sin comisiones ocultas: todo lo que generás con tus semillas es tuyo. Los emisores oficiales de agencias suelen crecer entre 30% y 50% más rápido que los independientes. Ojo: sin firma del acuerdo, no se pueden retirar las semillas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La agencia cobra alguna comisión o cuota?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Suits Agency no cobra comisión, cuota de inscripción ni costo mensual. Bigo Live paga directamente a las agencias oficiales por gestionar y apoyar a sus emisores — ese pago sale de Bigo Live, no de tus ganancias. Vos recibís el 100% de lo que generás con tus semillas."
+      }
+    }
+  ]
+}
+    </script>
+
 </head>
 <body>
     <div class="overlay-bg" id="overlay"></div>
@@ -222,221 +303,327 @@
 
 
     <div class="container">
+        <h1 class="main-title">Centro de Soporte</h1>
+        <p class="subtitle">Reglamento Oficial 2026</p>
 
-        <header class="content-title">
-            <h1>SUITS ACADEMY</h1>
-        </header>
+        <nav class="quick-nav">
+            <a href="#cat-requisitos">Requisitos</a>
+            <a href="#cat-horarios">Horarios</a>
+            <a href="#cat-pagos">Pagos</a>
+            <a href="#cat-reglas">Reglas</a>
+            <a href="#cat-beneficios">Beneficios</a>
+        </nav>
 
-        <div id="video-wrapper" class="ratio-vertical">
-            <div id="thumb-overlay" class="video-placeholder" onclick="startFirstVideo()">
-                <i class="fas fa-play-circle"></i>
-            </div>
-
-            <iframe id="main-video" 
-                    src="https://www.youtube.com/embed/5qklulnr12c?rel=0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-            </iframe>
-            <div class="video-info">
-                <h3 id="video-title">Cómo Paga Bigo Live</h3>
-            </div>
+        <div class="tip-banner">
+            <h3><i class="fa-solid fa-star"></i> Lo esencial en 3 líneas</h3>
+            <ul>
+                <li><i class="fa-solid fa-check"></i> No necesitás seguidores previos ni experiencia para empezar.</li>
+                <li><i class="fa-solid fa-check"></i> Meta mensual: 44 horas válidas + 2,000 semillas para calificar a remuneración.</li>
+                <li><i class="fa-solid fa-check"></i> Suits Agency no cobra comisión: recibís el 100% de lo que generás.</li>
+            </ul>
         </div>
 
-        <div class="video-list">
-            
-            <div class="video-item" onclick="changeVideo('n-v2Q1TztQA', 'Cómo revisar el Live Data', 'v', true)">
-                <i class="fas fa-chart-line"></i>
-                <div>
-                    <span>Cómo revisar el Live Data</span>
-                    <small>YouTube Shorts - Vertical</small>
+        <section id="faq-list">
+
+            <div class="faq-category" id="cat-requisitos"><i class="fa-solid fa-clipboard-check"></i> Requisitos y admisión</div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cuáles son los requisitos para ser emisor?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <ul>
+                            <li><strong>Edad mínima:</strong> 18 años o más.</li>
+                            <li><strong>Residencia:</strong> vivir en un país de Latinoamérica.</li>
+                            <li><strong>Disponibilidad:</strong> tiempo para transmitir con regularidad.</li>
+                            <li><strong>Equipo:</strong> celular con cámara funcional y conexión a internet estable (WiFi o datos móviles).</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="video-item" onclick="changeVideo('5qklulnr12c', 'Cómo Paga Bigo Live', 'v', true)">
-                <i class="fas fa-play-circle"></i>
-                <div>
-                    <span>Cómo Paga Bigo Live</span>
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Necesito una cantidad mínima de seguidores?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>No. Muchos de nuestros emisores más exitosos empezaron desde cero. Suits Agency te acompaña con:</p>
+                        <ul>
+                            <li>Capacitación inicial sobre la app y cómo atraer audiencia.</li>
+                            <li>Consejos de crecimiento y estrategia de contenido.</li>
+                            <li>Soporte continuo para dudas técnicas o de la plataforma.</li>
+                            <li>Eventos de visibilidad gestionados por la agencia (en general, 2 por mes).</li>
+                            <li>Guía paso a paso para hacer tus retiros.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="video-item" onclick="changeVideo('I6VhuzfdhXg', 'Explicación de la tabla de pagos', 'h', true)">
-                <i class="fas fa-play-circle"></i>
-                <div>
-                    <span>Explicación de la Tabla de pagos</span>
-                    <small>YouTube - Horizontal</small>
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cuánto tarda la aprobación de mi solicitud?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Entre 24 y 72 horas hábiles desde que aceptás el enlace de invitación. Una vez que Bigo Live aprueba tu solicitud, ya sos emisor oficial: las horas y semillas que acumules empiezan a sumar de inmediato.</p>
+                        <p>La firma digital del acuerdo de emisor oficial se hace después de esa aprobación, y es la que te habilita a realizar retiros. Al quedar aprobado, recibís un mensaje de bienvenida con tu credencial de emisor (insignia dorada en tu perfil).</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="video-item" onclick="changeVideo('JcRjAZGhqOg', 'Tu primera trasmisión', 'v', true)">
-                <i class="fas fa-video"></i>
-                <div>
-                    <span>Primera trasmisión</span>
-                    <small>Ver Video tutorial</small>
+            <div class="faq-category" id="cat-horarios"><i class="fa-solid fa-clock"></i> Horarios y transmisión</div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cuántas horas debo transmitir al mes?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>La meta mensual es de <strong>44 horas de transmisión válidas</strong>.</p>
+                        <p><strong>¿Qué es una hora válida?</strong> Aquella en la que transmitís un mínimo de 30 minutos seguidos con cámara encendida.</p>
+                        <p><strong>¿Hay límite diario?</strong> Sí, el sistema solo suma hasta 2 horas válidas por día. El tiempo extra ese mismo día no cuenta para la meta mensual.</p>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Con 2 horas por día necesitás 22 días válidos para llegar a 44 horas. Planificá tu calendario para no dejar todo para el final del mes.</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <section class="mandamientos">
-            <h2>Los 10 Mandamientos del Emisor Exitoso</h2>
-            <p class="mand-sub">Deslizá para verlos todos</p>
-
-            <div class="mand-track" id="mandTrack">
-                <article class="mand-card">
-                    <span class="mand-num">01</span>
-                    <h4>Serás constante antes que perfecto</h4>
-                    <p>El éxito no llega por transmitir muchas horas un solo día, sino por <span class="kw">sostener una rutina</span>. La <span class="kw cy">disciplina</span> construye audiencia fiel.</p>
-                </article>
-                <article class="mand-card">
-                    <span class="mand-num">02</span>
-                    <h4>Respetarás tu horario de transmisión</h4>
-                    <p>Tu audiencia debe saber cuándo encontrarte. Transmitir en <span class="kw">horarios similares</span> crea <span class="kw cy">hábito</span> y mejora tu crecimiento.</p>
-                </article>
-                <article class="mand-card">
-                    <span class="mand-num">03</span>
-                    <h4>Cuidarás tu imagen y presentación</h4>
-                    <p><span class="kw">Buena iluminación</span>, un espacio ordenado y <span class="kw cy">energía positiva</span> mejoran la experiencia de tus espectadores.</p>
-                </article>
-                <article class="mand-card">
-                    <span class="mand-num">04</span>
-                    <h4>Interactuarás con tu audiencia</h4>
-                    <p>No solo transmitas: <span class="kw">conversá, saludá y respondé comentarios</span> para crear una <span class="kw cy">conexión real</span>.</p>
-                </article>
-                <article class="mand-card">
-                    <span class="mand-num">05</span>
-                    <h4>Crearás comunidad, no solo seguidores</h4>
-                    <p>Los grandes emisores <span class="kw">construyen relaciones</span>. Un seguidor se vuelve fan cuando se siente <span class="kw cy">valorado</span>.</p>
-                </article>
-                <article class="mand-card">
-                    <span class="mand-num">06</span>
-                    <h4>Mejorarás cada día</h4>
-                    <p>Revisá <span class="kw">qué funcionó</span>, qué horarios dieron mejores resultados y qué contenido generó <span class="kw cy">más interacción</span>.</p>
-                </article>
-                <article class="mand-card">
-                    <span class="mand-num">07</span>
-                    <h4>Cumplirás tus metas de actividad</h4>
-                    <p>Organizá tus horas y tus <span class="kw">días válidos</span> con planificación para alcanzar tus <span class="kw cy">objetivos mensuales</span>.</p>
-                </article>
-                <article class="mand-card">
-                    <span class="mand-num">08</span>
-                    <h4>Mantendrás una actitud positiva</h4>
-                    <p>Habrá días de poca audiencia. Un emisor exitoso <span class="kw">no abandona</span> por un mal día: <span class="kw cy">aprende y continúa</span>.</p>
-                </article>
-                <article class="mand-card">
-                    <span class="mand-num">09</span>
-                    <h4>Respetarás las reglas de la plataforma</h4>
-                    <p><span class="kw">Evitá sanciones</span> cuidando tu contenido y comportamiento según las <span class="kw cy">normas de Bigo Live</span> y la agencia.</p>
-                </article>
-                <article class="mand-card">
-                    <span class="mand-num">10</span>
-                    <h4>Trabajarás como un profesional</h4>
-                    <p>Responsabilidad, compromiso y <span class="kw">mentalidad profesional</span> son la diferencia entre un principiante y un <span class="kw cy">referente</span>.</p>
-                </article>
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Puedo elegir mi propio horario para transmitir?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Sí, total libertad. No hay horarios obligatorios impuestos por la agencia. Aun así, te recomendamos:</p>
+                        <ul>
+                            <li><strong>Ser constante:</strong> transmitir siempre a las mismas horas ayuda a que tu audiencia te encuentre y a que el algoritmo te posicione mejor.</li>
+                            <li><strong>Horario pico:</strong> generalmente entre las 19:00 y 23:00 (hora local) hay más usuarios activos.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
-            <div class="mand-controls">
-                <button class="mand-arrow" id="mandPrev" aria-label="Mandamiento anterior"><i class="fa-solid fa-chevron-left"></i></button>
-                <div class="mand-dots" id="mandDots"></div>
-                <button class="mand-arrow" id="mandNext" aria-label="Mandamiento siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Las 2 horas diarias deben ser continuas?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content"><p>No necesariamente. Podés repartirlas, por ejemplo, en dos sesiones de 1 hora cada una.</p></div>
+                </div>
             </div>
 
-            <p class="mandamiento-quote">"El éxito en el streaming no depende de la suerte; depende de la constancia, la conexión con tu audiencia y la decisión de mejorar cada día."</p>
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Es obligatorio transmitir todos los días?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>No es obligatorio, pero sí muy recomendable para mantener tu audiencia activa y mejorar tu posicionamiento en el algoritmo.</p>
+                        <ul>
+                            <li>Con 2 horas diarias, necesitás 22 días para completar las 44 horas mensuales.</li>
+                            <li>Con 1 hora diaria, necesitarías 44 días — no entra en un mes de 30-31 días.</li>
+                        </ul>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Si no podés todos los días, intentá al menos 5-6 días por semana. La constancia vale más que las sesiones largas esporádicas.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué equipo necesito para empezar?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p><strong>Esencial:</strong> celular con cámara funcional, conexión estable a internet y un espacio con buena iluminación (la luz natural de una ventana alcanza).</p>
+                        <p><strong>Recomendado, a medida que crecés:</strong> aro de luz o lámpara frontal, trípode o soporte para el celular, fondo ordenado.</p>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Muchos emisores exitosos empezaron solo con su celular y una ventana. El contenido y la interacción importan más que el equipo.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Debo mostrar mi rostro durante las transmisiones?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Sí. Bigo Live es una plataforma centrada en la conexión personal entre emisor y audiencia. Mostrar tu rostro suele traducirse en más confianza, más interacciones y regalos, y un crecimiento más rápido.</p>
+                        <p>Los modos de sala de audio, video pregrabado o avatar virtual no computan horas ni semillas para las metas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category" id="cat-pagos"><i class="fa-solid fa-dollar-sign"></i> Pagos y semillas</div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué son las semillas y cómo influyen en mi pago?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Las semillas son la moneda virtual de Bigo Live. Los espectadores compran diamantes con dinero real y te los envían como regalos durante tus transmisiones; esos regalos se reflejan en semillas.</p>
+                        <ul>
+                            <li>Cada semilla tiene un valor en dólares (aproximadamente 210 semillas = 1 USD).</li>
+                            <li>Acumulás semillas durante todo el mes calendario en tu monedero, canjeable en dólares.</li>
+                            <li>Al cierre del mes, si cumpliste la meta de semillas y de horas, recibís una remuneración extra.</li>
+                        </ul>
+                        <p><strong>Meta mínima:</strong> 2,000 semillas mensuales (Nivel e) para calificar a remuneración. Sin esa meta, no hay pago ese mes aunque hayas cumplido las horas.</p>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Interactuá con tu audiencia, agradecé los regalos en vivo y creá contenido entretenido — las semillas nacen de la conexión genuina con tus espectadores.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cómo se calculan mis ingresos?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Tus ingresos dependen de tres factores:</p>
+                        <ul>
+                            <li><strong>Semillas acumuladas:</strong> la meta más baja es 2,000; hay metas superiores con pagos mayores. Podés ver la <a href="https://suitsagency.lat/pagos/">tabla de remuneración completa acá</a>.</li>
+                            <li><strong>Horas cumplidas:</strong> 44 horas o más paga el 100% de tu meta; entre 20 y 43 horas paga el 50%; menos de 20 horas paga $0 USD.</li>
+                            <li><strong>Primer mes:</strong> si sos nuevo y no llegás a 44 horas, se te paga proporcional (Horas reales ÷ 44 × remuneración total). Ejemplo: con 22 horas cobrás el 50% de tu meta de semillas.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cuándo y cómo recibo mi pago?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p><strong>Frecuencia:</strong> mensual, por el mes calendario completo (del 1 al último día). La remuneración llega a tu monedero de Bigo Live alrededor del día 5 del mes siguiente, en forma de semillas equivalentes a tu ganancia.</p>
+                        <p><strong>Retiro:</strong> una vez acreditada la remuneración, podés retirar desde tu monedero con el método disponible en tu país: PayPal, Payoneer, Dlocal o Binance.</p>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Antes de tu primer retiro, pedile a tu agente encargado la guía paso a paso para evitar inconvenientes.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué pasa si un mes no cumplo la meta de horas o semillas?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Depende de qué meta no se cumpla:</p>
+                        <ul>
+                            <li><strong>Llegaste a las semillas pero no a las 44 horas:</strong> con 20-43 horas cobrás el 50%; con menos de 20 horas, $0 USD. En ambos casos podés retirar lo ya acumulado en tu monedero.</li>
+                            <li><strong>Llegaste a las horas pero no a las 2,000 semillas:</strong> no hay remuneración económica ese mes.</li>
+                            <li><strong>No cumpliste ninguna de las dos:</strong> no hay pago, pero tampoco penalización adicional ni riesgo de expulsión por un mes flojo.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Cómo puedo aumentar mis ingresos como emisor?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <ul>
+                            <li><strong>Constancia y horarios fijos:</strong> transmitir siempre a la misma hora — el algoritmo premia la regularidad.</li>
+                            <li><strong>Interacción genuina:</strong> saludá a cada persona, respondé comentarios, agradecé los regalos en vivo.</li>
+                            <li><strong>Contenido variado:</strong> mostrá tu personalidad y talentos, hacé dinámicas o retos, usá títulos atractivos.</li>
+                            <li><strong>Eventos y colaboraciones:</strong> participá en los eventos de la agencia (suelen tener premios en semillas) y hacé PK o retos amistosos con otros emisores.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category" id="cat-reglas"><i class="fa-solid fa-shield-halved"></i> Reglas y contenido</div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué tipo de contenido está permitido?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <ul>
+                            <li>Conversación y charla en vivo (just chatting).</li>
+                            <li>Música, canto, baile y talentos artísticos.</li>
+                            <li>Lifestyle: cocina, maquillaje, moda, fitness.</li>
+                            <li>Gaming y reacciones a videos o eventos.</li>
+                            <li>Tutoriales y educación.</li>
+                            <li>Humor, memes y entretenimiento general.</li>
+                        </ul>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Regla de oro: si podrías mostrarle tu contenido a un familiar sin incomodidad, probablemente está permitido.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué contenido puede causar sanciones o el cierre de mi cuenta?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Bigo Live modera de forma estricta. Está prohibido de forma absoluta:</p>
+                        <ul>
+                            <li>Contenido sexual o desnudez.</li>
+                            <li>Violencia, armas o amenazas.</li>
+                            <li>Drogas o sustancias ilegales.</li>
+                            <li>Discriminación o contenido de odio.</li>
+                            <li>Cualquier contenido relacionado con menores de edad.</li>
+                            <li>Fraude, estafas o esquemas piramidales.</li>
+                            <li>Juegos de azar, ruletas o casinos.</li>
+                            <li>Promoción de plataformas competidoras.</li>
+                        </ul>
+                        <p>⚠️ Las infracciones graves pueden derivar en baneo permanente de tu cuenta, bloqueo de IP y dispositivo, y pérdida de todas las semillas acumuladas. Tu cuenta es tu fuente de ingresos — cuidala.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category" id="cat-beneficios"><i class="fa-solid fa-gem"></i> Beneficios de Suits Agency</div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿Qué beneficios obtengo al formar parte de Suits Agency?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <ul>
+                            <li><strong>Soporte personalizado:</strong> atención directa por WhatsApp y asistencia con reclamos ante Bigo Live.</li>
+                            <li><strong>Capacitación y crecimiento:</strong> guías de contenido, estrategias y acceso a un grupo exclusivo de emisores.</li>
+                            <li><strong>Eventos de visibilidad:</strong> exposición frente a nuevas audiencias y colaboraciones con otros emisores.</li>
+                            <li><strong>Transparencia total:</strong> reporte donde ves tus horas y semillas acumuladas.</li>
+                            <li><strong>Sin comisiones ocultas:</strong> todo lo que generás con tus semillas es tuyo.</li>
+                        </ul>
+                        <div class="faq-tip"><i class="fa-solid fa-lightbulb"></i> Los emisores oficiales de agencias suelen crecer entre 30% y 50% más rápido que los independientes. Ojo: sin firma del acuerdo, no se pueden retirar las semillas.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span>¿La agencia cobra alguna comisión o cuota?</span><i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>No. Suits Agency no cobra comisión, cuota de inscripción ni costo mensual.</p>
+                        <p>Bigo Live paga directamente a las agencias oficiales por gestionar y apoyar a sus emisores — ese pago sale de Bigo Live, no de tus ganancias. Vos recibís el 100% de lo que generás con tus semillas.</p>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
-        <footer>
-            &copy; 2026 SUITS AGENCY | AGENCIA OFICIAL | <a href="https://suitsagency.lat/privacidad/" class="footer-link">Privacidad</a>
+
+        <section class="seguridad">
+            <h2><i class="fa-solid fa-shield-halved"></i> Cuidá tu cuenta</h2>
+            <p class="seg-sub">Dos costumbres que evitan la mayoría de los robos de cuenta.</p>
+
+            <div class="seg-item">
+                <h4>No compartas tus credenciales con nadie</h4>
+                <p>Con nadie incluye a quien diga ser de la agencia o de Bigo Live. Nunca vamos a pedirte tu contraseña ni un código de verificación.</p>
+            </div>
+
+            <div class="seg-item">
+                <h4>No compartas pantalla en multisalas</h4>
+                <p>Es la vía más común de robo de cuentas: alcanza con que se vea una notificación o un código en tu pantalla para que otro entre a tu cuenta.</p>
+            </div>
+        </section>
+
+        <div class="support-cta">
+            <p>¿Tenés una duda que no está acá? Escribinos y te respondemos directo.</p>
+            <a href="https://wa.me/595982678695" class="action-btn"><i class="fa-brands fa-whatsapp"></i> HABLAR CON SOPORTE</a>
+        </div>
+
+        <section class="cta-cierre">
+            <h2>YA SABÉS CÓMO FUNCIONA</h2>
+            <p>
+                Si llegaste hasta acá, las dudas grandes ya están resueltas.
+                El siguiente paso son tres minutos.
+            </p>
+            <a href="https://suitsagency.lat/registro/" class="cta-main">POSTULAR AHORA</a>
+            <div class="cta-nota">
+                <span><i class="fa-solid fa-check"></i> Sin costo</span>
+                <span><i class="fa-solid fa-check"></i> Sin comisiones de la agencia</span>
+            </div>
+        </section>
+
+        <footer>&copy; 2026 Suits Agency | Bigo Live Official | <a href="https://suitsagency.lat/privacidad/" class="footer-link">Privacidad</a>
 </footer>
     </div>
 
     <script>
-        // Funciones del Reproductor (el menú/header ya lo maneja include.js)
-        function startFirstVideo() {
-            const overlay = document.getElementById('thumb-overlay');
-            const iframe = document.getElementById('main-video');
-            overlay.style.display = 'none';
-            iframe.src += "&autoplay=1";
-        }
-
-        function changeVideo(source, title, orientation, isYouTube) {
-            const wrapper = document.getElementById('video-wrapper');
-            const titleElement = document.getElementById('video-title');
-            const overlay = document.getElementById('thumb-overlay');
-            if(overlay) overlay.style.display = 'none';
-
-            if(orientation === 'v') {
-                wrapper.className = 'ratio-vertical';
-            } else {
-                wrapper.className = 'ratio-horizontal';
-            }
-
-            if (isYouTube) {
-                wrapper.innerHTML = `
-                    <iframe id="main-video" 
-                            src="https://www.youtube.com/embed/${source}?autoplay=1&rel=0" 
-                            allow="autoplay; encrypted-media" 
-                            allowfullscreen>
-                    </iframe>
-                    <div class="video-info"><h3 id="video-title">${title}</h3></div>`;
-            } else {
-                wrapper.innerHTML = `
-                    <video id="main-video" controls autoplay>
-                        <source src="${source}" type="video/mp4">
-                    </video>
-                    <div class="video-info"><h3 id="video-title">${title}</h3></div>`;
-            }
-        }
-    </script>
-
-
-<script>
-/* Carrusel de los 10 Mandamientos.
-   El deslizamiento lo hace el navegador (scroll-snap). Esto solo
-   agrega flechas, puntos y el resaltado del punto activo. */
-(function () {
-    const track = document.getElementById('mandTrack');
-    if (!track) return;
-
-    const cards = Array.from(track.querySelectorAll('.mand-card'));
-    const dots  = document.getElementById('mandDots');
-    const prev  = document.getElementById('mandPrev');
-    const next  = document.getElementById('mandNext');
-
-    cards.forEach((_, i) => {
-        const b = document.createElement('button');
-        b.className = 'mand-dot' + (i === 0 ? ' active' : '');
-        b.setAttribute('aria-label', 'Mandamiento ' + (i + 1));
-        b.addEventListener('click', () => irA(i));
-        dots.appendChild(b);
-    });
-
-    function irA(i) {
-        const c = cards[Math.max(0, Math.min(i, cards.length - 1))];
-        track.scrollTo({ left: c.offsetLeft - track.offsetLeft, behavior: 'smooth' });
-    }
-
-    function actual() {
-        const centro = track.scrollLeft + track.clientWidth / 2;
-        let mejor = 0, dist = Infinity;
-        cards.forEach((c, i) => {
-            const d = Math.abs((c.offsetLeft - track.offsetLeft) + c.clientWidth / 2 - centro);
-            if (d < dist) { dist = d; mejor = i; }
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                document.querySelectorAll('.faq-item').forEach(el => {
+                    if(el !== item) el.classList.remove('open');
+                });
+                item.classList.toggle('open');
+            });
         });
-        return mejor;
-    }
-
-    function pintar() {
-        const i = actual();
-        dots.querySelectorAll('.mand-dot').forEach((d, j) => d.classList.toggle('active', j === i));
-        prev.disabled = i === 0;
-        next.disabled = i === cards.length - 1;
-    }
-
-    prev.addEventListener('click', () => irA(actual() - 1));
-    next.addEventListener('click', () => irA(actual() + 1));
-
-    let t;
-    track.addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(pintar, 80); });
-    pintar();
-})();
-</script>
+    </script>
 </body>
 </html>
