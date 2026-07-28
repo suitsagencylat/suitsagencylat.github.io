@@ -38,7 +38,7 @@
         header.content-title { text-align: center; margin-bottom: 30px; }
         header.content-title h1 {
             font-size: 1.8rem;
-            background: linear-gradient(to bottom, #ffffff, #aaaaaa);
+            background: linear-gradient(to bottom, #ffffff, var(--gris-texto));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
@@ -106,7 +106,6 @@
 <body>
     <div class="overlay-bg" id="overlay"></div>
 
-<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
 
 <header class="main-header">
 <a href="https://suitsagency.lat/" class="header-logo">
@@ -177,9 +176,9 @@
         </div>
 
             <div class="form-card">
-                <h3><i class="fa-solid fa-paper-plane"></i> ¿Preferís que te escribamos nosotros?</h3>
+                <h3><i class="fa-solid fa-paper-plane"></i> ¿Prefieres que te escribamos nosotros?</h3>
                 <p class="form-sub">
-                    Dejanos tus datos y te contactamos por WhatsApp para darte el enlace de invitación.
+                    Déjanos tus datos y te contactamos por WhatsApp para darte el enlace de invitación.
                     Toma menos de un minuto.
                 </p>
 
@@ -223,7 +222,7 @@
 
                     <p class="form-legal">
                         Solo usamos tus datos para contactarte sobre la agencia.
-                        Podés pedir que los borremos cuando quieras.
+                        Puedes pedir que los borremos cuando quieras.
                         <a href="https://suitsagency.lat/privacidad/">Ver privacidad</a>.
                     </p>
                 </form>
@@ -231,16 +230,18 @@
                 <div id="leadOk" class="form-ok" hidden>
                     <i class="fa-solid fa-circle-check"></i>
                     <h4>Listo, recibimos tus datos</h4>
-                    <p>Te escribimos por WhatsApp dentro de las próximas 24 horas. Mientras tanto, ya podés descargar la app y crear tu cuenta.</p>
+                    <p>Te escribimos por WhatsApp dentro de las próximas 24 horas. Mientras tanto, ya puedes descargar la app y crear tu cuenta.</p>
                 </div>
 
                 <div id="leadError" class="form-error" hidden>
-                    No pudimos enviar el formulario. Escribinos directo por
+                    No pudimos enviar el formulario. Escríbenos directo por
                     <a href="https://wa.me/595982678695" target="_blank" rel="noopener">WhatsApp</a>.
                 </div>
             </div>
 
         <footer>
+<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
+
             &copy; 2026 Suits Agency | Registro Oficial. | <a href="https://suitsagency.lat/privacidad/" class="footer-link">Privacidad</a>
 </footer>
     </div>
@@ -276,7 +277,7 @@ const FORMSPREE = 'https://formspree.io/f/PONER_ID';
         const edad = parseInt(form.edad.value, 10);
         if (!form.nombre.value.trim() || !form.pais.value || !form.whatsapp.value.trim()) {
             error.hidden = false;
-            error.textContent = 'Completá todos los campos para que podamos contactarte.';
+            error.textContent = 'Completa todos los campos para que podamos contactarte.';
             return;
         }
         if (!edad || edad < 18) {
@@ -311,7 +312,7 @@ const FORMSPREE = 'https://formspree.io/f/PONER_ID';
             }
         } catch (err) {
             error.hidden = false;
-            error.innerHTML = 'No pudimos enviar el formulario. Escribinos directo por <a href="https://wa.me/595982678695" target="_blank" rel="noopener">WhatsApp</a>.';
+            error.innerHTML = 'No pudimos enviar el formulario. Escríbenos directo por <a href="https://wa.me/595982678695" target="_blank" rel="noopener">WhatsApp</a>.';
             btn.disabled = false;
             btn.textContent = 'QUIERO QUE ME CONTACTEN';
         }
