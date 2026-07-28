@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="https://suitsagency.lat/styles.css">
 
     <style>
-        .container { max-width: 650px; margin: 0 auto; padding: 20px; }
+        .container { --ancho: 650px; }
         .main-title { text-align: center; font-size: 1.8rem; margin-bottom: 5px; }
         .subtitle { text-align: center; color: var(--accent-blue); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 25px; }
 
@@ -93,11 +93,13 @@
             border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px 20px;
         }
         .support-cta p { margin: 0 0 16px; font-size: 0.85rem; color: var(--silver); }
+        /* Boton de WhatsApp: contorno, nunca solido. El unico boton lleno
+           de esta pagina es POSTULAR AHORA, mas abajo. El tamano sale del
+           sistema de botones de styles.css. */
         .support-cta .action-btn {
-            display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff;
-            text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; transition: 0.3s;
+            border: 2px solid #25d366; background: none; color: #25d366;
         }
-        .support-cta .action-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .support-cta .action-btn:hover { background: rgba(37, 211, 102, .12); color: #fff; }
     
         /* ---- Bloque de seguridad de la cuenta ---- */
         .seguridad { margin-top: 45px; }
