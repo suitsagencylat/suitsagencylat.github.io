@@ -1,5 +1,26 @@
 :root {
-    --bg-color: #050505;
+    /* Fondo de marca y sus superficies.
+       Todo negro del sitio sale de acá: si hay que ajustar el tono,
+       se toca una sola vez. Van de la mas hundida a la mas elevada. */
+    --bg-color: #050505;          /* fondo general */
+    --sup-hundida: #04070a;       /* visor de la calculadora */
+    --sup-ranura: #0a0a0d;        /* boca de la impresora */
+    --sup-base: #0a0a0c;          /* columna fija de la tabla */
+    --sup-tabla: #0d0d0d;         /* filas de la tabla */
+    --sup-papel: #0e0e13;         /* papel del recibo */
+    --sup-elevada: #101014;       /* fila resaltada al pasar el dedo */
+    --sup-chasis: #111116;        /* cuerpo del aparato, abajo */
+    --sup-chasis-alto: #1a1a21;   /* cuerpo del aparato, arriba */
+    --sup-tecla: #23232c;         /* tecla, arriba */
+    --sup-tecla-baja: #191920;    /* tecla, abajo */
+    --sup-cian: #08181b;          /* encabezado de la tabla */
+    --sup-cian-fuerte: #06222a;   /* fila que coincide con tu meta */
+
+    /* Derivados del violeta y grises de texto */
+    --violeta-claro: #c98bff;     /* violeta legible sobre negro */
+    --violeta-brillo: #c04bff;    /* violeta del degradado de los botones */
+    --gris-texto: #888888;        /* texto secundario */
+    --rojo-error: #ff5050;        /* solo errores de formulario */
     --accent-blue: #00e8ff;
     --accent-violet: #9e00ff;
     --silver: #e0e0e0;
@@ -39,6 +60,7 @@ header.main-header {
     background: rgba(5, 5, 5, 0.98);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--glass-border);
+    transition: background .35s ease, border-color .35s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -129,11 +151,14 @@ header.main-header {
     top: 0; right: -100%; width: 75%; height: 100vh;
     /* Mismo tratamiento que la tarjeta de cierre: vidrio traslucido
        con un halo lila arriba. Se ve el contenido detras, difuminado. */
+    /* Negro de la marca (#050505) + un solo halo lila arriba a la
+       derecha. Antes el negro ya venia tenido de violeta y el halo
+       se sumaba encima: por eso el panel se leia morado. */
     background:
-        radial-gradient(120% 80% at 100% 0%, rgba(158, 0, 255, .28), transparent 62%),
-        rgba(10, 2, 16, .72);
-    backdrop-filter: blur(18px) saturate(1.3);
-    -webkit-backdrop-filter: blur(18px) saturate(1.3);
+        radial-gradient(85% 50% at 100% 0%, rgba(158, 0, 255, .16), transparent 70%),
+        rgba(5, 5, 5, .82);
+    backdrop-filter: blur(24px) saturate(1.1);
+    -webkit-backdrop-filter: blur(24px) saturate(1.1);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -141,28 +166,29 @@ header.main-header {
     gap: 35px;
     transition: right 0.4s ease-in-out;
     z-index: 10001;
-    border-left: 1px solid rgba(158, 0, 255, .35);
-    box-shadow: -24px 0 60px rgba(158, 0, 255, .12);
+    border-left: 1px solid rgba(158, 0, 255, .18);
+    box-shadow: -24px 0 60px rgba(0, 0, 0, .5);
 }
 
 .header-nav.active { right: 0; }
 .nav-link { text-decoration: none; color: #eee; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 15px; }
 .nav-link.active { color: var(--accent-blue); }
 
-.overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); display: none; z-index: 9999; }
+.overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: none; z-index: 9999; }
 .overlay-bg.active { display: block; }
 
 /* Mascota Bigo Dino: viene inyectada por header.html en TODAS las páginas,
    por eso su estilo vive acá (styles.css) y no en un <style> local. */
+/* El Dino ya no flota sobre el contenido: vive en el pie de página.
+   Liberar esa esquina deja el botón de WhatsApp donde el pulgar
+   lo busca, que es lo que de verdad tiene que recibir el toque. */
 .dino-mascot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 90px;
+    display: block;
+    width: 80px;
     height: auto;
-    filter: drop-shadow(0 0 16px rgba(0, 232, 255, 0.35));
+    margin: 0 auto 12px;
+    filter: drop-shadow(0 0 16px rgba(0, 232, 255, 0.3));
     animation: dino-float 3.5s ease-in-out infinite;
-    z-index: 9997;
     pointer-events: none;
 }
 
@@ -325,7 +351,7 @@ footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-s
    Va abajo a la IZQUIERDA para no chocar con el Bigo Dino. */
 .wa-float {
     position: fixed;
-    left: 18px;
+    right: 18px;
     bottom: 18px;
     z-index: 90;
     display: flex;
@@ -349,7 +375,7 @@ footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-s
 
 /* En pantallas chicas se reduce a un círculo: ocupa menos y no tapa contenido */
 @media (max-width: 620px) {
-    .wa-float { padding: 0; width: 54px; height: 54px; justify-content: center; left: 14px; bottom: 14px; }
+    .wa-float { padding: 0; width: 54px; height: 54px; justify-content: center; right: 14px; bottom: 14px; }
     .wa-float span { display: none; }
 }
 
@@ -569,3 +595,12 @@ footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-s
 
 .footer-link { color: rgba(0, 232, 255, .55); text-decoration: none; }
 .footer-link:hover { color: var(--accent-blue); }
+
+/* Con el menú abierto el header deja de ser un bloque opaco: si no,
+   se dibuja un rectángulo negro al lado del panel traslúcido. */
+header.main-header.nav-abierta {
+    background: rgba(5, 5, 5, .55);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom-color: transparent;
+}

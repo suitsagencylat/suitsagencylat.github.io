@@ -34,6 +34,9 @@
     function abrir() {
       mainNav.classList.add('active');
       overlay.classList.add('active');
+      // El header se vuelve vidrio para que no quede la costura
+      const cab = document.querySelector('.main-header');
+      if (cab) cab.classList.add('nav-abierta');
       menuToggle.setAttribute('aria-expanded', 'true');
       const icon = menuToggle.querySelector('i');
       if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
@@ -42,6 +45,8 @@
     function cerrar() {
       mainNav.classList.remove('active');
       overlay.classList.remove('active');
+      const cab = document.querySelector('.main-header');
+      if (cab) cab.classList.remove('nav-abierta');
       menuToggle.setAttribute('aria-expanded', 'false');
       const icon = menuToggle.querySelector('i');
       if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-xmark'); }
@@ -92,8 +97,8 @@
     a.href = 'https://wa.me/' + WHATSAPP_NUM + '?text=' + encodeURIComponent(WHATSAPP_MSG);
     a.target = '_blank';
     a.rel = 'noopener';
-    a.setAttribute('aria-label', 'Escribinos por WhatsApp');
-    a.innerHTML = '<i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>Escribinos</span>';
+    a.setAttribute('aria-label', 'Escríbenos por WhatsApp');
+    a.innerHTML = '<i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>Escríbenos</span>';
     document.body.appendChild(a);
   }
 

@@ -35,6 +35,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://suitsagency.lat/styles.css">
 
 <style>
@@ -84,65 +85,6 @@
     line-height:1.8;
 }
 
-/* Carrusel de tips */
-.tips-carousel {
-    width: 92%;
-    max-width: 780px;
-    height: 210px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 18px;
-    border: 1px solid var(--glass-border);
-    margin: 24px auto 40px;
-    background: rgba(255, 255, 255, 0.02);
-    box-shadow: 0 0 25px rgba(0, 232, 255, 0.1);
-}
-
-.tip-slide {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    padding: 0 36px;
-    box-sizing: border-box;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-}
-
-.tip-slide.active { opacity: 1; z-index: 2; }
-
-.tip-slide i {
-    font-size: 2.8rem;
-    color: var(--accent-blue);
-    flex-shrink: 0;
-}
-
-.tip-slide p {
-    margin: 0;
-    color: var(--silver);
-    font-size: 1.35rem;
-    line-height: 1.5;
-    text-align: left;
-}
-
-.tip-slide strong { color: #ffffff; }
-
-/* Palabras clave resaltadas dentro de cada tip */
-.tip-slide .kw {
-    color: var(--accent-violet);
-    font-weight: 800;
-}
-.tip-slide .kw.cy {
-    color: var(--accent-blue);
-}
-
-@media (max-width: 600px) {
-    .tips-carousel { height: 280px; }
-    .tip-slide p { font-size: 1.05rem; }
-    .tip-slide i { font-size: 2rem; }
-}
 
 /* Tarjetas: el cian se mantiene en reposo, el violeta aparece
    solo al pasar el mouse — refuerza que es un color de "acción" */
@@ -156,15 +98,6 @@
 /* Ligera variación del hover respecto a styles.css: acá el "salto"
    es un poco mayor (-12px vs -10px) porque son las tarjetas hero */
 .nav-card:hover { transform: translateY(-12px); }
-
-.why-suits h2 {
-    font-family:var(--font-display);
-    font-size:2.5rem;
-    letter-spacing:4px;
-    color:white;
-    text-align:center;
-    margin:0 auto 30px;
-}
 
 .countries-section h2 {
     font-family:var(--font-display);
@@ -236,7 +169,7 @@
     border-radius: 18px;
     overflow: hidden;
     border: 1px solid var(--glass-border);
-    background: #0a0a0a;
+    background: var(--bg-color);
     cursor: pointer;
     transition: transform .55s cubic-bezier(.22,.61,.36,1), opacity .55s, border-color .3s, box-shadow .3s;
     will-change: transform;
@@ -523,26 +456,190 @@
 
 .hero-badge i { font-size: .85rem; }
 
-/* ---- Tips: bajaron debajo de los clips ----
-   Son consejos para alguien que YA es emisor. El visitante frio
-   necesita ver primero la prueba (los clips), no el manual. */
-.tips-section { margin: 60px auto 0; position: relative; z-index: 1; }
-
-.tips-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 4.5vw, 2.2rem);
-    letter-spacing: 1px;
-    text-align: center;
-    margin: 0 0 6px;
-    color: rgba(224, 224, 224, .85);
-}
-
 
 /* Resaltado dentro del parrafo del hero: marca las dos vias de pago,
    que es el argumento que nos diferencia. */
 .hero-brand p .hl { color: var(--accent-blue); font-weight: 700; }
 
+
+/* ---- Sección "Lo que siempre nos preguntan" ----
+   Formato de hilo de chat: cada beneficio deja de ser una virtud
+   declarada y pasa a ser respuesta a una pregunta que la persona
+   ya tiene. Además entrena el gesto de escribir. */
+.conversacion { width: 92%; max-width: 560px; margin: 70px auto; position: relative; z-index: 1; }
+.conversacion h2 {
+    font-family: var(--font-display); font-size: clamp(1.8rem, 5.5vw, 2.6rem);
+    letter-spacing: 1px; text-align: center; margin: 0 0 6px;
+}
+.conv-sub {
+    text-align: center; font-size: .86rem; color: rgba(255,255,255,.45);
+    margin: 0 auto 22px; max-width: 36ch; line-height: 1.6;
+}
+.hilo {
+    border: 1px solid var(--glass-border); border-radius: 18px;
+    background: rgba(255,255,255,.02); padding: 16px 14px 18px;
+}
+.hilo-cab {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 4px 14px; margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.hilo-cab img { width: 30px; border-radius: 50%; }
+.hilo-cab b { font-size: .86rem; display: block; }
+.hilo-cab span { font-size: .64rem; color: #25d366; }
+
+.msg { max-width: 82%; margin-bottom: 12px; padding: 11px 14px; font-size: .86rem; line-height: 1.55; }
+.msg.tú {
+    margin-left: auto; border-radius: 14px 14px 4px 14px;
+    background: rgba(0,232,255,.1); border: 1px solid rgba(0,232,255,.25); color: #fff;
+}
+.msg.ellos {
+    margin-right: auto; border-radius: 14px 14px 14px 4px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    color: rgba(255,255,255,.78);
+}
+.msg.ellos b { color: var(--accent-blue); font-weight: 600; }
+.hora { display: block; margin-top: 5px; font-size: .6rem; color: rgba(255,255,255,.25); text-align: right; }
+
+.escribiendo {
+    display: inline-flex; gap: 4px; align-items: center;
+    padding: 12px 16px; border-radius: 14px 14px 14px 4px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+}
+.escribiendo i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.4); animation: puntos 1.3s infinite; }
+.escribiendo i:nth-child(2) { animation-delay: .18s; }
+.escribiendo i:nth-child(3) { animation-delay: .36s; }
+@keyframes puntos { 0%,60%,100% { opacity:.25; transform: translateY(0); } 30% { opacity:1; transform: translateY(-3px); } }
+
+.msg.ellos a { color: var(--accent-blue); text-decoration: underline; text-underline-offset: 3px; }
+.msg.ellos a:hover { color: #fff; }
+.conv-cierre { margin-top: 22px; text-align: center; }
+.conv-wa {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    padding: 15px 30px; border-radius: 50px;
+    background: #25d366; color: #06210f; font-weight: 700; font-size: .88rem; letter-spacing: .5px;
+}
+.conv-wa i { font-size: 1.2rem; }
+.conv-cierre p { margin: 12px 0 0; font-size: .74rem; color: rgba(255,255,255,.4); }
+
+@media (prefers-reduced-motion: reduce) { .escribiendo i { animation: none; } }
+
+
+/* ================================================================
+   CREDENCIAL PREMIUM EN EL HERO
+   Formato horizontal, proporción de tarjeta de crédito. El CTA va
+   afuera: adentro competiría con los datos y le quitaría el aire
+   que hace que se lea como un objeto y no como un cartel.
+   ================================================================ */
+.hero-accion { margin-top: 26px; }
+
+.escena { perspective: 1500px; width: 100%; max-width: 360px; margin: 0 auto; }
+.tarjeta {
+    position: relative; width: 100%; aspect-ratio: 1.586 / 1;
+    transform-style: preserve-3d;
+    transition: transform .8s cubic-bezier(.3, 1, .35, 1);
+}
+.tarjeta.girada { transform: rotateY(180deg); }
+
+.cara {
+    position: absolute; inset: 0;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    border-radius: 16px; padding: 16px 18px;
+    display: flex; flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background:
+        radial-gradient(110% 90% at 0% 0%, rgba(0, 232, 255, .14), transparent 60%),
+        radial-gradient(110% 90% at 100% 100%, rgba(158, 0, 255, .22), transparent 60%),
+        var(--sup-base);
+    box-shadow: 0 22px 50px rgba(0, 0, 0, .65), inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+.cara.dorso { transform: rotateY(180deg); }
+
+.cred-fila-top { display: flex; align-items: center; justify-content: space-between; }
+.chip {
+    width: 36px; height: 27px; border-radius: 5px;
+    background: linear-gradient(135deg, rgba(0, 232, 255, .55), rgba(158, 0, 255, .55));
+    border: 1px solid rgba(255, 255, 255, .22);
+}
+.verificado {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 9px; border-radius: 999px;
+    border: 1px solid rgba(158, 0, 255, .45); background: rgba(158, 0, 255, .12);
+    font-size: .5rem; letter-spacing: 1.6px; text-transform: uppercase; color: var(--violeta-claro);
+}
+
+.cred-medio { display: flex; align-items: center; gap: 12px; margin: auto 0; text-align: left; }
+.cred-marca { width: 46px; flex-shrink: 0; }
+.cred-nombre { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 1.5px; line-height: 1; }
+.cred-cargo {
+    font-size: .5rem; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--accent-blue); margin-top: 4px;
+}
+
+.cred-linea {
+    display: flex; justify-content: space-between; gap: 8px;
+    font-family: "Roboto Mono", ui-monospace, monospace; font-size: .48rem;
+    color: rgba(255, 255, 255, .32); letter-spacing: 1px; text-align: left;
+}
+.cred-linea b { display: block; color: rgba(255, 255, 255, .75); font-size: .58rem; margin-top: 2px; }
+
+/* dorso */
+.dorso h3 {
+    margin: 0 0 8px; font-family: var(--font-display);
+    font-size: 1rem; letter-spacing: 1.4px; color: #fff; text-align: left;
+}
+.dorso ul {
+    list-style: none; margin: 0; padding: 0; flex: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; align-content: center;
+}
+.dorso li {
+    display: flex; gap: 7px; align-items: center; text-align: left;
+    font-size: .62rem; line-height: 1.3; color: rgba(255, 255, 255, .7);
+}
+.dorso li i { color: var(--accent-blue); font-size: .68rem; flex-shrink: 0; }
+.dorso li b { color: #fff; font-weight: 600; }
+
+.cred-cta {
+    display: block; width: 100%; max-width: 360px; margin: 18px auto 0; padding: 15px;
+    border-radius: 50px; text-align: center; text-decoration: none;
+    border: 2px solid var(--accent-violet);
+    background: linear-gradient(90deg, var(--accent-violet), var(--violeta-brillo));
+    color: #fff; font-weight: 700; font-size: .85rem;
+    letter-spacing: 1.4px; text-transform: uppercase;
+}
+.cred-girar {
+    display: block; margin: 10px auto 0; background: none; border: 0; cursor: pointer;
+    font-family: inherit; font-size: .7rem; letter-spacing: .6px;
+    color: rgba(255, 255, 255, .45); text-decoration: underline; text-underline-offset: 3px;
+}
+.cred-girar:hover { color: #fff; }
+
+/* ---- Los tres accesos, compactos, debajo ---- */
+.accesos {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    width: 100%; max-width: 360px; margin: 16px auto 0;
+}
+.accesos a {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 12px 4px; border-radius: 12px; text-decoration: none;
+    border: 1px solid var(--glass-border); background: rgba(255, 255, 255, .03);
+    color: var(--silver); transition: border-color .25s, background .25s, transform .25s;
+}
+.accesos a:hover { border-color: rgba(0, 232, 255, .4); background: rgba(0, 232, 255, .06); transform: translateY(-3px); }
+.accesos i { color: var(--accent-blue); font-size: 1.05rem; }
+.accesos span { font-size: .68rem; letter-spacing: 1px; text-transform: uppercase; }
+
+.hero-accion .cta-alt { margin-top: 16px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .tarjeta { transition: none; }
+    .accesos a:hover { transform: none; }
+}
+
+.msg.ellos a { color: var(--accent-blue); text-decoration: underline; text-underline-offset: 2px; }
+.msg.ellos a:hover { color: #fff; }
 </style>
+
 
 <!-- Datos estructurados: ayudan a Google a mostrar la ficha de la agencia -->
 <script type="application/ld+json">
@@ -580,7 +677,6 @@
 
 <div class="overlay-bg" id="overlay"></div>
 
-<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
 
 <header class="main-header">
 <a href="https://suitsagency.lat/" class="header-logo">
@@ -649,35 +745,67 @@ EL NEGOCIO DE<br>
 
 <p>
 
-Transmitís en vivo desde tu celular y Bigo Live te paga por
-<span class="hl">dos vías</span>: los regalos que recibís y la
-<span class="hl">meta mensual de horas y semillas</span> que cumplís.
+Transmites en vivo desde tu celular y Bigo Live te paga por
+<span class="hl">dos formas</span>: los regalos que recibes y la
+<span class="hl">meta de semillas</span> que alcanzas cumpliendo tus horas.
 Nosotros te enseñamos a llegar a las dos.
 
 </p>
 
 
 
-<div class="hero-mascot-row">
+<div class="hero-accion">
 
-<a href="https://suitsagency.lat/registro/" class="cta-main">
+<div class="escena">
+    <div class="tarjeta" id="tarjetaCred">
 
-POSTULAR AHORA
+        <div class="cara frente">
+            <div class="cred-fila-top">
+                <span class="chip"></span>
+                <span class="verificado"><i class="fa-solid fa-certificate"></i> Verificada</span>
+            </div>
 
-</a>
+            <div class="cred-medio">
+                <img class="cred-marca" src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+                <div>
+                    <div class="cred-nombre">Suits Agency</div>
+                    <div class="cred-cargo">Agencia oficial de Bigo Live</div>
+                </div>
+            </div>
 
-<div class="cta-nota">
-<span><i class="fa-solid fa-check"></i> Sin seguidores ni experiencia</span>
-<span><i class="fa-solid fa-check"></i> Postular es gratis</span>
-<span><i class="fa-solid fa-check"></i> Sin comisiones de la agencia</span>
+            <div class="cred-linea">
+                <span>REGIÓN<b>Latinoamérica</b></span>
+                <span>COMISIÓN<b>0 %</b></span>
+            </div>
+        </div>
+
+        <div class="cara dorso">
+            <h3>Qué incluye</h3>
+            <ul>
+                <li><i class="fa-solid fa-coins"></i><span><b>Dos formas de cobrar.</b> Los regalos van a tu monedero; la meta se paga aparte.</span></li>
+                <li><i class="fa-solid fa-door-open"></i><span><b>Sin seguidores.</b> Tu primer live puede ser esta noche.</span></li>
+                <li><i class="fa-solid fa-hand-holding-dollar"></i><span><b>Cero comisiones.</b> Bigo te paga directo a ti.</span></li>
+                <li><i class="fa-solid fa-lock-open"></i><span><b>Sin ataduras.</b> Ni permanencia, ni exclusividad, ni sanciones.</span></li>
+            </ul>
+        </div>
+
+    </div>
 </div>
+
+<a href="https://suitsagency.lat/registro/" class="cred-cta">Postular ahora</a>
+<button class="cred-girar" type="button" data-girar>Ver qué incluye</button>
+
+<nav class="accesos">
+    <a href="https://suitsagency.lat/pagos/"><i class="fa-solid fa-gem"></i><span>Pagos</span></a>
+    <a href="https://suitsagency.lat/academia/"><i class="fa-solid fa-graduation-cap"></i><span>Academia</span></a>
+    <a href="https://suitsagency.lat/soporte/"><i class="fa-solid fa-headset"></i><span>Soporte</span></a>
+</nav>
 
 <a href="https://wa.me/595982678695?text=Hola!%20Quiero%20informacion%20para%20ser%20emisor%20de%20Bigo%20Live%20con%20Suits%20Agency." class="cta-alt" target="_blank" rel="noopener">
-<i class="fa-brands fa-whatsapp"></i> o preguntanos por WhatsApp
+<i class="fa-brands fa-whatsapp"></i> o pregúntanos por WhatsApp
 </a>
 
 </div>
-
 
 </div>
 
@@ -696,7 +824,7 @@ POSTULAR AHORA
     <h2>MOMENTOS EN VIVO</h2>
 
     <p class="reel-sub">
-        Regalos, PK y salas llenas. Tocá para ver el clip.
+        Regalos, PK y salas llenas. Toca para ver el clip.
     </p>
 
     <div class="reel-stage">
@@ -814,243 +942,60 @@ POSTULAR AHORA
             <i class="fa-solid fa-user-plus"></i> Quiero mi primer live
         </a>
         <a href="https://wa.me/595982678695" class="reel-cta-alt" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i> o escribinos por WhatsApp
+            <i class="fa-brands fa-whatsapp"></i> o escríbenos por WhatsApp
         </a>
     </div>
 
 </section>
 
 
-<section class="tips-section">
-<h2 class="tips-title">CONSEJOS PARA TU PRIMER MES</h2>
-<div class="tips-carousel">
 
-<div class="tip-slide active">
-<i class="fa-solid fa-lightbulb"></i>
-<p><strong>Tip:</strong> Transmití siempre a la <span class="kw">misma hora</span>. La <span class="kw">constancia</span> hace que tu audiencia vuelva.</p>
+
+
+
+
+
+
+<section class="conversacion">
+
+<h2>Lo que siempre nos preguntan</h2>
+<p class="conv-sub">Las mismas preguntas, todas las semanas.</p>
+
+<div class="hilo">
+    <div class="hilo-cab">
+        <img src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+        <div>
+            <b>Suits Agency</b>
+            <span>en línea</span>
+        </div>
+    </div>
+
+    <div class="msg tú">Yo quiero empezar pero no tengo experiencia ni idea de cómo funciona<span class="hora">21:04</span></div>
+    <div class="msg ellos">Aquí en Bigo Live <b>no necesitas experiencia</b> para empezar. Nosotros te enseñamos desde cero. Puedes revisar la <a href="https://suitsagency.lat/academia/">Academia</a> para tener una idea de cómo funciona.<span class="hora">21:05</span></div>
+
+    <div class="msg tú">Pero tampoco tengo seguidores para empezar 🥲<span class="hora">21:06</span></div>
+    <div class="msg ellos">Tranqui, Bigo <b>no te pide una cantidad mínima de seguidores</b> para empezar a transmitir, como otras plataformas que sí lo exigen.<span class="hora">21:06</span></div>
+
+    <div class="msg tú">¿Tengo que pagar algo para entrar?<span class="hora">21:08</span></div>
+    <div class="msg ellos">No, nunca. <b>Ni para entrar ni para salir</b> de Bigo Live.<span class="hora">21:08</span></div>
+
+    <div class="msg tú">¿Ustedes se quedan con algún porcentaje de mis ganancias?<span class="hora">21:09</span></div>
+    <div class="msg ellos">No, en absoluto. Tú cobras <b>el 100% de tus ganancias</b>. Nosotros no administramos tu dinero: la app te paga directamente.<span class="hora">21:10</span></div>
+
+    <div class="msg tú">¿Qué pasa si ingreso y después de un tiempo quiero salir?<span class="hora">21:12</span></div>
+    <div class="msg ellos">No pasa nada, puedes dejar de hacer tus transmisiones cuando quieras. <b>No existe una cláusula de permanencia</b>, exclusividad, sanción o multa.<span class="hora">21:12</span></div>
+
+    <div class="escribiendo"><i></i><i></i><i></i></div>
 </div>
 
-<div class="tip-slide">
-<i class="fa-solid fa-comments"></i>
-<p><strong>Tip:</strong> <span class="kw">Interactuá con el chat</span> todo el tiempo. Nombrar a tu audiencia genera <span class="kw cy">fidelidad</span>.</p>
+<div class="conv-cierre">
+    <a href="https://wa.me/595982678695?text=Hola!%20Tengo%20una%20pregunta%20sobre%20Bigo%20Live." target="_blank" rel="noopener" class="conv-wa">
+        <i class="fa-brands fa-whatsapp"></i> Hacer mi pregunta
+    </a>
+    <p>O postula directo, toma tres minutos.</p>
 </div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-chart-line"></i>
-<p><strong>Tip:</strong> Revisá tus <span class="kw cy">estadísticas</span> cada semana para saber qué contenido <span class="kw">funciona mejor</span>.</p>
-</div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-clock"></i>
-<p><strong>Tip:</strong> Empezá con <span class="kw">sesiones cortas</span> y andá subiendo la duración. Es mejor <span class="kw cy">calidad</span> que cantidad de horas.</p>
-</div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-video"></i>
-<p><strong>Tip:</strong> Cuidá el <span class="kw cy">audio y la luz</span> antes que cualquier otra cosa. La <span class="kw">calidad técnica</span> retiene más audiencia que los filtros.</p>
-</div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-users"></i>
-<p><strong>Tip:</strong> Invitá a tus <span class="kw">seguidores de otras redes</span> a tu primer live. Los primeros minutos definen el <span class="kw cy">alcance</span> del stream.</p>
-</div>
-
-<div class="tip-slide">
-<i class="fa-solid fa-gift"></i>
-<p><strong>Tip:</strong> Agradecé cada <span class="kw cy">regalo</span> en vivo y nombrá a quien lo envía. Es la forma más simple de generar <span class="kw">lealtad</span>.</p>
-</div>
-
-</div>
-</section>
-
-
-<section class="nav-grid">
-
-
-<a href="https://suitsagency.lat/pagos/" class="nav-card">
-
-<i class="fa-solid fa-gem"></i>
-
-<h3>
-Metas y Beneficios
-</h3>
-
-<p>
-Conoce nuestra estructura de crecimiento,
-metas y recompensas dentro del ecosistema digital.
-</p>
-
-</a>
-
-
-
-
-<a href="https://suitsagency.lat/academia/" class="nav-card">
-
-<i class="fa-solid fa-graduation-cap"></i>
-
-<h3>
-Academia Suits
-</h3>
-
-<p>
-Aprende estrategias, herramientas y conocimientos
-para mejorar tu rendimiento como creador.
-</p>
-
-</a>
-
-
-
-
-
-<a href="https://suitsagency.lat/soporte/" class="nav-card">
-
-<i class="fa-solid fa-headset"></i>
-
-<h3>
-Centro de Soporte
-</h3>
-
-<p>
-Guías, respuestas y acompañamiento
-durante tu crecimiento.
-</p>
-
-</a>
-
 
 </section>
-
-
-
-
-
-<section class="why-suits">
-
-
-<h2>
-POR QUÉ ELEGIRNOS
-</h2>
-
-
-
-<div class="nav-grid">
-
-<div class="nav-card">
-<i class="fa-solid fa-coins"></i>
-<h3>
-Dos Vías de Ingreso
-</h3>
-<p>
-Las semillas de los regalos se acumulan en tu monedero.
-Y si además alcanzás la meta del mes —horas y semillas,
-las dos— cobrás una remuneración aparte. En otras
-plataformas esa segunda vía no existe.
-</p>
-</div>
-
-<div class="nav-card">
-<i class="fa-solid fa-door-open"></i>
-<h3>
-Empezás Sin Seguidores
-</h3>
-<p>
-Otras plataformas te piden un mínimo de seguidores antes
-de dejarte transmitir en vivo. En Bigo Live abrís tu
-primer live desde el día uno.
-</p>
-</div>
-
-
-
-
-<div class="nav-card">
-
-<i class="fa-solid fa-graduation-cap"></i>
-
-<h3>
-Capacitación Real
-</h3>
-
-<p>
-Te damos materiales claros para que
-entiendas cómo funciona la monetización
-desde el primer día.
-</p>
-
-</div>
-
-
-
-
-
-<div class="nav-card">
-
-<i class="fa-solid fa-headset"></i>
-
-<h3>
-Asistencia Constante
-</h3>
-
-<p>
-Ante cualquier duda, tenés respuesta
-directa. No te dejamos solo en el camino.
-</p>
-
-</div>
-
-
-
-
-
-<div class="nav-card">
-
-<i class="fa-solid fa-certificate"></i>
-
-<h3>
-Agencia Oficial
-</h3>
-
-<p>
-Trabajamos directamente con Bigo Live,
-la plataforma oficial.
-</p>
-
-</div>
-
-
-
-
-
-<div class="nav-card">
-
-<i class="fa-solid fa-hand-holding-dollar"></i>
-
-<h3>
-Cero Comisiones
-</h3>
-
-<p>
-No cobramos porcentajes. La plataforma
-te paga directamente a vos, según la
-tabla de remuneración.
-</p>
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
 
 <section class="countries-section">
 
@@ -1121,38 +1066,9 @@ formando parte del ecosistema Suits Agency.
 
 
 
-<section class="objeciones">
-<h2>¿ESTO ES REAL?</h2>
-<p class="obj-sub">
-Las cuatro preguntas que nos hacen antes de postular, respondidas sin vueltas.
-</p>
-<div class="obj-grid">
-
-<div class="obj-item">
-<h3><i class="fa-solid fa-circle-question"></i> ¿Tengo que pagar algo para entrar?</h3>
-<p>No. <strong>Nunca</strong> vas a pagar nada, ni al entrar ni después. Si alguien te pide dinero a nombre de Suits Agency, no somos nosotros: escribinos y lo verificamos.</p>
-</div>
-
-<div class="obj-item">
-<h3><i class="fa-solid fa-circle-question"></i> ¿La agencia se queda con parte de lo que gano?</h3>
-<p>No. Bigo Live te paga <strong>directo a vos</strong> según la tabla oficial de remuneración. Podés ver los números exactos en la <a href="https://suitsagency.lat/pagos/">calculadora de pagos</a>.</p>
-</div>
-
-<div class="obj-item">
-<h3><i class="fa-solid fa-circle-question"></i> ¿Necesito seguidores o experiencia?</h3>
-<p>No. Otras plataformas te exigen juntar un mínimo de seguidores antes de dejarte transmitir; en Bigo Live empezás <strong>desde cero</strong> y desde el primer día. Lo único que hace falta es un celular con cámara, internet estable y ser mayor de 18.</p>
-</div>
-
-<div class="obj-item">
-<h3><i class="fa-solid fa-circle-question"></i> ¿Me obligan a mostrar la cara o a cumplir un horario fijo?</h3>
-<p>Horario fijo no: elegís vos cuándo transmitir, la meta son <strong>44 horas mensuales</strong> repartidas como quieras. La cara sí: Bigo se basa en la conexión personal, y las salas de audio, video pregrabado o avatar <strong>no suman horas ni semillas</strong>.</p>
-</div>
-
-</div>
-</section>
 
 <section class="cta-cierre">
-<h2>EMPEZÁ ESTA SEMANA</h2>
+<h2>EMPIEZA ESTA SEMANA</h2>
 <p>
 La aprobación tarda entre 24 y 72 horas. Cuanto antes postules, antes empiezan a contar tus horas del mes.
 </p>
@@ -1217,6 +1133,8 @@ class="social-link">
 
 
 <footer>
+<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
+
 
 © 2026 Suits Agency |
 Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class="footer-link">Privacidad</a>
@@ -1224,33 +1142,6 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
 
 
 // ============================
-// CARRUSEL DE TIPS
-// ============================
-
-
-const slides = document.querySelectorAll('.tip-slide');
-
-let currentSlide = 0;
-
-
-if(slides.length > 0){
-
-setInterval(()=>{
-
-
-slides[currentSlide].classList.remove('active');
-
-
-currentSlide = (currentSlide + 1) % slides.length;
-
-
-slides[currentSlide].classList.add('active');
-
-
-},6500);
-
-
-}
 
 
 </script>
@@ -1379,6 +1270,25 @@ slides[currentSlide].classList.add('active');
 </script>
 
 
+<script>
+(function () {
+    const t = document.getElementById('tarjetaCred');
+    if (!t) return;
+
+    const girar = () => {
+        t.classList.toggle('girada');
+        const dorso = t.classList.contains('girada');
+        document.querySelectorAll('[data-girar]').forEach(b => {
+            b.textContent = dorso ? 'Volver' : 'Ver qué incluye';
+        });
+    };
+
+    // El botón vive fuera de la tarjeta, así que se busca en toda la página
+    document.querySelectorAll('[data-girar]').forEach(b => b.addEventListener('click', girar));
+    t.addEventListener('click', girar);
+    t.style.cursor = 'pointer';
+})();
+</script>
 </body>
 
 </html>
