@@ -38,7 +38,7 @@
         header.content-title h1 {
             font-size: 1.8rem;
             text-align: center;
-            background: linear-gradient(to bottom, #ffffff, #888888);
+            background: linear-gradient(to bottom, #ffffff, var(--gris-texto));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
@@ -190,12 +190,87 @@
 @media (min-width: 700px) {
     .mand-card { flex-basis: 48%; }
 }
+
+/* ---- Carrusel de tips (vino de la home) ---- */
+/* Carrusel de tips */
+.tips-carousel {
+    width: 92%;
+    max-width: 780px;
+    height: 210px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 1px solid var(--glass-border);
+    margin: 24px auto 40px;
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 0 25px rgba(0, 232, 255, 0.1);
+}
+
+.tip-slide {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 0 36px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.tip-slide.active { opacity: 1; z-index: 2; }
+
+.tip-slide i {
+    font-size: 2.8rem;
+    color: var(--accent-blue);
+    flex-shrink: 0;
+}
+
+.tip-slide p {
+    margin: 0;
+    color: var(--silver);
+    font-size: 1.35rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.tip-slide strong { color: #ffffff; }
+
+
+/* ---- Tips: bajaron debajo de los clips ----
+   Son consejos para alguien que YA es emisor. El visitante frio
+   necesita ver primero la prueba (los clips), no el manual. */
+.tips-section { margin: 60px auto 0; position: relative; z-index: 1; }
+
+.tips-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 0 0 6px;
+    color: rgba(224, 224, 224, .85);
+}
+
+
+/* Palabras clave dentro de cada tip.
+   Mismo criterio que los mandamientos, que ahora viven en esta
+   misma página: cian para la idea, blanco para la consecuencia.
+   Antes los tips usaban lila, pero ese lila ya lo sacamos del
+   texto corrido por cansador. */
+.tip-slide .kw { color: var(--accent-blue); font-weight: 800; }
+.tip-slide .kw.cy { color: #fff; font-weight: 700; }
+
+@media (max-width: 600px) {
+    .tips-carousel { height: 280px; }
+    .tip-slide p { font-size: 1.05rem; }
+    .tip-slide i { font-size: 2rem; }
+}
 </style>
 </head>
 <body>
     <div class="overlay-bg" id="overlay"></div>
 
-<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
 
 <header class="main-header">
 <a href="https://suitsagency.lat/" class="header-logo">
@@ -276,9 +351,51 @@
             </div>
         </div>
 
+<section class="tips-section">
+<h2 class="tips-title">CONSEJOS PARA TU PRIMER MES</h2>
+<div class="tips-carousel">
+
+<div class="tip-slide active">
+<i class="fa-solid fa-lightbulb"></i>
+<p><strong>Tip:</strong> Transmití siempre a la <span class="kw">misma hora</span>. La <span class="kw">constancia</span> hace que tu audiencia vuelva.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-comments"></i>
+<p><strong>Tip:</strong> <span class="kw">Interactúa con el chat</span> todo el tiempo. Nombrar a tu audiencia genera <span class="kw cy">fidelidad</span>.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-chart-line"></i>
+<p><strong>Tip:</strong> Revisa tus <span class="kw cy">estadísticas</span> cada semana para saber qué contenido <span class="kw">funciona mejor</span>.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-clock"></i>
+<p><strong>Tip:</strong> Empieza con <span class="kw">sesiones cortas</span> y ve subiendo la duración. Es mejor <span class="kw cy">calidad</span> que cantidad de horas.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-video"></i>
+<p><strong>Tip:</strong> Cuida el <span class="kw cy">audio y la luz</span> antes que cualquier otra cosa. La <span class="kw">calidad técnica</span> retiene más audiencia que los filtros.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-users"></i>
+<p><strong>Tip:</strong> Invita a tus <span class="kw">seguidores de otras redes</span> a tu primer live. Los primeros minutos definen el <span class="kw cy">alcance</span> del stream.</p>
+</div>
+
+<div class="tip-slide">
+<i class="fa-solid fa-gift"></i>
+<p><strong>Tip:</strong> Agradece cada <span class="kw cy">regalo</span> en vivo y nombra a quien lo envía. Es la forma más simple de generar <span class="kw">lealtad</span>.</p>
+</div>
+
+</div>
+</section>
+
         <section class="mandamientos">
             <h2>Los 10 Mandamientos del Emisor Exitoso</h2>
-            <p class="mand-sub">Deslizá para verlos todos</p>
+            <p class="mand-sub">Desliza para verlos todos</p>
 
             <div class="mand-track" id="mandTrack">
                 <article class="mand-card">
@@ -299,7 +416,7 @@
                 <article class="mand-card">
                     <span class="mand-num">04</span>
                     <h4>Interactuarás con tu audiencia</h4>
-                    <p>No solo transmitas: <span class="kw">conversá, saludá y respondé comentarios</span> para crear una <span class="kw cy">conexión real</span>.</p>
+                    <p>No solo transmitas: <span class="kw">conversa, saluda y responde comentarios</span> para crear una <span class="kw cy">conexión real</span>.</p>
                 </article>
                 <article class="mand-card">
                     <span class="mand-num">05</span>
@@ -309,12 +426,12 @@
                 <article class="mand-card">
                     <span class="mand-num">06</span>
                     <h4>Mejorarás cada día</h4>
-                    <p>Revisá <span class="kw">qué funcionó</span>, qué horarios dieron mejores resultados y qué contenido generó <span class="kw cy">más interacción</span>.</p>
+                    <p>Revisa <span class="kw">qué funcionó</span>, qué horarios dieron mejores resultados y qué contenido generó <span class="kw cy">más interacción</span>.</p>
                 </article>
                 <article class="mand-card">
                     <span class="mand-num">07</span>
                     <h4>Cumplirás tus metas de actividad</h4>
-                    <p>Organizá tus horas y tus <span class="kw">días válidos</span> con planificación para alcanzar tus <span class="kw cy">objetivos mensuales</span>.</p>
+                    <p>Organiza tus horas y tus <span class="kw">días válidos</span> con planificación para alcanzar tus <span class="kw cy">objetivos mensuales</span>.</p>
                 </article>
                 <article class="mand-card">
                     <span class="mand-num">08</span>
@@ -324,7 +441,7 @@
                 <article class="mand-card">
                     <span class="mand-num">09</span>
                     <h4>Respetarás las reglas de la plataforma</h4>
-                    <p><span class="kw">Evitá sanciones</span> cuidando tu contenido y comportamiento según las <span class="kw cy">normas de Bigo Live</span> y la agencia.</p>
+                    <p><span class="kw">Evita sanciones</span> cuidando tu contenido y comportamiento según las <span class="kw cy">normas de Bigo Live</span> y la agencia.</p>
                 </article>
                 <article class="mand-card">
                     <span class="mand-num">10</span>
@@ -343,6 +460,8 @@
         </section>
 
         <footer>
+<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
+
             &copy; 2026 SUITS AGENCY | AGENCIA OFICIAL | <a href="https://suitsagency.lat/privacidad/" class="footer-link">Privacidad</a>
 </footer>
     </div>
@@ -437,6 +556,36 @@
     track.addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(pintar, 80); });
     pintar();
 })();
+</script>
+<script>
+// CARRUSEL DE TIPS
+// ============================
+
+
+const slides = document.querySelectorAll('.tip-slide');
+
+let currentSlide = 0;
+
+
+if(slides.length > 0){
+
+setInterval(()=>{
+
+
+slides[currentSlide].classList.remove('active');
+
+
+currentSlide = (currentSlide + 1) % slides.length;
+
+
+slides[currentSlide].classList.add('active');
+
+
+},6500);
+
+
+}
+
 </script>
 </body>
 </html>
