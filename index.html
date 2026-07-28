@@ -113,7 +113,6 @@
 .cta-main {
     position:relative;
     overflow:hidden;
-    font-weight: 800;
 }
 
 /* ================================
@@ -541,7 +540,10 @@
    ================================================================ */
 .hero-accion {
     width: 100%;
-    max-width: 360px;
+    /* 340px de contenido + los 4px de padding de cada lado: la credencial,
+       el boton y los tres accesos miden exactamente lo mismo, y ese ancho
+       es el mismo --btn-ancho que usan los CTA del resto del sitio. */
+    max-width: 348px;
     margin: 26px auto 0;
     padding: 0 4px;
 }
@@ -612,14 +614,9 @@
 .dorso li i { color: var(--accent-blue); font-size: .68rem; flex-shrink: 0; }
 .dorso li b { color: #fff; font-weight: 600; }
 
-.cred-cta {
-    display: block; width: 100%; margin: 18px 0 0; padding: 15px;
-    border-radius: 50px; text-align: center; text-decoration: none;
-    border: 2px solid var(--accent-violet);
-    background: linear-gradient(90deg, var(--accent-violet), var(--violeta-brillo));
-    color: #fff; font-weight: 700; font-size: .85rem;
-    letter-spacing: 1.4px; text-transform: uppercase;
-}
+/* .cred-cta toma forma, alto y color del sistema de botones de styles.css.
+   Aca solo vive lo propio del hero: la separacion respecto de la credencial. */
+.cred-cta { margin-top: 18px; }
 .cred-girar {
     display: block; margin: 10px auto 0; background: none; border: 0; cursor: pointer;
     font-family: inherit; font-size: .7rem; letter-spacing: .6px;

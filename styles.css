@@ -226,6 +226,20 @@ header.main-header {
     align-items: center;
 }
 
+/* ================================================================
+   COLUMNA DE CONTENIDO
+   Una sola definicion para todas las paginas. El margen lateral en
+   celular es siempre el mismo, asi el contenido no "salta" al navegar.
+   Lo unico que cambia por pagina es el ancho maximo en escritorio:
+   cada una declara .container { --ancho: NNNpx; } en su propio <style>.
+   ================================================================ */
+.container {
+    width: 100%;
+    max-width: var(--ancho, 650px);
+    margin: 0 auto;
+    padding: 20px 16px;
+}
+
 .hero-section {
     display: flex;
     flex-direction: column;
@@ -258,22 +272,54 @@ header.main-header {
 .slide.active { opacity: 1; z-index: 2; }
 .slide img { width: 100%; height: 100%; object-fit: cover; }
 
-/* CTA principal: sólido en violeta (color de acción), texto blanco */
-.cta-main {
-    display: inline-block;
-    padding: 14px 40px;
-    border: 2px solid var(--accent-violet);
-    background: linear-gradient(90deg, var(--accent-violet), #c04bff);
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: 0.3s;
+/* ================================================================
+   SISTEMA DE BOTONES
+   Todos los CTA del sitio comparten alto, ancho, radio y tipografia.
+   Lo unico que cambia entre uno y otro es el color:
+     - violeta solido  = accion principal (uno solo por pagina)
+     - verde contorno  = WhatsApp, siempre secundario
+   Para cambiar la forma de TODOS los botones, se tocan las tres
+   variables de abajo y nada mas.
+   ================================================================ */
+:root {
+    --btn-radio: 50px;
+    --btn-padding: 15px 24px;
+    --btn-ancho: 340px;
 }
 
-.cta-main:hover { box-shadow: 0 0 25px rgba(158, 0, 255, .5); color: #fff; }
+.cta-main,
+.cred-cta,
+.support-cta .action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: var(--btn-ancho);
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--btn-padding);
+    border-radius: var(--btn-radio);
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    transition: .3s;
+}
+
+/* Accion principal: el unico boton lleno de cada pagina */
+.cta-main,
+.cred-cta {
+    border: 2px solid var(--accent-violet);
+    background: linear-gradient(90deg, var(--accent-violet), var(--violeta-brillo));
+    color: #fff;
+}
+
+.cta-main:hover,
+.cred-cta:hover { box-shadow: 0 0 25px rgba(158, 0, 255, .5); color: #fff; }
 
 .nav-grid {
     display: grid;
@@ -482,7 +528,8 @@ footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-s
     margin: 0 auto 26px;
 }
 
-.cta-cierre .cta-main { display: inline-block; }
+/* El CTA de cierre usa el mismo boton que el resto del sitio.
+   No lleva override de tamano: sale del sistema de botones de arriba. */
 
 /* Línea de "fricción cero" bajo el botón: mata las objeciones de costo */
 .cta-nota {
@@ -617,4 +664,4 @@ header.main-header.nav-abierta {
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border-bottom-color: transparent;
-                                                                                 }
+}
