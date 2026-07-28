@@ -150,14 +150,22 @@
 .reel-stage {
     position: relative;
     height: 440px;
-    perspective: 1400px;
     margin-bottom: 20px;
+    /* Las tarjetas de los costados se desplazan mas alla del ancho de
+       la pantalla (unos 50px por lado en un movil) y las lejanas, que
+       van invisibles, casi 180px. Sin este recorte la pagina se podia
+       arrastrar de costado. */
+    overflow: hidden;
 }
 
 .reel-track {
     position: relative;
     height: 100%;
-    transform-style: preserve-3d;
+    /* La perspectiva vive aca y NO se usa preserve-3d: un contexto 3D
+       hace que los hijos ignoren el recorte del contenedor, que es lo
+       que rompia el arreglo anterior. Las tarjetas son hijas directas,
+       asi que reciben la perspectiva igual. */
+    perspective: 1400px;
 }
 
 .reel-card {
@@ -425,7 +433,7 @@
     .reel-card { width: 210px; margin-left: -105px; }
     .reel-card[data-pos="1"]  { transform: translateX(64%)  scale(.76) rotateY(-20deg); }
     .reel-card[data-pos="-1"] { transform: translateX(-64%) scale(.76) rotateY(20deg); }
-    .reel-card[data-pos="2"], .reel-card[data-pos="-2"] { opacity: 0; pointer-events: none; }
+    .reel-card[data-pos="2"], .reel-card[data-pos="-2"] { transform: translateX(0) scale(.5); opacity: 0; pointer-events: none; }
     .reel-nombre { font-size: 1.2rem; }
 }
 
@@ -531,9 +539,14 @@
    afuera: adentro competiría con los datos y le quitaría el aire
    que hace que se lea como un objeto y no como un cartel.
    ================================================================ */
-.hero-accion { margin-top: 26px; }
+.hero-accion {
+    width: 100%;
+    max-width: 360px;
+    margin: 26px auto 0;
+    padding: 0 4px;
+}
 
-.escena { perspective: 1500px; width: 100%; max-width: 360px; margin: 0 auto; }
+.escena { perspective: 1500px; width: 100%; }
 .tarjeta {
     position: relative; width: 100%; aspect-ratio: 1.586 / 1;
     transform-style: preserve-3d;
@@ -600,7 +613,7 @@
 .dorso li b { color: #fff; font-weight: 600; }
 
 .cred-cta {
-    display: block; width: 100%; max-width: 360px; margin: 18px auto 0; padding: 15px;
+    display: block; width: 100%; margin: 18px 0 0; padding: 15px;
     border-radius: 50px; text-align: center; text-decoration: none;
     border: 2px solid var(--accent-violet);
     background: linear-gradient(90deg, var(--accent-violet), var(--violeta-brillo));
@@ -617,9 +630,10 @@
 /* ---- Los tres accesos, compactos, debajo ---- */
 .accesos {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
-    width: 100%; max-width: 360px; margin: 16px auto 0;
+    width: 100%; margin: 16px 0 0;
 }
 .accesos a {
+    min-width: 0;
     display: flex; flex-direction: column; align-items: center; gap: 6px;
     padding: 12px 4px; border-radius: 12px; text-decoration: none;
     border: 1px solid var(--glass-border); background: rgba(255, 255, 255, .03);

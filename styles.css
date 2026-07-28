@@ -1,3 +1,8 @@
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 :root {
     /* Fondo de marca y sus superficies.
        Todo negro del sitio sale de acá: si hay que ajustar el tono,
@@ -148,12 +153,11 @@ header.main-header {
 
 .header-nav {
     position: fixed;
-    top: 0; right: -100%; width: 75%; height: 100vh;
-    /* Mismo tratamiento que la tarjeta de cierre: vidrio traslucido
-       con un halo lila arriba. Se ve el contenido detras, difuminado. */
-    /* Negro de la marca (#050505) + un solo halo lila arriba a la
-       derecha. Antes el negro ya venia tenido de violeta y el halo
-       se sumaba encima: por eso el panel se leia morado. */
+    top: 0; right: 0; width: 75%; height: 100vh;
+    transform: translateX(100%);
+    visibility: hidden;
+    /* Vidrio traslúcido con un solo halo lila arriba a la derecha,
+       sobre el negro de la marca. */
     background:
         radial-gradient(85% 50% at 100% 0%, rgba(158, 0, 255, .16), transparent 70%),
         rgba(5, 5, 5, .82);
@@ -164,13 +168,13 @@ header.main-header {
     justify-content: center;
     align-items: center;
     gap: 35px;
-    transition: right 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out, visibility 0.4s;
     z-index: 10001;
     border-left: 1px solid rgba(158, 0, 255, .18);
     box-shadow: -24px 0 60px rgba(0, 0, 0, .5);
 }
 
-.header-nav.active { right: 0; }
+.header-nav.active { transform: translateX(0); visibility: visible; }
 .nav-link { text-decoration: none; color: #eee; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 15px; }
 .nav-link.active { color: var(--accent-blue); }
 
