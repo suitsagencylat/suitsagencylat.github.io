@@ -88,6 +88,17 @@
             border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 0.8rem;
         }
 
+        /* Atajo a WhatsApp arriba del FAQ: para quien no quiere leer 30 preguntas */
+        .soporte-atajo {
+            text-align: center; font-size: .85rem; color: var(--silver);
+            margin: 0 0 28px;
+        }
+        .soporte-atajo a {
+            display: inline-block; margin-top: 6px; color: #25d366; text-decoration: none;
+            border-bottom: 1px solid rgba(37, 211, 102, .35); padding-bottom: 2px;
+        }
+        .soporte-atajo a:hover { color: #fff; border-color: #fff; }
+
         .support-cta {
             margin-top: 35px; text-align: center; background: rgba(255,255,255,0.03);
             border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px 20px;
@@ -323,6 +334,13 @@
                 <li><i class="fa-solid fa-check"></i> Suits Agency no cobra comisión: recibes el 100% de lo que generas.</li>
             </ul>
         </div>
+
+        <p class="soporte-atajo">
+            ¿Prefieres preguntar directo en vez de leer?
+            <a href="https://wa.me/595982678695?text=Hola!%20Tengo%20una%20consulta%20sobre%20Suits%20Agency." target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> Escríbenos por WhatsApp
+            </a>
+        </p>
 
         <section id="faq-list">
 
@@ -611,6 +629,10 @@
                 <span><i class="fa-solid fa-check"></i> Sin costo</span>
                 <span><i class="fa-solid fa-check"></i> Sin comisiones de la agencia</span>
             </div>
+            <br>
+            <a href="https://wa.me/595982678695?text=Hola!%20Tengo%20una%20duda%20antes%20de%20postular%20a%20Suits%20Agency." class="cta-alt" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i> Prefiero preguntar antes
+            </a>
         </section>
 
         <footer>
