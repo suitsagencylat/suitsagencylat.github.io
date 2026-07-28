@@ -1,3 +1,13 @@
+/* ================================================================
+   REGLA BASE — no tocar.
+   Hace que el padding y el borde de un elemento se cuenten DENTRO
+   de su ancho. Sin esto, cualquier elemento con width:100% y padding
+   termina mas ancho que su contenedor y se desborda hacia la derecha.
+   ================================================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 html, body {
     overflow-x: hidden;
     max-width: 100%;
@@ -607,4 +617,4 @@ header.main-header.nav-abierta {
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border-bottom-color: transparent;
-}
+                                                                                 }
