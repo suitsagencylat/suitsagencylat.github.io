@@ -1,148 +1,112 @@
-# Actualización — desbordes y tamaños unificados
+# Actualización 2 — tuteo, CTA en Academia, WhatsApp en Soporte y Formspree
 
-Reemplazá estos seis archivos en el repo, respetando las carpetas.
-No se agrega ningún archivo nuevo: los seis ya existen.
+Cinco archivos, todos reemplazo de archivos que ya existen.
 
 ```
-styles.css          → raíz
-index.html          → raíz
+404.html            → raíz
 academia/index.html → carpeta academia/
 pagos/index.html    → carpeta pagos/
 registro/index.html → carpeta registro/
 soporte/index.html  → carpeta soporte/
 ```
 
-Después del push, esperá uno o dos minutos y recargá con caché limpia:
-`styles.css` suele quedar cacheado.
+`styles.css` e `index.html` **no** cambian en esta tanda. Si ya subiste
+la actualización anterior, dejalos como están.
+
+Subí los cinco en un solo commit. Si vas de a uno desde el celular,
+esperá que cada despliegue termine en verde antes del siguiente.
 
 ---
 
-## 1. Regla base: `box-sizing`
+## 1. Tuteo
 
-Al principio de `styles.css`:
+El sitio entero va en tuteo (tú), nunca en voseo. Quedaban formas
+voseantes en las etiquetas del `<head>`, que no se ven en pantalla pero
+sí aparecen en Google y en la vista previa al compartir por WhatsApp.
 
-```css
-*, *::before, *::after { box-sizing: border-box; }
-```
-
-Antes esta regla no existía. Sin ella, el padding y el borde se **suman**
-al ancho, así que cualquier elemento con `width: 100%` más padding termina
-más ancho que su contenedor y se desborda hacia la derecha.
-
-Era la causa de que el botón del hero midiera 386 px dentro de una columna
-de 352, y de que el botón violeta de la calculadora sobresaliera 26 px
-de su tarjeta.
-
-**No la borres.** Si algún día algo se ve más angosto de lo esperado,
-el problema es el padding de ese elemento, no esta regla.
-
----
-
-## 2. Sistema de botones
-
-Todos los CTA del sitio salen de un solo bloque en `styles.css`. Comparten
-ancho, alto, radio y tipografía. **Lo único que cambia entre uno y otro es
-el color.**
-
-Tres variables controlan la forma de todos a la vez:
-
-```css
-:root {
-    --btn-radio: 50px;      /* píldora */
-    --btn-padding: 15px 24px;
-    --btn-ancho: 340px;     /* ancho máximo, centrado */
-}
-```
-
-Cambiar `--btn-radio` a `8px` vuelve rectangulares todos los botones del
-sitio de una sola vez. No hay que tocar página por página.
-
-| Clase | Dónde | Color |
+| Archivo | Antes | Ahora |
 |---|---|---|
-| `.cta-main` | cierre de inicio, pagos y soporte | violeta sólido |
-| `.cred-cta` | botón del hero, bajo la credencial | violeta sólido |
-| `.support-cta .action-btn` | soporte, "Hablar con soporte" | contorno verde |
+| `academia` | Aprendé | Aprende |
+| `pagos` | Calculá | Calcula |
+| `registro` | Sumate, descargá, pedí, firmá | Súmate, descarga, pide, firma |
+| `404` | buscás, Volvé | buscas, Vuelve |
 
-### Regla de marca
+En `pagos` y `registro` el texto estaba repetido en tres etiquetas
+(`description`, `og:description` y `twitter:description`). Se corrigieron
+las tres.
 
-**Un solo botón sólido por página.** Es el CTA principal, y siempre es el
-violeta. Cualquier otro botón va en contorno.
+También el placeholder del campo Nombre en `registro`: era "Como querés
+que te llamemos", ahora "Como quieres que te llamemos".
 
-Por eso "Hablar con soporte" pasó de verde sólido a contorno verde: estaba
-compitiendo con el POSTULAR AHORA que tiene justo abajo.
-
-### Si agregás un botón nuevo
-
-Ponele una de las clases de la tabla. No le declares `padding`, `width`,
-`border-radius` ni `font-size` propios: eso rompe la unificación y es
-exactamente lo que había antes.
-
-Si necesitás una variante de color nueva, agregá solo las propiedades de
-color y sumá el selector al bloque compartido de `styles.css`.
+**Al escribir texto nuevo**, revisá siempre las tres etiquetas del
+`<head>`, no solo la primera. Es donde se escapa el voseo porque no se ve
+al mirar la página.
 
 ---
 
-## 3. Columna de contenido (`.container`)
+## 2. CTA de cierre en Academia
 
-`.container` está definido **una sola vez**, en `styles.css`:
+Academia era la única página sin salida: cero botones, cero links a
+WhatsApp. Alguien que miraba las guías y se convencía no tenía dónde
+tocar.
 
-```css
-.container {
-    width: 100%;
-    max-width: var(--ancho, 650px);
-    margin: 0 auto;
-    padding: 20px 16px;
-}
-```
+Se agregó el mismo bloque `.cta-cierre` que ya usan inicio, pagos y
+soporte, justo después de los Mandamientos y antes del pie.
 
-Cada página declara únicamente su ancho máximo de escritorio, en su
-propio `<style>`:
-
-```css
-.container { --ancho: 900px; }   /* pagos: la tabla necesita ancho */
-.container { --ancho: 650px; }   /* soporte */
-.container { --ancho: 500px; }   /* registro */
-.container { --ancho: 450px; }   /* academia */
-```
-
-Antes cada página traía su propia definición completa, con estrategias
-distintas (`width: 100%`, `90%`, `92%`, sin width). El margen lateral en
-celular saltaba entre 10 y 21 px según la página. Ahora es 16 px en todas.
-
-**No vuelvas a escribir `.container` entero en una página.** Si necesitás
-otro ancho, cambiá `--ancho` y nada más.
+No trae estilos propios: usa el sistema de botones de `styles.css`.
 
 ---
 
-## 4. Ancho del hero
+## 3. Más WhatsApp en Soporte
 
-`.hero-accion` en `index.html` tiene `max-width: 348px` — o sea, 340 px de
-contenido más 4 px de padding de cada lado.
+Soporte tenía un solo link de WhatsApp contra diez de la home, y es
+justamente la página donde se resuelven las dudas de estafa. Ahora tiene
+tres, en tres momentos distintos de la lectura:
 
-Ese 340 es el mismo `--btn-ancho` de los botones. Gracias a eso, la
-credencial, el botón POSTULAR AHORA y las tres pastillas de
-Pagos / Academia / Soporte miden exactamente lo mismo.
+1. **Arriba, antes del FAQ** (`.soporte-atajo`) — para quien no quiere
+   leer treinta preguntas y prefiere preguntar directo.
+2. **Después del FAQ** (`.support-cta`) — el que ya existía, en contorno
+   verde.
+3. **Dentro del cierre** (`.cta-alt`) — debajo del POSTULAR AHORA, como
+   alternativa para el que todavía duda.
 
-Si cambiás `--btn-ancho`, ajustá también este valor (`--btn-ancho + 8`)
-o el hero se desalinea.
+Los tres respetan la regla: **ningún botón de WhatsApp va sólido.** El
+único botón lleno de la página sigue siendo el violeta de POSTULAR AHORA.
+
+`tracking.js` mide estos clics solo: detecta la conversión por el destino
+del link, no hace falta marcar cada botón.
 
 ---
 
-## Pendientes conocidos
+## Corrección a la nota anterior
 
-Estos no están resueltos en esta actualización:
+En el LEEME de la actualización 1 puse que faltaban etiquetas `og:` en
+Academia. **Es falso**: Academia ya las tenía completas. La única página
+sin etiquetas `og:` es `404.html`, y ahí está bien que no las tenga,
+porque lleva `noindex` y nadie comparte una URL rota.
 
-1. **Formspree sin configurar.** En `registro/index.html`, la constante
-   `FORMSPREE` sigue en `PONER_ID`. El formulario valida, muestra el
-   mensaje de éxito y dispara el evento `lead_formulario` en GA4, pero
-   no envía nada. Todo lead que entre hoy se pierde.
-2. **Voseo en las meta descriptions.** El sitio es tuteo, pero quedaron
-   formas voseantes en las etiquetas `description`, `og:description` y
-   `twitter:description` de academia, pagos, registro y 404. También en
-   el placeholder del campo Nombre de `registro/index.html`.
-3. **Academia sin CTA.** Es la única página sin bloque de cierre ni link
-   a WhatsApp.
-4. **Soporte con un solo link de WhatsApp**, contra diez en la home.
-5. **Clips del carrusel** todavía son los de ejemplo.
-6. **Sin etiquetas `og:` ni `twitter:`** en academia ni en 404: al
-   compartir esas URLs no se genera tarjeta con imagen.
+---
+
+## 4. Formulario de captación activo
+
+En `registro/index.html`, la constante `FORMSPREE` ya tiene el ID real.
+Los envíos llegan a `suitsagencylat@gmail.com`.
+
+Un envío exitoso dispara el evento `lead_formulario` en GA4 y `Lead` en
+el píxel de Meta.
+
+**Límites del plan gratis:** 50 envíos por mes, historial de 30 días.
+Conviene exportar los contactos a una planilla propia cada tres o cuatro
+semanas, antes de que se borren. Si se llena el cupo mensual, Formspree
+deja de aceptar envíos hasta el mes siguiente.
+
+Para cambiar de casilla o de formulario, se crea uno nuevo en formspree.io
+y se reemplaza el ID de esa línea. Si alguna vez vuelve a decir `PONER_ID`,
+el formulario valida y muestra el mensaje de éxito pero no envía nada.
+
+---
+
+## Pendientes que siguen abiertos
+
+**Clips del carrusel.** Siguen siendo los de ejemplo. Van grabaciones de
+emisores reales en vivo, en momentos emocionantes.
