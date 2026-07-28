@@ -41,6 +41,108 @@ Lo que se repite en varias vive en `styles.css`.
 
 ---
 
+## Reglas de maquetación
+
+Tres reglas que viven en `styles.css` y valen para todo el sitio. Si las
+rompés, vuelven los desbordes y los tamaños desparejos.
+
+### 1. `box-sizing` global
+
+```css
+*, *::before, *::after { box-sizing: border-box; }
+```
+
+Está en la primera línea de `styles.css`. Hace que el padding y el borde se
+cuenten **dentro** del ancho de un elemento.
+
+Sin esta regla, cualquier elemento con `width: 100%` más padding termina más
+ancho que su contenedor y se desborda hacia la derecha. Era lo que hacía que
+el botón del hero midiera 386 px dentro de una columna de 352.
+
+**No la borres.** Si algo se ve más angosto de lo esperado, el problema es el
+padding de ese elemento, no esta regla.
+
+### 2. Un solo sistema de botones
+
+Todos los CTA del sitio salen de un mismo bloque en `styles.css`. Comparten
+ancho, alto, radio y tipografía. **Lo único que cambia entre uno y otro es el
+color.**
+
+```css
+:root {
+    --btn-radio: 50px;        /* píldora */
+    --btn-padding: 15px 24px;
+    --btn-ancho: 340px;       /* ancho máximo, centrado */
+}
+```
+
+Cambiar `--btn-radio` a `8px` vuelve rectangulares **todos** los botones del
+sitio de una sola vez. No hay que tocar página por página.
+
+| Clase | Dónde | Color |
+|---|---|---|
+| `.cta-main` | cierre de inicio, academia, pagos y soporte | violeta sólido |
+| `.cred-cta` | botón del hero, bajo la credencial | violeta sólido |
+| `.support-cta .action-btn` | soporte, "Hablar con soporte" | contorno verde |
+
+Si agregás un botón nuevo, ponele una de esas clases y **no le declares
+`padding`, `width`, `border-radius` ni `font-size` propios**. Eso rompe la
+unificación y es exactamente lo que había antes. Para una variante de color
+nueva, agregá solo las propiedades de color y sumá el selector al bloque
+compartido.
+
+`.hero-accion` en `index.html` tiene `max-width: 348px`, o sea `--btn-ancho`
+más los 4 px de padding de cada lado. Gracias a eso la credencial, el botón y
+las tres pastillas del hero miden exactamente lo mismo. **Si cambiás
+`--btn-ancho`, ajustá también ese valor** o el hero se desalinea.
+
+### 3. La columna de contenido se define una sola vez
+
+```css
+.container {
+    width: 100%;
+    max-width: var(--ancho, 650px);
+    margin: 0 auto;
+    padding: 20px 16px;
+}
+```
+
+Cada página declara únicamente su ancho máximo de escritorio, en su propio
+`<style>`:
+
+| Página | Ancho |
+|---|---|
+| Pagos | `--ancho: 900px` (la tabla necesita espacio) |
+| Soporte | `--ancho: 650px` |
+| Registro | `--ancho: 500px` |
+| Academia | `--ancho: 450px` |
+
+El margen lateral en celular es 16 px en todas, así el contenido no salta al
+navegar. **No vuelvas a escribir `.container` entero en una página**: si
+necesitás otro ancho, cambiá `--ancho` y nada más.
+
+---
+
+## Cómo se escribe
+
+**El sitio entero va en tuteo (tú), nunca en voseo.** "Puedes", "tienes",
+"escríbenos".
+
+Al escribir texto nuevo, revisá también las etiquetas del `<head>`:
+`description`, `og:description` y `twitter:description` llevan el mismo texto
+repetido tres veces. Es donde se escapa el voseo, porque no se ve al mirar la
+página pero sí aparece en Google y en la vista previa al compartir por
+WhatsApp.
+
+Otras reglas de vocabulario:
+
+- La **meta** son las semillas. Las **horas** son un requisito, nunca una meta.
+- Se dice "meta mínima", no "meta más baja".
+- No se usa la palabra "nivel" en textos visibles: confunde.
+- En el hero no se dice "vía", se dice "formas de cobrar".
+
+---
+
 ## Identidad visual
 
 | Color | Hex | Uso |
@@ -82,9 +184,14 @@ que se ven a 100px.
 |---|---|---|
 | Botón flotante de WhatsApp | `include.js` (`botonWhatsapp`) | Las 6 páginas |
 | Bloque anti-objeción "¿Esto es real?" | `index.html` | Inicio |
-| CTA de cierre (`.cta-cierre`) | HTML de cada página | Inicio, Pagos, Soporte |
-| Línea de fricción cero (`.cta-nota`) | HTML de cada página | Inicio, Pagos, Registro, Soporte |
+| CTA de cierre (`.cta-cierre`) | HTML de cada página | Inicio, Academia, Pagos, Soporte |
+| Línea de fricción cero (`.cta-nota`) | HTML de cada página | Inicio, Academia, Pagos, Registro, Soporte |
+| Link secundario a WhatsApp (`.cta-alt`) | HTML de cada página | Inicio, Academia, Soporte |
+| Atajo a WhatsApp arriba del FAQ (`.soporte-atajo`) | `soporte/index.html` | Soporte |
 | Estilos de todo lo anterior | `styles.css` (bloque final) | Compartido |
+
+**Ningún botón de WhatsApp va sólido.** Siempre contorno o texto: el único
+botón lleno de cada página es el violeta del CTA principal.
 
 **Para cambiar el número de WhatsApp** hay que tocarlo en `include.js` (constante
 `WHATSAPP_NUM`) **y** en los links que están escritos dentro del HTML.
@@ -97,14 +204,28 @@ detecta la conversión por el destino del link, no hace falta marcar cada botón
 
 ## Formulario de captación
 
-Vive en `/registro/`. Los envíos los procesa **Formspree** y te llegan por email.
+Vive en `/registro/`. Los envíos los procesa **Formspree** y llegan por email a
+`suitsagencylat@gmail.com`.
 
-**Para activarlo:** creá un formulario gratis en formspree.io, copiá el ID que te dan
-y pegalo en `registro/index.html`, en la constante `FORMSPREE` del script del final.
-Mientras diga `PONER_ID`, el formulario valida y muestra el mensaje de éxito pero no
-envía nada — sirve para probar el diseño.
+**Está activo.** La constante `FORMSPREE`, en el script del final de
+`registro/index.html`, ya tiene el ID real.
 
-El plan gratis acepta 50 envíos por mes y guarda el historial 30 días. Conviene
-exportar los contactos a una planilla propia antes de que se borren.
+El plan gratis acepta **50 envíos por mes** y guarda el historial **30 días**.
+Conviene exportar los contactos a una planilla propia cada tres o cuatro
+semanas, antes de que se borren. Si se llena el cupo mensual, Formspree deja
+de aceptar envíos hasta el mes siguiente.
+
+Para cambiar de casilla o de formulario, se crea uno nuevo en formspree.io y se
+reemplaza el ID de esa línea. Si alguna vez vuelve a decir `PONER_ID`, el
+formulario valida y muestra el mensaje de éxito pero **no envía nada** — sirve
+para probar el diseño sin gastar el cupo.
 
 El envío exitoso dispara el evento `lead_formulario` (GA4) / `Lead` (Meta).
+
+---
+
+## Pendiente
+
+**Clips del carrusel** (`clips/`): siguen siendo los de ejemplo. Van
+grabaciones de emisores reales en vivo, en momentos emocionantes —
+regalos, PK, salas llenas.
