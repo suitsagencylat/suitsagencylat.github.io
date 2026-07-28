@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remuneración Oficial | Suits Agency</title>
-    <meta name="description" content="Calculá tu remuneración estimada como emisor de Bigo Live con Suits Agency y consultá la tabla oficial completa de pagos en tu moneda local.">
+    <meta name="description" content="Calculá tu remuneración estimada como emisor de Bigo Live con Suits Agency y consulta la tabla oficial completa de pagos en tu moneda local.">
     <link rel="canonical" href="https://suitsagency.lat/pagos/">
 
     <!-- Open Graph (WhatsApp, Instagram, Facebook) -->
     <meta property="og:title" content="Tabla de Remuneración | Suits Agency">
-    <meta property="og:description" content="Calculá tu remuneración estimada como emisor de Bigo Live y consultá la tabla oficial completa de pagos, en tu moneda local.">
+    <meta property="og:description" content="Calculá tu remuneración estimada como emisor de Bigo Live y consulta la tabla oficial completa de pagos, en tu moneda local.">
     <meta property="og:image" content="https://suitsagency.lat/og-image.png">
     <meta property="og:url" content="https://suitsagency.lat/pagos/">
     <meta property="og:type" content="website">
@@ -28,10 +28,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://suitsagency.lat/styles.css">
 
     <style>
-        :root { --fuchsia: #ff00ff; }
 
         .container { width: 100%; max-width: 900px; padding: 20px 10px; box-sizing: border-box; }
 
@@ -90,7 +90,7 @@
         .currency-select { position: relative; }
         .currency-options {
             display: none; position: absolute; top: calc(100% + 4px); left: 0; right: 0;
-            background: #0d0d0d; border: 1px solid var(--glass-border); border-radius: 8px;
+            background: var(--sup-tabla); border: 1px solid var(--glass-border); border-radius: 8px;
             max-height: 220px; overflow-y: auto; z-index: 50; box-shadow: 0 10px 25px rgba(0,0,0,0.6);
         }
         .currency-options.open { display: block; }
@@ -100,7 +100,7 @@
 
         .calc-btn {
             width: 100%; padding: 13px; border: none; border-radius: 8px;
-            background: linear-gradient(90deg, var(--accent-violet), #c04bff);
+            background: linear-gradient(90deg, var(--accent-violet), var(--violeta-brillo));
             color: #fff; font-weight: bold; font-size: 0.85rem; text-transform: uppercase;
             letter-spacing: 1px; cursor: pointer; transition: 0.3s; margin-top: 4px;
         }
@@ -108,14 +108,9 @@
         .calc-btn:disabled { opacity: 0.6; cursor: default; }
 
         .calc-result { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--glass-border); }
-        .calc-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--silver); padding: 6px 0; }
-        .calc-row span:last-child { color: #fff; font-weight: 600; text-align: right; }
-        .calc-row.calc-total { margin-top: 6px; padding-top: 12px; border-top: 1px dashed var(--glass-border); }
-        .calc-row.calc-total span:last-child { color: var(--fuchsia); font-size: 1.1rem; font-weight: bold; text-shadow: 0 0 8px rgba(255,0,255,0.2); }
-        .calc-row.calc-converted span:last-child { color: var(--accent-blue); font-size: 1.05rem; }
         .calc-note { margin-top: 12px; font-size: 0.7rem; color: rgba(255,255,255,0.4); line-height: 1.4; }
         .calc-warning {
-            margin-top: 14px; background: rgba(255,80,80,0.08); border-left: 2px solid #ff5050;
+            margin-top: 14px; background: rgba(255,80,80,0.08); border-left: 2px solid var(--rojo-error);
             padding: 10px 12px; border-radius: 6px; font-size: 0.78rem; color: var(--silver);
         }
         .calc-badge {
@@ -155,7 +150,7 @@
             padding: 9px 15px; border-radius: 12px;
             border: 1px solid rgba(158, 0, 255, .4);
             background: rgba(158, 0, 255, .1);
-            color: #c98bff;
+            color: var(--violeta-claro);
             font-size: .58rem; text-transform: uppercase; letter-spacing: 2px;
         }
         .sello-horas b { display: block; font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 1px; color: #fff; }
@@ -195,9 +190,9 @@
         /* Primera columna: la meta, siempre visible al deslizar */
         #paymentTable th:first-child, #paymentTable td:first-child {
             position: sticky; left: 0; z-index: 2;
-            background: #0a0a0c; font-weight: 700; color: #fff;
+            background: var(--sup-base); font-weight: 700; color: #fff;
         }
-        #paymentTable th:first-child { z-index: 3; background: #08181b; }
+        #paymentTable th:first-child { z-index: 3; background: var(--sup-cian); }
 
         /* La columna del "+" es el argumento de las dos vias hecho simbolo */
         .col-mas { width: 22px; color: var(--accent-violet) !important; background: transparent !important; }
@@ -207,10 +202,10 @@
 
         #paymentTable tbody tr { transition: background .2s; }
         #paymentTable tbody tr:hover { background: rgba(255, 255, 255, .025); }
-        #paymentTable tbody tr:hover td:first-child { background: #101014; }
+        #paymentTable tbody tr:hover td:first-child { background: var(--sup-elevada); }
 
         #paymentTable tr.row-match td { background: rgba(0, 232, 255, .09); }
-        #paymentTable tr.row-match td:first-child { background: #06222a; color: var(--accent-blue); }
+        #paymentTable tr.row-match td:first-child { background: var(--sup-cian-fuerte); color: var(--accent-blue); }
         #paymentTable tr.oculto { display: none; }
 
         .ver-mas {
@@ -269,7 +264,7 @@
         .escala li:last-child { border-bottom: 0; }
         .escala span { font-weight: 700; }
         .escala .e-ok  { color: var(--accent-blue); }
-        .escala .e-med { color: #c98bff; }
+        .escala .e-med { color: var(--violeta-claro); }
         .escala .e-no  { color: rgba(255, 255, 255, .4); }
 
         /* Porcentajes del primer mes */
@@ -297,7 +292,7 @@
             background: rgba(158, 0, 255, .1); border: 1px solid rgba(158, 0, 255, .3);
             font-size: .84rem; color: var(--silver); opacity: 1;
         }
-        .bloque .aviso i { color: #c98bff; margin-right: 6px; }
+        .bloque .aviso i { color: var(--violeta-claro); margin-right: 6px; }
 
         @media (max-width: 430px) {
             .porcentajes { flex-wrap: wrap; }
@@ -340,12 +335,181 @@
         @media (max-width: 380px) {
             .metodos li { font-size: .68rem; padding: 8px 3px; }
         }
+
+        /* ================================================
+           EL APARATO — calculadora fisica con impresora
+           ================================================ */
+        .aparato {
+            background: linear-gradient(180deg, var(--sup-chasis-alto), var(--sup-chasis));
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 20px 20px 8px 8px;
+            padding: 20px 16px 0;
+            box-shadow: 0 26px 60px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.07);
+            text-align: left;
+        }
+        .ap-cab { margin-bottom: 16px; }
+        .ap-cab h3 { margin: 0 0 4px; font-size: 1.05rem; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .ap-cab h3 i { color: var(--accent-blue); }
+
+        /* visor */
+        .visor {
+            background: var(--sup-hundida); border: 1px solid rgba(0,232,255,.2); border-radius: 10px;
+            padding: 12px 15px; margin-bottom: 15px;
+            box-shadow: inset 0 0 24px rgba(0,232,255,.09);
+        }
+        .campo {
+            display: flex; justify-content: space-between; align-items: baseline;
+            width: 100%; padding: 9px 0; cursor: pointer; text-align: left;
+            background: none; border: 0; border-bottom: 1px solid rgba(255,255,255,.06);
+            font-family: inherit; color: inherit;
+        }
+        .campo:last-of-type { border-bottom: 0; }
+        .campo .et { font-size: .56rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.45); }
+        .campo .vl {
+            font-family: "Roboto Mono", ui-monospace, monospace; font-size: 1.45rem; font-weight: 700;
+            letter-spacing: -.5px; color: rgba(255,255,255,.32);
+        }
+        .campo.activo .et { color: var(--accent-blue); }
+        .campo.activo .vl { color: var(--accent-blue); text-shadow: 0 0 14px rgba(0,232,255,.5); }
+        .campo.activo .vl::after { content: "_"; animation: cursorParpadeo 1.1s steps(1) infinite; }
+        @keyframes cursorParpadeo { 50% { opacity: 0; } }
+
+        .tope {
+            margin: 8px 0 0; font-size: .68rem; line-height: 1.4;
+            color: var(--violeta-claro); opacity: 0; max-height: 0; overflow: hidden;
+            transition: opacity .25s, max-height .25s;
+        }
+        .tope.visible { opacity: 1; max-height: 40px; }
+
+        /* teclado */
+        .teclado { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+        .tecla {
+            aspect-ratio: 1 / .78; border-radius: 11px; cursor: pointer;
+            border: 1px solid rgba(255,255,255,.09);
+            background: linear-gradient(180deg, var(--sup-tecla), var(--sup-tecla-baja));
+            color: var(--silver);
+            font-family: "Roboto Mono", ui-monospace, monospace; font-size: 1.1rem; font-weight: 500;
+            box-shadow: 0 3px 0 rgba(0,0,0,.5);
+            transition: transform .06s, box-shadow .06s;
+        }
+        .tecla:active { transform: translateY(3px); box-shadow: 0 0 0 rgba(0,0,0,.5); }
+        .tecla:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+        .tecla.util { font-size: .7rem; letter-spacing: 1px; color: rgba(255,255,255,.5); }
+        .tecla.borrar { color: var(--violeta-claro); }
+
+        .aparato .calc-btn { width: 100%; margin-bottom: 18px; }
+
+        /* ranura de impresion */
+        .ranura {
+            height: 16px; margin: 0 -16px; position: relative;
+            background: linear-gradient(180deg, #000, var(--sup-ranura));
+            box-shadow: inset 0 5px 9px rgba(0,0,0,.95);
+        }
+        .ranura::after {
+            content: ""; position: absolute; left: 50%; top: 5px; transform: translateX(-50%);
+            width: 78%; height: 3px; border-radius: 2px; background: #000;
+        }
+
+        /* ================================================
+           EL RECIBO que sale de la ranura
+           ================================================ */
+        /* La salida colapsa su alto junto con el papel, si no queda
+           un hueco vacio cuando se limpia la calculadora. */
+        .salida {
+            display: grid; grid-template-rows: 0fr;
+            overflow: hidden; padding: 0 6px;
+            transition: grid-template-rows 2.1s cubic-bezier(.32,.72,.28,1);
+        }
+        .salida > * { min-height: 0; }
+        .salida.abierta { grid-template-rows: 1fr; }
+        .recibo {
+            position: relative; background: var(--sup-papel);
+            border: 1px solid rgba(255,255,255,.09); border-top: 0;
+            padding: 22px 18px 26px; text-align: left;
+            font-family: "Roboto Mono", ui-monospace, monospace;
+            transform: translateY(-100%); opacity: 0;
+            transition: transform 2.1s cubic-bezier(.32,.72,.28,1), opacity .5s;
+        }
+        .recibo.fuera { transform: translateY(0); opacity: 1; }
+        .recibo::after {
+            content: ""; position: absolute; left: -1px; right: -1px; bottom: -10px; height: 11px;
+            background: radial-gradient(circle at 6px 0, transparent 6px, var(--sup-papel) 6px) 0 0/12px 11px repeat-x;
+        }
+        .rec-cab {
+            display: flex; justify-content: space-between; align-items: baseline;
+            padding-bottom: 12px; border-bottom: 1px dashed rgba(255,255,255,.18);
+        }
+        .rec-cab b { font-size: .6rem; letter-spacing: 1.8px; text-transform: uppercase; color: rgba(255,255,255,.45); }
+        .rec-cab span { font-size: .58rem; color: rgba(255,255,255,.3); }
+        .rec-linea {
+            display: flex; justify-content: space-between; gap: 12px;
+            padding: 11px 0; font-size: .75rem;
+            border-bottom: 1px dashed rgba(255,255,255,.1);
+        }
+        .rec-linea .et { color: rgba(255,255,255,.45); }
+        .rec-linea .vl { font-weight: 500; color: #fff; white-space: nowrap; }
+        .rec-linea.cian .vl { color: var(--accent-blue); }
+        .rec-total { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0 2px; }
+        .rec-total .et { font-size: .6rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.45); }
+        .rec-total .vl { font-size: 1.9rem; font-weight: 700; color: var(--accent-blue); letter-spacing: -1px; }
+
+        .sello-fila { padding: 4px 0 2px; }
+        .sello {
+            display: inline-block; transform: rotate(-7deg);
+            padding: 6px 14px; border: 2px solid var(--violeta-claro); border-radius: 5px;
+            color: var(--violeta-claro); font-size: .66rem; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase;
+        }
+        .sello.parcial { border-color: var(--accent-blue); color: var(--accent-blue); }
+        .sello.nulo { border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.33); transform: rotate(-4deg); }
+
+        /* El motivo: por qué cobras lo que cobras */
+        .motivo {
+            margin: 16px 0 0; padding: 12px 14px; border-radius: 9px;
+            font-family: var(--font-body, Inter, sans-serif);
+            font-size: .78rem; line-height: 1.6;
+            border-left: 3px solid rgba(255,255,255,.2);
+            background: rgba(255,255,255,.03); color: rgba(255,255,255,.7);
+        }
+        .motivo.bueno { border-left-color: var(--violeta-claro); background: rgba(158,0,255,.08); }
+        .motivo.medio { border-left-color: var(--accent-blue); background: rgba(0,232,255,.07); }
+        .motivo.malo  { border-left-color: rgba(255,255,255,.25); }
+
+        .rec-pie {
+            margin: 16px 0 0; padding-top: 12px;
+            border-top: 1px dashed rgba(255,255,255,.18);
+            font-size: .58rem; line-height: 1.7; color: rgba(255,255,255,.4);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .recibo, .salida { transition: none; }
+            .campo.activo .vl::after { animation: none; }
+        }
+
+        /* Consejos de "cuánto te faltó": la parte que educa */
+        .cerca {
+            display: flex; gap: 10px; align-items: flex-start;
+            margin-top: 10px; padding: 12px 14px; border-radius: 9px;
+            font-family: var(--font-body, Inter, sans-serif);
+            font-size: .78rem; line-height: 1.6;
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.08);
+            color: rgba(255,255,255,.7);
+        }
+        .cerca i { color: rgba(255,255,255,.4); font-size: .82rem; margin-top: 3px; }
+        .cerca b { color: #fff; font-weight: 700; }
+        .cerca.urgente {
+            background: rgba(0,232,255,.08);
+            border-color: rgba(0,232,255,.35);
+            color: rgba(255,255,255,.85);
+        }
+        .cerca.urgente i { color: var(--accent-blue); }
+        .cerca.urgente b { color: var(--accent-blue); }
 </style>
 </head>
 <body>
     <div class="overlay-bg" id="overlay"></div>
 
-<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
 
 <header class="main-header">
 <a href="https://suitsagency.lat/" class="header-logo">
@@ -377,23 +541,55 @@
             <header class="pagos-gancho">
                 <h1>¿Cuánto se gana en Bigo&nbsp;Live?</h1>
                 <p>
-                    Depende de vos, y acá están los números para saberlo.
-                    Poné tus horas y tus semillas en la calculadora
-                    y mirá cuánto sería tu mes.
+                    Depende de ti, y acá están los números para saberlo.
+                    Pon tus horas y tus semillas en la calculadora
+                    y mira cuánto sería tu mes.
                 </p>
             </header>
 
-            <div class="calc-card">
-                <h3><i class="fa-solid fa-calculator"></i> Calculadora de Remuneración</h3>
-                <p class="calc-sub">Estimá cuánto podrías cobrar este mes y convertilo a tu moneda.</p>
+            <div class="aparato">
 
-                <div class="calc-field"><label for="calcSemillas">Semillas acumuladas este mes</label>
-                    <input type="number" id="calcSemillas" min="0" step="500" placeholder="Ej: 25000">
+                <div class="ap-cab">
+                    <h3><i class="fa-solid fa-calculator"></i> Calculadora de Remuneración</h3>
+                    <p class="calc-sub">Carga tus semillas y tus horas, y mira cómo queda tu mes.</p>
                 </div>
 
-                <div class="calc-field">
-                    <label for="calcHoras">Horas transmitidas este mes</label>
-                    <input type="number" id="calcHoras" min="0" max="744" step="0.1" placeholder="Ej: 44">
+                <div class="visor">
+                    <button class="campo activo" id="campoSemillas" type="button">
+                        <span class="et">Semillas del mes</span>
+                        <span class="vl" id="verSemillas">0</span>
+                    </button>
+                    <button class="campo" id="campoHoras" type="button">
+                        <span class="et">Horas transmitidas</span>
+                        <span class="vl" id="verHoras">0</span>
+                    </button>
+                    <p class="tope" id="avisoTope"></p>
+                </div>
+
+                <!-- El script principal sigue leyendo estos campos -->
+                <input type="hidden" id="calcSemillas" value="">
+                <input type="hidden" id="calcHoras" value="">
+
+                <div class="teclado">
+                    <button class="tecla" type="button" data-n="7">7</button>
+                    <button class="tecla" type="button" data-n="8">8</button>
+                    <button class="tecla" type="button" data-n="9">9</button>
+                    <button class="tecla util borrar" type="button" data-accion="borrar">BORRAR</button>
+
+                    <button class="tecla" type="button" data-n="4">4</button>
+                    <button class="tecla" type="button" data-n="5">5</button>
+                    <button class="tecla" type="button" data-n="6">6</button>
+                    <button class="tecla util" type="button" data-accion="limpiar">C</button>
+
+                    <button class="tecla" type="button" data-n="1">1</button>
+                    <button class="tecla" type="button" data-n="2">2</button>
+                    <button class="tecla" type="button" data-n="3">3</button>
+                    <button class="tecla util" type="button" data-n="00">00</button>
+
+                    <button class="tecla" type="button" data-n="0">0</button>
+                    <button class="tecla util" type="button" data-n="000">000</button>
+                    <button class="tecla util" type="button" data-accion="cambiar">CAMBIAR</button>
+                    <button class="tecla util" type="button" data-accion="ejemplo">EJEMPLO</button>
                 </div>
 
                 <label class="calc-toggle" for="calcPrimerMes">
@@ -410,18 +606,47 @@
                     <div id="calcMonedaOptions" class="currency-options"></div>
                 </div>
 
-                <button id="calcBtn" class="calc-btn">Calcular remuneración</button>
+                <button id="calcBtn" class="calc-btn">Ver resultado</button>
 
-                <div id="calcResult" class="calc-result" style="display:none;">
-                    <div class="calc-row" id="calcNivelRow" style="display:none;"><span>Meta alcanzada</span><span id="calcNivel">—</span></div>
-                    <div class="calc-row"><span>Monedero</span><span id="calcMonedero">$0</span></div>
-                    <p class="calc-note" style="margin-top:-6px;">Estimado según tus semillas ÷ 210. Tu monedero real puede variar: solo las semillas de usuarios cuentan para la meta, y podés tener semillas de eventos o haber gastado parte de las tuyas.</p>
-                    <div class="calc-row"><span>Remuneración</span><span id="calcRemuneracion">$0</span></div>
-                    <div class="calc-row calc-total"><span>Ganancia total (USD)</span><span id="calcTotal">$0</span></div>
-                    <div class="calc-row calc-converted" id="calcConvertedRow" style="display:none;"><span id="calcConvertedLabel">Equivalente</span><span id="calcConvertido">—</span></div>
+                <div class="ranura"></div>
+            </div>
+
+            <div class="salida">
+                <div id="calcResult" class="recibo">
+
+                    <div class="rec-cab">
+                        <b>Suits Agency</b>
+                        <span>estimación de tu mes</span>
+                    </div>
+
+                    <div class="rec-linea"><span class="et">Horas transmitidas</span><span class="vl" id="calcHorasOut">0 / 44</span></div>
+                    <div class="rec-linea" id="calcNivelRow" style="display:none;"><span class="et">Meta alcanzada</span><span class="vl" id="calcNivel">—</span></div>
+                    <div class="rec-linea cian"><span class="et">Monedero (regalos)</span><span class="vl" id="calcMonedero">$0</span></div>
+                    <div class="rec-linea cian"><span class="et">Remuneración por meta</span><span class="vl" id="calcRemuneracion">$0</span></div>
+
+                    <div class="rec-total">
+                        <span class="et">Total del mes</span>
+                        <span class="vl" id="calcTotal">$0</span>
+                    </div>
+
+                    <div class="rec-linea" id="calcConvertedRow" style="display:none;"><span class="et" id="calcConvertedLabel">Equivalente</span><span class="vl" id="calcConvertido">—</span></div>
+
+                    <div class="sello-fila">
+                        <span class="sello" id="calcSello">Pagado</span>
+                    </div>
+
+                    <p class="motivo" id="calcMotivo"></p>
+
                     <div id="calcPrimerMesBadge" style="display:none;"><span class="calc-badge"><i class="fa-solid fa-seedling"></i> Pago proporcional (primer mes)</span></div>
                     <div id="calcWarning"></div>
-                    <p class="calc-note" id="calcNote">Cálculo estimado según la tabla oficial vigente. La remuneración final la valida Bigo Live.</p>
+
+                    <div id="calcCerca"></div>
+
+                    <p class="rec-pie">
+                        Bigo paga directo al emisor; la agencia no retiene comisión.
+                        <span id="calcNote">Cálculo estimado según la tabla oficial vigente.</span>
+                    </p>
+
                     <a href="https://suitsagency.lat/registro/" class="calc-cta"><i class="fa-solid fa-rocket"></i> Quiero empezar a cobrar esto</a>
                 </div>
             </div>
@@ -462,29 +687,29 @@
 
             <article class="bloque">
                 <h3><i class="fa-solid fa-list-check"></i> Para cobrar se deben cumplir dos requisitos</h3>
-                <p>Cada mes necesitás tu meta de semillas <strong>y</strong> las horas válidas de transmisión.</p>
+                <p>Tu <strong>meta</strong> son las semillas. Las <strong>horas</strong> son el requisito que habilita ese pago. Hacen falta las dos.</p>
                 <ul class="escala">
-                    <li><span class="e-ok">Con 44 horas o más</span> cobrás la remuneración completa</li>
-                    <li><span class="e-med">Con 20 a 43 horas</span> cobrás la mitad</li>
+                    <li><span class="e-ok">Con 44 horas o más</span> cobras la remuneración completa</li>
+                    <li><span class="e-med">Con 20 a 43 horas</span> cobras la mitad</li>
                     <li><span class="e-no">Con menos de 20 horas</span> no hay remuneración ese mes</li>
                 </ul>
-                <p class="ej">Con 30.000 semillas y 43 horas cobrás la mitad. Con esas mismas semillas y 19 horas, no cobrás.</p>
-                <p class="buena">Las semillas de tu monedero son tuyas igual: podés retirarlas aunque no llegues a las horas.</p>
-                <p class="clave"><i class="fa-solid fa-clock"></i> <strong>Las horas no se recuperan.</strong> Las semillas pueden llegar en cualquier momento del mes: un solo regalo grande te acerca a la meta. Una hora que no transmitiste, en cambio, no la recuperás nunca. Es la parte que depende solo de vos, y por eso es la que hay que cuidar.</p>
+                <p class="ej">Con 30.000 semillas y 43 horas cobras la mitad. Con esas mismas semillas y 19 horas, no cobras.</p>
+                <p class="buena">Las semillas de tu monedero son tuyas igual: puedes retirarlas aunque no llegues a las horas.</p>
+                <p class="clave"><i class="fa-solid fa-clock"></i> <strong>Las horas no se recuperan.</strong> Las semillas pueden llegar en cualquier momento del mes: un solo regalo grande te acerca a la meta. Una hora que no transmitiste, en cambio, no la recuperas nunca. Es la parte que depende solo de ti, y por eso es la que hay que cuidar.</p>
             </article>
 
             <article class="bloque destacado">
-                <h3><i class="fa-solid fa-seedling"></i> ¿Recién empezás? Tu primer mes es distinto</h3>
-                <p>Si entrás a mitad de mes y no llegás a las 44 horas, no te preocupes: Bigo te paga <strong>proporcional</strong>.</p>
+                <h3><i class="fa-solid fa-seedling"></i> ¿Recién empiezas? Tu primer mes es distinto</h3>
+                <p>Si entras a mitad de mes y no llegas a las 44 horas, no te preocupes: Bigo te paga <strong>proporcional</strong>.</p>
 
-                <p class="sub"><strong>¿Qué quiere decir proporcional?</strong> Que cobrás el mismo porcentaje de horas que hiciste. Las 44 horas son el 100% del mes: con 22 horas cobrás el 50%, con 29 horas el 66% y con 36 horas el 82%.</p>
+                <p class="sub"><strong>¿Qué quiere decir proporcional?</strong> Que cobras el mismo porcentaje de horas que hiciste. Las 44 horas son el 100% del mes: con 22 horas cobras el 50%, con 29 horas el 66% y con 36 horas el 82%.</p>
 
-                <p class="ej">Si tu meta paga 74 dólares y hiciste 22 horas, cobrás 37.</p>
-                <p class="buena">Podés usar la calculadora de arriba: marcá <strong>"Es mi primer mes como emisor"</strong> y te calcula el porcentaje sola.</p>
+                <p class="ej">Si tu meta paga 74 dólares y hiciste 22 horas, cobras 37.</p>
+                <p class="buena">Puedes usar la calculadora de arriba: marca <strong>"Es mi primer mes como emisor"</strong> y te calcula el porcentaje sola.</p>
             </article>
 
             <article class="bloque">
-                <h3><i class="fa-solid fa-wallet"></i> Dónde cobrás</h3>
+                <h3><i class="fa-solid fa-wallet"></i> Dónde cobras</h3>
                 <p>Tu dinero sale de Bigo Live hacia el medio que elijas:</p>
 
                 <ul class="metodos">
@@ -495,7 +720,7 @@
                     <li class="metodo-extra">Cualquier billetera de criptomonedas</li>
                 </ul>
 
-                <p class="buena">Los pasos exactos para hacer tu retiro te los damos directo cuando firmás con la agencia.</p>
+                <p class="buena">Los pasos exactos para hacer tu retiro te los damos directo cuando firmas con la agencia.</p>
             </article>
 
         </section>
@@ -503,7 +728,7 @@
         <section class="cta-cierre">
             <h2>ESOS NÚMEROS SON TUYOS</h2>
             <p>
-                La tabla es la oficial de Bigo Live y te paga a vos directo.
+                La tabla es la oficial de Bigo Live y te paga a ti directo.
                 Suits Agency no toca un centavo de eso.
             </p>
             <a href="https://suitsagency.lat/registro/" class="cta-main">QUIERO EMPEZAR</a>
@@ -518,6 +743,8 @@
         </section>
 
         <footer>
+<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
+
             &copy; 2026 Suits Agency | Datos oficiales de remuneración Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class="footer-link">Privacidad</a>
 </footer>
     </div>
@@ -580,7 +807,7 @@
 
         // ============================================
         // Lógica de tramos: SISTEMA DE ESCALÓN, no interpolado.
-        // Si no llegás exacto a la meta del nivel, no cobrás ese nivel:
+        // Si no llegas exacto a la meta del nivel, no cobras ese nivel:
         // se paga según el nivel más alto que sí alcanzaste.
         // ============================================
         function calcularTramo(semillas) {
@@ -592,7 +819,9 @@
                 if (semillas >= t.semillas) tramo = t; else break;
             }
             const masAllaDelMaximo = semillas > tiers[tiers.length - 1].semillas;
-            return { ...tramo, califica: true, masAllaDelMaximo };
+            // El escalon siguiente sirve para decirle cuanto le falta
+            const siguiente = tiers.find(t => t.semillas > semillas) || null;
+            return { ...tramo, califica: true, masAllaDelMaximo, siguiente };
         }
 
         function fmtUSD(n) {
@@ -666,6 +895,83 @@
         });
 
         // ============================================
+        // Teclado del aparato
+        //
+        // Topes duros: 62 horas (nadie transmite más y evita
+        // cifras absurdas) y 15.000.000 de semillas, que es el
+        // último escalón de la tabla oficial.
+        // ============================================
+        const TOPE_HORAS = 62;
+        const TOPE_SEMILLAS = 15000000;
+
+        const entrada = { semillas: '', horas: '', campo: 'semillas' };
+
+        const verSemillas = document.getElementById('verSemillas');
+        const verHoras    = document.getElementById('verHoras');
+        const campoSem    = document.getElementById('campoSemillas');
+        const campoHor    = document.getElementById('campoHoras');
+        const avisoTope   = document.getElementById('avisoTope');
+        const inputSem    = document.getElementById('calcSemillas');
+        const inputHor    = document.getElementById('calcHoras');
+
+        function pintarVisor() {
+            const s = parseInt(entrada.semillas || '0', 10);
+            const h = parseInt(entrada.horas    || '0', 10);
+            verSemillas.textContent = s.toLocaleString('es-AR');
+            verHoras.textContent    = h.toLocaleString('es-AR');
+            inputSem.value = s;
+            inputHor.value = h;
+            campoSem.classList.toggle('activo', entrada.campo === 'semillas');
+            campoHor.classList.toggle('activo', entrada.campo === 'horas');
+        }
+
+        function avisar(texto) {
+            avisoTope.textContent = texto;
+            avisoTope.classList.add('visible');
+            clearTimeout(avisar.t);
+            avisar.t = setTimeout(() => avisoTope.classList.remove('visible'), 2600);
+        }
+
+        function elegirCampo(c) { entrada.campo = c; pintarVisor(); }
+        campoSem.addEventListener('click', () => elegirCampo('semillas'));
+        campoHor.addEventListener('click', () => elegirCampo('horas'));
+
+        document.querySelectorAll('.tecla').forEach(tecla => {
+            tecla.addEventListener('click', () => {
+                const n = tecla.dataset.n, accion = tecla.dataset.accion;
+
+                if (n !== undefined) {
+                    const propuesto = (entrada[entrada.campo] + n).replace(/^0+(?=\d)/, '');
+                    const valor = parseInt(propuesto || '0', 10);
+                    const tope  = entrada.campo === 'horas' ? TOPE_HORAS : TOPE_SEMILLAS;
+
+                    if (valor > tope) {
+                        // No se completa el maximo: la tecla simplemente no entra.
+                        avisar(entrada.campo === 'horas'
+                            ? 'Máximo 62 horas en un mes.'
+                            : 'La tabla oficial llega hasta 15.000.000 de semillas.');
+                    } else {
+                        entrada[entrada.campo] = propuesto;
+                    }
+                } else if (accion === 'borrar') {
+                    entrada[entrada.campo] = entrada[entrada.campo].slice(0, -1);
+                } else if (accion === 'limpiar') {
+                    entrada.semillas = ''; entrada.horas = '';
+                    const hoja = document.getElementById('calcResult');
+                    hoja.classList.remove('fuera');
+                    hoja.parentElement.classList.remove('abierta');
+                } else if (accion === 'cambiar') {
+                    elegirCampo(entrada.campo === 'semillas' ? 'horas' : 'semillas');
+                } else if (accion === 'ejemplo') {
+                    entrada.semillas = '10000'; entrada.horas = '44';
+                }
+                pintarVisor();
+            });
+        });
+
+        pintarVisor();
+
+        // ============================================
         // Cálculo principal
         // ============================================
         const calcBtn = document.getElementById('calcBtn');
@@ -706,21 +1012,127 @@
                 nivelRow.style.display = 'none';
             }
 
+            document.getElementById('calcHorasOut').textContent =
+                horas.toLocaleString('es-AR', { maximumFractionDigits: 1 }) + ' / 44';
+
+            // El sello da el veredicto y el motivo lo explica.
+            // Es la parte que evita que alguien se sorprenda a fin de mes.
+            const sello  = document.getElementById('calcSello');
+            const motivo = document.getElementById('calcMotivo');
+            sello.className = 'sello';
+            motivo.className = 'motivo';
+
+            if (!tramo.califica) {
+                sello.textContent = 'Sin remuneración';
+                sello.classList.add('nulo');
+                motivo.classList.add('malo');
+                motivo.textContent = 'No alcanzaste la meta mínima de la tabla, que son 2.000 semillas. '
+                    + 'Las semillas de tu monedero siguen siendo tuyas y puedes retirarlas.';
+            } else if (primerMes && horas < 44) {
+                const pct = Math.round(Math.min(horas / 44, 1) * 100);
+                sello.textContent = 'Pago proporcional';
+                sello.classList.add('parcial');
+                motivo.classList.add('bueno');
+                motivo.textContent = 'Es tu primer mes, así que se paga proporcional: hiciste '
+                    + horas.toLocaleString('es-AR') + ' de las 44 horas, o sea el ' + pct + '%. '
+                    + 'Cobras ese mismo porcentaje de tu meta.';
+            } else if (horas < 20) {
+                sello.textContent = 'Sin remuneración';
+                sello.classList.add('nulo');
+                motivo.classList.add('malo');
+                motivo.textContent = 'Cumpliste la meta de semillas, pero con menos de 20 horas no hay remuneración. '
+                    + 'Las horas son la condición que no se puede compensar con semillas.';
+            } else if (horas < 44) {
+                sello.textContent = 'Pago parcial';
+                sello.classList.add('parcial');
+                motivo.classList.add('medio');
+                motivo.textContent = 'Cumpliste la meta de semillas y transmitiste '
+                    + horas.toLocaleString('es-AR') + ' horas. Entre 20 y 43 horas se paga la mitad. '
+                    + 'Con ' + (44 - horas).toLocaleString('es-AR', { maximumFractionDigits: 1 })
+                    + ' horas más cobrabas el total.';
+            } else {
+                sello.textContent = 'Pagado';
+                motivo.classList.add('bueno');
+                motivo.textContent = 'Cumpliste el requisito de horas y tu meta de semillas. '
+                    + 'Se paga el 100% de la remuneración.';
+            }
+
+            // ============================================
+            // Un solo consejo, el que corresponde
+            //
+            // Prioridad: si no hay meta de semillas no hay nada que
+            // cobrar, asi que ese caso manda. Si hay meta, las horas
+            // van primero porque son la palanca mas grande y lo unico
+            // que no se recupera. Recien con las 44 hechas se habla
+            // de la meta siguiente.
+            // ============================================
+            const cercaEl = document.getElementById('calcCerca');
+            const nHoras = h => h.toLocaleString('es-AR', { maximumFractionDigits: 1 });
+            const nSem   = n => n.toLocaleString('es-AR');
+            let consejo = null;
+
+            if (!tramo.califica && semillas > 0) {
+                const faltanSem = tiers[0].semillas - semillas;
+
+                if (!primerMes && horas < 20) {
+                    // Le faltan las dos cosas: decirle solo una seria enganarlo
+                    const faltanHrs = 20 - horas;
+                    consejo = {
+                        tono: 'normal', icono: 'fa-triangle-exclamation',
+                        texto: 'Te faltan <b>' + nSem(faltanSem) + ' semillas</b> para la meta mínima '
+                             + 'y <b>' + nHoras(faltanHrs) + (faltanHrs === 1 ? ' hora</b>' : ' horas</b>')
+                             + ' para llegar a 20. Hacen falta las dos.'
+                    };
+                } else {
+                    consejo = {
+                        tono: faltanSem <= 200 ? 'urgente' : 'normal', icono: 'fa-seedling',
+                        texto: 'Te faltan <b>' + nSem(faltanSem) + ' semillas</b> para llegar a la meta mínima '
+                             + 'de ' + nSem(tiers[0].semillas) + ' y empezar a cobrar remuneración.'
+                    };
+                }
+
+            } else if (tramo.califica && !primerMes && horas < 20) {
+                const faltanHrs = 20 - horas;
+                consejo = {
+                    tono: faltanHrs <= 3 ? 'urgente' : 'normal', icono: 'fa-clock',
+                    texto: 'Con <b>' + nHoras(faltanHrs) + (faltanHrs === 1 ? ' hora más</b>' : ' horas más</b>')
+                         + ' llegas a 20 y pasarías de <b>$0</b> a <b>'
+                         + fmtUSD(tramo.remuneracion * 0.5) + '</b>.'
+                };
+
+            } else if (tramo.califica && horas < 44) {
+                const faltanHrs = 44 - horas;
+                consejo = {
+                    tono: faltanHrs <= 3 ? 'urgente' : 'normal', icono: 'fa-clock',
+                    texto: 'Te faltan <b>' + nHoras(faltanHrs) + (faltanHrs === 1 ? ' hora</b>' : ' horas</b>')
+                         + ' para las 44: pasarías de <b>' + fmtUSD(remuneracion) + '</b> a <b>'
+                         + fmtUSD(tramo.remuneracion) + '</b>.'
+                };
+
+            } else if (tramo.califica && tramo.siguiente) {
+                const faltanSem = tramo.siguiente.semillas - semillas;
+                const rozando = faltanSem <= Math.max(50, (tramo.siguiente.semillas - tramo.semillas) * 0.02);
+                consejo = {
+                    tono: rozando ? 'urgente' : 'normal', icono: 'fa-seedling',
+                    texto: (rozando ? 'Por poco: te ' : 'Te ')
+                         + (faltanSem === 1 ? 'faltó <b>1 semilla</b>' : 'faltaron <b>' + nSem(faltanSem) + ' semillas</b>')
+                         + ' para la meta de <b>' + nSem(tramo.siguiente.semillas) + '</b>: '
+                         + 'pasarías de <b>' + fmtUSD(tramo.remuneracion) + '</b> a <b>'
+                         + fmtUSD(tramo.siguiente.remuneracion) + '</b>.'
+                };
+            }
+
+            cercaEl.innerHTML = consejo
+                ? '<div class="cerca ' + consejo.tono + '"><i class="fa-solid ' + consejo.icono + '"></i><span>' + consejo.texto + '</span></div>'
+                : '';
+
             document.getElementById('calcPrimerMesBadge').style.display = primerMes ? 'block' : 'none';
 
-            // Advertencias
+            // Aviso unico: el motivo ya explica el resto
             const warningEl = document.getElementById('calcWarning');
             warningEl.innerHTML = '';
-            if (!tramo.califica) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Con menos de 2,000 semillas no calificás a remuneración económica este mes.</div>';
-            } else if (tramo.masAllaDelMaximo) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-circle-info"></i> Superaste la meta más alta de la tabla oficial. Se calculó con ese tope — consultá con tu agente para tu caso puntual.</div>';
-            } else if (!primerMes && horas < 20 && semillas >= tiers[0].semillas) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Con menos de 20 horas transmitidas, la remuneración de este mes es $0 USD.</div>';
-            } else if (!primerMes && horas < 44 && horas >= 20) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-triangle-exclamation"></i> Entre 20 y 43 horas cobrás el 50% de tu meta. Llegá a 44 horas para cobrar el 100%.</div>';
-            } else if (primerMes && horas < 44) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-seedling"></i> Como es tu primer mes, se te paga proporcional a tus horas reales — no aplica el mínimo de 20h de los meses siguientes.</div>';
+            if (tramo.masAllaDelMaximo) {
+                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-circle-info"></i> Superaste la meta más alta de la tabla oficial. Se calculó con ese tope — consulta con tu agente para tu caso puntual.</div>';
             }
 
             // Conversión de moneda
@@ -740,7 +1152,7 @@
                     noteEl.textContent = 'Cálculo estimado según la tabla oficial. Tasa de cambio referencial en tiempo real — puede variar al momento del pago.';
                 } else {
                     convertedRow.style.display = 'none';
-                    noteEl.textContent = 'Cálculo estimado según la tabla oficial. No se pudo obtener la tasa de cambio ahora mismo — probá de nuevo en unos segundos.';
+                    noteEl.textContent = 'Cálculo estimado según la tabla oficial. No se pudo obtener la tasa de cambio ahora mismo — prueba de nuevo en unos segundos.';
                 }
             }
 
@@ -758,9 +1170,17 @@
                 }
             }
 
-            document.getElementById('calcResult').style.display = 'block';
+            const hoja   = document.getElementById('calcResult');
+            const salida = hoja.parentElement;
+            hoja.classList.remove('fuera');
+            salida.classList.remove('abierta');
+            requestAnimationFrame(() => setTimeout(() => {
+                salida.classList.add('abierta');
+                hoja.classList.add('fuera');
+            }, 60));
+
             calcBtn.disabled = false;
-            calcBtn.textContent = 'Calcular remuneración';
+            calcBtn.textContent = 'Ver resultado';
         });
     </script>
 
