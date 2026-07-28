@@ -33,7 +33,7 @@
 
     <style>
 
-        .container { width: 100%; max-width: 900px; padding: 20px 10px; box-sizing: border-box; }
+        .container { width: 100%; max-width: 900px; margin: 0 auto; padding: 20px 10px; box-sizing: border-box; }
 
         /* Gancho de la pagina: la pregunta que trae a la gente aca.
            El titulo "Tabla de Remuneracion" vive ahora solo sobre la tabla. */
@@ -315,6 +315,9 @@
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px;
         }
         .metodos li {
+            /* Sin esto, "Payoneer" puede empujar la grilla mas alla
+               del ancho de la pantalla en telefonos angostos */
+            min-width: 0;
             padding: 9px 6px; border-radius: 999px; text-align: center;
             border: 1px solid rgba(0, 232, 255, .25);
             background: rgba(0, 232, 255, .05);
