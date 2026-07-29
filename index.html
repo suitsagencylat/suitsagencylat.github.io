@@ -116,10 +116,12 @@
 }
 
 /* ================================
-   SECCION: MOMENTOS EN VIVO
-   Carrusel coverflow. El clip corre dentro de la
-   tarjeta, sin cambiar de tamano. Cierra con un CTA
-   en contorno para no competir con el del hero.
+   SECCION: ELLOS YA DIERON EL PRIMER PASO
+   Carrusel coverflow de emisores. Cada tarjeta se
+   voltea: al frente la imagen, al dorso la ficha.
+   Ya no hay video; para volver a meterlo, ver el
+   README. Cierra con un CTA en contorno para no
+   competir con el del hero.
 ================================ */
 .reel-section {
     padding: 30px 0 26px;
@@ -151,49 +153,75 @@
     height: 440px;
     margin-bottom: 20px;
     /* Las tarjetas de los costados se desplazan mas alla del ancho de
-       la pantalla (unos 50px por lado en un movil) y las lejanas, que
-       van invisibles, casi 180px. Sin este recorte la pagina se podia
-       arrastrar de costado. */
+       la pantalla y las lejanas, que van invisibles, todavia mas. Sin
+       este recorte la pagina se podia arrastrar de costado. */
     overflow: hidden;
 }
 
 .reel-track {
     position: relative;
     height: 100%;
-    /* La perspectiva vive aca y NO se usa preserve-3d: un contexto 3D
-       hace que los hijos ignoren el recorte del contenedor, que es lo
-       que rompia el arreglo anterior. Las tarjetas son hijas directas,
-       asi que reciben la perspectiva igual. */
+    /* La perspectiva del coverflow vive aca y NO se usa preserve-3d:
+       un contexto 3D hace que los hijos ignoren el recorte de arriba. */
     perspective: 1400px;
 }
 
+/* La tarjeta es solo la posicion dentro del coverflow.
+   El volteo lo hace .reel-flip, que va adentro. */
 .reel-card {
     position: absolute;
     top: 0; left: 50%;
     width: 248px;
     height: 100%;
     margin-left: -124px;
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid var(--glass-border);
-    background: var(--bg-color);
     cursor: pointer;
-    transition: transform .55s cubic-bezier(.22,.61,.36,1), opacity .55s, border-color .3s, box-shadow .3s;
+    transition: transform .55s cubic-bezier(.22,.61,.36,1), opacity .55s;
     will-change: transform;
     text-align: left;
 }
 
-.reel-card[data-pos="0"]  { transform: translateX(0) scale(1) rotateY(0); opacity: 1; z-index: 5; border-color: var(--accent-violet); box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(158,0,255,.22); }
-.reel-card.cy[data-pos="0"] { border-color: var(--accent-blue); box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(0,232,255,.20); }
+.reel-card[data-pos="0"]  { transform: translateX(0) scale(1) rotateY(0); opacity: 1; z-index: 5; }
 .reel-card[data-pos="1"]  { transform: translateX(72%)   scale(.80) rotateY(-22deg); opacity: .45; z-index: 4; }
 .reel-card[data-pos="-1"] { transform: translateX(-72%)  scale(.80) rotateY(22deg);  opacity: .45; z-index: 4; }
 .reel-card[data-pos="2"]  { transform: translateX(122%)  scale(.64) rotateY(-28deg); opacity: .18; z-index: 3; }
 .reel-card[data-pos="-2"] { transform: translateX(-122%) scale(.64) rotateY(28deg);  opacity: .18; z-index: 3; }
 .reel-card[data-pos="far"]{ transform: translateX(0) scale(.5); opacity: 0; pointer-events: none; z-index: 1; }
 
-/* Portada y video ocupan la tarjeta entera */
-.reel-poster,
-.reel-video {
+/* La profundidad del volteo se le da SOLO a la tarjeta centrada.
+   Es la unica que se voltea y la unica que esta entera dentro del
+   recorte, asi que no puede desbordar la pagina de costado. */
+.reel-card[data-pos="0"] { perspective: 1000px; }
+
+.reel-flip {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .7s cubic-bezier(.25,.8,.3,1);
+}
+.reel-card.volteada .reel-flip { transform: rotateY(180deg); }
+
+.reel-cara {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 1px solid var(--glass-border);
+    background: var(--bg-color);
+    transition: border-color .3s, box-shadow .3s;
+}
+
+/* El acento alterna tarjeta por tarjeta: la clase .cy la vuelve cian.
+   El dorso siempre usa el acento contrario al frente. */
+.reel-card[data-pos="0"] .reel-frente { border-color: var(--accent-violet); box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(158,0,255,.22); }
+.reel-card[data-pos="0"] .reel-dorso  { border-color: var(--accent-blue);   box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(0,232,255,.20); }
+.reel-card.cy[data-pos="0"] .reel-frente { border-color: var(--accent-blue);   box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(0,232,255,.20); }
+.reel-card.cy[data-pos="0"] .reel-dorso  { border-color: var(--accent-violet); box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(158,0,255,.22); }
+
+/* ---- Frente ---- */
+.reel-poster {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -202,48 +230,37 @@
     display: block;
 }
 
-.reel-video { z-index: 2; background: #000; }
-
-/* El video aparece recién cuando se reproduce */
-.reel-card:not(.playing) .reel-video { display: none; }
-.reel-card.playing .reel-poster { opacity: 0; }
-
 .reel-shade {
     position: absolute;
     inset: 0;
     z-index: 3;
     background: linear-gradient(180deg, rgba(5,5,5,.62) 0%, transparent 24%, transparent 46%, rgba(5,5,5,.92) 88%);
     pointer-events: none;
-    transition: opacity .35s;
 }
-/* Mientras corre el video el cromado se afina para no tapar la acción */
-.reel-card.playing .reel-shade { opacity: .35; }
 
 .reel-top {
     position: absolute;
     top: 10px; left: 10px; right: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    gap: 8px;
     z-index: 4;
-    transition: opacity .35s;
 }
 
 .reel-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(5,5,5,.72);
+    padding: 5px 10px;
+    border-radius: 999px;
     border: 1px solid var(--glass-border);
+    background: rgba(5,5,5,.72);
     backdrop-filter: blur(6px);
-    padding: 4px 9px;
-    border-radius: 20px;
-    font-size: .52rem;
+    font-size: .58rem;
     font-weight: 700;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.4px;
     text-transform: uppercase;
-    color: var(--silver);
+    color: #fff;
 }
 
 .reel-badge .dot {
@@ -255,77 +272,11 @@
 }
 @keyframes reel-dot { 0%,100% { opacity:1 } 50% { opacity:.35 } }
 
-/* Duracion del clip: le dice al visitante cuanto dura antes de tocar */
-.reel-dur {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(5,5,5,.72);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(6px);
-    color: var(--silver);
-    padding: 4px 9px;
-    border-radius: 20px;
-    font-size: .58rem;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: .5px;
-}
-.reel-dur i { font-size: .5rem; color: var(--accent-blue); }
-
-/* Play: solo en la tarjeta central y solo si no está reproduciendo */
-.reel-play {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    width: 62px; height: 62px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,.85);
-    background: rgba(5,5,5,.4);
-    backdrop-filter: blur(4px);
-    color: #fff;
-    font-size: 1.15rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
-    opacity: 0;
-    transition: opacity .35s, transform .3s, background .3s;
-    pointer-events: none;
-}
-.reel-card[data-pos="0"] .reel-play { opacity: 1; }
-.reel-card.playing .reel-play { opacity: 0; }
-.reel-card[data-pos="0"]:hover:not(.playing) .reel-play { transform: translate(-50%,-50%) scale(1.08); background: rgba(158,0,255,.55); }
-.reel-play i { margin-left: 3px; }
-
-/* Sonido: aparece mientras el clip corre */
-.reel-sound {
-    position: absolute;
-    top: 46px; right: 10px;
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    border: 1px solid var(--glass-border);
-    background: rgba(5,5,5,.7);
-    backdrop-filter: blur(6px);
-    color: #fff;
-    font-size: .68rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 6;
-    padding: 0;
-}
-.reel-card.playing .reel-sound { display: flex; }
-.reel-sound:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
-
 .reel-info {
     position: absolute;
     left: 14px; right: 14px; bottom: 13px;
     z-index: 4;
-    transition: opacity .35s;
 }
-.reel-card.playing .reel-info { opacity: .55; }
 
 .reel-nombre {
     font-family: var(--font-display);
@@ -340,42 +291,166 @@
 }
 .reel-nombre .flag { font-size: .85rem; }
 
-.reel-frase {
-    margin: 6px 0 0;
-    font-size: .74rem;
-    line-height: 1.45;
-    color: var(--silver);
+/* Chapita que avisa que la tarjeta se da vuelta.
+   Solo aparece en la centrada y solo cuando esta de frente. */
+.reel-ver {
+    position: absolute;
+    right: 12px; bottom: 14px;
+    z-index: 5;
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--glass-border);
+    background: rgba(5,5,5,.72);
+    backdrop-filter: blur(6px);
+    color: var(--accent-blue);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+.reel-card[data-pos="0"]:not(.volteada) .reel-ver { display: inline-flex; }
+
+/* ---- Dorso ---- */
+.reel-dorso {
+    transform: rotateY(180deg);
+}
+.reel-dorso .fondo {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: .13;
+    filter: grayscale(.4);
+}
+.reel-dorso .capa {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5,5,5,.92), rgba(5,5,5,.97));
+}
+.reel-ficha {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 20px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.reel-ficha h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin: 0 0 2px;
+    line-height: 1;
+}
+.reel-ficha .rol {
+    font-size: .56rem;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    margin: 0 0 14px;
+}
+.reel-divisor { height: 1px; background: var(--glass-border); margin: 0 0 13px; }
+
+.reel-dato { margin-bottom: 11px; }
+.reel-dato .et {
+    display: block;
+    font-size: .52rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.42);
+    margin-bottom: 3px;
+}
+.reel-dato .va {
+    margin: 0;
+    font-size: .78rem;
+    line-height: 1.4;
+    color: rgba(255,255,255,.92);
 }
 
-/* Controles */
+.reel-volver {
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--accent-blue);
+    background: none;
+    color: var(--accent-blue);
+    font-family: var(--font-body);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.reel-volver:hover { background: rgba(0,232,255,.12); }
+
+/* ---- Controles ---- */
 .reel-controls { display: flex; align-items: center; justify-content: center; gap: 18px; }
 
 .reel-arrow {
-    width: 40px; height: 40px;
+    width: 46px; height: 46px;
     border-radius: 50%;
+    background: #0d0d12;
     border: 1px solid var(--glass-border);
-    background: rgba(255,255,255,.05);
     color: var(--accent-blue);
-    font-size: .9rem;
+    font-size: 1rem;
+    display: grid;
+    place-items: center;
     cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
     transition: .3s;
-    flex-shrink: 0;
 }
 .reel-arrow:hover { border-color: var(--accent-blue); background: rgba(0,232,255,.1); }
 .reel-arrow:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
 
-.reel-dots { display: flex; gap: 7px; }
+/* Boton de girar: va al centro, entre las flechas.
+   Es la accion principal de la seccion. */
+.reel-turn {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    background: rgba(158,0,255,.14);
+    border: 1px solid var(--accent-violet);
+    color: #fff;
+    font-size: 1.05rem;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: .3s;
+}
+.reel-turn:hover { background: rgba(158,0,255,.3); box-shadow: 0 0 20px rgba(158,0,255,.4); }
+.reel-turn:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
+.reel-turn i { transition: transform .5s; }
+.reel-turn[aria-pressed="true"] i { transform: rotate(180deg); }
+
+.reel-dots { display: flex; gap: 7px; justify-content: center; margin-top: 14px; }
 .reel-dot {
     width: 7px; height: 7px;
     border-radius: 50%;
-    border: none; padding: 0;
-    background: rgba(255,255,255,.22);
+    border: none;
+    padding: 0;
+    background: rgba(255,255,255,.24);
     cursor: pointer;
     transition: .3s;
 }
 .reel-dot.on { background: var(--accent-violet); box-shadow: 0 0 10px rgba(158,0,255,.7); width: 20px; border-radius: 4px; }
 .reel-dot:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
+
+/* Guino de bienvenida: la tarjeta centrada se asoma una sola vez
+   cuando la seccion entra en pantalla, para que se entienda que gira. */
+@keyframes reel-guino {
+    0%   { transform: rotateY(0deg); }
+    35%  { transform: rotateY(-20deg); }
+    68%  { transform: rotateY(7deg); }
+    100% { transform: rotateY(0deg); }
+}
+.reel-card[data-pos="0"].guino .reel-flip { animation: reel-guino 1.15s ease-in-out .3s 1; }
 
 /* CTA secundario: en contorno, no solido, para no competir
    con POSTULAR AHORA del hero */
@@ -428,18 +503,20 @@
 
 @media (max-width: 600px) {
     .reel-section h2 { font-size: 2rem; }
-    .reel-stage { height: 390px; }
-    .reel-card { width: 210px; margin-left: -105px; }
+    .reel-stage { height: 400px; }
+    .reel-card { width: 218px; margin-left: -109px; }
     .reel-card[data-pos="1"]  { transform: translateX(64%)  scale(.76) rotateY(-20deg); }
     .reel-card[data-pos="-1"] { transform: translateX(-64%) scale(.76) rotateY(20deg); }
     .reel-card[data-pos="2"], .reel-card[data-pos="-2"] { transform: translateX(0) scale(.5); opacity: 0; pointer-events: none; }
     .reel-nombre { font-size: 1.2rem; }
+    .reel-ficha { padding: 17px 15px 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .reel-card { transition: opacity .2s; }
+    .reel-flip { transition: none; }
     .reel-badge .dot { animation: none; }
-    .reel-play { transition: none; }
+    .reel-card[data-pos="0"].guino .reel-flip { animation: none; }
 }
 
 /* ---- Insignia de agencia oficial en el hero ----
@@ -832,109 +909,300 @@ Nosotros te enseñamos a llegar a las dos.
 
 <section class="reel-section">
 
-    <h2>MOMENTOS EN VIVO</h2>
+    <h2>ELLOS YA DIERON EL PRIMER PASO</h2>
 
     <p class="reel-sub">
-        Regalos, PK y salas llenas. Toca para ver el clip.
+        Personas de distintos países que decidieron convertir su creatividad
+        en una nueva fuente de ingresos con Bigo Live.
     </p>
 
     <div class="reel-stage">
         <div class="reel-track" id="reelTrack">
 
-            <!-- data-src = ruta del clip .mp4 dentro del repo -->
-            <article class="reel-card" data-src="https://suitsagency.lat/clips/clip-1.mp4">
-                <img src="https://suitsagency.lat/clips/poster-1.webp" alt="Mateo recibiendo regalos en vivo" class="reel-poster" loading="lazy">
-                <video class="reel-video" playsinline preload="none"></video>
-                <div class="reel-shade"></div>
-                <div class="reel-top">
-                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
-                    <span class="reel-dur"><i class="fa-solid fa-play"></i> 0:12</span>
-                </div>
-                <button class="reel-sound" aria-label="Silenciar o activar sonido"><i class="fa-solid fa-volume-high"></i></button>
-                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                <div class="reel-info">
-                    <h3 class="reel-nombre">Mateo <span class="flag">🇦🇷</span></h3>
-                    <p class="reel-frase">Garland x300 en plena sala.</p>
+<!-- Cada tarjeta tiene dos caras. Los nombres y paises son ficticios,
+     a proposito, para resguardar la privacidad de los emisores.
+     Las lineas que dicen PENDIENTE hay que completarlas.
+     Si solo queres mostrar 3 tarjetas, borra los ultimos 3 <article>. -->
+
+            <article class="reel-card">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente">
+                        <img src="https://suitsagency.lat/clips/poster-1.webp" alt="Luka, emisor de Suits Agency" class="reel-poster" loading="lazy">
+                        <div class="reel-shade"></div>
+                        <div class="reel-top">
+                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                        </div>
+                        <div class="reel-info">
+                            <h3 class="reel-nombre">Luka <span class="flag">🇨🇴</span></h3>
+                        </div>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    </div>
+
+                    <div class="reel-cara reel-dorso">
+                        <img src="https://suitsagency.lat/clips/poster-1.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
+                        <div class="capa"></div>
+                        <div class="reel-ficha">
+                            <h3>Luka <span class="flag">🇨🇴</span></h3>
+                            <p class="rol">Emisor oficial · Suits Agency</p>
+                            <div class="reel-divisor"></div>
+                            <div class="reel-dato">
+                                <span class="et">Edad y país</span>
+                                <p class="va">23 años · Colombia</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Antigüedad</span>
+                                <p class="va">4 meses como emisor oficial</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Le gusta</span>
+                                <p class="va">El gimnasio y ponerse en forma</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Qué hace en vivo</span>
+                                <p class="va">Conversa del día a día, escucha música y hace retos con otros creadores</p>
+                            </div>
+                            <button class="reel-volver" type="button">
+                                <i class="fa-solid fa-arrow-left"></i> Volver
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </article>
 
-            <article class="reel-card cy" data-src="https://suitsagency.lat/clips/clip-2.mp4">
-                <img src="https://suitsagency.lat/clips/poster-2.webp" alt="Valentina en un PK" class="reel-poster" loading="lazy">
-                <video class="reel-video" playsinline preload="none"></video>
-                <div class="reel-shade"></div>
-                <div class="reel-top">
-                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
-                    <span class="reel-dur"><i class="fa-solid fa-play"></i> 0:18</span>
-                </div>
-                <button class="reel-sound" aria-label="Silenciar o activar sonido"><i class="fa-solid fa-volume-high"></i></button>
-                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                <div class="reel-info">
-                    <h3 class="reel-nombre">Valentina <span class="flag">🇨🇴</span></h3>
-                    <p class="reel-frase">Remontada en los últimos 20 segundos.</p>
+            <article class="reel-card cy">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente">
+                        <img src="https://suitsagency.lat/clips/poster-2.webp" alt="Thiago, emisor de Suits Agency" class="reel-poster" loading="lazy">
+                        <div class="reel-shade"></div>
+                        <div class="reel-top">
+                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                        </div>
+                        <div class="reel-info">
+                            <h3 class="reel-nombre">Thiago <span class="flag">🇦🇷</span></h3>
+                        </div>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    </div>
+
+                    <div class="reel-cara reel-dorso">
+                        <img src="https://suitsagency.lat/clips/poster-2.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
+                        <div class="capa"></div>
+                        <div class="reel-ficha">
+                            <h3>Thiago <span class="flag">🇦🇷</span></h3>
+                            <p class="rol">Emisor oficial · Suits Agency</p>
+                            <div class="reel-divisor"></div>
+                            <div class="reel-dato">
+                                <span class="et">Edad y país</span>
+                                <p class="va">26 años · Argentina</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Antigüedad</span>
+                                <p class="va">7 meses como emisor oficial</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Le gusta</span>
+                                <p class="va">PENDIENTE: completar hobby</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Qué hace en vivo</span>
+                                <p class="va">PENDIENTE: completar qué hace en vivo</p>
+                            </div>
+                            <button class="reel-volver" type="button">
+                                <i class="fa-solid fa-arrow-left"></i> Volver
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </article>
 
-            <article class="reel-card" data-src="https://suitsagency.lat/clips/clip-3.mp4">
-                <img src="https://suitsagency.lat/clips/poster-3.webp" alt="Nico en vivo" class="reel-poster" loading="lazy">
-                <video class="reel-video" playsinline preload="none"></video>
-                <div class="reel-shade"></div>
-                <div class="reel-top">
-                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
-                    <span class="reel-dur"><i class="fa-solid fa-play"></i> 0:09</span>
-                </div>
-                <button class="reel-sound" aria-label="Silenciar o activar sonido"><i class="fa-solid fa-volume-high"></i></button>
-                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                <div class="reel-info">
-                    <h3 class="reel-nombre">Nico <span class="flag">🇲🇽</span></h3>
-                    <p class="reel-frase">Top 5 de la semana en su sala.</p>
+            <article class="reel-card">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente">
+                        <img src="https://suitsagency.lat/clips/poster-3.webp" alt="Mica, emisor de Suits Agency" class="reel-poster" loading="lazy">
+                        <div class="reel-shade"></div>
+                        <div class="reel-top">
+                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                        </div>
+                        <div class="reel-info">
+                            <h3 class="reel-nombre">Mica <span class="flag">🇲🇽</span></h3>
+                        </div>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    </div>
+
+                    <div class="reel-cara reel-dorso">
+                        <img src="https://suitsagency.lat/clips/poster-3.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
+                        <div class="capa"></div>
+                        <div class="reel-ficha">
+                            <h3>Mica <span class="flag">🇲🇽</span></h3>
+                            <p class="rol">Emisor oficial · Suits Agency</p>
+                            <div class="reel-divisor"></div>
+                            <div class="reel-dato">
+                                <span class="et">Edad y país</span>
+                                <p class="va">21 años · México</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Antigüedad</span>
+                                <p class="va">5 meses como emisora oficial</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Le gusta</span>
+                                <p class="va">PENDIENTE: completar hobby</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Qué hace en vivo</span>
+                                <p class="va">PENDIENTE: completar qué hace en vivo</p>
+                            </div>
+                            <button class="reel-volver" type="button">
+                                <i class="fa-solid fa-arrow-left"></i> Volver
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </article>
 
-            <article class="reel-card cy" data-src="https://suitsagency.lat/clips/clip-4.mp4">
-                <img src="https://suitsagency.lat/clips/poster-4.webp" alt="Cami recibiendo un regalo" class="reel-poster" loading="lazy">
-                <video class="reel-video" playsinline preload="none"></video>
-                <div class="reel-shade"></div>
-                <div class="reel-top">
-                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
-                    <span class="reel-dur"><i class="fa-solid fa-play"></i> 0:14</span>
-                </div>
-                <button class="reel-sound" aria-label="Silenciar o activar sonido"><i class="fa-solid fa-volume-high"></i></button>
-                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                <div class="reel-info">
-                    <h3 class="reel-nombre">Cami <span class="flag">🇵🇾</span></h3>
-                    <p class="reel-frase">Su primer Kiss Me del mes.</p>
+            <article class="reel-card cy">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente">
+                        <img src="https://suitsagency.lat/clips/poster-4.webp" alt="Nahuel, emisor de Suits Agency" class="reel-poster" loading="lazy">
+                        <div class="reel-shade"></div>
+                        <div class="reel-top">
+                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                        </div>
+                        <div class="reel-info">
+                            <h3 class="reel-nombre">Nahuel <span class="flag">🇵🇪</span></h3>
+                        </div>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    </div>
+
+                    <div class="reel-cara reel-dorso">
+                        <img src="https://suitsagency.lat/clips/poster-4.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
+                        <div class="capa"></div>
+                        <div class="reel-ficha">
+                            <h3>Nahuel <span class="flag">🇵🇪</span></h3>
+                            <p class="rol">Emisor oficial · Suits Agency</p>
+                            <div class="reel-divisor"></div>
+                            <div class="reel-dato">
+                                <span class="et">Edad y país</span>
+                                <p class="va">24 años · Perú</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Antigüedad</span>
+                                <p class="va">1 año como emisor oficial</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Le gusta</span>
+                                <p class="va">PENDIENTE: completar hobby</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Qué hace en vivo</span>
+                                <p class="va">PENDIENTE: completar qué hace en vivo</p>
+                            </div>
+                            <button class="reel-volver" type="button">
+                                <i class="fa-solid fa-arrow-left"></i> Volver
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </article>
 
-            <article class="reel-card" data-src="https://suitsagency.lat/clips/clip-5.mp4">
-                <img src="https://suitsagency.lat/clips/poster-5.webp" alt="Tomi en vivo" class="reel-poster" loading="lazy">
-                <video class="reel-video" playsinline preload="none"></video>
-                <div class="reel-shade"></div>
-                <div class="reel-top">
-                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
-                    <span class="reel-dur"><i class="fa-solid fa-play"></i> 0:11</span>
-                </div>
-                <button class="reel-sound" aria-label="Silenciar o activar sonido"><i class="fa-solid fa-volume-high"></i></button>
-                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                <div class="reel-info">
-                    <h3 class="reel-nombre">Tomi <span class="flag">🇨🇱</span></h3>
-                    <p class="reel-frase">Su primer PK ganado.</p>
+            <article class="reel-card">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente">
+                        <img src="https://suitsagency.lat/clips/poster-5.webp" alt="Sol, emisor de Suits Agency" class="reel-poster" loading="lazy">
+                        <div class="reel-shade"></div>
+                        <div class="reel-top">
+                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                        </div>
+                        <div class="reel-info">
+                            <h3 class="reel-nombre">Sol <span class="flag">🇨🇱</span></h3>
+                        </div>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    </div>
+
+                    <div class="reel-cara reel-dorso">
+                        <img src="https://suitsagency.lat/clips/poster-5.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
+                        <div class="capa"></div>
+                        <div class="reel-ficha">
+                            <h3>Sol <span class="flag">🇨🇱</span></h3>
+                            <p class="rol">Emisor oficial · Suits Agency</p>
+                            <div class="reel-divisor"></div>
+                            <div class="reel-dato">
+                                <span class="et">Edad y país</span>
+                                <p class="va">22 años · Chile</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Antigüedad</span>
+                                <p class="va">3 meses como emisora oficial</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Le gusta</span>
+                                <p class="va">PENDIENTE: completar hobby</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Qué hace en vivo</span>
+                                <p class="va">PENDIENTE: completar qué hace en vivo</p>
+                            </div>
+                            <button class="reel-volver" type="button">
+                                <i class="fa-solid fa-arrow-left"></i> Volver
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </article>
 
-            <article class="reel-card cy" data-src="https://suitsagency.lat/clips/clip-6.mp4">
-                <img src="https://suitsagency.lat/clips/poster-6.webp" alt="Dani en vivo" class="reel-poster" loading="lazy">
-                <video class="reel-video" playsinline preload="none"></video>
-                <div class="reel-shade"></div>
-                <div class="reel-top">
-                    <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
-                    <span class="reel-dur"><i class="fa-solid fa-play"></i> 0:16</span>
-                </div>
-                <button class="reel-sound" aria-label="Silenciar o activar sonido"><i class="fa-solid fa-volume-high"></i></button>
-                <div class="reel-play"><i class="fa-solid fa-play"></i></div>
-                <div class="reel-info">
-                    <h3 class="reel-nombre">Dani <span class="flag">🇵🇪</span></h3>
-                    <p class="reel-frase">Sala llena un martes cualquiera.</p>
+            <article class="reel-card cy">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente">
+                        <img src="https://suitsagency.lat/clips/poster-6.webp" alt="Emi, emisor de Suits Agency" class="reel-poster" loading="lazy">
+                        <div class="reel-shade"></div>
+                        <div class="reel-top">
+                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                        </div>
+                        <div class="reel-info">
+                            <h3 class="reel-nombre">Emi <span class="flag">🇵🇾</span></h3>
+                        </div>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    </div>
+
+                    <div class="reel-cara reel-dorso">
+                        <img src="https://suitsagency.lat/clips/poster-6.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
+                        <div class="capa"></div>
+                        <div class="reel-ficha">
+                            <h3>Emi <span class="flag">🇵🇾</span></h3>
+                            <p class="rol">Emisor oficial · Suits Agency</p>
+                            <div class="reel-divisor"></div>
+                            <div class="reel-dato">
+                                <span class="et">Edad y país</span>
+                                <p class="va">25 años · Paraguay</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Antigüedad</span>
+                                <p class="va">8 meses como emisora oficial</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Le gusta</span>
+                                <p class="va">PENDIENTE: completar hobby</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Qué hace en vivo</span>
+                                <p class="va">PENDIENTE: completar qué hace en vivo</p>
+                            </div>
+                            <button class="reel-volver" type="button">
+                                <i class="fa-solid fa-arrow-left"></i> Volver
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </article>
 
@@ -942,10 +1210,12 @@ Nosotros te enseñamos a llegar a las dos.
     </div>
 
     <div class="reel-controls">
-        <button class="reel-arrow" id="reelPrev" aria-label="Clip anterior"><i class="fa-solid fa-chevron-left"></i></button>
-        <div class="reel-dots" id="reelDots"></div>
-        <button class="reel-arrow" id="reelNext" aria-label="Clip siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="reel-arrow" id="reelPrev" aria-label="Emisor anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="reel-turn" id="reelTurn" aria-pressed="false" aria-label="Ver la ficha del emisor"><i class="fa-solid fa-arrows-rotate"></i></button>
+        <button class="reel-arrow" id="reelNext" aria-label="Emisor siguiente"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
+
+    <div class="reel-dots" id="reelDots"></div>
 
     <div class="reel-cta">
         <p>Todo esto pasa desde un celular. El tuyo sirve igual.</p>
@@ -1160,7 +1430,7 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
 
 
 <script>
-// Carrusel de momentos. El video corre dentro de la tarjeta.
+// Carrusel de emisores. La tarjeta centrada se voltea y muestra la ficha.
 // Va en su propia funcion para no chocar con el carrusel de tips.
 (function () {
     const track = document.getElementById('reelTrack');
@@ -1168,42 +1438,33 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
 
     const cards  = Array.from(track.querySelectorAll('.reel-card'));
     const dotsEl = document.getElementById('reelDots');
+    const turn   = document.getElementById('reelTurn');
     let index = Math.floor(cards.length / 2);
 
     cards.forEach((_, i) => {
         const d = document.createElement('button');
         d.className = 'reel-dot';
-        d.setAttribute('aria-label', 'Ver clip ' + (i + 1));
+        d.type = 'button';
+        d.setAttribute('aria-label', 'Ver emisor ' + (i + 1));
         d.addEventListener('click', () => go(i));
         dotsEl.appendChild(d);
     });
     const dots = Array.from(dotsEl.children);
 
-    function stop(card) {
-        const v = card.querySelector('.reel-video');
-        if (v) { v.pause(); v.removeAttribute('src'); v.load(); }
-        card.classList.remove('playing');
+    // Deja la tarjeta de frente. Se usa al cambiar de tarjeta, para que
+    // la siguiente nunca aparezca ya dada vuelta.
+    function frente(card) { card.classList.remove('volteada'); }
+
+    function voltear(card) {
+        card.classList.toggle('volteada');
+        syncTurn();
     }
 
-    function play(card) {
-        const v   = card.querySelector('.reel-video');
-        const src = card.dataset.src;
-        if (!v || !src) return;
-        if (v.getAttribute('src') !== src) v.setAttribute('src', src);
-        card.classList.add('playing');
-        v.play().catch(() => {
-            // Si el navegador bloquea el audio, arranca en silencio
-            v.muted = true;
-            syncSoundIcon(card);
-            v.play().catch(() => stop(card));
-        });
-    }
-
-    function syncSoundIcon(card) {
-        const v = card.querySelector('.reel-video');
-        const i = card.querySelector('.reel-sound i');
-        if (!v || !i) return;
-        i.className = v.muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+    function syncTurn() {
+        const activa = cards[index];
+        turn.setAttribute('aria-pressed', activa.classList.contains('volteada') ? 'true' : 'false');
+        turn.setAttribute('aria-label', activa.classList.contains('volteada')
+            ? 'Volver a la foto' : 'Ver la ficha del emisor');
     }
 
     function render() {
@@ -1214,9 +1475,10 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
             if (off < -half) off += cards.length;
             card.dataset.pos = Math.abs(off) <= 2 ? String(off) : 'far';
             card.setAttribute('aria-hidden', off === 0 ? 'false' : 'true');
-            if (off !== 0) stop(card);   // al salir del centro, se corta
+            if (off !== 0) frente(card);   // al salir del centro, vuelve a la foto
         });
         dots.forEach((d, i) => d.classList.toggle('on', i === index));
+        syncTurn();
     }
 
     function go(i) {
@@ -1226,36 +1488,13 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
 
     document.getElementById('reelPrev').addEventListener('click', () => go(index - 1));
     document.getElementById('reelNext').addEventListener('click', () => go(index + 1));
+    turn.addEventListener('click', () => voltear(cards[index]));
 
     cards.forEach((card, i) => {
-        const v = card.querySelector('.reel-video');
-
-        card.addEventListener('click', e => {
-            if (e.target.closest('.reel-sound')) return;   // el boton de sonido se maneja aparte
+        card.addEventListener('click', () => {
+            // Tocar una tarjeta del costado la trae al centro, no la voltea
             if (i !== index) { go(i); return; }
-            if (card.classList.contains('playing')) {
-                if (v.paused) { v.play(); } else { v.pause(); }
-            } else {
-                play(card);
-            }
-        });
-
-        const sound = card.querySelector('.reel-sound');
-        if (sound) sound.addEventListener('click', e => {
-            e.stopPropagation();
-            v.muted = !v.muted;
-            syncSoundIcon(card);
-        });
-
-        if (v) v.addEventListener('ended', () => stop(card));
-
-        // Al cargar el clip, la duracion escrita a mano se corrige sola
-        if (v) v.addEventListener('loadedmetadata', () => {
-            const el = card.querySelector('.reel-dur');
-            if (!el || !isFinite(v.duration)) return;
-            const m = Math.floor(v.duration / 60);
-            const sec = String(Math.round(v.duration % 60)).padStart(2, '0');
-            el.innerHTML = '<i class="fa-solid fa-play"></i> ' + m + ':' + sec;
+            voltear(card);
         });
     });
 
@@ -1269,11 +1508,19 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
         x0 = null;
     }, { passive: true });
 
-    // Si la seccion sale de pantalla, el clip se pausa
+    // Guino de bienvenida: la primera vez que la seccion entra en pantalla,
+    // la tarjeta centrada se asoma para que se entienda que gira.
     if ('IntersectionObserver' in window) {
-        new IntersectionObserver(entries => {
-            entries.forEach(en => { if (!en.isIntersecting) cards.forEach(stop); });
-        }, { threshold: 0 }).observe(track);
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(en => {
+                if (!en.isIntersecting) return;
+                const activa = cards[index];
+                activa.classList.add('guino');
+                setTimeout(() => activa.classList.remove('guino'), 1600);
+                obs.disconnect();   // una sola vez
+            });
+        }, { threshold: .45 });
+        obs.observe(track);
     }
 
     render();

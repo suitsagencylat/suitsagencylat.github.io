@@ -224,8 +224,90 @@ El envío exitoso dispara el evento `lead_formulario` (GA4) / `Lead` (Meta).
 
 ---
 
+## Carrusel de emisores (home)
+
+La sección "Ellos ya dieron el primer paso". Coverflow de tarjetas que
+**se dan vuelta**: al frente la imagen del emisor, al dorso su ficha.
+
+**Ya no hay video.** Se quitó a propósito; abajo está cómo volver a
+ponerlo el día que haya clips.
+
+### Cómo está armada una tarjeta
+
+```html
+<article class="reel-card cy">      <!-- .cy = acento cian; sin clase = violeta -->
+  <div class="reel-flip">           <!-- esto es lo que gira -->
+    <div class="reel-cara reel-frente"> ... imagen, chapita, nombre ... </div>
+    <div class="reel-cara reel-dorso">  ... la ficha ... </div>
+  </div>
+</article>
+```
+
+El acento **alterna** tarjeta por tarjeta con la clase `.cy`, y el dorso
+usa siempre el color contrario al frente. Si agregás o quitás tarjetas,
+mantené la alternancia.
+
+### Reglas que no hay que romper
+
+- **`transform-style: preserve-3d` va solo en `.reel-flip`**, nunca en
+  `.reel-card` ni en `.reel-track`. Un contexto 3D ahí hace que las
+  tarjetas ignoren el recorte de `.reel-stage` y la página se pueda
+  arrastrar de costado. Ya pasó una vez.
+- La `perspective` del volteo se le da **solo a la tarjeta centrada**
+  (`.reel-card[data-pos="0"]`). Es la única que gira y la única que está
+  entera dentro del recorte.
+- Al cambiar de tarjeta, la que sale del centro **vuelve sola al frente**.
+  Si no, la siguiente aparecería ya dada vuelta.
+
+### Las imágenes
+
+Van en `clips/`, como `poster-1.webp` a `poster-6.webp`.
+
+- **1080 × 1920** (9:16), que es la proporción de la tarjeta. Componer
+  directo en esa medida: lo que armes es lo que se ve, casi sin recorte.
+- **WebP**, entre 40 y 80 KB.
+- Los colores de las piezas son los dos de la marca y nada más:
+  `#00e8ff` y `#9e00ff`, invertidos entre una pieza y la siguiente.
+- El velo de la tarjeta es negro al 92% en la franja de abajo, así que
+  aplasta lo que haya debajo. El nombre se lee siempre, sea clara u
+  oscura la foto.
+- Mantener la misma escala del sujeto en todas: si una es plano de tres
+  cuartos y otra es primerísimo plano, el conjunto se rompe.
+
+### Nombres y países
+
+**Son ficticios a propósito**, para resguardar la privacidad y la
+seguridad de los emisores. No se usan sus datos reales en la tarjeta.
+
+### Cómo se avisa que la tarjeta gira
+
+Tres señales, porque sin botón de play no hay nada que sugiera que se
+puede tocar:
+
+1. La tarjeta centrada **se asoma una sola vez** cuando la sección entra
+   en pantalla (clase `guino`, la pone el IntersectionObserver).
+2. Una chapita **"Ver ficha"** abajo a la derecha, solo en la tarjeta
+   centrada y solo cuando está de frente.
+3. El **botón de girar** entre las flechas, que queda siempre.
+
+El guiño respeta `prefers-reduced-motion`.
+
+### Si algún día vuelve el video
+
+Hay que reponer cuatro cosas dentro de `.reel-frente`: el `<video>`, el
+botón de play, el de sonido y la chapita de duración; más el atributo
+`data-src` en el `<article>` con la ruta del `.mp4`. Y hay que resolver
+el choque de gestos: hoy tocar la tarjeta la voltea, así que el play
+tiene que quedarse con el centro y el volteo pasar solo a la chapita y
+al botón.
+
+Los `.mp4` van en `clips/`. Referencia de peso: unos 8 segundos en
+720 × 1280 no deberían pasar de 1 MB.
+
+---
+
 ## Pendiente
 
-**Clips del carrusel** (`clips/`): siguen siendo los de ejemplo. Van
-grabaciones de emisores reales en vivo, en momentos emocionantes —
-regalos, PK, salas llenas.
+Completar las fichas de los emisores en `index.html`: las líneas que
+dicen **PENDIENTE** dentro de cada `.reel-dorso`. Hoy solo está cargada
+la primera tarjeta.
