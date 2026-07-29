@@ -100,7 +100,7 @@ header.main-header {
     display: inline-block;
     white-space: nowrap;
     padding-left: 100%;
-    animation: ticker 65s linear infinite;
+    animation: ticker 73s linear infinite;
 }
 
 .ticker-content span {
@@ -108,7 +108,7 @@ header.main-header {
     color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
     letter-spacing: 3px;
-    margin-right: 120px;
+    margin-right: 70px;
     font-weight: 400;
 }
 
