@@ -100,6 +100,24 @@
     a.setAttribute('aria-label', 'Escríbenos por WhatsApp');
     a.innerHTML = '<i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>Escríbenos</span>';
     document.body.appendChild(a);
+    apartarSiEstorba(a);
+  }
+
+  // El flotante y el CTA principal del hero se pisan en pantallas
+  // chicas. Mientras el CTA se ve, el flotante se aparta; apenas
+  // sale de pantalla, vuelve. Si la pagina no tiene ese CTA
+  // (todas menos la home), el flotante queda fijo como siempre.
+  function apartarSiEstorba(flotante) {
+    const cta = document.querySelector('.cred-cta');
+    if (!cta || !('IntersectionObserver' in window)) return;
+
+    const obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        flotante.classList.toggle('a-un-lado', e.isIntersecting);
+      });
+    }, { rootMargin: '0px 0px -40px 0px' });
+
+    obs.observe(cta);
   }
 
   if (document.readyState === 'loading') {
