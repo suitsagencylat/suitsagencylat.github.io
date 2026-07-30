@@ -115,7 +115,7 @@
       entradas.forEach(function (e) {
         flotante.classList.toggle('a-un-lado', e.isIntersecting);
       });
-    }, { rootMargin: '0px 0px -40px 0px' });
+    }, { rootMargin: '-100px 0px -40px 0px' });
 
     obs.observe(cta);
   }
