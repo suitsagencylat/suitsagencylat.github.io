@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Credencial Suits — para Canva</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+<style>
+    /* ================================================================
+       ARCHIVO DE TRABAJO — no forma parte del sitio.
+       Existe solo para importarlo a Canva y mover los elementos ahí.
+       Se puede borrar del repo despues.
+
+       Dos paginas de 1086 x 685 px: la proporcion 1.586 de la
+       credencial, escalada x3.12 para que Canva tenga resolucion
+       con la que trabajar.
+       ================================================================ */
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        background: #1a1a1a;
+        font-family: 'Inter', sans-serif;
+        display: flex; flex-direction: column; align-items: center; gap: 40px;
+        padding: 40px 20px;
+    }
+
+    .pagina {
+        width: 1086px; height: 685px;
+        position: relative; overflow: hidden;
+        padding: 44px 50px;
+        display: flex; flex-direction: column;
+        border-radius: 50px;
+        background:
+            radial-gradient(110% 90% at 0% 0%, rgba(0,232,255,.14), transparent 60%),
+            radial-gradient(110% 90% at 100% 100%, rgba(158,0,255,.22), transparent 60%),
+            #0a0a0c;
+        border: 3px solid rgba(255,255,255,.14);
+        color: #fff;
+    }
+
+    /* ---------- FRENTE ---------- */
+    .cabecera { display: flex; align-items: center; gap: 34px; }
+    .logo-suits { width: 131px; height: auto; display: block; }
+    .nombre {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 72px; letter-spacing: 4.7px; line-height: 1;
+    }
+    .cargo {
+        font-size: 25px; letter-spacing: 5.6px; text-transform: uppercase;
+        color: #00e8ff; margin-top: 12px;
+    }
+
+    .verificada {
+        position: absolute; top: 47px; right: 50px;
+        padding: 12px 28px; border-radius: 999px;
+        border: 3px solid rgba(158,0,255,.45); background: rgba(158,0,255,.12);
+        font-size: 25px; letter-spacing: 5px; text-transform: uppercase;
+        color: #c98bff;
+    }
+
+    .bloque-bigo { display: flex; align-items: center; gap: 28px; margin: auto 0; }
+    .logo-bigo {
+        width: 81px; height: 81px; border-radius: 22px; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        background: linear-gradient(135deg, #00e8ff, #9e00ff);
+        color: #050505; font-family: 'Bebas Neue', sans-serif; font-size: 48px;
+    }
+    .quees { font-size: 29px; line-height: 1.45; color: rgba(255,255,255,.62); }
+    .quees b { color: #fff; font-weight: 600; }
+
+    .datos {
+        display: flex; justify-content: space-between; gap: 25px;
+        font-family: 'Roboto Mono', monospace; font-size: 23px;
+        color: rgba(255,255,255,.32); letter-spacing: 3px;
+    }
+    .datos b { display: block; color: rgba(255,255,255,.75); font-size: 28px; margin-top: 6px; font-weight: 400; }
+
+    /* ---------- DORSO ---------- */
+    .marca-dorso { display: flex; align-items: center; gap: 25px; }
+    .marca-dorso img { width: 69px; height: auto; display: block; }
+    .titulo-dorso {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 49px; letter-spacing: 4.4px;
+    }
+
+    .pasos { margin: auto 0; display: flex; flex-direction: column; gap: 22px; }
+    .paso { display: flex; gap: 28px; align-items: flex-start; }
+    .num {
+        width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        border: 3px solid rgba(0,232,255,.4); color: #00e8ff;
+        font-size: 25px; font-weight: 700;
+    }
+    .texto-paso { font-size: 31px; line-height: 1.45; color: rgba(255,255,255,.7); padding-top: 6px; }
+    .texto-paso b { color: #fff; font-weight: 600; }
+
+    .pie-dorso {
+        font-size: 25px; letter-spacing: 4.4px; text-transform: uppercase;
+        color: rgba(255,255,255,.3);
+    }
+</style>
+</head>
+<body>
+
+<!-- ===================== FRENTE ===================== -->
+<div class="pagina" data-document-role="page" data-label="Frente">
+
+    <div class="cabecera">
+        <img class="logo-suits" src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+        <div>
+            <div class="nombre">Suits Agency</div>
+            <div class="cargo">Agencia oficial de Bigo Live</div>
+        </div>
+    </div>
+
+    <div class="verificada">Verificada</div>
+
+    <div class="bloque-bigo">
+        <div class="logo-bigo">B</div>
+        <div class="quees"><b>Bigo Live</b> es una app de transmisiones en vivo. Quien te mira te manda regalos, y esos regalos son dinero.</div>
+    </div>
+
+    <div class="datos">
+        <span>REGIÓN<b>Latinoamérica</b></span>
+        <span>COMISIÓN<b>0 %</b></span>
+    </div>
+
+</div>
+
+<!-- ===================== DORSO ===================== -->
+<div class="pagina" data-document-role="page" data-label="Dorso">
+
+    <div class="marca-dorso">
+        <img src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+        <div class="titulo-dorso">Por qué necesitas una agencia</div>
+    </div>
+
+    <div class="pasos">
+        <div class="paso">
+            <div class="num">1</div>
+            <div class="texto-paso">Te afilias a una agencia.</div>
+        </div>
+        <div class="paso">
+            <div class="num">2</div>
+            <div class="texto-paso">Recién ahí puedes <b>verificar tu identidad</b>.</div>
+        </div>
+        <div class="paso">
+            <div class="num">3</div>
+            <div class="texto-paso">Verificado, ya puedes <b>retirar</b> y cobrar las metas.</div>
+        </div>
+    </div>
+
+    <div class="pie-dorso">Sin comisión · Sin permanencia</div>
+
+</div>
+
+</body>
+</html>
+                                                        
