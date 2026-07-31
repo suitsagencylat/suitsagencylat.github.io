@@ -261,7 +261,8 @@ mantené la alternancia.
 
 ### Las imágenes
 
-Van en `clips/`, como `poster-1.webp` a `poster-6.webp`.
+Van en `clips/`, como `poster-2.webp` a `poster-5.webp`.
+(`poster-1.webp` quedó sin uso: la tarjeta 1 ya no es de un emisor.)
 
 - **1080 × 1920** (9:16), que es la proporción de la tarjeta. Componer
   directo en esa medida: lo que armes es lo que se ve, casi sin recorte.
@@ -311,3 +312,78 @@ Los `.mp4` van en `clips/`. Referencia de peso: unos 8 segundos en
 Completar las fichas de los emisores en `index.html`: las líneas que
 dicen **PENDIENTE** dentro de cada `.reel-dorso`. Hoy solo está cargada
 la primera tarjeta.
+
+
+---
+
+## Cambios de julio 2026
+
+Anotados acá para no tener que releer todo el archivo.
+
+### Header — tres valores atados
+
+En `styles.css` conviven tres números que dependen entre sí. Si se
+mueve uno hay que mover los tres o el contenido se mete abajo del
+header:
+
+| Qué | Valor |
+|---|---|
+| `header { height }` | 64px |
+| `.news-ticker { top }` | 64px |
+| `body { padding-top }` | 69px |
+
+La leyenda del header va en `position: absolute` colgando del título.
+Es a propósito: así se puede achicar, separar o atenuar **sin mover
+"SUITS AGENCY"**. Si se la devuelve al flujo normal, cualquier cambio
+de tamaño vuelve a empujar el título hacia arriba.
+
+### Cinta
+
+Nueve frases. Dos valores la controlan:
+
+- `.ticker-content { animation: ticker 73s }` — más alto, más lenta
+- `.ticker-content span { margin-right: 70px }` — más alto, más aire
+
+La duración es fija y no depende de cuánto texto haya. O sea que
+**agregar frases acelera la cinta**: si se suman o quitan, hay que
+recalcular los 73s.
+
+### Botón flotante de WhatsApp
+
+`include.js` le pone la clase `.a-un-lado` mientras `.cred-cta` está
+en pantalla, para que no tape el CTA principal. Usa un
+IntersectionObserver y solo actúa en la home, que es la única página
+con ese CTA. Si se renombra `.cred-cta`, el flotante deja de
+esconderse.
+
+### Carrusel — cinco tarjetas
+
+La primera **no es un emisor**: es el remate de la sección, con texto
+en tres niveles y sin imagen. Su dorso está marcado con
+`<!-- PROVISORIO -->` esperando un collage.
+
+`let index = 0` hace que arranque en esa tarjeta. El carrusel es
+circular, así que las últimas dos aparecen a la izquierda.
+
+**Cuidado al editar las tarjetas.** Los controles del carrusel
+(`reelPrev`, `reelTurn`, `reelNext`, `reelDots`) están **fuera** de
+`.reel-track`, después de cerrar `.reel-stage`. Si al reemplazar los
+`<article>` se los borra, el script se corta en la primera línea y el
+carrusel entero deja de funcionar. Reemplazar solo los `<article>`.
+
+El `<h2>` de la sección lleva `padding: 0 16px`. Sin eso, en celular
+la línea mide más que la pantalla y `overflow: hidden` la recorta en
+los dos bordes en vez de dejarla bajar de renglón.
+
+### Textos
+
+- El h1 dice **"SER QUIEN ERES"**, no "ser tú mismo". Es por género:
+  buena parte de los emisores son mujeres. Está también en el
+  `slogan` del JSON-LD; si se cambia uno hay que cambiar el otro.
+- **No usar "dos formas de cobrar" ni "dos vías".** Los regalos y la
+  remuneración por metas caen en el mismo monedero, como semillas, y
+  se retiran de una sola manera.
+- Las **metas** son los escalones de semillas; las horas van
+  implícitas dentro de cada meta.
+- El badge del hero se eliminó junto con su CSS: repetía la leyenda
+  del header.
