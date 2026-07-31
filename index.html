@@ -316,6 +316,78 @@
 .reel-card[data-pos="0"]:not(.volteada) .reel-ver { display: inline-flex; }
 
 /* ---- Dorso ---- */
+/* Tarjeta 1: no es un emisor, es el remate de la seccion.
+   Tres niveles de tamano, sin imagen: la entrada, la frase y el pie. */
+.reel-frente.reel-msg {
+    background:
+        radial-gradient(115% 80% at 50% 6%, rgba(158,0,255,.24), transparent 60%),
+        #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 34px 22px;
+}
+
+.msg-arriba {
+    font-size: .78rem;
+    line-height: 1.3;
+    color: rgba(255,255,255,.6);
+    margin: 0 0 10px;
+}
+
+.msg-grande {
+    font-family: var(--font-display);
+    font-size: 3.1rem;
+    line-height: .88;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0;
+}
+
+.msg-grande em { font-style: normal; color: var(--accent-violet); }
+
+.msg-abajo {
+    font-size: .74rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,.5);
+    margin: 16px 0 0;
+}
+
+/* Dorso provisorio. Cuando este el collage, se reemplaza todo
+   el contenido de .reel-msg-dorso por la grilla de fotos. */
+.reel-dorso.reel-msg-dorso {
+    background:
+        radial-gradient(115% 80% at 50% 100%, rgba(0,232,255,.18), transparent 62%),
+        #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 34px 22px;
+}
+
+.reel-msg-dorso h3 {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    line-height: 1;
+    letter-spacing: 1.5px;
+    color: var(--accent-blue);
+    margin: 0 0 14px;
+}
+
+.reel-msg-dorso p {
+    font-size: .84rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,.78);
+    margin: 0;
+}
+
+.reel-msg-dorso .reel-volver { margin-top: 22px; align-self: flex-start; }
+
+@media (max-width: 600px) {
+    .msg-grande { font-size: 2.6rem; }
+}
+
 .reel-dorso {
     transform: rotateY(180deg);
 }
@@ -925,53 +997,28 @@ Nosotros te mostramos cómo funciona.
     <div class="reel-stage">
         <div class="reel-track" id="reelTrack">
 
-<!-- Cada tarjeta tiene dos caras. Los nombres y paises son ficticios,
-     a proposito, para resguardar la privacidad de los emisores.
-     Las lineas que dicen PENDIENTE hay que completarlas.
-     Si solo queres mostrar 3 tarjetas, borra los ultimos 3 <article>. -->
+<!-- Cinco tarjetas. La primera no es un emisor: es el remate de la
+     seccion, el "puede ser el tuyo". Las otras cuatro son emisores y
+     los nombres y paises son ficticios a proposito, para resguardar
+     su privacidad. Las lineas que dicen PENDIENTE hay que completarlas. -->
 
             <article class="reel-card">
                 <div class="reel-flip">
 
-                    <div class="reel-cara reel-frente">
-                        <img src="https://suitsagency.lat/clips/poster-1.webp" alt="Luka, emisor de Suits Agency" class="reel-poster" loading="lazy">
-                        <div class="reel-shade"></div>
-                        <div class="reel-top">
-                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
-                        </div>
-                        <div class="reel-info">
-                            <h3 class="reel-nombre">Luka <span class="flag">🇨🇴</span></h3>
-                        </div>
-                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    <div class="reel-cara reel-frente reel-msg">
+                        <p class="msg-arriba">El siguiente paso</p>
+                        <h3 class="msg-grande">Puede ser <em>el tuyo</em></h3>
+                        <p class="msg-abajo">Ninguno de ellos sabía cómo empezar.</p>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver más</span>
                     </div>
 
-                    <div class="reel-cara reel-dorso">
-                        <img src="https://suitsagency.lat/clips/poster-1.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
-                        <div class="capa"></div>
-                        <div class="reel-ficha">
-                            <h3>Luka <span class="flag">🇨🇴</span></h3>
-                            <p class="rol">Emisor oficial · Suits Agency</p>
-                            <div class="reel-divisor"></div>
-                            <div class="reel-dato">
-                                <span class="et">Edad y país</span>
-                                <p class="va">23 años · Colombia</p>
-                            </div>
-                            <div class="reel-dato">
-                                <span class="et">Antigüedad</span>
-                                <p class="va">4 meses como emisor oficial</p>
-                            </div>
-                            <div class="reel-dato">
-                                <span class="et">Le gusta</span>
-                                <p class="va">El gimnasio y ponerse en forma</p>
-                            </div>
-                            <div class="reel-dato">
-                                <span class="et">Qué hace en vivo</span>
-                                <p class="va">Conversa del día a día, escucha música y hace retos con otros creadores</p>
-                            </div>
-                            <button class="reel-volver" type="button">
-                                <i class="fa-solid fa-arrow-left"></i> Volver
-                            </button>
-                        </div>
+                    <!-- PROVISORIO: aqui va el collage cuando este listo -->
+                    <div class="reel-cara reel-dorso reel-msg-dorso">
+                        <h3>Empezar es más simple de lo que parece</h3>
+                        <p>Escríbenos por WhatsApp y te contamos cómo funciona, sin compromiso.</p>
+                        <button class="reel-volver" type="button">
+                            <i class="fa-solid fa-arrow-left"></i> Volver
+                        </button>
                     </div>
 
                 </div>
@@ -981,13 +1028,13 @@ Nosotros te mostramos cómo funciona.
                 <div class="reel-flip">
 
                     <div class="reel-cara reel-frente">
-                        <img src="https://suitsagency.lat/clips/poster-2.webp" alt="Thiago, emisor de Suits Agency" class="reel-poster" loading="lazy">
+                        <img src="https://suitsagency.lat/clips/poster-2.webp" alt="Emisor oficial de Suits Agency" class="reel-poster" loading="lazy">
                         <div class="reel-shade"></div>
                         <div class="reel-top">
                             <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
                         </div>
                         <div class="reel-info">
-                            <h3 class="reel-nombre">Thiago <span class="flag">🇦🇷</span></h3>
+                            <h3 class="reel-nombre">PENDIENTE <span class="flag">🏳️</span></h3>
                         </div>
                         <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
                     </div>
@@ -996,16 +1043,16 @@ Nosotros te mostramos cómo funciona.
                         <img src="https://suitsagency.lat/clips/poster-2.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
                         <div class="capa"></div>
                         <div class="reel-ficha">
-                            <h3>Thiago <span class="flag">🇦🇷</span></h3>
+                            <h3>PENDIENTE <span class="flag">🏳️</span></h3>
                             <p class="rol">Emisor oficial · Suits Agency</p>
                             <div class="reel-divisor"></div>
                             <div class="reel-dato">
                                 <span class="et">Edad y país</span>
-                                <p class="va">26 años · Argentina</p>
+                                <p class="va">PENDIENTE: edad · país</p>
                             </div>
                             <div class="reel-dato">
                                 <span class="et">Antigüedad</span>
-                                <p class="va">7 meses como emisor oficial</p>
+                                <p class="va">PENDIENTE: tiempo como emisor oficial</p>
                             </div>
                             <div class="reel-dato">
                                 <span class="et">Le gusta</span>
@@ -1028,13 +1075,13 @@ Nosotros te mostramos cómo funciona.
                 <div class="reel-flip">
 
                     <div class="reel-cara reel-frente">
-                        <img src="https://suitsagency.lat/clips/poster-3.webp" alt="Mica, emisor de Suits Agency" class="reel-poster" loading="lazy">
+                        <img src="https://suitsagency.lat/clips/poster-3.webp" alt="Emisor oficial de Suits Agency" class="reel-poster" loading="lazy">
                         <div class="reel-shade"></div>
                         <div class="reel-top">
                             <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
                         </div>
                         <div class="reel-info">
-                            <h3 class="reel-nombre">Mica <span class="flag">🇲🇽</span></h3>
+                            <h3 class="reel-nombre">PENDIENTE <span class="flag">🏳️</span></h3>
                         </div>
                         <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
                     </div>
@@ -1043,16 +1090,16 @@ Nosotros te mostramos cómo funciona.
                         <img src="https://suitsagency.lat/clips/poster-3.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
                         <div class="capa"></div>
                         <div class="reel-ficha">
-                            <h3>Mica <span class="flag">🇲🇽</span></h3>
+                            <h3>PENDIENTE <span class="flag">🏳️</span></h3>
                             <p class="rol">Emisor oficial · Suits Agency</p>
                             <div class="reel-divisor"></div>
                             <div class="reel-dato">
                                 <span class="et">Edad y país</span>
-                                <p class="va">21 años · México</p>
+                                <p class="va">PENDIENTE: edad · país</p>
                             </div>
                             <div class="reel-dato">
                                 <span class="et">Antigüedad</span>
-                                <p class="va">5 meses como emisora oficial</p>
+                                <p class="va">PENDIENTE: tiempo como emisor oficial</p>
                             </div>
                             <div class="reel-dato">
                                 <span class="et">Le gusta</span>
@@ -1075,13 +1122,13 @@ Nosotros te mostramos cómo funciona.
                 <div class="reel-flip">
 
                     <div class="reel-cara reel-frente">
-                        <img src="https://suitsagency.lat/clips/poster-4.webp" alt="Nahuel, emisor de Suits Agency" class="reel-poster" loading="lazy">
+                        <img src="https://suitsagency.lat/clips/poster-4.webp" alt="Emisor oficial de Suits Agency" class="reel-poster" loading="lazy">
                         <div class="reel-shade"></div>
                         <div class="reel-top">
                             <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
                         </div>
                         <div class="reel-info">
-                            <h3 class="reel-nombre">Nahuel <span class="flag">🇵🇪</span></h3>
+                            <h3 class="reel-nombre">PENDIENTE <span class="flag">🏳️</span></h3>
                         </div>
                         <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
                     </div>
@@ -1090,16 +1137,16 @@ Nosotros te mostramos cómo funciona.
                         <img src="https://suitsagency.lat/clips/poster-4.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
                         <div class="capa"></div>
                         <div class="reel-ficha">
-                            <h3>Nahuel <span class="flag">🇵🇪</span></h3>
+                            <h3>PENDIENTE <span class="flag">🏳️</span></h3>
                             <p class="rol">Emisor oficial · Suits Agency</p>
                             <div class="reel-divisor"></div>
                             <div class="reel-dato">
                                 <span class="et">Edad y país</span>
-                                <p class="va">24 años · Perú</p>
+                                <p class="va">PENDIENTE: edad · país</p>
                             </div>
                             <div class="reel-dato">
                                 <span class="et">Antigüedad</span>
-                                <p class="va">1 año como emisor oficial</p>
+                                <p class="va">PENDIENTE: tiempo como emisor oficial</p>
                             </div>
                             <div class="reel-dato">
                                 <span class="et">Le gusta</span>
@@ -1122,13 +1169,13 @@ Nosotros te mostramos cómo funciona.
                 <div class="reel-flip">
 
                     <div class="reel-cara reel-frente">
-                        <img src="https://suitsagency.lat/clips/poster-5.webp" alt="Sol, emisor de Suits Agency" class="reel-poster" loading="lazy">
+                        <img src="https://suitsagency.lat/clips/poster-5.webp" alt="Emisor oficial de Suits Agency" class="reel-poster" loading="lazy">
                         <div class="reel-shade"></div>
                         <div class="reel-top">
                             <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
                         </div>
                         <div class="reel-info">
-                            <h3 class="reel-nombre">Sol <span class="flag">🇨🇱</span></h3>
+                            <h3 class="reel-nombre">PENDIENTE <span class="flag">🏳️</span></h3>
                         </div>
                         <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
                     </div>
@@ -1137,16 +1184,16 @@ Nosotros te mostramos cómo funciona.
                         <img src="https://suitsagency.lat/clips/poster-5.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
                         <div class="capa"></div>
                         <div class="reel-ficha">
-                            <h3>Sol <span class="flag">🇨🇱</span></h3>
+                            <h3>PENDIENTE <span class="flag">🏳️</span></h3>
                             <p class="rol">Emisor oficial · Suits Agency</p>
                             <div class="reel-divisor"></div>
                             <div class="reel-dato">
                                 <span class="et">Edad y país</span>
-                                <p class="va">22 años · Chile</p>
+                                <p class="va">PENDIENTE: edad · país</p>
                             </div>
                             <div class="reel-dato">
                                 <span class="et">Antigüedad</span>
-                                <p class="va">3 meses como emisora oficial</p>
+                                <p class="va">PENDIENTE: tiempo como emisor oficial</p>
                             </div>
                             <div class="reel-dato">
                                 <span class="et">Le gusta</span>
@@ -1164,96 +1211,6 @@ Nosotros te mostramos cómo funciona.
 
                 </div>
             </article>
-
-            <article class="reel-card cy">
-                <div class="reel-flip">
-
-                    <div class="reel-cara reel-frente">
-                        <img src="https://suitsagency.lat/clips/poster-6.webp" alt="Emi, emisor de Suits Agency" class="reel-poster" loading="lazy">
-                        <div class="reel-shade"></div>
-                        <div class="reel-top">
-                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
-                        </div>
-                        <div class="reel-info">
-                            <h3 class="reel-nombre">Emi <span class="flag">🇵🇾</span></h3>
-                        </div>
-                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
-                    </div>
-
-                    <div class="reel-cara reel-dorso">
-                        <img src="https://suitsagency.lat/clips/poster-6.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
-                        <div class="capa"></div>
-                        <div class="reel-ficha">
-                            <h3>Emi <span class="flag">🇵🇾</span></h3>
-                            <p class="rol">Emisor oficial · Suits Agency</p>
-                            <div class="reel-divisor"></div>
-                            <div class="reel-dato">
-                                <span class="et">Edad y país</span>
-                                <p class="va">25 años · Paraguay</p>
-                            </div>
-                            <div class="reel-dato">
-                                <span class="et">Antigüedad</span>
-                                <p class="va">8 meses como emisora oficial</p>
-                            </div>
-                            <div class="reel-dato">
-                                <span class="et">Le gusta</span>
-                                <p class="va">PENDIENTE: completar hobby</p>
-                            </div>
-                            <div class="reel-dato">
-                                <span class="et">Qué hace en vivo</span>
-                                <p class="va">PENDIENTE: completar qué hace en vivo</p>
-                            </div>
-                            <button class="reel-volver" type="button">
-                                <i class="fa-solid fa-arrow-left"></i> Volver
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-            </article>
-
-        </div>
-    </div>
-
-    <div class="reel-controls">
-        <button class="reel-arrow" id="reelPrev" aria-label="Emisor anterior"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="reel-turn" id="reelTurn" aria-pressed="false" aria-label="Ver la ficha del emisor"><i class="fa-solid fa-arrows-rotate"></i></button>
-        <button class="reel-arrow" id="reelNext" aria-label="Emisor siguiente"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
-    <div class="reel-dots" id="reelDots"></div>
-
-    <div class="reel-cta">
-        <p>Todo esto pasa desde un celular. El tuyo sirve igual.</p>
-        <a href="https://suitsagency.lat/registro/" class="reel-cta-btn">
-            <i class="fa-solid fa-user-plus"></i> Quiero mi primer live
-        </a>
-        <a href="https://wa.me/595982678695" class="reel-cta-alt" target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i> o escríbenos por WhatsApp
-        </a>
-    </div>
-
-</section>
-
-
-
-
-
-
-
-
-
-<section class="conversacion">
-
-<h2>Lo que siempre nos preguntan</h2>
-<p class="conv-sub">Las mismas preguntas, todas las semanas.</p>
-
-<div class="hilo">
-    <div class="hilo-cab">
-        <img src="https://suitsagency.lat/logo.png" alt="Suits Agency">
-        <div>
-            <b>Suits Agency</b>
-            <span>en línea</span>
         </div>
     </div>
 
@@ -1445,13 +1402,13 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
     const cards  = Array.from(track.querySelectorAll('.reel-card'));
     const dotsEl = document.getElementById('reelDots');
     const turn   = document.getElementById('reelTurn');
-    let index = Math.floor(cards.length / 2);
+    let index = 0;   // arranca en la tarjeta de mensaje
 
     cards.forEach((_, i) => {
         const d = document.createElement('button');
         d.className = 'reel-dot';
         d.type = 'button';
-        d.setAttribute('aria-label', 'Ver emisor ' + (i + 1));
+        d.setAttribute('aria-label', 'Ver tarjeta ' + (i + 1));
         d.addEventListener('click', () => go(i));
         dotsEl.appendChild(d);
     });
@@ -1470,7 +1427,7 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
         const activa = cards[index];
         turn.setAttribute('aria-pressed', activa.classList.contains('volteada') ? 'true' : 'false');
         turn.setAttribute('aria-label', activa.classList.contains('volteada')
-            ? 'Volver a la foto' : 'Ver la ficha del emisor');
+            ? 'Volver al frente' : 'Ver el dorso de la tarjeta');
     }
 
     function render() {
