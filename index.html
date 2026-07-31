@@ -354,8 +354,7 @@
     margin: 16px 0 0;
 }
 
-/* Dorso provisorio. Cuando este el collage, se reemplaza todo
-   el contenido de .reel-msg-dorso por la grilla de fotos. */
+/* Dorso provisorio: cuando este el collage se reemplaza este bloque. */
 .reel-dorso.reel-msg-dorso {
     background:
         radial-gradient(115% 80% at 50% 100%, rgba(0,232,255,.18), transparent 62%),
@@ -998,9 +997,8 @@ Nosotros te mostramos cómo funciona.
         <div class="reel-track" id="reelTrack">
 
 <!-- Cinco tarjetas. La primera no es un emisor: es el remate de la
-     seccion, el "puede ser el tuyo". Las otras cuatro son emisores y
-     los nombres y paises son ficticios a proposito, para resguardar
-     su privacidad. Las lineas que dicen PENDIENTE hay que completarlas. -->
+     seccion. Las otras cuatro si, y sus nombres y paises son ficticios
+     a proposito. Las lineas que dicen PENDIENTE hay que completarlas. -->
 
             <article class="reel-card">
                 <div class="reel-flip">
@@ -1211,6 +1209,49 @@ Nosotros te mostramos cómo funciona.
 
                 </div>
             </article>
+
+        </div>
+    </div>
+
+    <div class="reel-controls">
+        <button class="reel-arrow" id="reelPrev" aria-label="Emisor anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="reel-turn" id="reelTurn" aria-pressed="false" aria-label="Ver la ficha del emisor"><i class="fa-solid fa-arrows-rotate"></i></button>
+        <button class="reel-arrow" id="reelNext" aria-label="Emisor siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <div class="reel-dots" id="reelDots"></div>
+
+    <div class="reel-cta">
+        <p>Todo esto pasa desde un celular. El tuyo sirve igual.</p>
+        <a href="https://suitsagency.lat/registro/" class="reel-cta-btn">
+            <i class="fa-solid fa-user-plus"></i> Quiero mi primer live
+        </a>
+        <a href="https://wa.me/595982678695" class="reel-cta-alt" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> o escríbenos por WhatsApp
+        </a>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="conversacion">
+
+<h2>Lo que siempre nos preguntan</h2>
+<p class="conv-sub">Las mismas preguntas, todas las semanas.</p>
+
+<div class="hilo">
+    <div class="hilo-cab">
+        <img src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+        <div>
+            <b>Suits Agency</b>
+            <span>en línea</span>
         </div>
     </div>
 
@@ -1427,7 +1468,7 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
         const activa = cards[index];
         turn.setAttribute('aria-pressed', activa.classList.contains('volteada') ? 'true' : 'false');
         turn.setAttribute('aria-label', activa.classList.contains('volteada')
-            ? 'Volver al frente' : 'Ver el dorso de la tarjeta');
+            ? 'Volver a la foto' : 'Ver la ficha del emisor');
     }
 
     function render() {
