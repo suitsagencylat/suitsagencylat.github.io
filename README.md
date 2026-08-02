@@ -338,6 +338,45 @@ Los `.mp4` van en `clips/`. Referencia de peso: unos 8 segundos en
 
 ---
 
+## La credencial del hero
+
+Las dos caras son **el mismo documento visto de los dos lados**, y ese es
+el punto: cierra el triángulo agencia → plataforma → emisor.
+
+| Cara | De quién es | Qué dice |
+|---|---|---|
+| Anverso | De la agencia | Sello **Verificada**, región, 0 % de comisión |
+| Dorso | **Tuya**, todavía en blanco | Nombre, hueco de foto, estado **Por verificar** |
+
+La palabra se repite a propósito: adelante la agencia ya está
+*Verificada*, atrás vos estás *Por verificar*. Es el mismo sistema de
+estados y la agencia es el puente. Se usa el vocabulario de Bigo
+(*emisor oficial*, *emisor verificado*), no uno inventado.
+
+> ⚠️ **El dorso promete una credencial real.** El hueco de la foto y el
+> estado *Por verificar* dan a entender que, al verificarse, la persona
+> recibe su credencial con su nombre y su foto. **Eso hay que cumplirlo**
+> (se envía por WhatsApp al firmar). Si algún día se deja de emitir, hay
+> que cambiar el dorso: prometer un documento que no llega hace
+> exactamente lo contrario de lo que busca esa sección.
+
+Se dice *Por verificar* y no *Sin verificar*: "sin" nombra una carencia y
+en las apps suele leerse como advertencia; "por" nombra un paso que viene.
+
+### Al editar
+
+- El hueco de la foto (`.cred-foto`) va con **trazo cortado y el rótulo
+  FOTO** para que se lea como casillero reservado y no como una imagen
+  que no cargó. Si se le pone borde sólido, pasa a parecer un error.
+- Va al **lateral derecho**, no arriba a la derecha: ahí, en el anverso,
+  está el sello *Verificada*, y las dos piezas competirían.
+- **El texto del botón vive en dos lugares**: en el HTML del
+  `<button data-girar>` y otra vez dentro del script del volteo, al final
+  de `index.html`. Si se cambia en uno solo, el botón vuelve al texto
+  viejo apenas se gira la tarjeta una vez.
+
+---
+
 ## Cambios de julio 2026
 
 Anotados acá para no tener que releer todo el archivo.
