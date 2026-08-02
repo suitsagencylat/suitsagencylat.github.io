@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar credencial | Suits Agency</title>
+
+    <!-- Herramienta interna. No va en el menu, no va en el sitemap y no
+         se indexa: a esta pagina se llega solo si conoces la direccion. -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/png" href="https://suitsagency.lat/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://suitsagency.lat/styles.css">
+
+    <style>
+        :root { --ancho: 940px; }
+
+        .cab {
+            display: flex; align-items: center; gap: 12px;
+            padding: 18px 16px 0; max-width: var(--ancho); margin: 0 auto;
+        }
+        .cab img { width: 34px; height: 34px; object-fit: contain; }
+        .cab h1 {
+            font-family: var(--font-display); font-size: 1.7rem;
+            letter-spacing: 1px; margin: 0; color: #fff; line-height: 1;
+        }
+        .cab .interno {
+            margin-left: auto; font-family: "Roboto Mono", monospace;
+            font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+            color: var(--violeta-claro);
+            border: 1px solid rgba(158, 0, 255, .5);
+            background: rgba(158, 0, 255, .14);
+            padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+        }
+
+        .intro {
+            max-width: var(--ancho); margin: 6px auto 0; padding: 0 16px;
+            color: var(--silver); opacity: .72; font-size: .88rem; line-height: 1.6;
+        }
+
+        .tablero {
+            max-width: var(--ancho); margin: 0 auto; padding: 24px 16px 60px;
+            display: grid; gap: 26px; grid-template-columns: 1fr;
+        }
+        @media (min-width: 820px) {
+            .tablero { grid-template-columns: 340px 1fr; align-items: start; }
+        }
+
+        /* ---- formulario ---- */
+        .campos { display: flex; flex-direction: column; gap: 16px; }
+        .campo { display: flex; flex-direction: column; gap: 6px; }
+        .campo label {
+            font-family: "Roboto Mono", monospace; font-size: .62rem;
+            letter-spacing: .16em; text-transform: uppercase;
+            color: var(--accent-blue);
+        }
+        .campo input[type="text"], .campo select {
+            width: 100%; padding: 11px 13px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--glass-border); border-radius: 8px;
+            color: #fff; font-family: var(--font-clean); font-size: .95rem;
+        }
+        .campo input[type="text"]:focus, .campo select:focus {
+            outline: none; border-color: var(--accent-blue);
+        }
+        .campo .pista {
+            font-size: .72rem; color: var(--silver); opacity: .5; line-height: 1.4;
+        }
+
+        .archivo {
+            display: flex; align-items: center; justify-content: center; gap: 9px;
+            padding: 13px; cursor: pointer; text-align: center;
+            border: 1px dashed rgba(0, 232, 255, .45); border-radius: 8px;
+            background: rgba(0, 232, 255, .05);
+            color: var(--accent-blue); font-size: .85rem;
+        }
+        .archivo:hover { background: rgba(0, 232, 255, .1); }
+        .archivo input { display: none; }
+
+        .deslizador { display: flex; align-items: center; gap: 10px; }
+        .deslizador input[type="range"] { flex: 1; accent-color: var(--accent-violet); }
+        .deslizador span {
+            font-family: "Roboto Mono", monospace; font-size: .68rem;
+            color: var(--silver); opacity: .6; min-width: 38px; text-align: right;
+        }
+
+        /* ---- vista previa ---- */
+        .escenario { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+        .lienzo-caja { width: 100%; max-width: 460px; position: relative; }
+        #lienzo {
+            width: 100%; height: auto; display: block; border-radius: 12px;
+            box-shadow: 0 22px 50px rgba(0, 0, 0, .65);
+            touch-action: none;   /* para poder arrastrar la foto */
+        }
+        .arrastrable { cursor: grab; }
+        .arrastrando { cursor: grabbing; }
+
+        .pie-previa {
+            font-family: "Roboto Mono", monospace; font-size: .62rem;
+            letter-spacing: .12em; text-transform: uppercase;
+            color: var(--silver); opacity: .45; text-align: center;
+        }
+
+        .acciones { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; }
+        .bajar {
+            flex: 1; min-width: 200px; max-width: 340px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+            padding: 15px 24px; border: 0; border-radius: 50px; cursor: pointer;
+            background: linear-gradient(90deg, var(--accent-violet), var(--violeta-brillo));
+            color: #fff; font-family: var(--font-clean); font-weight: 700;
+            font-size: .9rem; letter-spacing: .5px; text-transform: uppercase;
+        }
+        .bajar:hover { box-shadow: 0 0 25px rgba(158, 0, 255, .5); }
+        .bajar:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+
+        .aviso {
+            max-width: var(--ancho); margin: 0 auto; padding: 0 16px;
+            font-size: .78rem; line-height: 1.6; color: var(--silver); opacity: .55;
+            border-left: 2px solid var(--glass-border); padding-left: 13px;
+        }
+        .alerta {
+            display: none; margin-top: 10px; padding: 11px 13px; border-radius: 8px;
+            background: rgba(255, 80, 80, .12); border: 1px solid rgba(255, 80, 80, .45);
+            color: #ffb3b3; font-size: .8rem; line-height: 1.5;
+        }
+        .alerta.visible { display: block; }
+    </style>
+</head>
+<body>
+
+<header class="cab">
+    <img src="../logo.png" alt="">
+    <h1>Generar credencial</h1>
+    <span class="interno">Uso interno</span>
+</header>
+
+<p class="intro">
+    Carga el nombre y la foto de quien acaba de verificarse y descarga su credencial
+    lista para enviar por WhatsApp. Es la misma pieza que se ve en el inicio del sitio,
+    ahora con sus datos.
+</p>
+
+<div class="tablero">
+
+    <div class="campos">
+        <div class="campo">
+            <label for="fNombre">Nombre de emisor/a</label>
+            <input type="text" id="fNombre" placeholder="Ej.: Valentina" maxlength="28" autocomplete="off">
+            <span class="pista">Como quiere que aparezca. Si es muy largo, se achica solo.</span>
+        </div>
+
+        <div class="campo">
+            <label for="fRegion">Región</label>
+            <input type="text" id="fRegion" value="Latinoamérica" maxlength="24" autocomplete="off">
+        </div>
+
+        <div class="campo">
+            <label for="fDesde">Verificado desde</label>
+            <input type="text" id="fDesde" placeholder="Ej.: agosto 2026" maxlength="24" autocomplete="off">
+            <span class="pista">Se muestra en el pie. Déjalo vacío para omitirlo.</span>
+        </div>
+
+        <div class="campo">
+            <label>Foto</label>
+            <label class="archivo">
+                <i class="fa-solid fa-camera" aria-hidden="true"></i>
+                <span id="nombreArchivo">Elegir una foto</span>
+                <input type="file" id="fFoto" accept="image/*">
+            </label>
+            <span class="pista">Arrastra la foto sobre la credencial para encuadrarla.</span>
+        </div>
+
+        <div class="campo">
+            <label for="fZoom">Acercar</label>
+            <div class="deslizador">
+                <input type="range" id="fZoom" min="100" max="300" value="100">
+                <span id="verZoom">100%</span>
+            </div>
+        </div>
+
+        <div class="alerta" id="alerta"></div>
+    </div>
+
+    <div class="escenario">
+        <div class="lienzo-caja">
+            <canvas id="lienzo" width="1080" height="681" role="img"
+                    aria-label="Vista previa de la credencial"></canvas>
+        </div>
+        <p class="pie-previa" id="pieVista">Vista previa &middot; se descarga en 1080 &times; 681</p>
+        <div class="acciones">
+            <button class="bajar" id="btnBajar" type="button" disabled>
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar credencial
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<p class="aviso">
+    <b>Sobre lo que promete esta pieza:</b> el reverso de la credencial del inicio dice
+    <i>Por verificar</i> y deja el hueco de la foto vacío. Quien postula entiende que, al
+    verificarse, recibe la suya. Esta herramienta existe para cumplir eso.
+</p>
+
+<script>
+/* ============================================================
+   GENERADOR DE CREDENCIALES — Suits Agency
+
+   Dibuja la credencial sobre un canvas en vez de fotografiar el
+   HTML. Es mas codigo, pero no depende de ninguna libreria
+   externa y el PNG sale exactamente igual siempre.
+
+   Todas las medidas salen de los mismos porcentajes que usa el
+   CSS del dorso en index.html. Si alla se mueve algo, hay que
+   moverlo aca tambien.
+   ============================================================ */
+(function () {
+    'use strict';
+
+    var L = document.getElementById('lienzo');
+    var ctx = L.getContext('2d');
+    var W = L.width, H = L.height;          // 1080 x 681, proporcion 1.586
+
+    // ---- paleta, la misma de styles.css ----
+    var CIAN = '0, 232, 255';
+    var VIOLETA = '158, 0, 255';
+    var BASE = '#0a0a0c';
+
+    var estado = {
+        nombre: '', region: 'Latinoamérica', desde: '',
+        foto: null, zoom: 1, dx: 0, dy: 0,
+        logo: null, listo: false
+    };
+
+    // ---------- utilidades de dibujo ----------
+
+    function rectRedondo(c, x, y, w, h, r) {
+        c.beginPath();
+        c.moveTo(x + r, y);
+        c.arcTo(x + w, y, x + w, y + h, r);
+        c.arcTo(x + w, y + h, x, y + h, r);
+        c.arcTo(x, y + h, x, y, r);
+        c.arcTo(x, y, x + w, y, r);
+        c.closePath();
+    }
+
+    /* Los degradados del CSS son elipses (110% x 90%). El canvas solo
+       hace circulos, asi que se deforma el plano antes de dibujar.
+       El color final lleva alpha 0 pero el MISMO rgb: si se usara
+       'transparent' el degradado viraria hacia el negro. */
+    function elipse(c, cx, cy, rx, ry, rgb, alpha, fin) {
+        c.save();
+        c.translate(cx, cy);
+        c.scale(1, ry / rx);
+        var g = c.createRadialGradient(0, 0, 0, 0, 0, rx);
+        g.addColorStop(0, 'rgba(' + rgb + ',' + alpha + ')');
+        g.addColorStop(fin, 'rgba(' + rgb + ',0)');
+        c.fillStyle = g;
+        c.fillRect(-rx * 2, -rx * 2, rx * 4, rx * 4);
+        c.restore();
+    }
+
+    /* Dibuja letra por letra para reproducir el letter-spacing del
+       CSS, que el canvas no aplica de forma pareja entre navegadores. */
+    function texto(c, cadena, x, y, op) {
+        c.font = op.peso + ' ' + op.tam + 'px ' + op.familia;
+        c.fillStyle = op.color;
+        c.textBaseline = 'top';
+
+        var esp = (op.esp || 0) * op.tam;
+        var anchos = [], total = 0, i;
+        for (i = 0; i < cadena.length; i++) {
+            var a = c.measureText(cadena[i]).width;
+            anchos.push(a);
+            total += a + esp;
+        }
+        total -= esp;   // el ultimo hueco no cuenta para centrar
+
+        var px = x;
+        if (op.alinear === 'centro') px = x - total / 2;
+
+        for (i = 0; i < cadena.length; i++) {
+            c.fillText(cadena[i], px, y);
+            px += anchos[i] + esp;
+        }
+        return total;
+    }
+
+    function anchoDe(c, cadena, op) {
+        c.font = op.peso + ' ' + op.tam + 'px ' + op.familia;
+        var esp = (op.esp || 0) * op.tam, total = 0;
+        for (var i = 0; i < cadena.length; i++) total += c.measureText(cadena[i]).width + esp;
+        return total - esp;
+    }
+
+    // ---- tipografias, con los mismos tamanos relativos del CSS ----
+    var MONO = '"Roboto Mono", ui-monospace, monospace';
+    var TITULO = '"Bebas Neue", sans-serif';
+
+    function etiqueta(tam) {
+        return { familia: MONO, peso: '400', tam: tam, esp: 0.13,
+                 color: 'rgba(255,255,255,.63)' };
+    }
+    function dato(tam, color) {
+        return { familia: MONO, peso: '400', tam: tam, esp: 0.107,
+                 color: color || 'rgba(255,255,255,.84)' };
+    }
+
+    // ---------- la credencial ----------
+
+    function pintar() {
+        var rBorde = 0.046 * W;
+
+        ctx.clearRect(0, 0, W, H);
+        ctx.save();
+        rectRedondo(ctx, 0, 0, W, H, rBorde);
+        ctx.clip();
+
+        // fondo
+        ctx.fillStyle = BASE;
+        ctx.fillRect(0, 0, W, H);
+        elipse(ctx, 0, 0, 1.1 * W, 0.9 * H, CIAN, 0.14, 0.6);
+        elipse(ctx, W, H, 1.1 * W, 0.9 * H, VIOLETA, 0.22, 0.6);
+
+        // logo: caja de 12.22% con object-fit contain, pegado a la izquierda
+        if (estado.logo) {
+            var cajaW = 0.1222 * W, cajaH = 0.1222 * H;
+            var esc = Math.min(cajaW / estado.logo.naturalWidth, cajaH / estado.logo.naturalHeight);
+            var lw = estado.logo.naturalWidth * esc, lh = estado.logo.naturalHeight * esc;
+            ctx.drawImage(estado.logo, 0.0631 * W, 0.10 * H + (cajaH - lh) / 2, lw, lh);
+        }
+
+        // titulo centrado
+        texto(ctx, 'Tu credencial', W / 2, 0.11 * H, {
+            familia: TITULO, peso: '400', tam: 0.054 * W, esp: 0.065,
+            color: '#fff', alinear: 'centro'
+        });
+
+        // ---- foto ----
+        var fx = 0.70 * W, fy = 0.29 * H, fw = 0.22 * W, fh = 0.46 * H;
+        var rFoto = 0.016 * W;
+
+        ctx.save();
+        rectRedondo(ctx, fx, fy, fw, fh, rFoto);
+        ctx.clip();
+        if (estado.foto) {
+            var base = Math.max(fw / estado.foto.naturalWidth, fh / estado.foto.naturalHeight);
+            var e = base * estado.zoom;
+            var dw = estado.foto.naturalWidth * e, dh = estado.foto.naturalHeight * e;
+            ctx.drawImage(estado.foto,
+                fx + (fw - dw) / 2 + estado.dx,
+                fy + (fh - dh) / 2 + estado.dy, dw, dh);
+        } else {
+            ctx.fillStyle = 'rgba(' + CIAN + ',.045)';
+            ctx.fillRect(fx, fy, fw, fh);
+        }
+        ctx.restore();
+
+        // marco de la foto: punteado mientras esta vacia, solido cuando hay
+        ctx.save();
+        rectRedondo(ctx, fx, fy, fw, fh, rFoto);
+        if (estado.foto) {
+            ctx.strokeStyle = 'rgba(' + CIAN + ',.5)';
+            ctx.lineWidth = 0.0025 * W;
+        } else {
+            ctx.strokeStyle = 'rgba(' + CIAN + ',.42)';
+            ctx.lineWidth = 0.0022 * W;
+            ctx.setLineDash([0.012 * W, 0.009 * W]);
+        }
+        ctx.stroke();
+        ctx.restore();
+
+        if (!estado.foto) {
+            texto(ctx, 'FOTO', fx + fw / 2, fy + fh / 2 - 0.0098 * W, {
+                familia: MONO, peso: '400', tam: 0.0195 * W, esp: 0.2,
+                color: 'rgba(' + CIAN + ',.6)', alinear: 'centro'
+            });
+        }
+
+        // ---- columna de datos ----
+        var izq = 0.0733 * W;
+        var limite = fx - 0.025 * W - izq;      // hasta donde puede crecer el nombre
+
+        texto(ctx, 'NOMBRE DE EMISOR/A', izq, 0.32 * H, etiqueta(0.0212 * W));
+
+        // El nombre se apoya sobre la linea de firma y se achica si no entra.
+        var lineaY = 0.42 * H;
+        if (estado.nombre) {
+            var tam = 0.042 * W;
+            var op = { familia: TITULO, peso: '400', tam: tam, esp: 0.03, color: '#fff' };
+            while (anchoDe(ctx, estado.nombre, op) > limite && op.tam > 0.016 * W) {
+                op.tam -= 1;
+            }
+            texto(ctx, estado.nombre, izq, lineaY - op.tam * 1.02, op);
+        }
+
+        ctx.fillStyle = 'rgba(255,255,255,.28)';
+        ctx.fillRect(izq, lineaY, 0.52 * W, Math.max(1, 0.0028 * W));
+
+        texto(ctx, 'REGIÓN', izq, 0.52 * H, etiqueta(0.0212 * W));
+        texto(ctx, estado.region || 'Latinoamérica', izq, 0.569 * H, dato(0.0258 * W));
+
+        texto(ctx, 'ESTADO', izq, 0.67 * H, etiqueta(0.0212 * W));
+        // El estado va en cian: es el dato que cambia respecto de la
+        // credencial en blanco del sitio, y tiene que saltar a la vista.
+        texto(ctx, 'Verificado', izq, 0.719 * H, dato(0.0258 * W, 'rgba(' + CIAN + ',.95)'));
+
+        // ---- pie ----
+        var pie = estado.desde
+            ? 'Emisor verificado desde ' + estado.desde + ' · Suits Agency'
+            : 'Emisor verificado · Suits Agency';
+        texto(ctx, pie, W / 2, 0.85 * H, {
+            familia: MONO, peso: '400', tam: 0.0182 * W, esp: 0.05,
+            color: 'rgba(255,255,255,.6)', alinear: 'centro'
+        });
+
+        ctx.restore();
+
+        // borde exterior
+        ctx.save();
+        rectRedondo(ctx, 0.7, 0.7, W - 1.4, H - 1.4, rBorde);
+        ctx.strokeStyle = 'rgba(255,255,255,.14)';
+        ctx.lineWidth = 0.0028 * W;
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    // ---------- carga de recursos ----------
+
+    function cargarImagen(src) {
+        return new Promise(function (ok, mal) {
+            var i = new Image();
+            i.onload = function () { ok(i); };
+            i.onerror = mal;
+            i.src = src;
+        });
+    }
+
+    var alerta = document.getElementById('alerta');
+    function avisar(txt) {
+        if (!txt) { alerta.classList.remove('visible'); return; }
+        alerta.textContent = txt;
+        alerta.classList.add('visible');
+    }
+
+    /* Sin las fuentes cargadas el canvas dibuja con la de respaldo y la
+       credencial sale distinta, sin avisar a nadie.
+
+       Ojo con document.fonts.check(): si la hoja de Google Fonts no
+       llego a cargar, no existe ningun FontFace de esa familia y el
+       metodo devuelve true igual, "porque no falta ninguno". Da un
+       falso positivo justo en el caso que queremos detectar.
+
+       Lo que si funciona es medir: se compara el ancho de una muestra
+       contra dos fuentes de referencia distintas. Si la familia pedida
+       se esta aplicando de verdad, el ancho cambia respecto de por lo
+       menos una de las dos. */
+    function seAplica(familia) {
+        var c = document.createElement('canvas').getContext('2d');
+        var muestra = 'ABCDEFGHIJKLM0123456789';
+        var refs = ['monospace', 'serif'];
+        for (var i = 0; i < refs.length; i++) {
+            c.font = '72px ' + refs[i];
+            var solaRef = c.measureText(muestra).width;
+            c.font = '72px "' + familia + '", ' + refs[i];
+            if (Math.abs(c.measureText(muestra).width - solaRef) > 0.5) return true;
+        }
+        return false;
+    }
+
+    function esperarFuentes() {
+        var pedir = (document.fonts && document.fonts.load)
+            ? Promise.all([
+                document.fonts.load('400 60px "Bebas Neue"'),
+                document.fonts.load('400 24px "Roboto Mono"')
+              ]).catch(function () {})
+            : Promise.resolve();
+
+        return pedir.then(function () {
+            return seAplica('Bebas Neue') && seAplica('Roboto Mono');
+        });
+    }
+
+    // El logo se pide relativo (no por https://suitsagency.lat) para que
+    // sea del mismo origen: si no, el canvas queda "manchado" y el
+    // navegador prohibe exportarlo a PNG.
+    Promise.all([cargarImagen('../logo.png'), esperarFuentes()])
+        .then(function (r) {
+            estado.logo = r[0];
+            estado.listo = true;
+            if (!r[1]) {
+                avisar('No se pudieron cargar las tipografías de la marca. ' +
+                       'La credencial saldría con otra letra: revisa la conexión y recarga.');
+            }
+            pintar();
+            revisarBoton();
+        })
+        .catch(function () {
+            avisar('No se pudo cargar el logo. Recarga la página.');
+            pintar();
+        });
+
+    // ---------- formulario ----------
+
+    function enlazar(id, clave) {
+        document.getElementById(id).addEventListener('input', function (e) {
+            estado[clave] = e.target.value.trim();
+            pintar();
+            revisarBoton();
+        });
+    }
+    enlazar('fNombre', 'nombre');
+    enlazar('fRegion', 'region');
+    enlazar('fDesde', 'desde');
+
+    var zoom = document.getElementById('fZoom');
+    zoom.addEventListener('input', function () {
+        estado.zoom = zoom.value / 100;
+        document.getElementById('verZoom').textContent = zoom.value + '%';
+        pintar();
+    });
+
+    document.getElementById('fFoto').addEventListener('change', function (e) {
+        var f = e.target.files && e.target.files[0];
+        if (!f) return;
+        document.getElementById('nombreArchivo').textContent = f.name.slice(0, 26);
+        var lector = new FileReader();
+        lector.onload = function (ev) {
+            cargarImagen(ev.target.result).then(function (img) {
+                estado.foto = img;
+                estado.dx = 0; estado.dy = 0;
+                estado.zoom = 1; zoom.value = 100;
+                document.getElementById('verZoom').textContent = '100%';
+                L.classList.add('arrastrable');
+                avisar('');
+                pintar();
+                revisarBoton();
+            }).catch(function () {
+                avisar('Ese archivo no se pudo abrir como imagen. Prueba con otra foto.');
+            });
+        };
+        lector.readAsDataURL(f);
+    });
+
+    // ---------- arrastrar para encuadrar ----------
+    var arrastrando = false, ultX = 0, ultY = 0;
+
+    L.addEventListener('pointerdown', function (e) {
+        if (!estado.foto) return;
+        arrastrando = true;
+        L.setPointerCapture(e.pointerId);
+        L.classList.add('arrastrando');
+        ultX = e.clientX; ultY = e.clientY;
+    });
+
+    L.addEventListener('pointermove', function (e) {
+        if (!arrastrando) return;
+        // De pixeles de pantalla a pixeles del lienzo
+        var caja = L.getBoundingClientRect();
+        var k = L.width / caja.width;
+        estado.dx += (e.clientX - ultX) * k;
+        estado.dy += (e.clientY - ultY) * k;
+        ultX = e.clientX; ultY = e.clientY;
+        pintar();
+    });
+
+    function soltar(e) {
+        if (!arrastrando) return;
+        arrastrando = false;
+        L.classList.remove('arrastrando');
+        if (e && e.pointerId !== undefined && L.releasePointerCapture) {
+            try { L.releasePointerCapture(e.pointerId); } catch (x) {}
+        }
+    }
+    L.addEventListener('pointerup', soltar);
+    L.addEventListener('pointercancel', soltar);
+
+    // ---------- descarga ----------
+    var btn = document.getElementById('btnBajar');
+
+    function revisarBoton() {
+        btn.disabled = !(estado.listo && estado.nombre && estado.foto);
+    }
+
+    function apodo(s) {
+        return s.toLowerCase()
+                .normalize('NFD').replace(/[̀-ͯ]/g, '')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '') || 'emisor';
+    }
+
+    btn.addEventListener('click', function () {
+        pintar();
+        L.toBlob(function (blob) {
+            if (!blob) { avisar('No se pudo generar la imagen. Recarga e intenta otra vez.'); return; }
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'credencial-' + apodo(estado.nombre) + '.png';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        }, 'image/png');
+    });
+
+    pintar();
+})();
+</script>
+</body>
+</html>
