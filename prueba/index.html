@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>[PRUEBA] Suits Agency | Agencia Oficial de Creadores Digitales</title>
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="description" content="Suits Agency es una Agencia Oficial de Bigo Live que impulsa creadores digitales en Latinoamérica.">
+<link rel="canonical" href="https://suitsagency.lat/">
+
+<!-- Open Graph (WhatsApp, Instagram, Facebook) -->
+<meta property="og:title" content="Suits Agency | Agencia Oficial de Creadores Digitales">
+<meta property="og:description" content="Agencia oficial de Bigo Live. Impulsamos talentos en Latinoamérica para convertir su presencia digital en oportunidades reales.">
+<meta property="og:image" content="https://suitsagency.lat/og-image.png">
+<meta property="og:url" content="https://suitsagency.lat/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_LA">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Suits Agency | Agencia Oficial de Creadores Digitales">
+<meta name="twitter:description" content="Agencia oficial de Bigo Live. Impulsamos talentos en Latinoamérica.">
+<meta name="twitter:image" content="https://suitsagency.lat/og-image.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://suitsagency.lat/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://suitsagency.lat/styles.css">
+
+<style>
+/* ================================
+   SUITS AGENCY — PALETA FINAL
+   Negro (#000000) + Cian (#00E8FF) + Violeta (#9E00FF) + Blanco
+   Cian se mantiene como color principal de marca.
+   Violeta se usa SOLO como acento de acción/energía:
+   CTA principal, hover de tarjetas, badge de país activo.
+================================ */
+
+:root {
+    --accent-blue: #00e8ff;
+    --accent-violet: #9e00ff;
+}
+
+.hero-brand {
+    max-width: 850px;
+    margin: 20px auto 45px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-brand h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: .95;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* El acento cae aquí: "SER QUIEN ERES" pasa de cian a violeta
+   para que el hero tenga un punto focal eléctrico y distinto */
+.hero-brand h1 span {
+    color: var(--accent-violet);
+    text-shadow:
+    0 0 10px rgba(158,0,255,.5),
+    0 0 25px rgba(158,0,255,.3);
+}
+
+.hero-brand p {
+    max-width:700px;
+    margin:30px auto;
+    color:var(--silver);
+    font-size:1.1rem;
+    line-height:1.8;
+}
+
+
+/* Tarjetas: el cian se mantiene en reposo, el violeta aparece
+   solo al pasar el mouse — refuerza que es un color de "acción" */
+.nav-card {
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.4),
+    inset 0 0 30px rgba(0,212,255,.03);
+    transition: .3s;
+}
+
+/* Ligera variación del hover respecto a styles.css: acá el "salto"
+   es un poco mayor (-12px vs -10px) porque son las tarjetas hero */
+.nav-card:hover { transform: translateY(-12px); }
+
+.countries-section h2 {
+    font-family:var(--font-display);
+    font-size:2.5rem;
+    letter-spacing:4px;
+    color:white;
+    margin-bottom:20px;
+}
+
+/* Botón CTA principal: sólido en violeta en vez de outline cian.
+   Es el único botón "lleno" de la página — máxima jerarquía visual.
+   Texto en blanco (no negro) porque el violeta es un color oscuro/saturado. */
+.cta-main {
+    position:relative;
+    overflow:hidden;
+}
+
+/* ================================
+   SECCION: ELLOS YA DIERON EL PRIMER PASO
+   Carrusel coverflow de emisores. Cada tarjeta se
+   voltea: al frente la imagen, al dorso la ficha.
+   Ya no hay video; para volver a meterlo, ver el
+   README. Cierra con un CTA en contorno para no
+   competir con el del hero.
+================================ */
+.reel-section {
+    padding: 30px 0 26px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.reel-section h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    color: #fff;
+    margin: 0 0 8px;
+    padding: 0 16px;
+    line-height: 1.05;
+}
+
+.reel-sub {
+    max-width: 520px;
+    margin: 0 auto 30px;
+    padding: 0 6%;
+    color: var(--silver);
+    font-size: .9rem;
+    line-height: 1.6;
+}
+
+.reel-stage {
+    position: relative;
+    height: 440px;
+    margin-bottom: 20px;
+    /* Las tarjetas de los costados se desplazan mas alla del ancho de
+       la pantalla y las lejanas, que van invisibles, todavia mas. Sin
+       este recorte la pagina se podia arrastrar de costado. */
+    overflow: hidden;
+}
+
+.reel-track {
+    position: relative;
+    height: 100%;
+    /* La perspectiva del coverflow vive aca y NO se usa preserve-3d:
+       un contexto 3D hace que los hijos ignoren el recorte de arriba. */
+    perspective: 1400px;
+}
+
+/* La tarjeta es solo la posicion dentro del coverflow.
+   El volteo lo hace .reel-flip, que va adentro. */
+.reel-card {
+    position: absolute;
+    top: 0; left: 50%;
+    width: 248px;
+    height: 100%;
+    margin-left: -124px;
+    cursor: pointer;
+    transition: transform .55s cubic-bezier(.22,.61,.36,1), opacity .55s;
+    will-change: transform;
+    text-align: left;
+}
+
+.reel-card[data-pos="0"]  { transform: translateX(0) scale(1) rotateY(0); opacity: 1; z-index: 5; }
+.reel-card[data-pos="1"]  { transform: translateX(72%)   scale(.80) rotateY(-22deg); opacity: .45; z-index: 4; }
+.reel-card[data-pos="-1"] { transform: translateX(-72%)  scale(.80) rotateY(22deg);  opacity: .45; z-index: 4; }
+.reel-card[data-pos="2"]  { transform: translateX(122%)  scale(.64) rotateY(-28deg); opacity: .18; z-index: 3; }
+.reel-card[data-pos="-2"] { transform: translateX(-122%) scale(.64) rotateY(28deg);  opacity: .18; z-index: 3; }
+.reel-card[data-pos="far"]{ transform: translateX(0) scale(.5); opacity: 0; pointer-events: none; z-index: 1; }
+
+/* La profundidad del volteo se le da SOLO a la tarjeta centrada.
+   Es la unica que se voltea y la unica que esta entera dentro del
+   recorte, asi que no puede desbordar la pagina de costado. */
+.reel-card[data-pos="0"] { perspective: 1000px; }
+
+.reel-flip {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .7s cubic-bezier(.25,.8,.3,1);
+}
+.reel-card.volteada .reel-flip { transform: rotateY(180deg); }
+
+.reel-cara {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 1px solid var(--glass-border);
+    background: var(--bg-color);
+    transition: border-color .3s, box-shadow .3s;
+}
+
+/* El acento alterna tarjeta por tarjeta: la clase .cy la vuelve cian.
+   El dorso siempre usa el acento contrario al frente. */
+.reel-card[data-pos="0"] .reel-frente { border-color: var(--accent-violet); box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(158,0,255,.22); }
+.reel-card[data-pos="0"] .reel-dorso  { border-color: var(--accent-blue);   box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(0,232,255,.20); }
+.reel-card.cy[data-pos="0"] .reel-frente { border-color: var(--accent-blue);   box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(0,232,255,.20); }
+.reel-card.cy[data-pos="0"] .reel-dorso  { border-color: var(--accent-violet); box-shadow: 0 18px 50px rgba(0,0,0,.6), 0 0 34px rgba(158,0,255,.22); }
+
+/* ---- Frente ---- */
+.reel-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.reel-shade {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: linear-gradient(180deg, rgba(5,5,5,.62) 0%, transparent 24%, transparent 46%, rgba(5,5,5,.92) 88%);
+    pointer-events: none;
+}
+
+.reel-top {
+    position: absolute;
+    top: 10px; left: 10px; right: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 4;
+}
+
+.reel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--glass-border);
+    background: rgba(5,5,5,.72);
+    backdrop-filter: blur(6px);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.reel-badge .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    box-shadow: 0 0 8px var(--accent-blue);
+    animation: reel-dot 2.4s ease-in-out infinite;
+}
+@keyframes reel-dot { 0%,100% { opacity:1 } 50% { opacity:.35 } }
+
+.reel-info {
+    position: absolute;
+    left: 14px; right: 14px; bottom: 13px;
+    z-index: 4;
+}
+
+.reel-nombre {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.reel-nombre .flag { font-size: .85rem; }
+
+/* Chapita que avisa que la tarjeta se da vuelta.
+   Solo aparece en la centrada y solo cuando esta de frente. */
+.reel-ver {
+    position: absolute;
+    right: 12px; bottom: 14px;
+    z-index: 5;
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--glass-border);
+    background: rgba(5,5,5,.72);
+    backdrop-filter: blur(6px);
+    color: var(--accent-blue);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+.reel-card[data-pos="0"]:not(.volteada) .reel-ver { display: inline-flex; }
+
+/* ---- Dorso ---- */
+/* Tarjeta 1: no es un emisor, es el remate de la seccion.
+   Tres niveles de tamano, sin imagen: la entrada, la frase y el pie. */
+.reel-frente.reel-msg {
+    background:
+        radial-gradient(115% 80% at 50% 6%, rgba(158,0,255,.24), transparent 60%),
+        #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 34px 22px;
+}
+
+.msg-arriba {
+    font-size: .78rem;
+    line-height: 1.3;
+    color: rgba(255,255,255,.6);
+    margin: 0 0 10px;
+}
+
+.msg-grande {
+    font-family: var(--font-display);
+    font-size: 3.1rem;
+    line-height: .88;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0;
+}
+
+.msg-grande em { font-style: normal; color: var(--accent-violet); }
+
+.msg-abajo {
+    font-size: .74rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,.5);
+    margin: 16px 0 0;
+}
+
+/* Dorso provisorio: cuando este el collage se reemplaza este bloque. */
+.reel-dorso.reel-msg-dorso {
+    background:
+        radial-gradient(115% 80% at 50% 100%, rgba(0,232,255,.18), transparent 62%),
+        #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 34px 22px;
+}
+
+.reel-msg-dorso h3 {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    line-height: 1;
+    letter-spacing: 1.5px;
+    color: var(--accent-blue);
+    margin: 0 0 14px;
+}
+
+.reel-msg-dorso p {
+    font-size: .84rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,.78);
+    margin: 0;
+}
+
+.reel-msg-dorso .reel-volver { margin-top: 22px; align-self: flex-start; }
+
+@media (max-width: 600px) {
+    .msg-grande { font-size: 2.6rem; }
+}
+
+.reel-dorso {
+    transform: rotateY(180deg);
+}
+.reel-dorso .fondo {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: .13;
+    filter: grayscale(.4);
+}
+.reel-dorso .capa {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5,5,5,.92), rgba(5,5,5,.97));
+}
+.reel-ficha {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 20px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.reel-ficha h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin: 0 0 2px;
+    line-height: 1;
+}
+.reel-ficha .rol {
+    font-size: .56rem;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    margin: 0 0 14px;
+}
+.reel-divisor { height: 1px; background: var(--glass-border); margin: 0 0 13px; }
+
+.reel-dato { margin-bottom: 11px; }
+.reel-dato .et {
+    display: block;
+    font-size: .52rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.42);
+    margin-bottom: 3px;
+}
+.reel-dato .va {
+    margin: 0;
+    font-size: .78rem;
+    line-height: 1.4;
+    color: rgba(255,255,255,.92);
+}
+
+.reel-volver {
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--accent-blue);
+    background: none;
+    color: var(--accent-blue);
+    font-family: var(--font-body);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.reel-volver:hover { background: rgba(0,232,255,.12); }
+
+/* ---- Controles ---- */
+.reel-controls { display: flex; align-items: center; justify-content: center; gap: 18px; }
+
+.reel-arrow {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: #0d0d12;
+    border: 1px solid var(--glass-border);
+    color: var(--accent-blue);
+    font-size: 1rem;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: .3s;
+}
+.reel-arrow:hover { border-color: var(--accent-blue); background: rgba(0,232,255,.1); }
+.reel-arrow:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
+
+/* Boton de girar: va al centro, entre las flechas.
+   Es la accion principal de la seccion. */
+.reel-turn {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    background: rgba(158,0,255,.14);
+    border: 1px solid var(--accent-violet);
+    color: #fff;
+    font-size: 1.05rem;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: .3s;
+}
+.reel-turn:hover { background: rgba(158,0,255,.3); box-shadow: 0 0 20px rgba(158,0,255,.4); }
+.reel-turn:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
+.reel-turn i { transition: transform .5s; }
+.reel-turn[aria-pressed="true"] i { transform: rotate(180deg); }
+
+.reel-dots { display: flex; gap: 7px; justify-content: center; margin-top: 14px; }
+.reel-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255,255,255,.24);
+    cursor: pointer;
+    transition: .3s;
+}
+.reel-dot.on { background: var(--accent-violet); box-shadow: 0 0 10px rgba(158,0,255,.7); width: 20px; border-radius: 4px; }
+.reel-dot:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
+
+/* Guino de bienvenida: la tarjeta centrada se asoma una sola vez
+   cuando la seccion entra en pantalla, para que se entienda que gira. */
+@keyframes reel-guino {
+    0%   { transform: rotateY(0deg); }
+    35%  { transform: rotateY(-20deg); }
+    68%  { transform: rotateY(7deg); }
+    100% { transform: rotateY(0deg); }
+}
+.reel-card[data-pos="0"].guino .reel-flip { animation: reel-guino 1.15s ease-in-out .3s 1; }
+
+/* CTA secundario: en contorno, no solido, para no competir
+   con POSTULAR AHORA del hero */
+.reel-cta {
+    margin: 26px auto 0;
+    max-width: 460px;
+    padding: 0 6%;
+}
+
+.reel-cta p {
+    margin: 0 0 14px;
+    font-size: .88rem;
+    line-height: 1.6;
+    color: var(--silver);
+}
+
+.reel-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 30px;
+    border: 2px solid var(--accent-blue);
+    border-radius: 4px;
+    color: var(--accent-blue);
+    background: transparent;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+.reel-cta-btn:hover {
+    background: rgba(0,232,255,.12);
+    box-shadow: 0 0 22px rgba(0,232,255,.28);
+    color: var(--accent-blue);
+}
+.reel-cta-btn:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
+
+.reel-cta-alt {
+    display: block;
+    margin-top: 14px;
+    font-size: .78rem;
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+    transition: color .3s;
+}
+.reel-cta-alt i { color: #25d366; margin-right: 6px; }
+.reel-cta-alt:hover { color: #fff; }
+
+@media (max-width: 600px) {
+    .reel-section h2 { font-size: 1.75rem; letter-spacing: 2px; }
+    .reel-stage { height: 400px; }
+    .reel-card { width: 218px; margin-left: -109px; }
+    .reel-card[data-pos="1"]  { transform: translateX(64%)  scale(.76) rotateY(-20deg); }
+    .reel-card[data-pos="-1"] { transform: translateX(-64%) scale(.76) rotateY(20deg); }
+    .reel-card[data-pos="2"], .reel-card[data-pos="-2"] { transform: translateX(0) scale(.5); opacity: 0; pointer-events: none; }
+    .reel-nombre { font-size: 1.2rem; }
+    .reel-ficha { padding: 17px 15px 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reel-card { transition: opacity .2s; }
+    .reel-flip { transition: none; }
+    .reel-badge .dot { animation: none; }
+    .reel-card[data-pos="0"].guino .reel-flip { animation: none; }
+}
+
+/* ---- Insignia de agencia oficial en el hero ----
+   Antes solo estaba en letra chica bajo el logo. Es la credencial
+   mas fuerte que tenemos: va arriba de todo. */
+
+/* Resaltado dentro del parrafo del hero: marca lo unico que hace
+   falta para empezar. */
+.hero-brand p .hl { color: var(--accent-blue); font-weight: 700; }
+
+
+/* ---- Sección "Lo que siempre nos preguntan" ----
+   Formato de hilo de chat: cada beneficio deja de ser una virtud
+   declarada y pasa a ser respuesta a una pregunta que la persona
+   ya tiene. Además entrena el gesto de escribir. */
+.conversacion { width: 92%; max-width: 560px; margin: 70px auto; position: relative; z-index: 1; }
+.conversacion h2 {
+    font-family: var(--font-display); font-size: clamp(1.8rem, 5.5vw, 2.6rem);
+    letter-spacing: 1px; text-align: center; margin: 0 0 6px;
+}
+.conv-sub {
+    text-align: center; font-size: .86rem; color: rgba(255,255,255,.45);
+    margin: 0 auto 22px; max-width: 36ch; line-height: 1.6;
+}
+.hilo {
+    border: 1px solid var(--glass-border); border-radius: 18px;
+    background: rgba(255,255,255,.02); padding: 16px 14px 18px;
+}
+.hilo-cab {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 4px 14px; margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.hilo-cab img { width: 30px; border-radius: 50%; }
+.hilo-cab b { font-size: .86rem; display: block; }
+.hilo-cab span { font-size: .64rem; color: #25d366; }
+
+.msg { max-width: 82%; margin-bottom: 12px; padding: 11px 14px; font-size: .86rem; line-height: 1.55; }
+.msg.tú {
+    margin-left: auto; border-radius: 14px 14px 4px 14px;
+    background: rgba(0,232,255,.1); border: 1px solid rgba(0,232,255,.25); color: #fff;
+}
+.msg.ellos {
+    margin-right: auto; border-radius: 14px 14px 14px 4px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    color: rgba(255,255,255,.78);
+}
+.msg.ellos b { color: var(--accent-blue); font-weight: 600; }
+.hora { display: block; margin-top: 5px; font-size: .6rem; color: rgba(255,255,255,.25); text-align: right; }
+
+.escribiendo {
+    display: inline-flex; gap: 4px; align-items: center;
+    padding: 12px 16px; border-radius: 14px 14px 14px 4px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+}
+.escribiendo i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.4); animation: puntos 1.3s infinite; }
+.escribiendo i:nth-child(2) { animation-delay: .18s; }
+.escribiendo i:nth-child(3) { animation-delay: .36s; }
+@keyframes puntos { 0%,60%,100% { opacity:.25; transform: translateY(0); } 30% { opacity:1; transform: translateY(-3px); } }
+
+.msg.ellos a { color: var(--accent-blue); text-decoration: underline; text-underline-offset: 3px; }
+.msg.ellos a:hover { color: #fff; }
+.conv-cierre { margin-top: 22px; text-align: center; }
+.conv-wa {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    padding: 15px 30px; border-radius: 50px;
+    background: #25d366; color: #06210f; font-weight: 700; font-size: .88rem; letter-spacing: .5px;
+}
+.conv-wa i { font-size: 1.2rem; }
+.conv-cierre p { margin: 12px 0 0; font-size: .74rem; color: rgba(255,255,255,.4); }
+
+@media (prefers-reduced-motion: reduce) { .escribiendo i { animation: none; } }
+
+
+/* ================================================================
+   CREDENCIAL PREMIUM EN EL HERO
+   Formato horizontal, proporción de tarjeta de crédito. El CTA va
+   afuera: adentro competiría con los datos y le quitaría el aire
+   que hace que se lea como un objeto y no como un cartel.
+   ================================================================ */
+.hero-accion {
+    width: 100%;
+    /* 340px de contenido + los 4px de padding de cada lado: la credencial,
+       el boton y los tres accesos miden exactamente lo mismo, y ese ancho
+       es el mismo --btn-ancho que usan los CTA del resto del sitio. */
+    max-width: 348px;
+    margin: 26px auto 0;
+    padding: 0 4px;
+}
+
+.escena { perspective: 1500px; width: 100%; }
+.tarjeta {
+    position: relative; width: 100%; aspect-ratio: 1.586 / 1;
+    transform-style: preserve-3d;
+    transition: transform .8s cubic-bezier(.3, 1, .35, 1);
+    cursor: pointer;
+}
+.tarjeta.girada { transform: rotateY(180deg); }
+
+/* Cada cara es su propio contenedor de medida: todo lo de adentro se
+   expresa en cqw (porcentaje del ancho de la tarjeta), asi la credencial
+   se achica entera y proporcional en pantallas angostas, sin recalcular
+   ni un solo tamano a mano. */
+.cara {
+    container-type: inline-size;
+    position: absolute; inset: 0;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    border-radius: 4.6cqw; overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .14);
+    background:
+        radial-gradient(110% 90% at 0% 0%, rgba(0, 232, 255, .14), transparent 60%),
+        radial-gradient(110% 90% at 100% 100%, rgba(158, 0, 255, .22), transparent 60%),
+        var(--sup-base);
+    box-shadow: 0 22px 50px rgba(0, 0, 0, .65), inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+.cara.dorso { transform: rotateY(180deg); }
+.cara > * { position: absolute; }
+
+/* ---- piezas que comparten las dos caras ---- */
+.cred-marca {
+    top: 10%; left: 6.31%; width: 12.22%; height: 12.22%;
+    object-fit: contain; object-position: left center;
+}
+.cred-titular {
+    top: 10%; left: 21.4%;
+    font-family: var(--font-display);
+    letter-spacing: .065em; line-height: 1; color: #fff;
+}
+.cred-cian { color: var(--accent-blue); font-size: 2.33cqw; letter-spacing: .224em; line-height: 1.4; }
+.cred-cuerpo {
+    left: 7.33%; width: 82.87%;
+    font-size: 2.67cqw; line-height: 1.45;
+    color: rgba(255, 255, 255, .62); text-align: justify;
+}
+.cred-cuerpo b { color: #fff; font-weight: 400; }
+.cred-mono {
+    font-family: "Roboto Mono", ui-monospace, monospace; white-space: nowrap;
+    color: rgba(255, 255, 255, .63); font-size: 2.12cqw;
+    letter-spacing: .13em; line-height: 1.4;
+}
+.cred-mono.dato { color: rgba(255, 255, 255, .84); font-size: 2.58cqw; letter-spacing: .107em; }
+
+/* ---- frente ---- */
+.frente .cred-titular { font-size: 6.14cqw; }
+.cred-bajada { top: 20.46%; left: 22.28%; width: 28.93%; text-align: center; white-space: pre-line; }
+.cred-quees { top: 47%; }
+.verificado {
+    top: 10%; left: 72.14%; width: 23.76%; height: 10.46%;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    background: rgba(158, 0, 255, .14); border: 1px solid rgba(158, 0, 255, .5);
+    color: var(--violeta-claro);
+    font-size: 2.3cqw; letter-spacing: .2em; line-height: 1.4; text-transform: uppercase;
+}
+.cred-region   { left: 7.7%;  top: 80.8%; }
+.cred-latam    { left: 7.7%;  top: 85.67%; }
+.cred-cero     { left: 70%;   top: 80%; font-size: 3.44cqw; }
+.cred-comision { left: 70%;   top: 88.13%; }
+/* Espejado para que el dino mire hacia el texto y no hacia el borde. */
+.cred-dino {
+    top: 79%; left: 85%; width: 10%; height: 15.85%;
+    object-fit: contain; transform: scaleX(-1);
+}
+
+/* ---- dorso ----
+   El anverso es la credencial de la agencia; el dorso es la del
+   emisor, todavia en blanco. Por eso repite la gramatica del
+   frente (etiquetas mono + valores) en vez de ser un cartel: las
+   dos caras tienen que leerse como el mismo documento.
+   ---------------------------------------------------------------- */
+.dorso .cred-titular {
+    top: 11%; left: 0; width: 100%;
+    font-size: 5.4cqw; text-align: center;
+}
+
+/* Hueco de la foto. El trazo cortado y el rotulo son lo que hace
+   que se lea como casillero reservado y no como una imagen que
+   no cargo. Va al lateral derecho y no arriba: arriba a la
+   derecha, en el frente, esta el sello "Verificada". */
+.cred-foto {
+    left: 70%; top: 29%; width: 22%; height: 46%;
+    border: 1px dashed rgba(0, 232, 255, .42);
+    border-radius: 1.6cqw;
+    background: rgba(0, 232, 255, .045);
+    display: flex; align-items: center; justify-content: center;
+}
+.cred-foto span {
+    font-family: "Roboto Mono", ui-monospace, monospace;
+    font-size: 1.95cqw; letter-spacing: .2em;
+    color: rgba(0, 232, 255, .6);
+}
+
+.cred-campo   { left: 7.33%; top: 32%; }
+.cred-firma   {
+    left: 7.33%; top: 42%; width: 52%; height: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .28);
+}
+.cred-et-region { left: 7.33%; top: 52%; }
+.cred-va-region { left: 7.33%; top: 56.9%; }
+.cred-et-estado { left: 7.33%; top: 67%; }
+.cred-va-estado { left: 7.33%; top: 71.9%; }
+/* Centrada a proposito: cierra la tarjeta como pie de las dos
+   columnas (datos a la izquierda, foto a la derecha) en vez de
+   colgar de una sola. Va declarado y no heredado del hero. */
+.cred-invita {
+    left: 7.33%; top: 85%; width: 82.87%;
+    font-size: 2.6cqw; line-height: 1.4;
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+}
+
+/* Guino: la tarjeta se asoma para avisar que tiene dorso. Se repite dos
+   veces y se calla; a los pocos segundos deja de ser aviso y pasa a ser
+   ruido, y esta justo encima del CTA. Al voltearla una vez, no vuelve. */
+@keyframes cred-balanceo {
+    0%, 100% { transform: rotateY(0deg); }
+    35%      { transform: rotateY(-16deg); }
+    70%      { transform: rotateY(4deg); }
+}
+.tarjeta.guino:not(.girada) { animation: cred-balanceo 1.6s cubic-bezier(.4, 0, .3, 1); }
+
+/* .cred-cta toma forma, alto y color del sistema de botones de styles.css.
+   Aca solo vive lo propio del hero: la separacion respecto de la credencial. */
+.cred-cta { margin-top: 18px; }
+.cred-girar {
+    display: block; margin: 10px auto 0; background: none; border: 0; cursor: pointer;
+    font-family: inherit; font-size: .7rem; letter-spacing: .6px;
+    color: rgba(255, 255, 255, .45); text-decoration: underline; text-underline-offset: 3px;
+}
+.cred-girar:hover { color: #fff; }
+
+/* ---- Los tres accesos, compactos, debajo ---- */
+.accesos {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    width: 100%; margin: 16px 0 0;
+}
+.accesos a {
+    min-width: 0;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 12px 4px; border-radius: 12px; text-decoration: none;
+    border: 1px solid var(--glass-border); background: rgba(255, 255, 255, .03);
+    color: var(--silver); transition: border-color .25s, background .25s, transform .25s;
+}
+.accesos a:hover { border-color: rgba(0, 232, 255, .4); background: rgba(0, 232, 255, .06); transform: translateY(-3px); }
+.accesos i { color: var(--accent-blue); font-size: 1.05rem; }
+.accesos span { font-size: .68rem; letter-spacing: 1px; text-transform: uppercase; }
+
+.hero-accion .cta-alt { margin-top: 16px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .tarjeta, .tarjeta.guino { transition: none; animation: none; }
+    .accesos a:hover { transform: none; }
+}
+
+.msg.ellos a { color: var(--accent-blue); text-decoration: underline; text-underline-offset: 2px; }
+.msg.ellos a:hover { color: #fff; }
+</style>
+
+
+<!-- Datos estructurados: ayudan a Google a mostrar la ficha de la agencia -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Suits Agency",
+  "alternateName": "Suits Agency LATAM",
+  "url": "https://suitsagency.lat/",
+  "logo": "https://suitsagency.lat/logo.png",
+  "image": "https://suitsagency.lat/og-image.png",
+  "description": "Agencia oficial de Bigo Live que impulsa creadores digitales en Latinoamérica, convirtiendo su presencia digital en oportunidades reales.",
+  "slogan": "El negocio de ser quien eres",
+  "areaServed": {
+    "@type": "Place",
+    "name": "Latinoamérica"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "telephone": "+595982678695",
+    "availableLanguage": ["Spanish"]
+  },
+  "sameAs": [
+    "https://instagram.com/suitsagency.lat",
+    "https://tiktok.com/@suitsagency.lat"
+  ]
+}
+</script>
+
+<style>
+/* ---- Accesos reubicados debajo del cierre (prueba) ---- */
+.accesos-pie {
+    width: 100%;
+    max-width: 348px;
+    margin: 4px auto 34px;
+    padding: 0 4px;
+}
+.accesos-pie .accesos { margin: 0; }
+</style>
+</head>
+
+
+<body>
+
+<div class="overlay-bg" id="overlay"></div>
+
+
+<header class="main-header">
+<a href="https://suitsagency.lat/" class="header-logo">
+<img src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+<div class="logo-text-group">
+<div class="logo-title">SUITS AGENCY</div>
+<span class="leyenda">Agencia oficial de Bigo Live</span>
+</div>
+</a>
+<div class="menu-toggle" id="menuToggle" role="button" tabindex="0" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+<i class="fa-solid fa-bars"></i>
+</div>
+<nav class="header-nav" id="mainNav" aria-label="Navegacion principal">
+<a href="https://suitsagency.lat/" class="nav-link" data-page="inicio"><i class="fa-solid fa-house"></i> Inicio</a>
+<a href="https://suitsagency.lat/academia/" class="nav-link" data-page="academia"><i class="fa-solid fa-rocket"></i> Academia</a>
+<a href="https://suitsagency.lat/pagos/" class="nav-link" data-page="pagos"><i class="fa-solid fa-gem"></i> Pagos</a>
+<a href="https://suitsagency.lat/registro/" class="nav-link" data-page="registro"><i class="fa-solid fa-user-plus"></i> Postular</a>
+<a href="https://suitsagency.lat/soporte/" class="nav-link" data-page="soporte"><i class="fa-solid fa-headset"></i> Soporte</a>
+</nav>
+</header>
+
+<script src="https://suitsagency.lat/include.js" defer></script>
+<!-- tracking.js quitado a proposito: la pagina de prueba
+     no debe registrar eventos en GA4 ni en el Pixel -->
+
+
+
+<div class="news-ticker">
+
+<div class="ticker-content">
+
+<span>
+Bigo Live es una app para hacer transmisiones en vivo desde tu celular
+</span>
+
+<span>
+Puedes conversar con personas de todo el mundo en tiempo real
+</span>
+
+<span>
+Mientras transmites, tu audiencia puede apoyarte con regalos virtuales
+</span>
+
+<span>
+Esos regalos se convierten en ingresos que puedes retirar
+</span>
+
+<span>
+Si cumples las metas del mes, Bigo Live te paga directamente una remuneración extra
+</span>
+
+<span>
+Auto retiro por PayPal, Binance, Payoneer o directo a tu cuenta con dLocal
+</span>
+
+<span>
+Puedes transmitir en Bigo Live sin dejar lo que ya estás haciendo
+</span>
+
+<span>
+Sin cláusulas de penalidad, exclusividad ni permanencia
+</span>
+
+<span>
+Cero multas, cero comisiones, cero descuentos
+</span>
+
+</div>
+
+</div>
+
+
+
+
+
+<section class="hero-section">
+
+
+<div class="hero-brand">
+
+
+<h1>
+
+EL NEGOCIO DE<br>
+
+<span>SER QUIEN ERES</span>
+
+</h1>
+
+
+<p>
+
+No vendes nada y no necesitas un personaje. Solo
+<span class="hl">un celular y un rato cada día</span>.
+Nosotros te mostramos cómo funciona.
+
+</p>
+
+
+
+<div class="hero-accion">
+
+<div class="escena">
+    <div class="tarjeta" id="tarjetaCred">
+
+        <div class="cara frente">
+            <img class="cred-marca" src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+            <div class="cred-titular">Suits Agency</div>
+            <div class="verificado">Verificada</div>
+            <div class="cred-cian cred-bajada">Agencia oficial
+de Bigo Live</div>
+
+            <div class="cred-cuerpo cred-quees"><b>Bigo Live</b> es una app de transmisiones en vivo. Transmites desde tu celular, hablas con gente en tiempo real y ganas por los regalos que recibes y por las metas que cumplas.</div>
+
+            <div class="cred-mono cred-region">REGIÓN</div>
+            <div class="cred-mono dato cred-latam">Latinoamérica</div>
+            <div class="cred-mono dato cred-cero">0 %</div>
+            <div class="cred-mono cred-comision">COMISIÓN</div>
+
+            <img class="cred-dino" src="https://suitsagency.lat/dino.png" alt="Bigo Live" loading="lazy">
+        </div>
+
+        <div class="cara dorso">
+            <img class="cred-marca" src="https://suitsagency.lat/logo.png" alt="">
+            <div class="cred-titular">Tu credencial</div>
+
+            <div class="cred-foto"><span>FOTO</span></div>
+
+            <div class="cred-mono cred-campo">NOMBRE DE EMISOR/A</div>
+            <div class="cred-firma"></div>
+
+            <div class="cred-mono cred-et-region">REGIÓN</div>
+            <div class="cred-mono dato cred-va-region">Latinoamérica</div>
+            <div class="cred-mono cred-et-estado">ESTADO</div>
+            <div class="cred-mono dato cred-va-estado">Por verificar</div>
+
+            <div class="cred-invita">Postula y te verificamos en 24 h.</div>
+        </div>
+
+    </div>
+</div>
+
+<a href="https://suitsagency.lat/registro/" class="cred-cta">Postular ahora</a>
+<button class="cred-girar" type="button" data-girar>Ver tu credencial</button>
+
+<div id="anclaHero"></div>
+
+<div id="waHero" hidden>
+<a href="https://wa.me/595982678695?text=Hola!%20Quiero%20informacion%20para%20ser%20emisor%20de%20Bigo%20Live%20con%20Suits%20Agency." class="cta-alt" target="_blank" rel="noopener">
+<i class="fa-brands fa-whatsapp"></i> o pregúntanos por WhatsApp
+</a>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+<section class="reel-section">
+
+    <h2>ELLOS YA DIERON EL PRIMER PASO</h2>
+
+    <p class="reel-sub">
+        Personas de distintos países que decidieron convertir su creatividad
+        en una nueva fuente de ingresos con Bigo Live.
+    </p>
+
+    <div class="reel-stage">
+        <div class="reel-track" id="reelTrack">
+
+<!-- Cinco tarjetas. La primera no es un emisor: es el remate de la
+     seccion. Las otras cuatro si, y sus nombres y paises son ficticios
+     a proposito. -->
+
+            <article class="reel-card">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente reel-msg">
+                        <p class="msg-arriba">El siguiente paso</p>
+                        <h3 class="msg-grande">Puede ser <em>el tuyo</em></h3>
+                        <p class="msg-abajo">Ninguno de ellos sabía cómo empezar.</p>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver más</span>
+                    </div>
+
+                    <!-- PROVISORIO: aqui va el collage cuando este listo -->
+                    <div class="reel-cara reel-dorso reel-msg-dorso">
+                        <h3>Empezar es más simple de lo que parece</h3>
+                        <p>Escríbenos por WhatsApp y te contamos cómo funciona, sin compromiso.</p>
+                        <button class="reel-volver" type="button">
+                            <i class="fa-solid fa-arrow-left"></i> Volver
+                        </button>
+                    </div>
+
+                </div>
+            </article>
+
+            <article class="reel-card cy">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente">
+                        <img src="https://suitsagency.lat/clips/poster-2.webp" alt="Emisor oficial de Suits Agency" class="reel-poster" loading="lazy">
+                        <div class="reel-shade"></div>
+                        <div class="reel-top">
+                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                        </div>
+                        <div class="reel-info">
+                            <h3 class="reel-nombre">Valentina <span class="flag">🇦🇷</span></h3>
+                        </div>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    </div>
+
+                    <div class="reel-cara reel-dorso">
+                        <img src="https://suitsagency.lat/clips/poster-2.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
+                        <div class="capa"></div>
+                        <div class="reel-ficha">
+                            <h3>Valentina <span class="flag">🇦🇷</span></h3>
+                            <p class="rol">Emisor oficial · Suits Agency</p>
+                            <div class="reel-divisor"></div>
+                            <div class="reel-dato">
+                                <span class="et">Edad y país</span>
+                                <p class="va">24 años · Argentina</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Antigüedad</span>
+                                <p class="va">8 meses como emisora oficial</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Le gusta</span>
+                                <p class="va">Series y maquillaje</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Qué hace en vivo</span>
+                                <p class="va">Charla con la sala y juegos de preguntas</p>
+                            </div>
+                            <button class="reel-volver" type="button">
+                                <i class="fa-solid fa-arrow-left"></i> Volver
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <article class="reel-card">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente">
+                        <img src="https://suitsagency.lat/clips/poster-3.webp" alt="Emisor oficial de Suits Agency" class="reel-poster" loading="lazy">
+                        <div class="reel-shade"></div>
+                        <div class="reel-top">
+                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                        </div>
+                        <div class="reel-info">
+                            <h3 class="reel-nombre">Strong <span class="flag">🇨🇴</span></h3>
+                        </div>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    </div>
+
+                    <div class="reel-cara reel-dorso">
+                        <img src="https://suitsagency.lat/clips/poster-3.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
+                        <div class="capa"></div>
+                        <div class="reel-ficha">
+                            <h3>Strong <span class="flag">🇨🇴</span></h3>
+                            <p class="rol">Emisor oficial · Suits Agency</p>
+                            <div class="reel-divisor"></div>
+                            <div class="reel-dato">
+                                <span class="et">Edad y país</span>
+                                <p class="va">23 años · Colombia</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Antigüedad</span>
+                                <p class="va">1 año y medio como emisor oficial</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Le gusta</span>
+                                <p class="va">Películas y espectáculo</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Qué hace en vivo</span>
+                                <p class="va">Conversa con la sala sobre cine y espectáculo</p>
+                            </div>
+                            <button class="reel-volver" type="button">
+                                <i class="fa-solid fa-arrow-left"></i> Volver
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <article class="reel-card cy">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente">
+                        <img src="https://suitsagency.lat/clips/poster-4.webp" alt="Emisor oficial de Suits Agency" class="reel-poster" loading="lazy">
+                        <div class="reel-shade"></div>
+                        <div class="reel-top">
+                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                        </div>
+                        <div class="reel-info">
+                            <h3 class="reel-nombre">Camila <span class="flag">🇨🇴</span></h3>
+                        </div>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    </div>
+
+                    <div class="reel-cara reel-dorso">
+                        <img src="https://suitsagency.lat/clips/poster-4.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
+                        <div class="capa"></div>
+                        <div class="reel-ficha">
+                            <h3>Camila <span class="flag">🇨🇴</span></h3>
+                            <p class="rol">Emisor oficial · Suits Agency</p>
+                            <div class="reel-divisor"></div>
+                            <div class="reel-dato">
+                                <span class="et">Edad y país</span>
+                                <p class="va">22 años · Colombia</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Antigüedad</span>
+                                <p class="va">5 meses como emisora oficial</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Le gusta</span>
+                                <p class="va">Baile y moda</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Qué hace en vivo</span>
+                                <p class="va">Coreografías y challenges con la sala</p>
+                            </div>
+                            <button class="reel-volver" type="button">
+                                <i class="fa-solid fa-arrow-left"></i> Volver
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <article class="reel-card">
+                <div class="reel-flip">
+
+                    <div class="reel-cara reel-frente">
+                        <img src="https://suitsagency.lat/clips/poster-5.webp" alt="Emisor oficial de Suits Agency" class="reel-poster" loading="lazy">
+                        <div class="reel-shade"></div>
+                        <div class="reel-top">
+                            <span class="reel-badge"><span class="dot"></span> Emisor oficial</span>
+                        </div>
+                        <div class="reel-info">
+                            <h3 class="reel-nombre">Ramirez <span class="flag">🇻🇪</span></h3>
+                        </div>
+                        <span class="reel-ver"><i class="fa-solid fa-arrows-rotate"></i> Ver ficha</span>
+                    </div>
+
+                    <div class="reel-cara reel-dorso">
+                        <img src="https://suitsagency.lat/clips/poster-5.webp" alt="" class="fondo" aria-hidden="true" loading="lazy">
+                        <div class="capa"></div>
+                        <div class="reel-ficha">
+                            <h3>Ramirez <span class="flag">🇻🇪</span></h3>
+                            <p class="rol">Emisor oficial · Suits Agency</p>
+                            <div class="reel-divisor"></div>
+                            <div class="reel-dato">
+                                <span class="et">Edad y país</span>
+                                <p class="va">19 años · Venezuela</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Antigüedad</span>
+                                <p class="va">10 meses como emisor oficial</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Le gusta</span>
+                                <p class="va">Videojuegos y el gimnasio</p>
+                            </div>
+                            <div class="reel-dato">
+                                <span class="et">Qué hace en vivo</span>
+                                <p class="va">Entrena en vivo y juega con la sala</p>
+                            </div>
+                            <button class="reel-volver" type="button">
+                                <i class="fa-solid fa-arrow-left"></i> Volver
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <div class="reel-controls">
+        <button class="reel-arrow" id="reelPrev" aria-label="Emisor anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="reel-turn" id="reelTurn" aria-pressed="false" aria-label="Ver la ficha del emisor"><i class="fa-solid fa-arrows-rotate"></i></button>
+        <button class="reel-arrow" id="reelNext" aria-label="Emisor siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <div class="reel-dots" id="reelDots"></div>
+
+    <div class="reel-cta">
+        <p>Todo esto pasa desde un celular. El tuyo sirve igual.</p>
+        <a href="https://suitsagency.lat/registro/" class="reel-cta-btn">
+            <i class="fa-solid fa-user-plus"></i> Quiero mi primer live
+        </a>
+        <a href="https://wa.me/595982678695" class="reel-cta-alt" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> o escríbenos por WhatsApp
+        </a>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="conversacion">
+
+<h2>Lo que siempre nos preguntan</h2>
+<p class="conv-sub">Las mismas preguntas, todas las semanas.</p>
+
+<div class="hilo">
+    <div class="hilo-cab">
+        <img src="https://suitsagency.lat/logo.png" alt="Suits Agency">
+        <div>
+            <b>Suits Agency</b>
+            <span>en línea</span>
+        </div>
+    </div>
+
+    <div class="msg tú">Yo quiero empezar pero no tengo experiencia ni idea de cómo funciona<span class="hora">21:04</span></div>
+    <div class="msg ellos">Aquí en Bigo Live <b>no necesitas experiencia</b> para empezar. Nosotros te enseñamos desde cero. Puedes revisar la <a href="https://suitsagency.lat/academia/">Academia</a> para tener una idea de cómo funciona.<span class="hora">21:05</span></div>
+
+    <div class="msg tú">Pero tampoco tengo seguidores para empezar 🥲<span class="hora">21:06</span></div>
+    <div class="msg ellos">Tranqui, Bigo <b>no te pide una cantidad mínima de seguidores</b> para empezar a transmitir, como otras plataformas que sí lo exigen.<span class="hora">21:06</span></div>
+
+    <div class="msg tú">¿Tengo que pagar algo para entrar?<span class="hora">21:08</span></div>
+    <div class="msg ellos">No, nunca. <b>Ni para entrar ni para salir</b> de Bigo Live.<span class="hora">21:08</span></div>
+
+    <div class="msg tú">¿Ustedes se quedan con algún porcentaje de mis ganancias?<span class="hora">21:09</span></div>
+    <div class="msg ellos">No, en absoluto. Tú cobras <b>el 100% de tus ganancias</b>. Nosotros no administramos tu dinero: la app te paga directamente.<span class="hora">21:10</span></div>
+
+    <div class="msg tú">¿Qué pasa si ingreso y después de un tiempo quiero salir?<span class="hora">21:12</span></div>
+    <div class="msg ellos">No pasa nada, puedes dejar de hacer tus transmisiones cuando quieras. <b>No existe una cláusula de permanencia</b>, exclusividad, sanción o multa.<span class="hora">21:12</span></div>
+
+    <div class="escribiendo"><i></i><i></i><i></i></div>
+</div>
+
+<div class="conv-cierre">
+    <a href="https://wa.me/595982678695?text=Hola!%20Tengo%20una%20pregunta%20sobre%20Bigo%20Live." target="_blank" rel="noopener" class="conv-wa">
+        <i class="fa-brands fa-whatsapp"></i> Hacer mi pregunta
+    </a>
+    <p>O postula directo, toma tres minutos.</p>
+</div>
+
+</section>
+
+<section class="countries-section">
+
+
+<h2>
+PRESENCIA LATINOAMERICANA
+</h2>
+
+
+<p>
+Creadores conectados desde diferentes países
+formando parte del ecosistema Suits Agency.
+</p>
+
+
+
+<div class="countries-grid">
+
+
+<div class="country-item">
+<span aria-hidden="true">🇵🇾</span> Paraguay
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇦🇷</span> Argentina
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇨🇱</span> Chile
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇨🇴</span> Colombia
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇲🇽</span> México
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇵🇪</span> Perú
+</div>
+
+
+<div class="country-item">
+<span aria-hidden="true">🇻🇪</span> Venezuela
+</div>
+
+
+<div class="country-item highlight">
++24 Países LATAM
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section class="cta-cierre">
+<h2>EMPIEZA ESTA SEMANA</h2>
+<p>
+La aprobación tarda entre 24 y 72 horas. Cuanto antes postules, antes empiezan a contar tus horas del mes.
+</p>
+<a href="https://suitsagency.lat/registro/" class="cta-main">POSTULAR AHORA</a>
+<div class="cta-nota">
+<span><i class="fa-solid fa-check"></i> Respuesta en menos de 24 h</span>
+<span><i class="fa-solid fa-check"></i> Sin costo</span>
+</div>
+<br>
+<a href="https://wa.me/595982678695?text=Hola!%20Tengo%20una%20duda%20antes%20de%20postular%20a%20Suits%20Agency." class="cta-alt" target="_blank" rel="noopener">
+<i class="fa-brands fa-whatsapp"></i> Tengo una duda antes de postular
+</a>
+</section>
+
+<!-- Los accesos bajan aca: quien llego al final sin postular es
+     justo quien necesita ver Pagos, Academia o Soporte.
+     .accesos lleva width:100%, asi que fuera del hero necesita su
+     propio contenedor o se estira hasta cortarse en los bordes. -->
+<div id="anclaAbajo" class="accesos-pie">
+<nav class="accesos">
+    <a href="https://suitsagency.lat/pagos/"><i class="fa-solid fa-gem"></i><span>Pagos</span></a>
+    <a href="https://suitsagency.lat/academia/"><i class="fa-solid fa-graduation-cap"></i><span>Academia</span></a>
+    <a href="https://suitsagency.lat/soporte/"><i class="fa-solid fa-headset"></i><span>Soporte</span></a>
+</nav>
+</div>
+
+<section class="social-section">
+
+
+<h4>
+SÍGUENOS
+</h4>
+
+
+
+<div class="social-icons">
+
+
+<a href="https://instagram.com/suitsagency.lat"
+target="_blank"
+rel="noopener"
+class="social-link">
+
+<i class="fa-brands fa-instagram"></i>
+
+</a>
+
+
+
+<a href="https://tiktok.com/@suitsagency.lat"
+target="_blank"
+rel="noopener"
+class="social-link">
+
+<i class="fa-brands fa-tiktok"></i>
+
+</a>
+
+
+
+<a href="https://wa.me/595982678695"
+target="_blank"
+rel="noopener"
+class="social-link">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+
+
+</div>
+
+
+</section>
+
+
+
+<footer>
+<img src="https://suitsagency.lat/dino.png" alt="Bigo Dino" class="dino-mascot">
+
+
+© 2026 Suits Agency |
+Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class="footer-link">Privacidad</a>
+</footer><script>
+
+
+// ============================
+
+
+</script>
+
+
+
+<script>
+// Carrusel de emisores. La tarjeta centrada se voltea y muestra la ficha.
+// Va en su propia funcion para no chocar con el carrusel de tips.
+(function () {
+    const track = document.getElementById('reelTrack');
+    if (!track) return;
+
+    const cards  = Array.from(track.querySelectorAll('.reel-card'));
+    const dotsEl = document.getElementById('reelDots');
+    const turn   = document.getElementById('reelTurn');
+    let index = 0;   // arranca en la tarjeta de mensaje
+
+    cards.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'reel-dot';
+        d.type = 'button';
+        d.setAttribute('aria-label', 'Ver tarjeta ' + (i + 1));
+        d.addEventListener('click', () => go(i));
+        dotsEl.appendChild(d);
+    });
+    const dots = Array.from(dotsEl.children);
+
+    // Deja la tarjeta de frente. Se usa al cambiar de tarjeta, para que
+    // la siguiente nunca aparezca ya dada vuelta.
+    function frente(card) { card.classList.remove('volteada'); }
+
+    function voltear(card) {
+        card.classList.toggle('volteada');
+        syncTurn();
+    }
+
+    function syncTurn() {
+        const activa = cards[index];
+        turn.setAttribute('aria-pressed', activa.classList.contains('volteada') ? 'true' : 'false');
+        turn.setAttribute('aria-label', activa.classList.contains('volteada')
+            ? 'Volver a la foto' : 'Ver la ficha del emisor');
+    }
+
+    function render() {
+        const half = Math.floor(cards.length / 2);
+        cards.forEach((card, i) => {
+            let off = i - index;
+            if (off >  half) off -= cards.length;
+            if (off < -half) off += cards.length;
+            card.dataset.pos = Math.abs(off) <= 2 ? String(off) : 'far';
+            card.setAttribute('aria-hidden', off === 0 ? 'false' : 'true');
+            if (off !== 0) frente(card);   // al salir del centro, vuelve a la foto
+        });
+        dots.forEach((d, i) => d.classList.toggle('on', i === index));
+        syncTurn();
+    }
+
+    function go(i) {
+        index = (i + cards.length) % cards.length;
+        render();
+    }
+
+    document.getElementById('reelPrev').addEventListener('click', () => go(index - 1));
+    document.getElementById('reelNext').addEventListener('click', () => go(index + 1));
+    turn.addEventListener('click', () => voltear(cards[index]));
+
+    cards.forEach((card, i) => {
+        card.addEventListener('click', () => {
+            // Tocar una tarjeta del costado la trae al centro, no la voltea
+            if (i !== index) { go(i); return; }
+            voltear(card);
+        });
+    });
+
+    // Deslizar en pantalla tactil
+    let x0 = null;
+    track.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 45) go(index + (dx < 0 ? 1 : -1));
+        x0 = null;
+    }, { passive: true });
+
+    // Guino de bienvenida: la primera vez que la seccion entra en pantalla,
+    // la tarjeta centrada se asoma para que se entienda que gira.
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(en => {
+                if (!en.isIntersecting) return;
+                const activa = cards[index];
+                activa.classList.add('guino');
+                setTimeout(() => activa.classList.remove('guino'), 1600);
+                obs.disconnect();   // una sola vez
+            });
+        }, { threshold: .45 });
+        obs.observe(track);
+    }
+
+    render();
+})();
+</script>
+
+
+<script>
+(function () {
+    const t = document.getElementById('tarjetaCred');
+    if (!t) return;
+
+    let avisado = false;   // se vuelve true al primer volteo
+
+    const girar = () => {
+        t.classList.remove('guino');
+        avisado = true;
+        t.classList.toggle('girada');
+        const dorso = t.classList.contains('girada');
+        document.querySelectorAll('[data-girar]').forEach(b => {
+            b.textContent = dorso ? 'Volver' : 'Ver tu credencial';
+        });
+    };
+
+    // El botón vive fuera de la tarjeta, así que se busca en toda la página
+    document.querySelectorAll('[data-girar]').forEach(b => b.addEventListener('click', girar));
+    t.addEventListener('click', girar);
+
+    // Guiño: al cargar y dos veces más, cada 6 segundos. Después se calla.
+    // Si ya la volteó, entendió que gira y no hace falta insistir.
+    const quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!quieto) {
+        let quedan = 3;
+        const asomar = () => {
+            if (avisado || t.classList.contains('girada')) return;
+            t.classList.remove('guino');
+            void t.offsetWidth;          // reinicia la animación
+            t.classList.add('guino');
+        };
+        asomar();
+        const reloj = setInterval(() => {
+            if (--quedan <= 0 || avisado) { clearInterval(reloj); return; }
+            asomar();
+        }, 6000);
+    }
+})();
+</script>
+
+<!-- ============================================================
+     PANEL DE PRUEBA — no existe en el sitio real.
+     Permite comparar en vivo la version actual con la propuesta.
+     ============================================================ -->
+<style>
+#panelPrueba {
+    position: fixed; left: 12px; bottom: 12px; z-index: 9999;
+    font-family: "Roboto Mono", ui-monospace, monospace;
+    background: rgba(10,10,14,.96); color: #fff;
+    border: 1px solid var(--accent-violet);
+    border-radius: 12px; padding: 0; max-width: 250px;
+    box-shadow: 0 12px 34px rgba(0,0,0,.7);
+}
+#panelPrueba .cabecera {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    padding: 10px 12px; font-size: .6rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--violeta-claro);
+    background: none; border: 0; width: 100%; text-align: left;
+    font-family: inherit;
+}
+#panelPrueba .cuerpo { padding: 0 12px 12px; display: block; }
+#panelPrueba.plegado .cuerpo { display: none; }
+#panelPrueba h4 {
+    margin: 10px 0 6px; font-size: .58rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent-blue); font-weight: 400;
+}
+#panelPrueba button.op {
+    display: block; width: 100%; margin: 4px 0; padding: 7px 9px;
+    font-family: inherit; font-size: .62rem; letter-spacing: .04em;
+    background: rgba(255,255,255,.05); color: rgba(255,255,255,.65);
+    border: 1px solid rgba(255,255,255,.16); border-radius: 6px; cursor: pointer;
+}
+#panelPrueba button.op[aria-pressed="true"] {
+    background: rgba(158,0,255,.24); border-color: var(--accent-violet); color: #fff;
+}
+#panelPrueba .nota {
+    margin-top: 10px; font-size: .55rem; line-height: 1.5;
+    color: rgba(255,255,255,.42); letter-spacing: .02em;
+}
+@media print { #panelPrueba { display: none; } }
+</style>
+
+<!-- Arranca plegado a proposito: desplegado tapa el CTA en celular,
+     que es justo lo que hay que mirar. -->
+<div id="panelPrueba" class="plegado">
+    <button class="cabecera" type="button" id="plegar">
+        <span>&#9679; Panel de prueba</span>
+    </button>
+    <div class="cuerpo">
+        <h4>Accesos (Pagos/Academia/Soporte)</h4>
+        <button class="op" type="button" data-acc="abajo" aria-pressed="true">Abajo del cierre &middot; propuesto</button>
+        <button class="op" type="button" data-acc="hero" aria-pressed="false">En el hero &middot; como esta hoy</button>
+        <button class="op" type="button" data-acc="ocultos" aria-pressed="false">Ocultos del todo</button>
+
+        <h4>WhatsApp del hero</h4>
+        <button class="op" type="button" data-wa="oculto" aria-pressed="true">Oculto &middot; propuesto</button>
+        <button class="op" type="button" data-wa="visible" aria-pressed="false">Visible &middot; como esta hoy</button>
+
+        <p class="nota">La cinta no se toco. Esta pagina no registra eventos en GA4 ni en el Pixel.</p>
+    </div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+    var accesos = document.querySelector('.accesos');
+    var hero    = document.getElementById('anclaHero');
+    var abajo   = document.getElementById('anclaAbajo');
+    var wa      = document.getElementById('waHero');
+    var panel   = document.getElementById('panelPrueba');
+
+    function marcar(attr, valor) {
+        panel.querySelectorAll('[data-' + attr + ']').forEach(function (b) {
+            b.setAttribute('aria-pressed', b.dataset[attr] === valor ? 'true' : 'false');
+        });
+    }
+
+    panel.querySelectorAll('[data-acc]').forEach(function (b) {
+        b.addEventListener('click', function () {
+            var v = b.dataset.acc;
+            if (v === 'hero') { hero.appendChild(accesos); accesos.hidden = false; }
+            else if (v === 'abajo') { abajo.appendChild(accesos); accesos.hidden = false; }
+            else { accesos.hidden = true; }
+            marcar('acc', v);
+        });
+    });
+
+    panel.querySelectorAll('[data-wa]').forEach(function (b) {
+        b.addEventListener('click', function () {
+            wa.hidden = (b.dataset.wa === 'oculto');
+            marcar('wa', b.dataset.wa);
+        });
+    });
+
+    document.getElementById('plegar').addEventListener('click', function () {
+        panel.classList.toggle('plegado');
+    });
+})();
+</script>
+
+</body>
+
+</html>
