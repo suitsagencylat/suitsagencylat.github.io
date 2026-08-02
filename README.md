@@ -472,6 +472,17 @@ alterna en vivo entre lo que hay hoy y lo propuesto:
 
 - Los tres accesos: en el hero / debajo del cierre / ocultos
 - El WhatsApp del hero: visible / oculto
+- Presencia latinoamericana: antes del cierre / al final
+- Texto del carrusel: el actual / el corregido
+- Dino del pie: centrado / a la izquierda / en fila con el texto
+
+Sobre el texto del carrusel: *"Todo esto pasa desde un celular"* es un
+resto de cuando la sección tenía **videos**. Señalaba los clips de gente
+transmitiendo. Al quitarlos, "todo esto" se quedó sin referente.
+
+Sobre el dino: `.dino-mascot` vive en `styles.css` y aparece en **las 7
+páginas**. Moverlo de verdad las cambia todas — en la prueba se simula
+con clases en el `body` para no tocar el estilo compartido.
 
 > **No carga `tracking.js`.** Si lo cargara, cada visita de prueba
 > ensuciaría GA4 y el Pixel con eventos que no son de gente real.

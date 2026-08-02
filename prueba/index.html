@@ -880,7 +880,9 @@
 </script>
 
 <style>
-/* ---- Accesos reubicados debajo del cierre (prueba) ---- */
+/* ---- Accesos reubicados debajo del cierre (prueba) ----
+   Mismo ancho que los CTA del sitio, asi la fila queda alineada
+   con el boton POSTULAR AHORA que tiene encima. */
 .accesos-pie {
     width: 100%;
     max-width: 348px;
@@ -888,6 +890,17 @@
     padding: 0 4px;
 }
 .accesos-pie .accesos { margin: 0; }
+
+/* ---- Variantes del dino del pie (prueba) ----
+   Ojo: en el sitio real .dino-mascot vive en styles.css y aparece en
+   las 7 paginas, asi que cambiarlo alla las cambia todas. */
+body.dino-izq .dino-mascot { margin: 0 0 12px; }
+
+body.dino-fila footer {
+    display: flex; align-items: center; justify-content: flex-start;
+    gap: 14px; text-align: left;
+}
+body.dino-fila .dino-mascot { margin: 0; flex: 0 0 auto; }
 </style>
 </head>
 
@@ -1301,7 +1314,7 @@ de Bigo Live</div>
     <div class="reel-dots" id="reelDots"></div>
 
     <div class="reel-cta">
-        <p>Todo esto pasa desde un celular. El tuyo sirve igual.</p>
+        <p id="textoReel">Todo esto pasa desde un celular. El tuyo sirve igual.</p>
         <a href="https://suitsagency.lat/registro/" class="reel-cta-btn">
             <i class="fa-solid fa-user-plus"></i> Quiero mi primer live
         </a>
@@ -1361,7 +1374,7 @@ de Bigo Live</div>
 
 </section>
 
-<section class="countries-section">
+<section class="countries-section" id="paises">
 
 
 <h2>
@@ -1458,6 +1471,8 @@ La aprobación tarda entre 24 y 72 horas. Cuanto antes postules, antes empiezan 
     <a href="https://suitsagency.lat/soporte/"><i class="fa-solid fa-headset"></i><span>Soporte</span></a>
 </nav>
 </div>
+
+<div id="anclaPaisesAbajo"></div>
 
 <section class="social-section">
 
@@ -1725,6 +1740,19 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
         <button class="op" type="button" data-wa="oculto" aria-pressed="true">Oculto &middot; propuesto</button>
         <button class="op" type="button" data-wa="visible" aria-pressed="false">Visible &middot; como esta hoy</button>
 
+        <h4>Presencia latinoamericana</h4>
+        <button class="op" type="button" data-pais="abajo" aria-pressed="true">Al final &middot; propuesto</button>
+        <button class="op" type="button" data-pais="donde" aria-pressed="false">Antes del cierre &middot; hoy</button>
+
+        <h4>Texto del carrusel</h4>
+        <button class="op" type="button" data-txt="nuevo" aria-pressed="true">"Todos transmiten desde&hellip;"</button>
+        <button class="op" type="button" data-txt="viejo" aria-pressed="false">"Todo esto pasa&hellip;" &middot; hoy</button>
+
+        <h4>Dino del pie</h4>
+        <button class="op" type="button" data-dino="centro" aria-pressed="true">Centrado &middot; como esta hoy</button>
+        <button class="op" type="button" data-dino="izq" aria-pressed="false">A la izquierda</button>
+        <button class="op" type="button" data-dino="fila" aria-pressed="false">En fila con el texto</button>
+
         <p class="nota">La cinta no se toco. Esta pagina no registra eventos en GA4 ni en el Pixel.</p>
     </div>
 </div>
@@ -1760,6 +1788,47 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
             marcar('wa', b.dataset.wa);
         });
     });
+
+    // ---- Paises: entre el FAQ y el cierre, o al final ----
+    var paises = document.getElementById('paises');
+    var sitioPaises = paises.previousElementSibling;      // para poder devolverlo
+    var abajoPaises = document.getElementById('anclaPaisesAbajo');
+    panel.querySelectorAll('[data-pais]').forEach(function (b) {
+        b.addEventListener('click', function () {
+            if (b.dataset.pais === 'abajo') abajoPaises.appendChild(paises);
+            else sitioPaises.insertAdjacentElement('afterend', paises);
+            marcar('pais', b.dataset.pais);
+        });
+    });
+
+    /* ---- Texto del carrusel ----
+       El original hablaba de los videos que la seccion tenia antes.
+       Al sacarlos, "todo esto" se quedo sin referente. */
+    var TEXTOS = {
+        viejo: 'Todo esto pasa desde un celular. El tuyo sirve igual.',
+        nuevo: 'Todos transmiten desde su celular. El tuyo sirve igual.'
+    };
+    var txt = document.getElementById('textoReel');
+    panel.querySelectorAll('[data-txt]').forEach(function (b) {
+        b.addEventListener('click', function () {
+            txt.textContent = TEXTOS[b.dataset.txt];
+            marcar('txt', b.dataset.txt);
+        });
+    });
+
+    // ---- Dino del pie ----
+    panel.querySelectorAll('[data-dino]').forEach(function (b) {
+        b.addEventListener('click', function () {
+            document.body.classList.remove('dino-izq', 'dino-fila');
+            if (b.dataset.dino === 'izq')  document.body.classList.add('dino-izq');
+            if (b.dataset.dino === 'fila') document.body.classList.add('dino-fila');
+            marcar('dino', b.dataset.dino);
+        });
+    });
+
+    // Estado inicial = lo propuesto
+    abajoPaises.appendChild(paises);
+    txt.textContent = TEXTOS.nuevo;
 
     document.getElementById('plegar').addEventListener('click', function () {
         panel.classList.toggle('plegado');
