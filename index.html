@@ -754,22 +754,52 @@
     object-fit: contain; transform: scaleX(-1);
 }
 
-/* ---- dorso ---- */
+/* ---- dorso ----
+   El anverso es la credencial de la agencia; el dorso es la del
+   emisor, todavia en blanco. Por eso repite la gramatica del
+   frente (etiquetas mono + valores) en vez de ser un cartel: las
+   dos caras tienen que leerse como el mismo documento.
+   ---------------------------------------------------------------- */
 .dorso .cred-titular {
     top: 11%; left: 0; width: 100%;
     font-size: 5.4cqw; text-align: center;
 }
-.cred-momentos { top: 32%; left: 0; width: 100%; text-align: center; }
-.cred-momentos span {
-    display: block; font-size: 2.55cqw; line-height: 1.55;
-    letter-spacing: .16em; color: var(--accent-blue); white-space: nowrap;
+
+/* Hueco de la foto. El trazo cortado y el rotulo son lo que hace
+   que se lea como casillero reservado y no como una imagen que
+   no cargo. Va al lateral derecho y no arriba: arriba a la
+   derecha, en el frente, esta el sello "Verificada". */
+.cred-foto {
+    left: 70%; top: 29%; width: 22%; height: 46%;
+    border: 1px dashed rgba(0, 232, 255, .42);
+    border-radius: 1.6cqw;
+    background: rgba(0, 232, 255, .045);
+    display: flex; align-items: center; justify-content: center;
 }
-.cred-momentos u {
-    color: rgba(0, 232, 255, .4); text-decoration: none;
-    margin: 0 .5cqw; font-size: 2.2cqw;
+.cred-foto span {
+    font-family: "Roboto Mono", ui-monospace, monospace;
+    font-size: 1.95cqw; letter-spacing: .2em;
+    color: rgba(0, 232, 255, .6);
 }
-.cred-texto { top: 50.5%; font-size: 3.11cqw; }
-.cred-pie { left: 7.33%; top: 85%; }
+
+.cred-campo   { left: 7.33%; top: 32%; }
+.cred-firma   {
+    left: 7.33%; top: 42%; width: 52%; height: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .28);
+}
+.cred-et-region { left: 7.33%; top: 52%; }
+.cred-va-region { left: 7.33%; top: 56.9%; }
+.cred-et-estado { left: 7.33%; top: 67%; }
+.cred-va-estado { left: 7.33%; top: 71.9%; }
+/* Centrada a proposito: cierra la tarjeta como pie de las dos
+   columnas (datos a la izquierda, foto a la derecha) en vez de
+   colgar de una sola. Va declarado y no heredado del hero. */
+.cred-invita {
+    left: 7.33%; top: 85%; width: 82.87%;
+    font-size: 2.6cqw; line-height: 1.4;
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+}
 
 /* Guino: la tarjeta se asoma para avisar que tiene dorso. Se repite dos
    veces y se calla; a los pocos segundos deja de ser aviso y pasa a ser
@@ -978,23 +1008,26 @@ de Bigo Live</div>
 
         <div class="cara dorso">
             <img class="cred-marca" src="https://suitsagency.lat/logo.png" alt="">
-            <div class="cred-titular">Lo que hacemos por ti</div>
+            <div class="cred-titular">Tu credencial</div>
 
-            <div class="cred-momentos">
-                <span>ANTES <u>&#8594;</u> DURANTE <u>&#8594;</u> Y DESPUÉS</span>
-                <span>DE EMPEZAR</span>
-            </div>
+            <div class="cred-foto"><span>FOTO</span></div>
 
-            <div class="cred-cuerpo cred-texto">Te ayudamos a entender el <b>sistema de metas</b> y a mejorar tus transmisiones. Escribes y te responde una persona.</div>
+            <div class="cred-mono cred-campo">NOMBRE DE EMISOR/A</div>
+            <div class="cred-firma"></div>
 
-            <div class="cred-mono cred-pie">Sin comisión · Sin permanencia · Sin mínimo de seguidores</div>
+            <div class="cred-mono cred-et-region">REGIÓN</div>
+            <div class="cred-mono dato cred-va-region">Latinoamérica</div>
+            <div class="cred-mono cred-et-estado">ESTADO</div>
+            <div class="cred-mono dato cred-va-estado">Por verificar</div>
+
+            <div class="cred-invita">Postula y te verificamos en 24 h.</div>
         </div>
 
     </div>
 </div>
 
 <a href="https://suitsagency.lat/registro/" class="cred-cta">Postular ahora</a>
-<button class="cred-girar" type="button" data-girar>Ver qué hacemos por ti</button>
+<button class="cred-girar" type="button" data-girar>Ver tu credencial</button>
 
 <nav class="accesos">
     <a href="https://suitsagency.lat/pagos/"><i class="fa-solid fa-gem"></i><span>Pagos</span></a>
@@ -1584,7 +1617,7 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
         t.classList.toggle('girada');
         const dorso = t.classList.contains('girada');
         document.querySelectorAll('[data-girar]').forEach(b => {
-            b.textContent = dorso ? 'Volver' : 'Ver qué hacemos por ti';
+            b.textContent = dorso ? 'Volver' : 'Ver tu credencial';
         });
     };
 
