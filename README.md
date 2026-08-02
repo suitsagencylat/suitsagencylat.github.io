@@ -307,15 +307,6 @@ Los `.mp4` van en `clips/`. Referencia de peso: unos 8 segundos en
 
 ---
 
-## Pendiente
-
-Completar las fichas de los emisores en `index.html`: las líneas que
-dicen **PENDIENTE** dentro de cada `.reel-dorso`. Hoy solo está cargada
-la primera tarjeta.
-
-
----
-
 ## Cambios de julio 2026
 
 Anotados acá para no tener que releer todo el archivo.
