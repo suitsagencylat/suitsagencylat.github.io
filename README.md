@@ -461,6 +461,35 @@ usa el archivo en local: funciona igual abierto desde la computadora.
 
 ---
 
+## `/prueba/` — copia temporal para revisar cambios
+
+Copia de la home con el racimo de salidas del hero reubicado, para poder
+comparar antes de tocar `index.html`. Lleva `noindex, nofollow`, no está
+en el sitemap y no la enlaza nada.
+
+Trae un **panel flotante** (abajo a la izquierda, arranca plegado) que
+alterna en vivo entre lo que hay hoy y lo propuesto:
+
+- Los tres accesos: en el hero / debajo del cierre / ocultos
+- El WhatsApp del hero: visible / oculto
+
+> **No carga `tracking.js`.** Si lo cargara, cada visita de prueba
+> ensuciaría GA4 y el Pixel con eventos que no son de gente real.
+
+La cinta no se tocó.
+
+**Es temporal.** Cuando se decida, se aplica el cambio en `index.html` y
+se borra la carpeta. Se genera con `armar_prueba.py`, que no vive en el
+repo: si hay que rehacerla, se copia `index.html` y se repiten los pasos
+de arriba.
+
+Al llevar el cambio a `index.html` hay que acordarse del contenedor:
+`.accesos` tiene `width: 100%` y dentro del hero lo limitaba
+`.hero-accion` (348 px). Fuera de ahí necesita `.accesos-pie` o se
+estira hasta cortarse contra los bordes de la pantalla.
+
+---
+
 ## Cambios de julio 2026
 
 Anotados acá para no tener que releer todo el archivo.
