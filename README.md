@@ -423,9 +423,21 @@ La credencial se dibuja pixel por pixel con la API de canvas en vez de
 fotografiar el HTML con alguna librería. Es más código, pero no suma
 dependencias externas y el PNG sale igual siempre.
 
-**Las medidas están duplicadas.** Los porcentajes del script son los
-mismos del CSS del dorso en `index.html`. Si allá se mueve algo, hay que
-moverlo acá también o las dos piezas dejan de coincidir.
+**Las medidas están duplicadas, y así se decidió que quede.** Los
+porcentajes del script son los mismos del CSS del dorso en `index.html`,
+pero las dos piezas son independientes: no comparten nada más que el
+logo y las tipografías.
+
+Es a propósito. Permite que la credencial que se emite evolucione por su
+lado —agregarle datos, sellos o lo que haga falta— sin tocar la plantilla
+en blanco del sitio, que cumple otra función.
+
+> Se evaluó unificar los valores en un archivo compartido y **se
+> descartó**. No hace falta volver a proponerlo.
+
+La contrapartida a tener presente: si se mueve algo en el dorso de la
+home, hay que moverlo acá también, o la credencial que recibe la persona
+deja de coincidir con la que vio antes de postular.
 
 ### La trampa de las tipografías
 
