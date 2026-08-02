@@ -391,9 +391,31 @@ dirección.
 > la publicaría: `robots.txt` es un archivo público y cualquiera lo lee.
 > El `noindex` de la página alcanza para que no la indexen.
 
-Diferencias con la credencial en blanco del sitio: el estado dice
+El encabezado es el mismo del **anverso** del sitio: logo, `SUITS AGENCY`
+al lado, y debajo la bajada en cian. Allá esa bajada dice "Agencia oficial
+de Bigo Live"; acá dice de quién es la credencial.
+
+Otras diferencias con la credencial en blanco: el estado dice
 **Verificado** (en cian, porque es el dato que cambió), el hueco de la
 foto pasa a borde sólido, y el pie dice *Emisor verificado desde …*.
+
+### El género se elige
+
+Un desplegable cambia **tres textos a la vez**: la bajada en cian, el
+estado y el pie.
+
+| Opción | Bajada | Estado | Pie |
+|---|---|---|---|
+| Emisora | Credencial de emisora | Verificada | Emisora verificada |
+| Emisor | Credencial de emisor | Verificado | Emisor verificado |
+| Sin especificar | Credencial de emisor/a | Verificado/a | Emisor/a verificado/a |
+
+Viene por defecto en **sin especificar**, para no dar por sentado nada
+hasta que alguien lo elija. Está en línea con el criterio del sitio, que
+por eso dice "SER QUIEN ERES" y no "ser tú mismo".
+
+Como el rol ya lo dice la bajada, el campo del nombre se rotula solo
+`NOMBRE`, sin repetirlo.
 
 ### Por qué se dibuja en canvas
 
