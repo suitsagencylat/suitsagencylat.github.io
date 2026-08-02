@@ -28,6 +28,37 @@ Publicado con GitHub Pages en https://suitsagency.lat
 
 ---
 
+## Font Awesome: la versión y el hash van juntos
+
+Los íconos vienen de Font Awesome por CDN. La etiqueta está escrita en
+**las 7 páginas** (las 5 principales + `404.html` + `privacidad`) y lleva
+un `integrity`, que es la huella del archivo:
+
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+      integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer">
+```
+
+El navegador descarga el archivo, calcula su huella y la compara con esa.
+Si no coinciden, **no lo carga a medias: lo descarta entero y desaparecen
+todos los íconos del sitio**.
+
+> ⚠️ **Nunca cambies el número de versión sin cambiar también el hash.**
+> Son un par: el hash pertenece a esa versión exacta. Cambiar uno solo
+> rompe los íconos de las 7 páginas de una.
+
+Para actualizar: buscá `font-awesome` en **cdnjs.com**, copiá la etiqueta
+completa que te da (ya viene con el hash correcto) y reemplazá la línea en
+las 7 páginas. El `crossorigin="anonymous"` es obligatorio — sin él el
+`integrity` no funciona.
+
+Al subir de versión mayor conviene mirar los íconos después: pueden
+renombrarse. Los que usa el sitio son todos de uso corriente
+(`fa-house`, `fa-bars`, `fa-check`, `fa-chevron-down`, `fa-gem`,
+`fa-whatsapp`…), así que el riesgo es bajo, pero se revisa igual.
+
+---
+
 ## Cómo editar
 
 **El header está escrito dentro de cada página**, no se inyecta por JavaScript.
