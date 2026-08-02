@@ -377,6 +377,56 @@ en las apps suele leerse como advertencia; "por" nombra un paso que viene.
 
 ---
 
+## Generador de credenciales (`/credencial/`)
+
+Herramienta interna para emitir la credencial real: se carga nombre y foto
+y descarga un PNG de 1080 × 681 listo para mandar por WhatsApp. Es lo que
+cumple la promesa del dorso.
+
+**No está enlazada desde ningún lado**: no aparece en el menú, no está en
+`sitemap.xml` y lleva `noindex, nofollow`. Se llega solo escribiendo la
+dirección.
+
+> A propósito **no** se la agregó a `robots.txt`. Poner un `Disallow` ahí
+> la publicaría: `robots.txt` es un archivo público y cualquiera lo lee.
+> El `noindex` de la página alcanza para que no la indexen.
+
+Diferencias con la credencial en blanco del sitio: el estado dice
+**Verificado** (en cian, porque es el dato que cambió), el hueco de la
+foto pasa a borde sólido, y el pie dice *Emisor verificado desde …*.
+
+### Por qué se dibuja en canvas
+
+La credencial se dibuja pixel por pixel con la API de canvas en vez de
+fotografiar el HTML con alguna librería. Es más código, pero no suma
+dependencias externas y el PNG sale igual siempre.
+
+**Las medidas están duplicadas.** Los porcentajes del script son los
+mismos del CSS del dorso en `index.html`. Si allá se mueve algo, hay que
+moverlo acá también o las dos piezas dejan de coincidir.
+
+### La trampa de las tipografías
+
+Si Bebas Neue y Roboto Mono no llegaron a cargar, el canvas dibuja con la
+de respaldo **sin avisar** y la credencial sale con otra letra. Por eso la
+página lo detecta y muestra una alerta.
+
+> ⚠️ No sirve `document.fonts.check()`. Si la hoja de Google Fonts no
+> cargó, no existe ningún `FontFace` de esa familia y el método devuelve
+> `true` igual — "no falta ninguno" —, que es un falso positivo justo en
+> el caso que hay que detectar. La página compara **anchos de texto**
+> contra dos fuentes de referencia, que sí funciona.
+
+### Sobre publicarla
+
+Estando online, cualquiera que dé con la dirección puede fabricarse una
+credencial con la marca. Falsificar una imagen así ya es fácil con
+cualquier editor, así que la herramienta no habilita nada nuevo, pero
+conviene tenerlo presente. Si algún día molesta, se borra la carpeta y se
+usa el archivo en local: funciona igual abierto desde la computadora.
+
+---
+
 ## Cambios de julio 2026
 
 Anotados acá para no tener que releer todo el archivo.
