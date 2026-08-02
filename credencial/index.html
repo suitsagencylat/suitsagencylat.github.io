@@ -149,9 +149,19 @@
 
     <div class="campos">
         <div class="campo">
-            <label for="fNombre">Nombre de emisor/a</label>
+            <label for="fNombre">Nombre</label>
             <input type="text" id="fNombre" placeholder="Ej.: Valentina" maxlength="28" autocomplete="off">
             <span class="pista">Como quiere que aparezca. Si es muy largo, se achica solo.</span>
+        </div>
+
+        <div class="campo">
+            <label for="fGenero">Cómo nombrarle</label>
+            <select id="fGenero">
+                <option value="n" selected>Emisor/a &middot; sin especificar</option>
+                <option value="f">Emisora</option>
+                <option value="m">Emisor</option>
+            </select>
+            <span class="pista">Cambia la bajada, el estado y el pie de la credencial.</span>
         </div>
 
         <div class="campo">
@@ -232,7 +242,7 @@
     var BASE = '#0a0a0c';
 
     var estado = {
-        nombre: '', region: 'Latinoamérica', desde: '',
+        nombre: '', region: 'Latinoamérica', desde: '', genero: 'n',
         foto: null, zoom: 1, dx: 0, dy: 0,
         logo: null, listo: false
     };
@@ -270,7 +280,9 @@
     function texto(c, cadena, x, y, op) {
         c.font = op.peso + ' ' + op.tam + 'px ' + op.familia;
         c.fillStyle = op.color;
-        c.textBaseline = 'top';
+        // 'top' para los bloques que se apilan; 'alphabetic' cuando el
+        // texto tiene que apoyarse en algo, como el nombre sobre su linea.
+        c.textBaseline = op.linea || 'top';
 
         var esp = (op.esp || 0) * op.tam;
         var anchos = [], total = 0, i;
@@ -301,6 +313,19 @@
     // ---- tipografias, con los mismos tamanos relativos del CSS ----
     var MONO = '"Roboto Mono", ui-monospace, monospace';
     var TITULO = '"Bebas Neue", sans-serif';
+    var LIMPIA = 'Inter, system-ui, sans-serif';
+
+    /* El sitio evita dar por sentado el genero (por eso el h1 dice "SER
+       QUIEN ERES"). Aca la credencial es de una persona concreta, asi
+       que se elige; y queda la opcion neutra para quien prefiera no
+       decirlo, que es la que viene por defecto. */
+    var GENEROS = {
+        f: { rol: 'emisora',  verif: 'Verificada',   frase: 'Emisora verificada' },
+        m: { rol: 'emisor',   verif: 'Verificado',   frase: 'Emisor verificado' },
+        n: { rol: 'emisor/a', verif: 'Verificado/a', frase: 'Emisor/a verificado/a' }
+    };
+    function genero() { return GENEROS[estado.genero] || GENEROS.n; }
+    function rol() { return genero().rol; }
 
     function etiqueta(tam) {
         return { familia: MONO, peso: '400', tam: tam, esp: 0.13,
@@ -335,10 +360,17 @@
             ctx.drawImage(estado.logo, 0.0631 * W, 0.10 * H + (cajaH - lh) / 2, lw, lh);
         }
 
-        // titulo centrado
-        texto(ctx, 'Tu credencial', W / 2, 0.11 * H, {
-            familia: TITULO, peso: '400', tam: 0.054 * W, esp: 0.065,
-            color: '#fff', alinear: 'centro'
+        /* Encabezado calcado del ANVERSO de la credencial del sitio:
+           logo, "SUITS AGENCY" al lado y la bajada en cian debajo.
+           Ahi la bajada dice "Agencia oficial de Bigo Live"; aca dice
+           de quien es la credencial. Misma posicion, mismos tamanos. */
+        texto(ctx, 'SUITS AGENCY', 0.214 * W, 0.10 * H, {
+            familia: TITULO, peso: '400', tam: 0.0614 * W, esp: 0.065, color: '#fff'
+        });
+
+        texto(ctx, 'CREDENCIAL DE ' + rol().toUpperCase(), 0.214 * W, 0.207 * H, {
+            familia: LIMPIA, peso: '400', tam: 0.0233 * W, esp: 0.224,
+            color: 'rgba(' + CIAN + ',1)'
         });
 
         // ---- foto ----
@@ -386,34 +418,39 @@
         var izq = 0.0733 * W;
         var limite = fx - 0.025 * W - izq;      // hasta donde puede crecer el nombre
 
-        texto(ctx, 'NOMBRE DE EMISOR/A', izq, 0.32 * H, etiqueta(0.0212 * W));
+        // La etiqueta dice solo NOMBRE: el rol ya lo dice la bajada en cian.
+        texto(ctx, 'NOMBRE', izq, 0.335 * H, etiqueta(0.0212 * W));
 
-        // El nombre se apoya sobre la linea de firma y se achica si no entra.
-        var lineaY = 0.42 * H;
+        /* El nombre se apoya sobre la linea de firma con linea de base
+           'alphabetic'. Con 'top' habia que restar el alto de la fuente a
+           ojo y la etiqueta de arriba quedaba pisada; ademas, al achicarse
+           el texto por ser largo, se movia en vertical. Apoyado en la
+           linea queda quieto sin importar el tamano. */
+        var lineaY = 0.435 * H;
         if (estado.nombre) {
-            var tam = 0.042 * W;
-            var op = { familia: TITULO, peso: '400', tam: tam, esp: 0.03, color: '#fff' };
+            var op = { familia: TITULO, peso: '400', tam: 0.042 * W, esp: 0.03,
+                       color: '#fff', linea: 'alphabetic' };
             while (anchoDe(ctx, estado.nombre, op) > limite && op.tam > 0.016 * W) {
                 op.tam -= 1;
             }
-            texto(ctx, estado.nombre, izq, lineaY - op.tam * 1.02, op);
+            texto(ctx, estado.nombre, izq, lineaY - 0.014 * H, op);
         }
 
         ctx.fillStyle = 'rgba(255,255,255,.28)';
         ctx.fillRect(izq, lineaY, 0.52 * W, Math.max(1, 0.0028 * W));
 
-        texto(ctx, 'REGIÓN', izq, 0.52 * H, etiqueta(0.0212 * W));
-        texto(ctx, estado.region || 'Latinoamérica', izq, 0.569 * H, dato(0.0258 * W));
+        texto(ctx, 'REGIÓN', izq, 0.535 * H, etiqueta(0.0212 * W));
+        texto(ctx, estado.region || 'Latinoamérica', izq, 0.584 * H, dato(0.0258 * W));
 
-        texto(ctx, 'ESTADO', izq, 0.67 * H, etiqueta(0.0212 * W));
+        texto(ctx, 'ESTADO', izq, 0.685 * H, etiqueta(0.0212 * W));
         // El estado va en cian: es el dato que cambia respecto de la
         // credencial en blanco del sitio, y tiene que saltar a la vista.
-        texto(ctx, 'Verificado', izq, 0.719 * H, dato(0.0258 * W, 'rgba(' + CIAN + ',.95)'));
+        texto(ctx, genero().verif, izq, 0.734 * H, dato(0.0258 * W, 'rgba(' + CIAN + ',.95)'));
 
         // ---- pie ----
         var pie = estado.desde
-            ? 'Emisor verificado desde ' + estado.desde + ' · Suits Agency'
-            : 'Emisor verificado · Suits Agency';
+            ? genero().frase + ' desde ' + estado.desde + ' · Suits Agency'
+            : genero().frase + ' · Suits Agency';
         texto(ctx, pie, W / 2, 0.85 * H, {
             familia: MONO, peso: '400', tam: 0.0182 * W, esp: 0.05,
             color: 'rgba(255,255,255,.6)', alinear: 'centro'
@@ -477,12 +514,13 @@
         var pedir = (document.fonts && document.fonts.load)
             ? Promise.all([
                 document.fonts.load('400 60px "Bebas Neue"'),
-                document.fonts.load('400 24px "Roboto Mono"')
+                document.fonts.load('400 24px "Roboto Mono"'),
+                document.fonts.load('400 25px Inter')
               ]).catch(function () {})
             : Promise.resolve();
 
         return pedir.then(function () {
-            return seAplica('Bebas Neue') && seAplica('Roboto Mono');
+            return seAplica('Bebas Neue') && seAplica('Roboto Mono') && seAplica('Inter');
         });
     }
 
@@ -517,6 +555,11 @@
     enlazar('fNombre', 'nombre');
     enlazar('fRegion', 'region');
     enlazar('fDesde', 'desde');
+
+    document.getElementById('fGenero').addEventListener('change', function (e) {
+        estado.genero = e.target.value;
+        pintar();
+    });
 
     var zoom = document.getElementById('fZoom');
     zoom.addEventListener('input', function () {
