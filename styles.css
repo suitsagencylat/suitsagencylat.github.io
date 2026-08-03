@@ -206,7 +206,7 @@ header.main-header {
     display: block;
     width: 80px;
     height: auto;
-    margin: 0 auto 12px;
+    margin: 0 0 12px;
     filter: drop-shadow(0 0 16px rgba(0, 232, 255, 0.3));
     animation: dino-float 3.5s ease-in-out infinite;
     pointer-events: none;
