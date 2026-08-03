@@ -1054,9 +1054,15 @@ de Bigo Live</div>
 <a href="https://suitsagency.lat/registro/" class="cred-cta">Postular ahora</a>
 <button class="cred-girar" type="button" data-girar>Ver tu credencial</button>
 
-<div id="anclaHero"></div>
+<div id="anclaHero">
+<nav class="accesos">
+    <a href="https://suitsagency.lat/pagos/"><i class="fa-solid fa-gem"></i><span>Pagos</span></a>
+    <a href="https://suitsagency.lat/academia/"><i class="fa-solid fa-graduation-cap"></i><span>Academia</span></a>
+    <a href="https://suitsagency.lat/soporte/"><i class="fa-solid fa-headset"></i><span>Soporte</span></a>
+</nav>
+</div>
 
-<div id="waHero" hidden>
+<div id="waHero">
 <a href="https://wa.me/595982678695?text=Hola!%20Quiero%20informacion%20para%20ser%20emisor%20de%20Bigo%20Live%20con%20Suits%20Agency." class="cta-alt" target="_blank" rel="noopener">
 <i class="fa-brands fa-whatsapp"></i> o pregúntanos por WhatsApp
 </a>
@@ -1464,13 +1470,7 @@ La aprobación tarda entre 24 y 72 horas. Cuanto antes postules, antes empiezan 
      justo quien necesita ver Pagos, Academia o Soporte.
      .accesos lleva width:100%, asi que fuera del hero necesita su
      propio contenedor o se estira hasta cortarse en los bordes. -->
-<div id="anclaAbajo" class="accesos-pie">
-<nav class="accesos">
-    <a href="https://suitsagency.lat/pagos/"><i class="fa-solid fa-gem"></i><span>Pagos</span></a>
-    <a href="https://suitsagency.lat/academia/"><i class="fa-solid fa-graduation-cap"></i><span>Academia</span></a>
-    <a href="https://suitsagency.lat/soporte/"><i class="fa-solid fa-headset"></i><span>Soporte</span></a>
-</nav>
-</div>
+<div id="anclaAbajo" class="accesos-pie"></div>
 
 <div id="anclaPaisesAbajo"></div>
 
@@ -1702,7 +1702,14 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
     background: none; border: 0; width: 100%; text-align: left;
     font-family: inherit;
 }
-#panelPrueba .cuerpo { padding: 0 12px 12px; display: block; }
+/* Con cinco secciones el panel supera el alto de un celular y los
+   controles de arriba quedaban fuera de la pantalla, junto con el
+   boton de plegar. Por eso el cuerpo tiene scroll propio. */
+#panelPrueba .cuerpo {
+    padding: 0 12px 12px; display: block;
+    max-height: calc(100vh - 84px); overflow-y: auto;
+    overscroll-behavior: contain;
+}
 #panelPrueba.plegado .cuerpo { display: none; }
 #panelPrueba h4 {
     margin: 10px 0 6px; font-size: .58rem; letter-spacing: .14em;
@@ -1722,6 +1729,15 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
     color: rgba(255,255,255,.42); letter-spacing: .02em;
 }
 @media print { #panelPrueba { display: none; } }
+
+/* Destello: sin esto, tocar un control cambiaba algo a miles de
+   pixeles de distancia y desde el hero no se veia pasar nada. */
+@keyframes destellar {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,232,255,0); }
+    30%      { box-shadow: 0 0 0 3px rgba(0,232,255,.75); }
+}
+.destello { animation: destellar 1.1s ease-out 2; border-radius: 14px; }
+@media (prefers-reduced-motion: reduce) { .destello { animation: none; } }
 </style>
 
 <!-- Arranca plegado a proposito: desplegado tapa el CTA en celular,
@@ -1732,21 +1748,21 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
     </button>
     <div class="cuerpo">
         <h4>Accesos (Pagos/Academia/Soporte)</h4>
-        <button class="op" type="button" data-acc="abajo" aria-pressed="true">Abajo del cierre &middot; propuesto</button>
-        <button class="op" type="button" data-acc="hero" aria-pressed="false">En el hero &middot; como esta hoy</button>
+        <button class="op" type="button" data-acc="abajo" aria-pressed="false">Abajo del cierre &middot; propuesto</button>
+        <button class="op" type="button" data-acc="hero" aria-pressed="true">En el hero &middot; como esta hoy</button>
         <button class="op" type="button" data-acc="ocultos" aria-pressed="false">Ocultos del todo</button>
 
         <h4>WhatsApp del hero</h4>
-        <button class="op" type="button" data-wa="oculto" aria-pressed="true">Oculto &middot; propuesto</button>
-        <button class="op" type="button" data-wa="visible" aria-pressed="false">Visible &middot; como esta hoy</button>
+        <button class="op" type="button" data-wa="oculto" aria-pressed="false">Oculto &middot; propuesto</button>
+        <button class="op" type="button" data-wa="visible" aria-pressed="true">Visible &middot; como esta hoy</button>
 
         <h4>Presencia latinoamericana</h4>
-        <button class="op" type="button" data-pais="abajo" aria-pressed="true">Al final &middot; propuesto</button>
-        <button class="op" type="button" data-pais="donde" aria-pressed="false">Antes del cierre &middot; hoy</button>
+        <button class="op" type="button" data-pais="abajo" aria-pressed="false">Al final &middot; propuesto</button>
+        <button class="op" type="button" data-pais="donde" aria-pressed="true">Antes del cierre &middot; hoy</button>
 
         <h4>Texto del carrusel</h4>
-        <button class="op" type="button" data-txt="nuevo" aria-pressed="true">"Todos transmiten desde&hellip;"</button>
-        <button class="op" type="button" data-txt="viejo" aria-pressed="false">"Todo esto pasa&hellip;" &middot; hoy</button>
+        <button class="op" type="button" data-txt="nuevo" aria-pressed="false">"Todos transmiten desde&hellip;"</button>
+        <button class="op" type="button" data-txt="viejo" aria-pressed="true">"Todo esto pasa&hellip;" &middot; hoy</button>
 
         <h4>Dino del pie</h4>
         <button class="op" type="button" data-dino="centro" aria-pressed="true">Centrado &middot; como esta hoy</button>
@@ -1772,6 +1788,18 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
         });
     }
 
+    /* Lleva la vista a lo que acaba de cambiar y lo hace destellar.
+       Sin esto, tocar "paises al final" mueve algo a 3000 px de donde
+       estas parado y parece que el control no hizo nada. */
+    function mostrar(el) {
+        if (!el || el.hidden) return;
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.remove('destello');
+        void el.offsetWidth;             // reinicia la animacion
+        el.classList.add('destello');
+        setTimeout(function () { el.classList.remove('destello'); }, 2400);
+    }
+
     panel.querySelectorAll('[data-acc]').forEach(function (b) {
         b.addEventListener('click', function () {
             var v = b.dataset.acc;
@@ -1779,6 +1807,7 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
             else if (v === 'abajo') { abajo.appendChild(accesos); accesos.hidden = false; }
             else { accesos.hidden = true; }
             marcar('acc', v);
+            mostrar(v === 'ocultos' ? document.querySelector('.cred-cta') : accesos);
         });
     });
 
@@ -1786,6 +1815,7 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
         b.addEventListener('click', function () {
             wa.hidden = (b.dataset.wa === 'oculto');
             marcar('wa', b.dataset.wa);
+            mostrar(wa.hidden ? document.querySelector('.cred-cta') : wa);
         });
     });
 
@@ -1798,6 +1828,7 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
             if (b.dataset.pais === 'abajo') abajoPaises.appendChild(paises);
             else sitioPaises.insertAdjacentElement('afterend', paises);
             marcar('pais', b.dataset.pais);
+            mostrar(paises);
         });
     });
 
@@ -1813,6 +1844,7 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
         b.addEventListener('click', function () {
             txt.textContent = TEXTOS[b.dataset.txt];
             marcar('txt', b.dataset.txt);
+            mostrar(txt);
         });
     });
 
@@ -1823,12 +1855,11 @@ Agencia Oficial Bigo Live. | <a href="https://suitsagency.lat/privacidad/" class
             if (b.dataset.dino === 'izq')  document.body.classList.add('dino-izq');
             if (b.dataset.dino === 'fila') document.body.classList.add('dino-fila');
             marcar('dino', b.dataset.dino);
+            mostrar(document.querySelector('footer'));
         });
     });
 
-    // Estado inicial = lo propuesto
-    abajoPaises.appendChild(paises);
-    txt.textContent = TEXTOS.nuevo;
+
 
     document.getElementById('plegar').addEventListener('click', function () {
         panel.classList.toggle('plegado');
