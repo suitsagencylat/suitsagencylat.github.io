@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Placas para Instagram — Suits Agency</title>
+<link rel="stylesheet" href="fuentes.css">
+<style>
+    /* Esta pagina es solo para mirar las tres placas juntas. No se publica
+       en Instagram: lo que se sube son los .png que genera exportar.sh */
+    body {
+        margin: 0;
+        padding: 48px 32px 72px;
+        background: #050505;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+    }
+
+    h1 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 44px;
+        letter-spacing: 4px;
+        margin: 0 0 10px;
+    }
+
+    .intro {
+        margin: 0 0 44px;
+        font-size: 15px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, .6);
+        max-width: 640px;
+    }
+
+    .intro code {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 13px;
+        color: #00e8ff;
+    }
+
+    .fila {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    figure { margin: 0; }
+
+    /* El iframe carga la placa a tamaño real (1080x1350) y se reduce con
+       transform. La caja de afuera tiene el tamaño ya reducido para que no
+       queden huecos: transform no achica el espacio que ocupa el elemento. */
+    .marco {
+        width: 324px;
+        height: 405px;
+        overflow: hidden;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .marco iframe {
+        width: 1080px;
+        height: 1350px;
+        border: 0;
+        transform: scale(.3);
+        transform-origin: top left;
+    }
+
+    figcaption {
+        margin-top: 14px;
+        font-size: 13px;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, .5);
+    }
+
+    figcaption a { color: #00e8ff; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<h1>Placas para Instagram</h1>
+<p class="intro">
+    Las tres primeras del feed. Para cambiar un texto, abrí el <code>.html</code>
+    y editalo; el estilo compartido está en <code>posts.css</code>. Para volver a
+    generar los PNG de 1080×1350, corré <code>./exportar.sh</code>.
+    Si acá abajo ves los recuadros vacíos, abrí cada archivo por separado:
+    algunos navegadores no cargan iframes locales.
+</p>
+
+<div class="fila">
+
+    <figure>
+        <div class="marco"><iframe src="post-1-oficial.html" title="Placa 1"></iframe></div>
+        <figcaption>1 · Agencia oficial — <a href="post-1-oficial.html">abrir</a></figcaption>
+    </figure>
+
+    <figure>
+        <div class="marco"><iframe src="post-2-pagos.html" title="Placa 2"></iframe></div>
+        <figcaption>2 · Cuánto se gana — <a href="post-2-pagos.html">abrir</a></figcaption>
+    </figure>
+
+    <figure>
+        <div class="marco"><iframe src="post-3-pasos.html" title="Placa 3"></iframe></div>
+        <figcaption>3 · Los tres pasos — <a href="post-3-pasos.html">abrir</a></figcaption>
+    </figure>
+
+</div>
+
+</body>
+</html>

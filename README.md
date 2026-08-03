@@ -510,6 +510,57 @@ estira hasta cortarse contra los bordes de la pantalla.
 
 ---
 
+## `/publicaciones/` — placas para Instagram
+
+Las imágenes que se suben a Instagram, hechas en HTML en vez de en un
+editor gráfico. Se editan como texto y salen siempre con la marca exacta
+del sitio, porque usan los mismos colores y tipografías.
+
+```
+index.html              Las tres juntas, para mirarlas de un vistazo
+post-1-oficial.html     Agencia oficial de Bigo Live
+post-2-pagos.html       Cuánto se gana
+post-3-pasos.html       Los tres pasos del registro
+posts.css               Estilo compartido de las tres
+fuentes.css             Bebas Neue, Inter y Roboto Mono incrustadas
+exportar.sh             Genera los .png de 1080x1350
+```
+
+**Para cambiar un texto:** se abre el `.html` y se edita. Nada del
+contenido sale del CSS.
+
+**Para volver a generar las imágenes:** `./exportar.sh`. Necesita Chrome o
+Chromium; si está en otra ruta, `CHROME=/ruta/a/chrome ./exportar.sh`.
+
+### Por qué las tipografías van incrustadas
+
+`fuentes.css` pesa 360 KB porque lleva las tres familias en base64 en vez
+de pedirlas a Google Fonts. Son dos problemas que resuelve de una:
+
+1. La captura se disparaba antes de que la CDN respondiera y los PNG
+   salían en Arial. Con las fuentes incrustadas no hay carrera que perder.
+2. Las placas se ven igual sin internet y en cualquier máquina.
+
+Solo se incrusta el subconjunto **latin**. Ese rango ya cubre los acentos
+del español (`á é í ó ú ñ ü ¿ ¡`); agregar `latin-ext`, cirílico y griego
+subía el archivo a 895 KB para caracteres que no se usan.
+
+> Se regeneran con un script que no vive en el repo. Si hay que rehacerlo:
+> se pide el CSS a `fonts.googleapis.com` **con User-Agent de navegador**
+> (sin eso devuelve `.ttf` en vez de `.woff2`), se filtran los bloques
+> `/* latin */` y se reemplaza cada URL por su `data:font/woff2;base64,…`.
+
+### Las cifras salen de `/pagos/`
+
+La tabla de `post-2-pagos.html` usa la columna **total** (monedero +
+remuneración) del array `tiers` de `pagos/index.html`. **Si se actualiza
+la tabla del sitio, hay que actualizar la placa a mano:** no están atadas.
+
+La carpeta lleva `noindex, nofollow` y no está en el sitemap, igual que
+`/prueba/` y `/credencial/`.
+
+---
+
 ## Cambios de julio 2026
 
 Anotados acá para no tener que releer todo el archivo.
