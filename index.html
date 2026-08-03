@@ -839,6 +839,18 @@
 
 .hero-accion .cta-alt { margin-top: 16px; }
 
+/* Los tres accesos, ya fuera del hero, al pie de la pagina.
+   Mismo ancho que los CTA del sitio para que la fila quede alineada
+   con el boton POSTULAR AHORA que tiene encima. Sin este contenedor
+   .accesos (width:100%) se estira hasta cortarse contra los bordes. */
+.accesos-pie {
+    width: 100%;
+    max-width: 348px;
+    margin: 4px auto 34px;
+    padding: 0 4px;
+}
+.accesos-pie .accesos { margin: 0; }
+
 @media (prefers-reduced-motion: reduce) {
     .tarjeta, .tarjeta.guino { transition: none; animation: none; }
     .accesos a:hover { transform: none; }
@@ -1028,12 +1040,6 @@ de Bigo Live</div>
 
 <a href="https://suitsagency.lat/registro/" class="cred-cta">Postular ahora</a>
 <button class="cred-girar" type="button" data-girar>Ver tu credencial</button>
-
-<nav class="accesos">
-    <a href="https://suitsagency.lat/pagos/"><i class="fa-solid fa-gem"></i><span>Pagos</span></a>
-    <a href="https://suitsagency.lat/academia/"><i class="fa-solid fa-graduation-cap"></i><span>Academia</span></a>
-    <a href="https://suitsagency.lat/soporte/"><i class="fa-solid fa-headset"></i><span>Soporte</span></a>
-</nav>
 
 <a href="https://wa.me/595982678695?text=Hola!%20Quiero%20informacion%20para%20ser%20emisor%20de%20Bigo%20Live%20con%20Suits%20Agency." class="cta-alt" target="_blank" rel="noopener">
 <i class="fa-brands fa-whatsapp"></i> o pregúntanos por WhatsApp
@@ -1291,9 +1297,8 @@ de Bigo Live</div>
     <div class="reel-dots" id="reelDots"></div>
 
     <div class="reel-cta">
-        <p>Todo esto pasa desde un celular. El tuyo sirve igual.</p>
         <a href="https://suitsagency.lat/registro/" class="reel-cta-btn">
-            <i class="fa-solid fa-user-plus"></i> Quiero mi primer live
+            <i class="fa-solid fa-user-plus"></i> Quiero dar el primer paso
         </a>
         <a href="https://wa.me/595982678695" class="reel-cta-alt" target="_blank" rel="noopener">
             <i class="fa-brands fa-whatsapp"></i> o escríbenos por WhatsApp
@@ -1350,6 +1355,43 @@ de Bigo Live</div>
 </div>
 
 </section>
+
+
+
+
+
+
+
+
+
+<section class="cta-cierre">
+<h2>EMPIEZA ESTA SEMANA</h2>
+<p>
+La aprobación tarda entre 24 y 72 horas. Cuanto antes postules, antes empiezan a contar tus horas del mes.
+</p>
+<a href="https://suitsagency.lat/registro/" class="cta-main">POSTULAR AHORA</a>
+<div class="cta-nota">
+<span><i class="fa-solid fa-check"></i> Respuesta en menos de 24 h</span>
+<span><i class="fa-solid fa-check"></i> Sin costo</span>
+</div>
+<br>
+<a href="https://wa.me/595982678695?text=Hola!%20Tengo%20una%20duda%20antes%20de%20postular%20a%20Suits%20Agency." class="cta-alt" target="_blank" rel="noopener">
+<i class="fa-brands fa-whatsapp"></i> Tengo una duda antes de postular
+</a>
+</section>
+
+<!-- Los accesos bajan aca: quien llego al final sin postular es
+     justo quien necesita ver Pagos, Academia o Soporte. En el hero
+     competian con el CTA y ademas repetian el menu del header.
+     .accesos lleva width:100%, asi que fuera del hero necesita su
+     propio contenedor o se estira hasta cortarse en los bordes. -->
+<div class="accesos-pie">
+<nav class="accesos">
+    <a href="https://suitsagency.lat/pagos/"><i class="fa-solid fa-gem"></i><span>Pagos</span></a>
+    <a href="https://suitsagency.lat/academia/"><i class="fa-solid fa-graduation-cap"></i><span>Academia</span></a>
+    <a href="https://suitsagency.lat/soporte/"><i class="fa-solid fa-headset"></i><span>Soporte</span></a>
+</nav>
+</div>
 
 <section class="countries-section">
 
@@ -1413,28 +1455,6 @@ formando parte del ecosistema Suits Agency.
 </div>
 
 
-</section>
-
-
-
-
-
-
-
-<section class="cta-cierre">
-<h2>EMPIEZA ESTA SEMANA</h2>
-<p>
-La aprobación tarda entre 24 y 72 horas. Cuanto antes postules, antes empiezan a contar tus horas del mes.
-</p>
-<a href="https://suitsagency.lat/registro/" class="cta-main">POSTULAR AHORA</a>
-<div class="cta-nota">
-<span><i class="fa-solid fa-check"></i> Respuesta en menos de 24 h</span>
-<span><i class="fa-solid fa-check"></i> Sin costo</span>
-</div>
-<br>
-<a href="https://wa.me/595982678695?text=Hola!%20Tengo%20una%20duda%20antes%20de%20postular%20a%20Suits%20Agency." class="cta-alt" target="_blank" rel="noopener">
-<i class="fa-brands fa-whatsapp"></i> Tengo una duda antes de postular
-</a>
 </section>
 
 <section class="social-section">

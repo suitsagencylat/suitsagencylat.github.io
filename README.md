@@ -461,54 +461,62 @@ usa el archivo en local: funciona igual abierto desde la computadora.
 
 ---
 
-## `/prueba/` — copia temporal para revisar cambios
+## El embudo de la home
 
-Copia de la home con el racimo de salidas del hero reubicado, para poder
-comparar antes de tocar `index.html`. Lleva `noindex, nofollow`, no está
-en el sitemap y no la enlaza nada.
+El orden de la home está pensado como embudo: cada bloque empuja hacia
+`POSTULAR AHORA` y **nada ofrece una salida antes de tiempo**.
 
-**La página abre igual que el sitio real.** Cada control aplica su
-propuesta, y al hacerlo lleva la vista hasta lo que cambió y lo hace
-destellar.
+```
+hero + credencial   -> POSTULAR AHORA          (la accion, sola)
+carrusel emisores   -> Quiero dar el primer paso
+FAQ conversacion    -> desarma las objeciones
+cierre              -> POSTULAR AHORA
+accesos             -> Pagos / Academia / Soporte
+presencia LATAM
+redes               -> Instagram / TikTok / WhatsApp
+```
 
-> Antes abría con todo lo propuesto ya aplicado, así que los botones de
-> "propuesto" no hacían nada visible al tocarlos y parecían rotos. Y los
-> cambios que ocurrían lejos —los países están a miles de píxeles del
-> hero— pasaban desapercibidos.
+### Los accesos van abajo, no en el hero
 
-Trae un **panel flotante** (abajo a la izquierda, arranca plegado) que
-alterna en vivo entre lo que hay hoy y lo propuesto:
+Estuvieron un tiempo pegados debajo del CTA del hero. Ahí competían: el
+botón era **un** elemento y debajo había **tres** cajas más un enlace a
+WhatsApp, así que el ojo los leía como pares —"elegí una de cuatro
+cosas"— en vez de "esta es la accion". Encima repetían exactamente el
+menú del header, o sea que no aportaban ni un destino nuevo.
 
-- Los tres accesos: en el hero / debajo del cierre / ocultos
-- El WhatsApp del hero: visible / oculto
-- Presencia latinoamericana: antes del cierre / al final
-- Texto del carrusel: el actual / el corregido
-- Dino del pie: centrado / a la izquierda / en fila con el texto
+Ahora van **después del cierre**: quien llegó hasta el final sin
+postular es justo quien necesita ver Pagos, Academia o Soporte.
 
-Sobre el texto del carrusel: *"Todo esto pasa desde un celular"* es un
-resto de cuando la sección tenía **videos**. Señalaba los clips de gente
+> ⚠️ `.accesos` lleva `width: 100%` y dentro del hero lo limitaba
+> `.hero-accion` (348 px). Fuera de ahí **necesita `.accesos-pie`** o la
+> fila se estira hasta cortarse contra los bordes de la pantalla. Ese
+> contenedor le da el mismo ancho que los CTA, así queda alineada con el
+> `POSTULAR AHORA` que tiene encima.
+
+### Presencia latinoamericana va al final
+
+Estaba entre el FAQ y el cierre. El FAQ es el pico de persuasión, y
+meter un interludio geográfico justo antes de rematar disipaba el
+envión. Pendiente: hoy afirma presencia pero no la prueba. Con un
+número real (cuántos emisores, cuántos países) pesaría mucho más que
+siete banderitas.
+
+### El texto que se eliminó del carrusel
+
+Decía *"Todo esto pasa desde un celular. El tuyo sirve igual."* Era un
+resto de cuando la sección tenía **videos**: señalaba los clips de gente
 transmitiendo. Al quitarlos, "todo esto" se quedó sin referente.
 
-Sobre el dino: `.dino-mascot` vive en `styles.css` y aparece en **las 7
-páginas**. Moverlo de verdad las cambia todas — en la prueba se simula
-con clases en el `body` para no tocar el estilo compartido.
+El botón de esa sección dice **"Quiero dar el primer paso"**, que rima
+con el título *"Ellos ya dieron el primer paso"*.
 
-> **No carga `tracking.js`.** Si lo cargara, cada visita de prueba
-> ensuciaría GA4 y el Pixel con eventos que no son de gente real.
+### Lo que se dejó como estaba
 
-La cinta no se tocó.
-
-**Es temporal.** Cuando se decida, se aplica el cambio en `index.html` y
-se borra la carpeta. Se genera con `armar_prueba.py`, que no vive en el
-repo: si hay que rehacerla, se copia `index.html` y se repiten los pasos
-de arriba.
-
-Al llevar el cambio a `index.html` hay que acordarse del contenedor:
-`.accesos` tiene `width: 100%` y dentro del hero lo limitaba
-`.hero-accion` (348 px). Fuera de ahí necesita `.accesos-pie` o se
-estira hasta cortarse contra los bordes de la pantalla.
-
----
+- **La cinta**, intacta.
+- **El WhatsApp del hero.** Se evaluó quitarlo (el botón flotante ya
+  está siempre en pantalla) y se decidió conservarlo.
+- **Las redes al final**, que es su lugar: son la única salida real de
+  la página y van después del cierre.
 
 ## Cambios de julio 2026
 
