@@ -467,6 +467,15 @@ Copia de la home con el racimo de salidas del hero reubicado, para poder
 comparar antes de tocar `index.html`. Lleva `noindex, nofollow`, no está
 en el sitemap y no la enlaza nada.
 
+**La página abre igual que el sitio real.** Cada control aplica su
+propuesta, y al hacerlo lleva la vista hasta lo que cambió y lo hace
+destellar.
+
+> Antes abría con todo lo propuesto ya aplicado, así que los botones de
+> "propuesto" no hacían nada visible al tocarlos y parecían rotos. Y los
+> cambios que ocurrían lejos —los países están a miles de píxeles del
+> hero— pasaban desapercibidos.
+
 Trae un **panel flotante** (abajo a la izquierda, arranca plegado) que
 alterna en vivo entre lo que hay hoy y lo propuesto:
 
