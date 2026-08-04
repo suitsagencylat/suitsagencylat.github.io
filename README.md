@@ -517,14 +517,21 @@ editor gráfico. Se editan como texto y salen siempre con la marca exacta
 del sitio, porque usan los mismos colores y tipografías.
 
 ```
-index.html              Las tres juntas, para mirarlas de un vistazo
-post-1-oficial.html     Agencia oficial de Bigo Live
-post-2-pagos.html       Cuánto se gana
-post-3-pasos.html       Los tres pasos del registro
-posts.css               Estilo compartido de las tres
-fuentes.css             Bebas Neue, Inter y Roboto Mono incrustadas
-exportar.sh             Genera los .png de 1080x1350
+index.html                        Las tres juntas, para mirarlas de un vistazo
+post-1-oficial.html               Agencia oficial de Bigo Live
+post-2-pagos.html                 Los pagos son en dólares
+post-3-pasos.html                 Los tres pasos del registro
+posts.css                         Estilo compartido de las tres
+fuentes.css                       Bebas Neue, Inter y Roboto Mono incrustadas
+exportar.sh                       Genera los .png de 1080x1350
+guia-contenido-instagram.xlsx     Ideas y especificaciones para armar el resto
 ```
+
+`guia-contenido-instagram.xlsx` es para trabajar **fuera** de este repo: tiene
+las ideas de publicaciones con el formato sugerido (post único, carrusel o
+reel), los colores y tamaños exactos de cada elemento, y las reglas de
+maquetación. Sirve para reproducir las placas en Canva sin tener que leer
+el CSS.
 
 **Para cambiar un texto:** se abre el `.html` y se edita. Nada del
 contenido sale del CSS.
