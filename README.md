@@ -550,11 +550,27 @@ subía el archivo a 895 KB para caracteres que no se usan.
 > (sin eso devuelve `.ttf` en vez de `.woff2`), se filtran los bloques
 > `/* latin */` y se reemplaza cada URL por su `data:font/woff2;base64,…`.
 
-### Las cifras salen de `/pagos/`
+### La placa de pagos no lleva cifras, y es a propósito
 
-La tabla de `post-2-pagos.html` usa la columna **total** (monedero +
-remuneración) del array `tiers` de `pagos/index.html`. **Si se actualiza
-la tabla del sitio, hay que actualizar la placa a mano:** no están atadas.
+`post-2-pagos.html` dice que se cobra en dólares y manda la tabla a
+`/pagos/`. **No muestra ningún monto.**
+
+La primera versión sí traía una tabla con cuatro escalones sacados del
+array `tiers` de `pagos/index.html`. Se descartó por dos motivos:
+
+1. Lo que gana cada emisor **varía muchísimo** —algunos cobran unos pocos
+   dólares y otros miles—, así que cualquier cifra suelta es engañosa
+   para alguien que recién llega.
+2. Un número grande en el feed se lee como **promesa de ingresos**, que es
+   justo lo que dispara la sospecha de estafa que el resto de la grilla
+   intenta desarmar.
+
+Lo único numérico que quedó es la regla de horas (44 h = pago completo).
+Esa no promete plata: ordena expectativas.
+
+> Si alguna vez se vuelve a poner una tabla, tener presente que **no está
+> atada a `/pagos/`**: hay que actualizarla a mano cuando cambie el sitio.
+> Los estilos de la tabla vieja están en el historial de git.
 
 La carpeta lleva `noindex, nofollow` y no está en el sitemap, igual que
 `/prueba/` y `/credencial/`.
