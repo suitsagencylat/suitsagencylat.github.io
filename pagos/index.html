@@ -342,6 +342,20 @@
         /* ================================================
            EL APARATO — calculadora fisica con impresora
            ================================================ */
+
+        /* El aparato es un objeto fisico: tiene un tamaño propio, no se
+           estira con la ventana. La columna de esta pagina mide 900px
+           porque la tabla los necesita, y sin este tope la calculadora se
+           los tomaba enteros: en una notebook las teclas salian de
+           211x165px y el conjunto se veia gigante. Con el tope queda del
+           ancho de un telefono, que es la escala en la que se lee bien.
+
+           El recibo lleva el mismo tope para que salga alineado con la
+           ranura. Los 6px de padding de .salida lo dejan apenas mas
+           angosto que el chasis, como el papel de una impresora real. */
+        .aparato,
+        .salida { max-width: 420px; margin-left: auto; margin-right: auto; }
+
         .aparato {
             background: linear-gradient(180deg, var(--sup-chasis-alto), var(--sup-chasis));
             border: 1px solid rgba(255, 255, 255, .09);
