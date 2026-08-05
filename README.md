@@ -518,6 +518,126 @@ con el título *"Ellos ya dieron el primer paso"*.
 - **Las redes al final**, que es su lugar: son la única salida real de
   la página y van después del cierre.
 
+## `/publicaciones/` — placas para Instagram
+
+Las imágenes que se suben a Instagram, hechas en HTML en vez de en un
+editor gráfico. Se editan como texto y salen siempre con la marca exacta
+del sitio, porque usan los mismos colores y tipografías.
+
+```
+index.html                        Las tres juntas, para mirarlas de un vistazo
+post-1-oficial.html               Agencia oficial de Bigo Live
+post-2-pagos.html                 Los pagos son en dólares
+post-3-pasos.html                 Los tres pasos del registro
+fondo-1080x1350.html              Solo el fondo, para maquetar encima en Canva
+fondo-1080x1920.html              Lo mismo en vertical de historia
+posts.css                         Estilo compartido de todas
+fuentes.css                       Bebas Neue, Inter y Roboto Mono incrustadas
+exportar.py                       Genera los .png
+guia-contenido-instagram.xlsx     Ideas y especificaciones para armar el resto
+```
+
+Los `fondo-*.html` son el negro de marca con los dos resplandores y **nada
+encima**. Sirven para llevarlos a Canva de fondo y maquetar ahí el texto.
+El tamaño sale del nombre del archivo: si termina en `-1080x1920`, se
+exporta con esa medida. Para un lienzo nuevo, se copia uno de los dos y se
+le cambia el nombre.
+
+### Los fondos llevan el resplandor más fuerte que las placas
+
+No es un descuido, es a propósito. En una placa con titulares el ojo tiene
+referencias: el blanco del texto marca el máximo y el brillo se percibe por
+comparación. Un fondo solo no tiene con qué comparar.
+
+Con la intensidad de las placas, el píxel más brillante del fondo llegaba a
+`(37, 4, 57)` sobre 255 — un 14 % de luminosidad. Sobre el editor claro de
+Canva y en miniatura se leía como negro plano: los resplandores
+directamente no se veían. Ahora el pico es `(82, 3, 131)`.
+
+> La caída lleva cuatro paradas de color en vez de dos. Con una sola
+> transición al transparente, cada mancha cortaba con un arco marcado y se
+> leía como mancha; con la caída larga se lee como iluminación.
+
+**Las placas con texto no se tocaron:** la regla más fuerte vive en
+`.placa.fondo::before` y solo aplica a los fondos.
+
+`guia-contenido-instagram.xlsx` es para trabajar **fuera** de este repo: tiene
+las ideas de publicaciones con el formato sugerido (post único, carrusel o
+reel), los colores y tamaños exactos de cada elemento, y las reglas de
+maquetación. Sirve para reproducir las placas en Canva sin tener que leer
+el CSS.
+
+**Para cambiar un texto:** se abre el `.html` y se edita. Nada del
+contenido sale del CSS.
+
+**Para volver a generar las imágenes:** `python3 exportar.py`. Necesita
+`pip install playwright && playwright install chromium`. Si la máquina ya
+tiene un Chromium de Playwright, el script lo encuentra solo y no descarga
+nada.
+
+### La captura va del elemento, no de la ventana
+
+Antes esto era un script de shell con `chrome --headless --screenshot` y
+`--window-size`, y salía mal de una forma difícil de ver.
+
+**La ventana headless reserva 87 px fijos para la barra del navegador.** Con
+`--window-size=1080,1350` el viewport real era de 1080×1263, pero la imagen
+igual salía de 1350 de alto: los últimos 87 px eran negro puro del fondo de
+la ventana, no la placa.
+
+En las placas con texto casi no se notaba, porque el pie termina en 1254 y
+zafaba por 9 px. Pero al resplandor cian de abajo a la izquierda lo cortaba
+con un filo recto, y en los fondos sin texto se veía clarísimo.
+
+> Capturar el elemento `.placa` en vez de la ventana lo evita: el recorte
+> sale del tamaño real de la caja. `exportar.py` además verifica que cada
+> PNG haya salido con la medida esperada y falla si alguno no coincide.
+
+### Por qué las tipografías van incrustadas
+
+`fuentes.css` pesa 360 KB porque lleva las tres familias en base64 en vez
+de pedirlas a Google Fonts. Son dos problemas que resuelve de una:
+
+1. La captura se disparaba antes de que la CDN respondiera y los PNG
+   salían en Arial. Con las fuentes incrustadas no hay carrera que perder.
+2. Las placas se ven igual sin internet y en cualquier máquina.
+
+Solo se incrusta el subconjunto **latin**. Ese rango ya cubre los acentos
+del español (`á é í ó ú ñ ü ¿ ¡`); agregar `latin-ext`, cirílico y griego
+subía el archivo a 895 KB para caracteres que no se usan.
+
+> Se regeneran con un script que no vive en el repo. Si hay que rehacerlo:
+> se pide el CSS a `fonts.googleapis.com` **con User-Agent de navegador**
+> (sin eso devuelve `.ttf` en vez de `.woff2`), se filtran los bloques
+> `/* latin */` y se reemplaza cada URL por su `data:font/woff2;base64,…`.
+
+### La placa de pagos no lleva cifras, y es a propósito
+
+`post-2-pagos.html` dice que se cobra en dólares y manda la tabla a
+`/pagos/`. **No muestra ningún monto.**
+
+La primera versión sí traía una tabla con cuatro escalones sacados del
+array `tiers` de `pagos/index.html`. Se descartó por dos motivos:
+
+1. Lo que gana cada emisor **varía muchísimo** —algunos cobran unos pocos
+   dólares y otros miles—, así que cualquier cifra suelta es engañosa
+   para alguien que recién llega.
+2. Un número grande en el feed se lee como **promesa de ingresos**, que es
+   justo lo que dispara la sospecha de estafa que el resto de la grilla
+   intenta desarmar.
+
+Lo único numérico que quedó es la regla de horas (44 h = pago completo).
+Esa no promete plata: ordena expectativas.
+
+> Si alguna vez se vuelve a poner una tabla, tener presente que **no está
+> atada a `/pagos/`**: hay que actualizarla a mano cuando cambie el sitio.
+> Los estilos de la tabla vieja están en el historial de git.
+
+La carpeta lleva `noindex, nofollow` y no está en el sitemap, igual que
+`/prueba/` y `/credencial/`.
+
+---
+
 ## Cambios de julio 2026
 
 Anotados acá para no tener que releer todo el archivo.

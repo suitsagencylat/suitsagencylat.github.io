@@ -1,0 +1,315 @@
+/* ==========================================================================
+   Placas para Instagram — 1080 x 1350 (4:5, el vertical que mas alto ocupa
+   en el feed).
+
+   Los colores y las tipografias son los mismos del sitio. Si cambia la
+   marca, se toca aca y en styles.css, no en cada placa.
+
+   Para editar un texto: abri el .html y cambialo. Nada de lo que se ve
+   sale de este archivo, solo el estilo.
+   ========================================================================== */
+
+:root {
+    --bg-color: #050505;
+    --accent-blue: #00e8ff;
+    --accent-violet: #9e00ff;
+    --violeta-brillo: #c04bff;
+    --violeta-claro: #c98bff;
+    --card-bg: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-clean: 'Inter', sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+}
+
+/* --------------------------------------------------------------------------
+   El lienzo. 1080x1350 clavados: es lo que se captura despues como PNG.
+   -------------------------------------------------------------------------- */
+.placa {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    background: var(--bg-color);
+    color: #fff;
+    font-family: var(--font-clean);
+    padding: 96px 88px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Resplandor de fondo. Dos manchas suaves, una violeta y una cian, para que
+   el negro no quede plano. Van detras de todo.
+
+   Los tamaños van en porcentaje y no en px para que el mismo resplandor
+   sirva en el lienzo del feed (1350 de alto) y en el de historias (1920).
+   En 1080x1350 dan exactamente los mismos pixeles que antes. */
+.placa::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(63% 38.5% at 78% -8%, rgba(158, 0, 255, .30), transparent 68%),
+        radial-gradient(55.6% 34.1% at 8% 104%, rgba(0, 232, 255, .16), transparent 68%);
+    pointer-events: none;
+}
+
+/* Lienzo vertical de historias y reels. */
+.placa.story { height: 1920px; }
+
+/* Fondo solo, sin contenido: para llevarlo a Canva y maquetar encima. */
+.placa.fondo { padding: 0; }
+
+/* Los resplandores del fondo van MUCHO mas fuertes que los de las placas
+   con texto, y no es un descuido.
+
+   En una placa con titulares el ojo tiene referencias: el blanco del texto
+   marca el maximo y por comparacion se percibe el brillo. Solo, sin nada
+   que comparar, el pico de la version suave llegaba a (37,4,57) sobre 255
+   —un 14% de luminosidad— y sobre el editor claro de Canva, en miniatura,
+   no se veia nada: lo leias como negro plano.
+
+   Tambien se agrandan los radios: una mancha chica y fuerte se lee como
+   mancha, una grande y fuerte se lee como iluminacion. */
+.placa.fondo::before {
+    background:
+        radial-gradient(88% 54% at 78% -10%,
+            rgba(158, 0, 255, .66) 0%,
+            rgba(158, 0, 255, .34) 38%,
+            rgba(158, 0, 255, .10) 62%,
+            transparent 85%),
+        radial-gradient(78% 48% at 6% 106%,
+            rgba(0, 232, 255, .46) 0%,
+            rgba(0, 232, 255, .22) 38%,
+            rgba(0, 232, 255, .07) 62%,
+            transparent 85%);
+}
+
+/* Todo el contenido va encima del resplandor. */
+.placa > * { position: relative; z-index: 1; }
+
+/* --------------------------------------------------------------------------
+   Tipografia
+   -------------------------------------------------------------------------- */
+.titulo {
+    font-family: var(--font-display);
+    font-size: 138px;
+    line-height: .88;
+    letter-spacing: 3px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Bebas Neue no tiene negrita real: el peso se consigue con el tamaño.
+   Para resaltar una linea se le cambia el color, no el weight. */
+.titulo .neon {
+    background: linear-gradient(96deg, var(--accent-blue), var(--violeta-brillo));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bajada {
+    font-size: 27px;
+    font-weight: 600;
+    letter-spacing: 9px;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    margin: 30px 0 0;
+}
+
+.sobretitulo {
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    color: var(--violeta-claro);
+    margin: 0 0 26px;
+}
+
+/* Separador fino. Se desvanece hacia la derecha para no cortar en seco. */
+.linea {
+    height: 1px;
+    border: 0;
+    margin: 0;
+    background: linear-gradient(90deg, rgba(255, 255, 255, .28), transparent);
+}
+
+/* El cuerpo se queda con todo el alto sobrante y centra su contenido.
+   Antes el sobrante se acumulaba entero abajo y quedaba un hueco muerto
+   de ~300px entre el ultimo texto y el pie. Centrando, ese aire se
+   reparte arriba y abajo y la composicion se lee equilibrada. */
+.cuerpo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Pie de marca, igual en las tres placas
+   -------------------------------------------------------------------------- */
+.pie {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 44px;
+    padding-top: 34px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.pie .marca {
+    font-family: var(--font-display);
+    font-size: 40px;
+    letter-spacing: 6px;
+}
+
+.pie .web {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--accent-blue);
+}
+
+/* --------------------------------------------------------------------------
+   Placa 1 — agencia oficial
+   -------------------------------------------------------------------------- */
+.sello {
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 54px;
+    background: rgba(0, 232, 255, .09);
+    border: 2px solid rgba(0, 232, 255, .45);
+    box-shadow: 0 0 46px rgba(0, 232, 255, .28);
+}
+
+.sello svg { width: 58px; height: 58px; }
+
+.avales {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    margin-top: 62px;
+}
+
+.aval {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 34px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .92);
+}
+
+/* El punto de viñeta: chico, cian, con halo. */
+.aval::before {
+    content: '';
+    width: 11px;
+    height: 11px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    box-shadow: 0 0 14px var(--accent-blue);
+}
+
+/* --------------------------------------------------------------------------
+   Placa 2 — los pagos son en dolares
+
+   Sin cifras a proposito. Lo que gana cada emisor varia demasiado —de unos
+   pocos dolares a miles— y poner un numero en el feed se lee como promesa
+   de ingresos, que es justo lo que despierta la sospecha de estafa.
+   -------------------------------------------------------------------------- */
+/* El ancho esta en px y no en ch a proposito: con ch el parrafo caia en
+   una columna de siete lineas cortas que parecia una lista. Con 720px
+   entra en tres renglones, que es como se lee de un vistazo. */
+.parrafo {
+    margin: 46px 0 0;
+    font-size: 35px;
+    line-height: 1.48;
+    color: rgba(255, 255, 255, .82);
+    max-width: 720px;
+    /* Reparte el largo de los renglones para que no quede una palabra
+       sola colgando en el ultimo. */
+    text-wrap: balance;
+}
+
+/* Caja de la regla de horas. El dato que mas preguntan. */
+.regla {
+    margin-top: 34px;
+    padding: 30px 40px;
+    border-radius: 18px;
+    text-align: center;
+    background: linear-gradient(96deg, rgba(158, 0, 255, .20), rgba(0, 232, 255, .12));
+    border: 1px solid rgba(192, 75, 255, .40);
+}
+
+.regla strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 52px;
+    letter-spacing: 2px;
+}
+
+.regla span {
+    display: block;
+    margin-top: 8px;
+    font-size: 23px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, .70);
+}
+
+/* --------------------------------------------------------------------------
+   Placa 3 — los tres pasos
+   -------------------------------------------------------------------------- */
+.pasos {
+    display: flex;
+    flex-direction: column;
+    gap: 58px;
+    margin-top: 72px;
+}
+
+.paso {
+    display: flex;
+    align-items: flex-start;
+    gap: 36px;
+}
+
+.paso .num {
+    font-family: var(--font-display);
+    font-size: 126px;
+    line-height: .78;
+    flex: none;
+    width: 148px;
+    background: linear-gradient(160deg, var(--accent-blue), var(--violeta-brillo));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.paso h2 {
+    font-family: var(--font-display);
+    font-size: 56px;
+    letter-spacing: 2px;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+
+.paso p {
+    margin: 0;
+    font-size: 27px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, .68);
+}
