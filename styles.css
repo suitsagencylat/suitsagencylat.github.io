@@ -382,7 +382,7 @@ header.main-header {
 }
 
 .social-section { padding: 40px 10% 20px; text-align: center; position: relative; z-index: 10; }
-.social-section h4 { font-family: var(--font-display); font-size: 3rem; color: #ffffff; margin: 0 0 25px; letter-spacing: 4px; }
+.social-section h2 { font-family: var(--font-display); font-size: 3rem; color: #ffffff; margin: 0 0 25px; letter-spacing: 4px; }
 .social-icons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
 .social-link {
     text-decoration: none;
@@ -404,7 +404,7 @@ footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-s
 
 @media (max-width: 768px) {
     .slider-container { width: 70%; max-width: 240px; }
-    .social-section h4 { font-size: 2.5rem; }
+    .social-section h2 { font-size: 2.5rem; }
 }
 
 /* ================================================================
@@ -591,8 +591,8 @@ footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-s
     margin: 34px 0 10px;
 }
 
-.form-card h3 { margin: 0 0 8px; font-size: 1.15rem; color: #fff; }
-.form-card h3 i { color: var(--accent-blue); margin-right: 8px; }
+.form-card h2 { margin: 0 0 8px; font-size: 1.15rem; color: #fff; }
+.form-card h2 i { color: var(--accent-blue); margin-right: 8px; }
 .form-sub { margin: 0 0 22px; font-size: .88rem; color: var(--silver); opacity: .75; line-height: 1.6; }
 
 .form-field { margin-bottom: 16px; text-align: left; }
@@ -654,7 +654,7 @@ footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.3); font-s
 
 .form-ok { text-align: center; padding: 14px 0 4px; }
 .form-ok i { font-size: 2.6rem; color: #25d366; margin-bottom: 12px; }
-.form-ok h4 { margin: 0 0 8px; font-size: 1.1rem; color: #fff; }
+.form-ok h3 { margin: 0 0 8px; font-size: 1.1rem; color: #fff; }
 .form-ok p { margin: 0; font-size: .9rem; color: var(--silver); opacity: .8; line-height: 1.6; }
 
 .form-error {
