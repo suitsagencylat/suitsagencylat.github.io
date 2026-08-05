@@ -68,6 +68,31 @@ html, body {
 /* Fondo solo, sin contenido: para llevarlo a Canva y maquetar encima. */
 .placa.fondo { padding: 0; }
 
+/* Los resplandores del fondo van MUCHO mas fuertes que los de las placas
+   con texto, y no es un descuido.
+
+   En una placa con titulares el ojo tiene referencias: el blanco del texto
+   marca el maximo y por comparacion se percibe el brillo. Solo, sin nada
+   que comparar, el pico de la version suave llegaba a (37,4,57) sobre 255
+   —un 14% de luminosidad— y sobre el editor claro de Canva, en miniatura,
+   no se veia nada: lo leias como negro plano.
+
+   Tambien se agrandan los radios: una mancha chica y fuerte se lee como
+   mancha, una grande y fuerte se lee como iluminacion. */
+.placa.fondo::before {
+    background:
+        radial-gradient(88% 54% at 78% -10%,
+            rgba(158, 0, 255, .66) 0%,
+            rgba(158, 0, 255, .34) 38%,
+            rgba(158, 0, 255, .10) 62%,
+            transparent 85%),
+        radial-gradient(78% 48% at 6% 106%,
+            rgba(0, 232, 255, .46) 0%,
+            rgba(0, 232, 255, .22) 38%,
+            rgba(0, 232, 255, .07) 62%,
+            transparent 85%);
+}
+
 /* Todo el contenido va encima del resplandor. */
 .placa > * { position: relative; z-index: 1; }
 

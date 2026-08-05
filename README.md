@@ -535,6 +535,24 @@ El tamaño sale del nombre del archivo: si termina en `-1080x1920`, se
 exporta con esa medida. Para un lienzo nuevo, se copia uno de los dos y se
 le cambia el nombre.
 
+### Los fondos llevan el resplandor más fuerte que las placas
+
+No es un descuido, es a propósito. En una placa con titulares el ojo tiene
+referencias: el blanco del texto marca el máximo y el brillo se percibe por
+comparación. Un fondo solo no tiene con qué comparar.
+
+Con la intensidad de las placas, el píxel más brillante del fondo llegaba a
+`(37, 4, 57)` sobre 255 — un 14 % de luminosidad. Sobre el editor claro de
+Canva y en miniatura se leía como negro plano: los resplandores
+directamente no se veían. Ahora el pico es `(82, 3, 131)`.
+
+> La caída lleva cuatro paradas de color en vez de dos. Con una sola
+> transición al transparente, cada mancha cortaba con un arco marcado y se
+> leía como mancha; con la caída larga se lee como iluminación.
+
+**Las placas con texto no se tocaron:** la regla más fuerte vive en
+`.placa.fondo::before` y solo aplica a los fondos.
+
 `guia-contenido-instagram.xlsx` es para trabajar **fuera** de este repo: tiene
 las ideas de publicaciones con el formato sugerido (post único, carrusel o
 reel), los colores y tamaños exactos de cada elemento, y las reglas de
