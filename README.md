@@ -521,11 +521,19 @@ index.html                        Las tres juntas, para mirarlas de un vistazo
 post-1-oficial.html               Agencia oficial de Bigo Live
 post-2-pagos.html                 Los pagos son en dólares
 post-3-pasos.html                 Los tres pasos del registro
-posts.css                         Estilo compartido de las tres
+fondo-1080x1350.html              Solo el fondo, para maquetar encima en Canva
+fondo-1080x1920.html              Lo mismo en vertical de historia
+posts.css                         Estilo compartido de todas
 fuentes.css                       Bebas Neue, Inter y Roboto Mono incrustadas
-exportar.sh                       Genera los .png de 1080x1350
+exportar.py                       Genera los .png
 guia-contenido-instagram.xlsx     Ideas y especificaciones para armar el resto
 ```
+
+Los `fondo-*.html` son el negro de marca con los dos resplandores y **nada
+encima**. Sirven para llevarlos a Canva de fondo y maquetar ahí el texto.
+El tamaño sale del nombre del archivo: si termina en `-1080x1920`, se
+exporta con esa medida. Para un lienzo nuevo, se copia uno de los dos y se
+le cambia el nombre.
 
 `guia-contenido-instagram.xlsx` es para trabajar **fuera** de este repo: tiene
 las ideas de publicaciones con el formato sugerido (post único, carrusel o
@@ -536,8 +544,28 @@ el CSS.
 **Para cambiar un texto:** se abre el `.html` y se edita. Nada del
 contenido sale del CSS.
 
-**Para volver a generar las imágenes:** `./exportar.sh`. Necesita Chrome o
-Chromium; si está en otra ruta, `CHROME=/ruta/a/chrome ./exportar.sh`.
+**Para volver a generar las imágenes:** `python3 exportar.py`. Necesita
+`pip install playwright && playwright install chromium`. Si la máquina ya
+tiene un Chromium de Playwright, el script lo encuentra solo y no descarga
+nada.
+
+### La captura va del elemento, no de la ventana
+
+Antes esto era un script de shell con `chrome --headless --screenshot` y
+`--window-size`, y salía mal de una forma difícil de ver.
+
+**La ventana headless reserva 87 px fijos para la barra del navegador.** Con
+`--window-size=1080,1350` el viewport real era de 1080×1263, pero la imagen
+igual salía de 1350 de alto: los últimos 87 px eran negro puro del fondo de
+la ventana, no la placa.
+
+En las placas con texto casi no se notaba, porque el pie termina en 1254 y
+zafaba por 9 px. Pero al resplandor cian de abajo a la izquierda lo cortaba
+con un filo recto, y en los fondos sin texto se veía clarísimo.
+
+> Capturar el elemento `.placa` en vez de la ventana lo evita: el recorte
+> sale del tamaño real de la caja. `exportar.py` además verifica que cada
+> PNG haya salido con la medida esperada y falla si alguno no coincide.
 
 ### Por qué las tipografías van incrustadas
 

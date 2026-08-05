@@ -47,16 +47,26 @@ html, body {
 }
 
 /* Resplandor de fondo. Dos manchas suaves, una violeta y una cian, para que
-   el negro no quede plano. Van detras de todo. */
+   el negro no quede plano. Van detras de todo.
+
+   Los tamaños van en porcentaje y no en px para que el mismo resplandor
+   sirva en el lienzo del feed (1350 de alto) y en el de historias (1920).
+   En 1080x1350 dan exactamente los mismos pixeles que antes. */
 .placa::before {
     content: '';
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(680px 520px at 78% -8%, rgba(158, 0, 255, .30), transparent 68%),
-        radial-gradient(600px 460px at 8% 104%, rgba(0, 232, 255, .16), transparent 68%);
+        radial-gradient(63% 38.5% at 78% -8%, rgba(158, 0, 255, .30), transparent 68%),
+        radial-gradient(55.6% 34.1% at 8% 104%, rgba(0, 232, 255, .16), transparent 68%);
     pointer-events: none;
 }
+
+/* Lienzo vertical de historias y reels. */
+.placa.story { height: 1920px; }
+
+/* Fondo solo, sin contenido: para llevarlo a Canva y maquetar encima. */
+.placa.fondo { padding: 0; }
 
 /* Todo el contenido va encima del resplandor. */
 .placa > * { position: relative; z-index: 1; }
