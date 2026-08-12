@@ -9,18 +9,27 @@
 // ============================================
 
 (function () {
+  // Deja todas las direcciones en la misma forma para poder compararlas:
+  // sin 'index.html' y siempre terminadas en barra.
+  function ruta(p) {
+    return p.replace(/index\.html$/, '').replace(/\/*$/, '/');
+  }
+
   function init() {
-    // Marca el link activo según la página actual
-    const path = window.location.pathname;
-    let current = 'inicio';
-    if (path.includes('/academia')) current = 'academia';
-    else if (path.includes('/pagos')) current = 'pagos';
-    else if (path.includes('/registro')) current = 'registro';
-    else if (path.includes('/soporte')) current = 'soporte';
+    // Marca el link activo comparando cada link con la dirección actual.
+    //
+    // Antes esto era una lista de rutas escrita a mano con 'inicio' como
+    // valor por defecto: cualquier pagina que no estuviera en la lista
+    // (/privacidad/, el 404) terminaba marcando "Inicio" como pagina
+    // actual, y eso le miente al lector de pantalla via aria-current.
+    // Comparando contra el href de cada link, el menu se describe solo:
+    // una pagina nueva no necesita tocar este archivo, y donde ningun
+    // link corresponde no se marca nada, que es lo correcto.
+    const aqui = ruta(window.location.pathname);
 
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-      if (link.dataset.page === current) {
+      if (ruta(new URL(link.href, window.location.href).pathname) === aqui) {
         link.classList.add('active');
         link.setAttribute('aria-current', 'page');
       }

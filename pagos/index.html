@@ -829,10 +829,14 @@
             for (const t of tiers) {
                 if (semillas >= t.semillas) tramo = t; else break;
             }
-            const masAllaDelMaximo = semillas > tiers[tiers.length - 1].semillas;
+            // El teclado no deja pasar de 15.000.000, que es justo el ultimo
+            // escalon, asi que un "> maximo" no se cumple nunca y el aviso
+            // quedaba muerto. Se avisa al llegar al tope: de ahi para arriba
+            // la tabla no tiene con que calcular.
+            const enElTope = semillas >= tiers[tiers.length - 1].semillas;
             // El escalon siguiente sirve para decirle cuanto le falta
             const siguiente = tiers.find(t => t.semillas > semillas) || null;
-            return { ...tramo, califica: true, masAllaDelMaximo, siguiente };
+            return { ...tramo, califica: true, enElTope, siguiente };
         }
 
         function fmtUSD(n) {
@@ -1033,12 +1037,27 @@
             sello.className = 'sello';
             motivo.className = 'motivo';
 
+            // El sello tiene que coincidir con el numero de arriba. Si la
+            // remuneracion redondea a cero, el veredicto es "sin
+            // remuneracion" aunque sea el primer mes: antes ese caso caia
+            // en "Pago proporcional" y anunciaba un pago parcial del 0%.
+            const remuneracionVisible = Math.round(remuneracion);
+
             if (!tramo.califica) {
                 sello.textContent = 'Sin remuneración';
                 sello.classList.add('nulo');
                 motivo.classList.add('malo');
                 motivo.textContent = 'No alcanzaste la meta mínima de la tabla, que son 2.000 semillas. '
                     + 'Las semillas de tu monedero siguen siendo tuyas y puedes retirarlas.';
+            } else if (remuneracionVisible === 0) {
+                sello.textContent = 'Sin remuneración';
+                sello.classList.add('nulo');
+                motivo.classList.add('malo');
+                motivo.textContent = primerMes
+                    ? 'Cumpliste la meta de semillas, pero no registraste horas de transmisión. '
+                      + 'En tu primer mes el pago es proporcional a las horas, así que sin horas no hay remuneración.'
+                    : 'Cumpliste la meta de semillas, pero con menos de 20 horas no hay remuneración. '
+                      + 'Las horas son la condición que no se puede compensar con semillas.';
             } else if (primerMes && horas < 44) {
                 const pct = Math.round(Math.min(horas / 44, 1) * 100);
                 sello.textContent = 'Pago proporcional';
@@ -1047,12 +1066,6 @@
                 motivo.textContent = 'Es tu primer mes, así que se paga proporcional: hiciste '
                     + horas.toLocaleString('es-AR') + ' de las 44 horas, o sea el ' + pct + '%. '
                     + 'Cobras ese mismo porcentaje de tu meta.';
-            } else if (horas < 20) {
-                sello.textContent = 'Sin remuneración';
-                sello.classList.add('nulo');
-                motivo.classList.add('malo');
-                motivo.textContent = 'Cumpliste la meta de semillas, pero con menos de 20 horas no hay remuneración. '
-                    + 'Las horas son la condición que no se puede compensar con semillas.';
             } else if (horas < 44) {
                 sello.textContent = 'Pago parcial';
                 sello.classList.add('parcial');
@@ -1142,8 +1155,8 @@
             // Aviso unico: el motivo ya explica el resto
             const warningEl = document.getElementById('calcWarning');
             warningEl.innerHTML = '';
-            if (tramo.masAllaDelMaximo) {
-                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-circle-info"></i> Superaste la meta más alta de la tabla oficial. Se calculó con ese tope — consulta con tu agente para tu caso puntual.</div>';
+            if (tramo.enElTope) {
+                warningEl.innerHTML = '<div class="calc-warning"><i class="fa-solid fa-circle-info"></i> Llegaste al último escalón de la tabla oficial. Si superaste las 15.000.000 de semillas, el cálculo se queda en ese tope — consulta con tu agente para tu caso puntual.</div>';
             }
 
             // Conversión de moneda
