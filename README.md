@@ -251,7 +251,11 @@ reemplaza el ID de esa línea. Si alguna vez vuelve a decir `PONER_ID`, el
 formulario valida y muestra el mensaje de éxito pero **no envía nada** — sirve
 para probar el diseño sin gastar el cupo.
 
-El envío exitoso dispara el evento `lead_formulario` (GA4) / `Lead` (Meta).
+El envío exitoso dispara el evento `generate_lead` (GA4) / `Lead` (Meta),
+con un `value` simbólico (`VALOR_LEAD`, 1 USD) para que los reportes de
+GA4 puedan comparar campañas y fuentes en vez de mostrar todo en cero.
+`generate_lead` es un nombre que GA4 ya reconoce en sus reportes de
+conversión predefinidos; por eso reemplazó al anterior `lead_formulario`.
 
 ---
 
@@ -671,6 +675,13 @@ La duración es fija y no depende de cuánto texto haya. O sea que
 recalcular los 73s.
 
 ### Botón flotante de WhatsApp
+
+El texto que lleva precargado sale de `WHATSAPP_MENSAJES` en
+`include.js`: un mensaje por página (`/pagos/`, `/academia/`,
+`/soporte/`, `/registro/`) y uno `default` para el resto, elegido con
+la misma función `ruta()` que marca el link activo del menú. Los CTA de
+WhatsApp que están dentro del contenido de cada página tienen su propio
+texto en el HTML y no dependen de este mapa.
 
 `include.js` le pone la clase `.a-un-lado` mientras `.cred-cta` está
 en pantalla, para que no tape el CTA principal. Usa un
