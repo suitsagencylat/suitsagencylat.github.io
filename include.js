@@ -107,7 +107,7 @@
   const WHATSAPP_MENSAJES = {
     '/pagos/':    'Hola! Vi la tabla de pagos y quiero mas info para ser emisor.',
     '/academia/': 'Hola! Vi los videos de la academia y quiero unirme.',
-    '/soporte/':  'Hola! Tengo una consulta para Suits Agency.',
+    '/soporte/':  'Hola! Lei las preguntas frecuentes y quiero postularme como emisor.',
     '/registro/': 'Hola! Estoy por registrarme y tengo una duda.',
     'default':    'Hola! Quiero informacion para ser emisor de Bigo Live con Suits Agency.'
   };
