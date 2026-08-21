@@ -254,6 +254,13 @@
    ============================================================ */
 const FORMSPREE = 'https://formspree.io/f/xgogdrpv';
 
+/* Valor simbolico por lead. No es plata real: le da a GA4 y a Meta
+   una unidad con la que comparar campanas y fuentes de trafico
+   (sin un value, esos reportes quedan todos en cero). Si algun dia
+   se calcula cuanto vale de verdad un postulante, se cambia aca. */
+const VALOR_LEAD    = 1;
+const MONEDA_LEAD   = 'USD';
+
 (function () {
     const form  = document.getElementById('leadForm');
     if (!form) return;
@@ -299,9 +306,16 @@ const FORMSPREE = 'https://formspree.io/f/xgogdrpv';
             ok.hidden = false;
             ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            // Conversion: se mide igual que un contacto por WhatsApp
+            // Conversion. En GA4 va como 'generate_lead', que es uno de los
+            // eventos que GA4 ya entiende y usa en sus reportes de conversion
+            // predefinidos; un nombre propio como 'lead_formulario' habria
+            // quedado afuera de todo eso. En Meta sigue siendo 'Lead'.
             if (window.suitsEvento) {
-                window.suitsEvento('lead_formulario', 'Lead', { pais: form.pais.value });
+                window.suitsEvento('generate_lead', 'Lead', {
+                    pais:     form.pais.value,
+                    value:    VALOR_LEAD,
+                    currency: MONEDA_LEAD
+                });
             }
         } catch (err) {
             error.hidden = false;

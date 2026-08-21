@@ -93,17 +93,36 @@
   // y en las redes de la home), asi que no perdemos nada en SEO.
   // El clic lo mide tracking.js solo: la regla de wa.me ya existe.
   //
-  // Para cambiar el numero o el texto, tocar aca abajo.
+  // Para cambiar el numero o los textos, tocar aca abajo.
   // ============================================
-  const WHATSAPP_NUM  = '595982678695';
-  const WHATSAPP_MSG  = 'Hola! Quiero informacion para ser emisor de Bigo Live con Suits Agency.';
+  const WHATSAPP_NUM = '595982678695';
+
+  // El mensaje sale ya escrito segun la pagina desde la que se toca el
+  // boton: quien viene de /pagos/ pregunta por pagos, quien viene de
+  // /academia/ por la academia. Asi el chat arranca con el contexto
+  // puesto en vez de un "Hola!" suelto igual para todos.
+  // Las rutas van normalizadas (con barra al final, sin 'index.html'),
+  // igual que las compara ruta() para marcar el link activo del menu.
+  // Una pagina que no este en la lista usa el mensaje 'default'.
+  const WHATSAPP_MENSAJES = {
+    '/pagos/':    'Hola! Vi la tabla de pagos y quiero mas info para ser emisor.',
+    '/academia/': 'Hola! Vi los videos de la academia y quiero unirme.',
+    '/soporte/':  'Hola! Tengo una consulta para Suits Agency.',
+    '/registro/': 'Hola! Estoy por registrarme y tengo una duda.',
+    'default':    'Hola! Quiero informacion para ser emisor de Bigo Live con Suits Agency.'
+  };
+
+  function mensajeWhatsapp() {
+    const aqui = ruta(window.location.pathname);
+    return WHATSAPP_MENSAJES[aqui] || WHATSAPP_MENSAJES['default'];
+  }
 
   function botonWhatsapp() {
     if (document.querySelector('.wa-float')) return;
 
     const a = document.createElement('a');
     a.className = 'wa-float';
-    a.href = 'https://wa.me/' + WHATSAPP_NUM + '?text=' + encodeURIComponent(WHATSAPP_MSG);
+    a.href = 'https://wa.me/' + WHATSAPP_NUM + '?text=' + encodeURIComponent(mensajeWhatsapp());
     a.target = '_blank';
     a.rel = 'noopener';
     a.setAttribute('aria-label', 'Escríbenos por WhatsApp');
