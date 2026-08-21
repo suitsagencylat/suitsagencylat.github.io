@@ -104,10 +104,14 @@
   // Las rutas van normalizadas (con barra al final, sin 'index.html'),
   // igual que las compara ruta() para marcar el link activo del menu.
   // Una pagina que no este en la lista usa el mensaje 'default'.
+  //
+  // El de /soporte/ queda cortado a proposito: WhatsApp deja el cursor
+  // al final del texto, asi que la persona sigue escribiendo su duda ahi
+  // mismo y la consulta llega con el tema puesto. No completar la frase.
   const WHATSAPP_MENSAJES = {
     '/pagos/':    'Hola! Vi la tabla de pagos y quiero mas info para ser emisor.',
     '/academia/': 'Hola! Vi los videos de la academia y quiero unirme.',
-    '/soporte/':  'Hola! Lei las preguntas frecuentes y quiero postularme como emisor.',
+    '/soporte/':  'Hola! Tengo una consulta sobre...',
     '/registro/': 'Hola! Estoy por registrarme y tengo una duda.',
     'default':    'Hola! Quiero informacion para ser emisor de Bigo Live con Suits Agency.'
   };
