@@ -674,6 +674,22 @@ La duración es fija y no depende de cuánto texto haya. O sea que
 **agregar frases acelera la cinta**: si se suman o quitan, hay que
 recalcular los 73s.
 
+### Favicon — 192 px, y el porqué del número
+
+`favicon.png` mide 192 px de lado, que es 48 × 4. Google solo toma el
+favicon si el lado es múltiplo de 48 (48, 96, 144, 192…); antes medía
+180 y por eso en los resultados de búsqueda salía el globo genérico en
+lugar del logo. Si algún día se reemplaza la imagen, hay que respetar
+esa medida.
+
+En la raíz también vive `favicon.ico` (16/32/48 en un mismo archivo).
+No lo declara ninguna etiqueta: es el que los navegadores y algunos
+rastreadores piden por su cuenta a `/favicon.ico` cuando no leen el
+`<link rel="icon">`.
+
+Cambiar el favicon no se ve al día siguiente: Google lo actualiza
+cuando vuelve a rastrear la portada, y eso puede tardar semanas.
+
 ### Botón flotante de WhatsApp
 
 El texto que lleva precargado sale de `WHATSAPP_MENSAJES` en
