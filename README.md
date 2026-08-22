@@ -717,6 +717,29 @@ Mientras tanto, que en el buscador salga el globo genérico no es
 necesariamente una falla del código: el sitio es de agosto de 2026 y a
 un dominio nuevo Google suele tardar en asignarle el ícono.
 
+### La tabla de /pagos/ va escrita en el HTML
+
+Las 24 filas de `#paymentTableBody` están escritas a mano en el HTML.
+Antes las construía un bucle sobre `tiers` con `createElement`, así que
+el HTML salía con el `<tbody>` vacío: la tabla que la gente busca —
+"tabla de pagos bigo live" es la consulta con más impresiones del
+sitio — no existía para nadie que no ejecutara JavaScript. Google
+renderiza, pero en una segunda pasada y con menos peso; Bing y los
+rastreadores de IA no renderizan. La página tenía 533 palabras y cero
+cifras; ahora tiene 653 y las 96 celdas con números.
+
+**`tiers` sigue existiendo** porque la calculadora lo necesita para
+resolver el tramo. Eso deja la misma tabla escrita dos veces, y es el
+riesgo real de este archivo: **si cambia la tabla oficial de Bigo hay
+que tocar los dos lados**, el array y las filas del HTML. Desincronizar
+uno del otro muestra un número al calcular y otro al leer, sin que nada
+falle a la vista.
+
+Las filas conservan `data-semillas`, que es como el resaltado encuentra
+la fila del tramo calculado, y de la 13 a la 24 llevan `oculto`, que es
+lo que esconde el botón "Ver la tabla completa". Si se agrega o quita
+una fila, respetar las dos cosas.
+
 ### /privacidad/ fuera del buscador
 
 `privacidad/index.html` lleva `noindex, follow` y **no** figura en
