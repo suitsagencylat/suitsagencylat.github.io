@@ -738,6 +738,40 @@ Al cambiar un `<title>` Google tarda en recalcular posiciones. La
 portada puede perder terreno en "cuánto se gana" antes de que `/pagos/`
 lo gane; es el costo esperado de dejar de competir consigo misma.
 
+### /registro/ va en tres etapas, agrupadas por quién actúa
+
+Los seis pasos se leen agrupados con `.etapa-cinta`: etapa 1 lo que hace
+el emisor, etapa 2 lo que hace Bigo, etapa 3 la verificación dentro de
+la app. Sin esa división los seis se leen como una sola lista y el
+emisor no sabe cuándo le toca esperar. Los pasos 4 y 5 llevan
+`.step-number.hueco` porque ahí no tiene nada que hacer.
+
+**El paso 3 decía algo que ya no existe.** Era "Únete desde mi Perfil →
+Perfil del agente → Solicitar firma". Bigo eliminó ese botón, así que
+quien seguía la instrucción buscaba algo que no está. Ahora es "Acepta
+la Invitación", que es lo que el emisor hace de verdad, y el enlace al
+perfil de Bigo se mudó al paso 2 como vía alternativa de contacto, al
+lado del de WhatsApp.
+
+`registro/perfil.jpg` quedó huérfano: mostraba ese flujo viejo. No se
+borra por si sirve de referencia, pero **no la vuelvas a enlazar sin
+una captura nueva**. Las reglas `.guide-container` y `.guide-img` se
+dejan a propósito, listas para cuando haya imagen.
+
+**Los pasos 4, 5 y 6 son datos que antes no estaban en ningún lado.**
+El más importante es el 6: sin verificar identidad y edad no se pueden
+hacer retiros, y solo los emisores afiliados a una agencia pueden
+verificarse. Eso convierte la afiliación en un requisito para cobrar,
+no en un servicio opcional. La nota aclara además que la agencia no
+tiene acceso al documento: lo leen sistemas automáticos de Bigo.
+
+### El sitio habla de tú, no de vos
+
+Las seis páginas usan tuteo: "Descarga", "Escríbenos", "Puedes",
+"Únete". Al escribir textos nuevos hay que seguir esa forma. El
+desplegable de países decía "Elegí tu país", único voseo del sitio, y
+se corrigió a "Elige tu país".
+
 ### El contacto de /privacidad/ es el correo, no WhatsApp
 
 Los dos puntos de contacto de la política —el del responsable de los
