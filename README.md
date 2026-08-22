@@ -674,21 +674,48 @@ La duración es fija y no depende de cuánto texto haya. O sea que
 **agregar frases acelera la cinta**: si se suman o quitan, hay que
 recalcular los 73s.
 
-### Favicon — 192 px, y el porqué del número
+### Favicon — qué pide Google de verdad
 
-`favicon.png` mide 192 px de lado, que es 48 × 4. Google solo toma el
-favicon si el lado es múltiplo de 48 (48, 96, 144, 192…); antes medía
-180 y por eso en los resultados de búsqueda salía el globo genérico en
-lugar del logo. Si algún día se reemplaza la imagen, hay que respetar
-esa medida.
+En la raíz hay dos archivos y las seis páginas declaran los dos:
 
-En la raíz también vive `favicon.ico` (16/32/48 en un mismo archivo).
-No lo declara ninguna etiqueta: es el que los navegadores y algunos
-rastreadores piden por su cuenta a `/favicon.ico` cuando no leen el
-`<link rel="icon">`.
+    <link rel="icon" type="image/png" sizes="192x192" href=".../favicon.png">
+    <link rel="icon" sizes="16x16 32x32 48x48" href=".../favicon.ico">
+    <link rel="apple-touch-icon" href=".../favicon.png">
+
+`favicon.png` mide 192 px de lado; `favicon.ico` lleva 16, 32 y 48 en
+un mismo archivo.
+
+**Corrección a lo que decía antes esta sección.** Acá estuvo escrito
+que Google solo toma el favicon si el lado es múltiplo de 48. Eso es
+falso: la documentación pide un cuadrado de 8 px para arriba y
+recomienda pasar de 48. Los 180 px que había antes ya servían, así que
+llevarlos a 192 no arregló nada — tampoco molesta, y por eso queda.
+Si algún día se reemplaza la imagen, alcanza con que sea cuadrada y
+grande; el número exacto da igual.
+
+Los tres requisitos que Google sí exige:
+
+- **Un favicon por hostname**, y lo lee de la portada. `suitsagency.lat`
+  tiene uno solo para todo el sitio: las subcarpetas no pueden tener
+  el suyo.
+- **Googlebot y Googlebot-Image** tienen que poder bajar el archivo.
+  `robots.txt` abre todo con `User-agent: *` / `Allow: /`, así que ya
+  está. Ojo si algún día se agrega un grupo propio para
+  `Googlebot-Image`: ese rastreador pasaría a leer solo ese grupo y a
+  ignorar el `*`.
+- **La URL tiene que quedarse quieta.** Google cachea el favicon por
+  URL; renombrar el archivo lo obliga a empezar de nuevo.
 
 Cambiar el favicon no se ve al día siguiente: Google lo actualiza
-cuando vuelve a rastrear la portada, y eso puede tardar semanas.
+cuando vuelve a rastrear la portada, y eso tarda de días a semanas. No
+hay forma de forzarlo desde el repositorio. Lo único que acelera es
+pedir la reindexación de `https://suitsagency.lat/` a mano, con la
+Inspección de URLs de Search Console (el sitio ya está verificado con
+`google4ceb6ef491e3b41c.html`).
+
+Mientras tanto, que en el buscador salga el globo genérico no es
+necesariamente una falla del código: el sitio es de agosto de 2026 y a
+un dominio nuevo Google suele tardar en asignarle el ícono.
 
 ### Botón flotante de WhatsApp
 
