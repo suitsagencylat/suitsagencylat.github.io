@@ -738,6 +738,27 @@ Al cambiar un `<title>` Google tarda en recalcular posiciones. La
 portada puede perder terreno en "cuánto se gana" antes de que `/pagos/`
 lo gane; es el costo esperado de dejar de competir consigo misma.
 
+### El contacto de /privacidad/ es el correo, no WhatsApp
+
+Los dos puntos de contacto de la política —el del responsable de los
+datos, en "Quiénes somos", y el canal para pedir acceso, corrección o
+borrado, en "Tus derechos"— son `suitsagencylat@gmail.com`. Para un
+pedido formal sobre datos personales el correo deja constancia escrita,
+que WhatsApp no da.
+
+**La mención de WhatsApp en "Qué datos recolectamos" se queda, y no hay
+que "limpiarla".** No es un contacto: describe qué datos entran. El
+formulario de `/registro/` pide el número de WhatsApp en un campo
+obligatorio (`#fWhatsapp`), así que la política tiene que declararlo.
+Sacar esa frase dejaría el documento diciendo algo falso sobre datos
+personales, que es justo lo que una política de privacidad no puede
+hacer.
+
+También se quedan el ícono de WhatsApp de la fila de redes y el botón
+flotante que inyecta `include.js`. Los dos son componentes del sitio
+entero, iguales en las seis páginas; cambiarlos solo acá rompería la
+consistencia.
+
 ### La tabla de /pagos/ va escrita en el HTML
 
 Las 24 filas de `#paymentTableBody` están escritas a mano en el HTML.
