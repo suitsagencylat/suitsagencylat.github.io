@@ -798,10 +798,10 @@ la Invitación", que es lo que el emisor hace de verdad, y el enlace al
 perfil de Bigo se mudó al paso 2 como vía alternativa de contacto, al
 lado del de WhatsApp.
 
-`registro/perfil.jpg` quedó huérfano: mostraba ese flujo viejo. No se
-borra por si sirve de referencia, pero **no la vuelvas a enlazar sin
-una captura nueva**. Las reglas `.guide-container` y `.guide-img` se
-dejan a propósito, listas para cuando haya imagen.
+`registro/perfil.jpg` se eliminó junto con las reglas
+`.guide-container` y `.guide-img`: mostraba ese flujo viejo y el paso ya
+no lleva imagen. Si algún día se agrega una captura nueva, hay que
+volver a escribir esos estilos.
 
 **Los pasos 4, 5 y 6 son datos que antes no estaban en ningún lado.**
 El más importante es el 6: sin verificar identidad y edad no se pueden
