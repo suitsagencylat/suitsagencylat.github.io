@@ -100,6 +100,32 @@
    es un poco mayor (-12px vs -10px) porque son las tarjetas hero */
 .nav-card:hover { transform: translateY(-12px); }
 
+/* Desplegable de los 51 restantes. Va con <details>, no con un boton y
+   JavaScript, por dos razones: funciona aunque el JS falle o tarde, y los
+   nombres quedan escritos en el HTML aunque este cerrado, asi que los
+   rastreadores de IA los leen igual. Es la respuesta a "¿aceptan gente de
+   mi pais?" para los 51 que no tienen bandera a la vista. */
+.mas-paises { max-width: 900px; margin: 10px auto 0; text-align: center; }
+.mas-paises > summary {
+    display: inline-block; cursor: pointer; list-style: none;
+    padding: 5px 12px; user-select: none;
+}
+.mas-paises > summary::-webkit-details-marker { display: none; }
+.mas-paises > summary::after { content: " \25BE"; opacity: .7; }
+.mas-paises[open] > summary::after { content: " \25B4"; }
+.mas-paises > summary:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+.lista-51 {
+    list-style: none; margin: 14px auto 0; padding: 14px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+    border: 1px solid var(--glass-border); border-radius: 12px;
+    background: rgba(255, 255, 255, .02);
+}
+.lista-51 li {
+    font-size: .58rem; font-weight: 600; color: var(--silver);
+    background: rgba(255, 255, 255, .05); border: 1px solid var(--glass-border);
+    border-radius: 6px; padding: 4px 8px;
+}
+
 .countries-section h2 {
     font-family:var(--font-display);
     font-size:2.5rem;
@@ -1405,9 +1431,7 @@ PRESENCIA LATINOAMERICANA
 
 
 <p>
-Creadores conectados desde diferentes países
-formando parte del ecosistema Suits Agency.
-<br><strong>Aceptamos creadores de todos los países de habla hispana de Latinoamérica y el Caribe.</strong> Estés donde estés en la región, puedes postularte.
+<strong>Aceptamos creadores de todos los países de habla hispana de Latinoamérica y el Caribe.</strong> Estés donde estés en la región, puedes postularte.
 </p>
 
 
@@ -1431,10 +1455,64 @@ formando parte del ecosistema Suits Agency.
 <div class="country-item">
 <span aria-hidden="true">🇩🇴</span> Rep. Dominicana
 </div>
-<div class="country-item highlight">
-+13 países más
 </div>
-</div>
+
+<details class="mas-paises">
+<summary class="country-item highlight">+51 países y territorios</summary>
+<ul class="lista-51">
+<li>Anguila</li>
+<li>Antigua y Barbuda</li>
+<li>Antillas Neerlandesas</li>
+<li>Aruba</li>
+<li>Bahamas</li>
+<li>Barbados</li>
+<li>Belice</li>
+<li>Bolivia</li>
+<li>Caribe Neerlandés</li>
+<li>Chile</li>
+<li>Costa Rica</li>
+<li>Cuba</li>
+<li>Curazao</li>
+<li>Dominica</li>
+<li>Ecuador</li>
+<li>El Salvador</li>
+<li>Granada</li>
+<li>Guadalupe</li>
+<li>Guatemala</li>
+<li>Guayana Francesa</li>
+<li>Guyana</li>
+<li>Haití</li>
+<li>Honduras</li>
+<li>Isla de Montserrat</li>
+<li>Isla de San Bartolomé</li>
+<li>Isla Unión</li>
+<li>Islas Caimán</li>
+<li>Islas Georgias del Sur y Sandwich del Sur</li>
+<li>Islas Turcas y Caicos</li>
+<li>Islas Vírgenes de los Estados Unidos</li>
+<li>Jamaica</li>
+<li>Martinica</li>
+<li>Nicaragua</li>
+<li>Panamá</li>
+<li>Paraguay</li>
+<li>Puerto Rico</li>
+<li>Región del Caribe Neerlandés</li>
+<li>Saba</li>
+<li>Saint John</li>
+<li>Saint Thomas</li>
+<li>San Cristóbal y Nieves</li>
+<li>San Eustaquio</li>
+<li>San Martín</li>
+<li>San Vicente y las Granadinas</li>
+<li>Santa Lucía</li>
+<li>Sint Maarten</li>
+<li>Surinam</li>
+<li>Tórtola</li>
+<li>Trinidad y Tobago</li>
+<li>Uruguay</li>
+<li>Virgin Gorda</li>
+</ul>
+</details>
 </section>
 
 <section class="social-section">
