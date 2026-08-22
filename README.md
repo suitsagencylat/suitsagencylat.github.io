@@ -717,6 +717,38 @@ Mientras tanto, que en el buscador salga el globo genérico no es
 necesariamente una falla del código: el sitio es de agosto de 2026 y a
 un dominio nuevo Google suele tardar en asignarle el ícono.
 
+### /privacidad/ fuera del buscador
+
+`privacidad/index.html` lleva `noindex, follow` y **no** figura en
+`sitemap.xml`. Las dos cosas van juntas a propósito: si estuviera en el
+sitemap con `noindex`, Search Console lo reportaría como error
+("Enviada y marcada como noindex").
+
+El motivo es que la página aparecía en los resultados de búsqueda. En
+el primer export de rendimiento se llevaba 43 impresiones — el 11 % del
+total del sitio — con 0 clics, en posición 6,67. Eso pasa porque el
+sitio tiene seis páginas: Google elige entre seis, no entre miles, así
+que una política de privacidad tiene chances que en un sitio grande no
+tendría. Encima esta lleva palabras del negocio adentro (Bigo,
+WhatsApp, pagos, agencia) y el bloque SÍGUENOS, que la hacen ver menos
+como un documento legal.
+
+Era además la única página del sitio con un `index, follow` explícito;
+las de contenido no declaran nada, que ya significa indexar.
+
+**Esto no afecta la publicidad.** Google Ads, AdSense y Meta piden que
+la política sea accesible y esté enlazada, no que esté indexada. Sigue
+cargando para cualquiera y sigue enlazada desde el pie de las siete
+páginas. El `follow` mantiene el rastreo de sus enlaces, y
+`AdsBot-Google` la lee sin problema.
+
+**Lo que sí rompería los anuncios es un `Disallow` en `robots.txt`**:
+ahí AdsBot no podría rastrearla y la aprobación de anuncios se
+complicaría. `robots.txt` se deja abierto para todos y no se toca.
+
+Si algún día se quiere volver atrás, son dos cambios: sacar el
+`noindex` y devolver la entrada al sitemap.
+
 ### Botón flotante de WhatsApp
 
 El texto que lleva precargado sale de `WHATSAPP_MENSAJES` en
