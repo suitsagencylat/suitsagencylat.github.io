@@ -717,6 +717,27 @@ Mientras tanto, que en el buscador salga el globo genérico no es
 necesariamente una falla del código: el sitio es de agosto de 2026 y a
 un dominio nuevo Google suele tardar en asignarle el ícono.
 
+### Quien apunta a que consulta
+
+La portada y `/pagos/` se pisaban. El `<h1>` de `/pagos/` es "¿Cuánto
+se gana en Bigo Live?" y el `<title>` de la portada decía lo mismo, así
+que Google tenía dos páginas nuestras compitiendo por esa búsqueda y
+elegía una. Peor: ese título tampoco describía la portada, cuyo `<h1>`
+es "EL NEGOCIO DE SER QUIEN ERES".
+
+Ahora la portada busca marca y categoría ("Suits Agency", "agencia
+oficial de Bigo Live") y `/pagos/` se queda sola con "cuánto se gana" y
+"cuánto paga", que es lo que de verdad responde: tiene la calculadora y
+la tabla.
+
+**El `<h1>` de `/pagos/` no se toca.** Es texto visible y decisión del
+dueño del sitio. La separación se resolvió desde el título de la
+portada, que no se ve en pantalla.
+
+Al cambiar un `<title>` Google tarda en recalcular posiciones. La
+portada puede perder terreno en "cuánto se gana" antes de que `/pagos/`
+lo gane; es el costo esperado de dejar de competir consigo misma.
+
 ### La tabla de /pagos/ va escrita en el HTML
 
 Las 24 filas de `#paymentTableBody` están escritas a mano en el HTML.
