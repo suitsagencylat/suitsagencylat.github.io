@@ -786,10 +786,27 @@ tiene acceso al documento: lo leen sistemas automáticos de Bigo.
 
 ### El sitio habla de tú, no de vos
 
-Las seis páginas usan tuteo: "Descarga", "Escríbenos", "Puedes",
-"Únete". Al escribir textos nuevos hay que seguir esa forma. El
-desplegable de países decía "Elegí tu país", único voseo del sitio, y
-se corrigió a "Elige tu país".
+Las páginas públicas usan tuteo: "Descarga", "Escríbenos", "Puedes",
+"Únete". Al escribir textos nuevos hay que seguir esa forma.
+
+Se corrigieron tres filtraciones de voseo:
+
+- `"Elegí tu país"` → `"Elige tu país"` en el desplegable de
+  `/registro/`.
+- `"Transmití siempre a la misma hora"` → `"Transmite"` en
+  `/academia/`. Era el único de siete tips en voseo; los otros seis ya
+  decían "Interactúa", "Revisa", "Empieza", "Cuida", "Invita",
+  "Agradece".
+- `"pedile a tu agente"` → `"pídele"` en `/soporte/`. **Estaba dos
+  veces**, en el texto visible y dentro del JSON-LD del FAQ. Cuando se
+  toca una respuesta del FAQ hay que tocar las dos: si se desincronizan,
+  el dato estructurado dice una cosa y la página otra.
+
+**`/publicaciones/` queda en voseo a propósito.** No es una página para
+emisores: es la herramienta para previsualizar las placas de Instagram,
+con instrucciones para quien mantiene el sitio ("abrí el .html y
+editalo", "corré ./exportar.sh"). Lleva `noindex, nofollow`, no está en
+el sitemap y no la enlaza ninguna página.
 
 ### El contacto de /privacidad/ es el correo, no WhatsApp
 
