@@ -738,6 +738,25 @@ Al cambiar un `<title>` Google tarda en recalcular posiciones. La
 portada puede perder terreno en "cuánto se gana" antes de que `/pagos/`
 lo gane; es el costo esperado de dejar de competir consigo misma.
 
+### El JSON-LD de la portada declara las tres identidades
+
+`sameAs` lista Instagram, TikTok y **el perfil oficial en bigo.tv**. Ese
+tercero es el que importa: es la prueba de que la agencia es oficial, y
+hasta ahora vivía solo dentro de un botón de `/registro/`, sin conexión
+con la entidad de marca.
+
+Se nota que Google lee este bloque: al preguntarle por la agencia, su
+respuesta la nombra "Suits Agency Latam", que es exactamente el
+`alternateName` declarado acá y no aparece escrito en ninguna otra
+parte del sitio.
+
+La URL del perfil va **sin el `?sc=`** del botón. Ese parámetro es un
+código de referido, no forma parte de la identidad: `sameAs` quiere la
+dirección canónica del perfil.
+
+`contactPoint` lleva ahora el teléfono y el correo, los mismos dos
+canales que declara `/privacidad/`.
+
 ### /registro/ va en tres etapas, agrupadas por quién actúa
 
 Los seis pasos se leen agrupados con `.etapa-cinta`: etapa 1 lo que hace
