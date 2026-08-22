@@ -235,16 +235,42 @@
         /* Tabla de metodos por pais. Va escrita en el HTML, no armada
            por JS: es la respuesta a "como cobro en mi pais", que es de
            las primeras preguntas de alguien que duda si registrarse. */
-        .cobro-pais { width: 100%; border-collapse: collapse; margin: 14px 0 12px; font-size: .82rem; }
-        .cobro-pais th, .cobro-pais td { padding: 8px 6px; text-align: center; border-bottom: 1px solid rgba(255,255,255,.07); }
-        .cobro-pais thead th { font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.55); font-weight: 500; }
-        .cobro-pais tbody th { text-align: left; font-weight: 500; color: #e0e0e0; white-space: nowrap; }
+        /* table-layout:fixed es la clave: sin el, la tabla reclama el ancho
+           que necesita su contenido (337px con estos textos) y ese minimo
+           sube por el bloque hasta la seccion, que termina saliendose de la
+           pantalla. Con fixed, la tabla ocupa exactamente el ancho que le da
+           su contenedor y reparte las columnas; el texto envuelve si hace
+           falta. La primera columna se lleva el 34% porque ahi van los
+           nombres largos como "Resto de Latinoamerica". */
+        .cobro-pais { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 14px 0 12px; font-size: .82rem; }
+        .cobro-pais th:first-child { width: 30%; }
+        .cobro-pais th, .cobro-pais td { padding: 8px 4px; text-align: center; border-bottom: 1px solid rgba(255,255,255,.07); }
+        .cobro-pais thead th { font-size: .58rem; letter-spacing: .02em; text-transform: uppercase; color: rgba(255,255,255,.55); font-weight: 500; }
+        .cobro-pais tbody th { text-align: left; font-weight: 500; color: #e0e0e0; }
         .cobro-pais .si { color: var(--accent-blue); font-weight: 700; }
         .cobro-pais .no { color: rgba(255,255,255,.22); }
         .cobro-pais tr.completa th, .cobro-pais tr.completa td { background: rgba(0,232,255,.06); }
         .tabla-scroll { overflow-x: auto; }
+        /* En pantallas de 360px para abajo los cuatro encabezados no entran
+           sin tocarse: "PAYONEER" es la palabra mas larga y no se puede
+           partir. Se achica solo ahi. */
+        @media (max-width: 380px) {
+            .cobro-pais thead th { font-size: .52rem; letter-spacing: 0; }
+            .cobro-pais th:first-child { width: 27%; }
+            .cobro-pais th, .cobro-pais td { padding: 8px 3px; }
+        }
 
-        .reglas-pago { margin-top: 34px; display: flex; flex-direction: column; gap: 16px; }
+        /* min-width:0 en los dos niveles. Es la trampa clasica de flexbox:
+           min-width:auto es el valor por defecto de un item flex y le
+           permite crecer hasta el ancho intrinseco de su contenido, asi
+           que una tabla ancha estira el bloque, el bloque estira la
+           seccion, y la seccion se sale de la pantalla. Como body lleva
+           overflow-x hidden, eso no aparece como barra de desplazamiento
+           sino como la seccion entera recortada y corrida a la izquierda.
+           .reglas-pago es item flex de .main-content, por eso tambien lo
+           necesita ella, no solo sus hijos. */
+        .reglas-pago { margin-top: 34px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+        .reglas-pago > .bloque { min-width: 0; }
 
         .bloque {
             text-align: left;

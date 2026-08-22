@@ -757,6 +757,32 @@ dirección canónica del perfil.
 `contactPoint` lleva ahora el teléfono y el correo, los mismos dos
 canales que declara `/privacidad/`.
 
+### La tabla de cobro y la trampa de flexbox
+
+`.cobro-pais` lleva **`table-layout: fixed`**, y no es cosmético. Sin
+él, una tabla reclama el ancho que necesita su contenido, y ese mínimo
+sube en cadena: estira el `.bloque`, el bloque estira `.reglas-pago`, y
+la sección entera se sale de la pantalla. Como `body` lleva
+`overflow-x: hidden`, eso no se ve como barra de desplazamiento sino
+como **la sección recortada y corrida hacia la izquierda**, con el texto
+cortado de los dos lados. Así se publicó por error y así lo detectó el
+dueño del sitio.
+
+`min-width: 0` hace falta en los dos niveles —`.reglas-pago` y sus
+`.bloque`— porque `min-width: auto` es el valor por defecto de un item
+flex y le permite crecer hasta el ancho intrínseco de su contenido.
+`.reglas-pago` es item flex de `.main-content`, así que lo necesita
+ella también, no solo sus hijos.
+
+Con `fixed` la tabla ocupa exactamente lo que le da su contenedor y
+reparte las columnas; el texto envuelve. La primera columna se lleva
+30 % porque ahí van los nombres largos.
+
+**Si se agrega una columna o un país de nombre largo, hay que volver a
+medir de 320 px para arriba.** El punto de quiebre está en los
+encabezados: "PAYONEER" es la palabra más larga y no se puede partir,
+así que por debajo de 380 px una media query los achica.
+
 ### /registro/ va en tres etapas, agrupadas por quién actúa
 
 Los seis pasos se leen agrupados con `.etapa-cinta`: etapa 1 lo que hace
